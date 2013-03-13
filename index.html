@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Pieni piiri - Muistiluuri</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Muistiluuri</h2>
+        <hr />
+        <div id="content" class="span12"></div>
+
+
+
+        <div class="clearfix"></div>
+        <footer>
+            <hr/>
+            <p class="muted">&copy Pieni piiri 2013</p>
+        </footer>
+
+    </div>
+    <!-- templates -->
+
+    <script id="gameTemplate" type="text/template">
+        <div  class="rounded img-helper">
+            <img src="<%= coverImage %>" />
+        </div>
+        <h4><%= title %></h4>
+    </script>
+
+
+    <!-- end of templates -->
+
+
+    <!-- javascript -->
+    <script src="js/lib/jquery-1.9.1.min.js"></script>
+    <script src="js/lib/underscore-min.js"></script>
+    <script src="js/lib/backbone.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+
+
+    <script src="js/models/game.js"></script>
+
+    <script src="js/collections/games.js"></script>
+
+    <script src="js/views/gameview.js"></script>
+    <script src=js/views/gamelistview.js></script>
+
+    <script src="js/router.js"></script>
+    <script src="js/app.js"></script>
+
+
+
+
+
+</body>
+</html>
