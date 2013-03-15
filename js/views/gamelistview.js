@@ -1,21 +1,29 @@
 var GameListView = Backbone.View.extend({
     el: $( '#content' ),
 
+	defaults: {
+		games: null
+	},
+
     initialize: function (initGames){
-        this.collection = new Games(initGames);
+        this.games = new Games(initGames);
+		this.$el.html('');
+
         this.render();
     },
 
     render: function() {
-        _.each( this.collection.models, function( item ){
-            this.renderGame( item );
-        }, this);
+		var self = this;
+		this.games.forEach(function(item, key) {
+			self.renderGame(item);
+		});
     },
 
-    renderGame: function( item ) {
+    renderGame: function(item) {
         var gameView = new GameView({
             model: item
         });
+
         this.$el.append( gameView.render().el );
     }
 });
