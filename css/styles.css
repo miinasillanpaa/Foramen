@@ -2,20 +2,21 @@
     border-radius: 10px;
 }
 .img-helper{
-    width:120px;
-    height:120px;
+
     border: 1px solid #dddddd;
     overflow: hidden;
     margin: 10px;
 }
 .game-item{
+    width:18.25%;
+    display: inline-block;
     cursor: pointer;
     background: rgb(238,238,238); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1))); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10+,Safari5.1+ */
+    margin: 10px;
 
-    margin-bottom:10px;
 }
 
 .game-item:hover{
@@ -25,9 +26,35 @@
     background: -webkit-linear-gradient(-45deg, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 16%,rgba(204,204,204,1) 45%); /* Chrome10+,Safari5.1+ */
 
 }
+.difficulty{
+    padding-top:50px;
+}
 
+.spacer{
+    padding:0 30px 0 30px;
+    line-height: 1.8;
+}
 
 .game-item h4{
     line-height: 1.2;
     padding:0px 10px 0px 10px;
+    text-align: center;
+}
+
+.guide  {
+    margin:0;
+    padding:0;
+}
+.guide p {
+    font-size: 1.5em;
+    line-height: 1.2;
+    margin: 20px 0px 0px 5px;
+}
+
+#header{
+    margin-top:10px;
+}
+
+.target{
+
 }

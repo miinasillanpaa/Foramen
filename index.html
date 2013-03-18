@@ -12,6 +12,27 @@
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 
+
+    <script id="kuvaEtsintaTemplate" type="text/template">
+        <div class="item-collection">
+            <% _.each(arr, function(arr) { %>
+                <img src=" <%= arr.itemPic %> " />
+            <% }); %>
+        </div>
+
+        <img class="target" src="<%= targetPic %>" />
+    </script>
+
+
+    <script id="videoTemplate" type="text/template">
+        <video width="100%" controls height="100%" autoplay="autoplay">
+            <source src="<%=video%>" type="video/webm" />
+            Jotain meni vikaan
+        </video>
+
+    </script>
+
+
     <script id="gameTemplate" type="text/template">
         <div class="rounded img-helper" id="select-game">
             <img src="<%= coverImage %>" />
@@ -21,19 +42,57 @@
         </h4>
     </script>
 
+
     <script id="preGameTemplate" type="text/template">
-        <h1> Tervetuloa peliin <%= title %> </h1>
+
+        <div class="span6 guide">
+            <h2>Tervetuloa peliin <%= title %>!</h2>
+            <p><%= guide %></p>
+        </div>
+        <div class="span5 pull-right">
+
+
+            <br />
+            <h4>Valitse vaikeusaste:</h4>
+            <div class="well ">
+                <p><button class="easy btn btn-success btn-large btn-block">Helppo</button></p>
+                <p><button class="medium btn btn-large btn-block">Keskivaikea</button></p>
+                <p><button class="hard btn btn-large btn-block">Vaikea</button></p>
+            </div>
+            <br />
+
+
+        </div>
+        <div class="clearfix"></div>
+        <button class="btn btn-large btn-primary pull-right play">Aloita peli</button>
+        <h4 class="pull-right spacer">Tai</h4>
+        <button class="btn btn-large pull-right preview">Katso esimerkkisuoritus tästä</button>
+
     </script>
+
+    <script id="mainHeaderTmpl" type="text/template">
+        <h2>Muistiluuri</h2>
+        <hr />
+    </script>
+
+    <script id="gameHeaderTmpl" type="text/template">
+        <button class="back btn btn-large"><i class="icon-chevron-left"></i> Takaisin</button>
+        <hr />
+    </script>
+
+
+
 </head>
 
 <body>
 
     <div class="container">
-        <h2>Muistiluuri</h2>
-        <hr />
+        <div class="row-fluid">
+            <div id="header"></div>
 
-        <div id="content" class="span12"></div>
 
+            <div id="content" ></div>
+        </div>
 
 
         <div class="clearfix"></div>
@@ -42,6 +101,12 @@
             <p class="muted">&copy Pieni piiri 2013</p>
         </footer>
 
+    <!-- fastclick -->
+    <script type="text/javascript">
+        window.addEventListener('load', function() {
+            new FastClick(document.body);
+        }, false);
+    </script>
     </div>
 
     <!-- javascript -->
@@ -49,6 +114,7 @@
     <script src="js/lib/underscore-min.js"></script>
     <script src="js/lib/backbone.min.js"></script>
     <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/fastclick.js"></script>
 
 
     <script src="js/models/game.js"></script>
@@ -56,8 +122,12 @@
     <script src="js/collections/games.js"></script>
 
     <script src="js/views/gameview.js"></script>
-    <script src=js/views/gamelistview.js></script>
+    <script src="js/views/gamelistview.js"></script>
     <script src="js/views/pregameview.js"></script>
+    <script src="js/views/headerview.js"></script>
+    <script src="js/views/videoview.js"></script>
+
+    <script src="js/views/kuvaetsinta.js"></script>
 
     <script src="js/app.js"></script>
     <script src="js/router.js"></script>
