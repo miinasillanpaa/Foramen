@@ -5,8 +5,8 @@ var VideoView = Backbone.View.extend({
     render: function() {
 
         var video = { video: this.model.get('video') };
-
         console.log(this.model.get('video'));
+
 
         var template = _.template( $(this.template).html(), video );
         this.$el.html(template);

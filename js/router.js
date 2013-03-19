@@ -3,7 +3,8 @@ window.Router = Backbone.Router.extend({
 		"" : "gameIndex",
 		"game/:id": "getGame",
         "game/:id/video": "videoView",
-        "game/:id/play": "play"
+        "game/:id/play": "play",
+        "game/:id/results" : "resultsView"
 	},
 
 	gameIndex: function() {
@@ -36,20 +37,34 @@ router.on('route:videoView', function(id) {
 });
 
 router.on('route:play', function(id) {
-    console.log(id);
+
     var selectedGame = games[id-1];
 
     var gameObj = new Game(selectedGame);
 
+    console.log('router /play diff: ' + gameObj.get('difficulty'));
+
     if( id == 1 ){
-        console.log('kuvaetsinta launches')
         var view = new KuvaEtsinta({ model:gameObj });
         view.render();
     }else{
         console.log('Nothing here yet.')
     }
+});
 
+router.on('route:resultsView', function(id) {
 
+    var selectedGame = games[id-1];
+
+    var gameObj = new Game(selectedGame);
+
+    if( id == 1 ){
+
+        var view = new ResultsView({ model:gameObj });
+        view.render();
+    }else{
+        console.log('Nothing here yet.')
+    }
 });
 
 Backbone.history.start();

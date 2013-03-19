@@ -8,8 +8,12 @@ var GameView = Backbone.View.extend({
 	},
 
     render: function() {
-		var variables = {title: this.model.get('title'), coverImage: this.model.get('coverImage'), guide: this.model.get('guide') };
-        //console.log(variables);
+		var variables = {
+                        title: this.model.get('title'),
+                        coverImage: this.model.get('coverImage'),
+                        guide: this.model.get('guide')
+                        };
+
 		var template = _.template( $(this.template).html(), variables );
 
         this.$el.html(template);

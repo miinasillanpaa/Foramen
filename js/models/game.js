@@ -1,4 +1,5 @@
 var Game = Backbone.Model.extend({
+    //urlRoot:'/piiri-foramen/',
     defaults: {
         gameId: null,
         title: 'No title',

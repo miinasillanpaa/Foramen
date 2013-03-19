@@ -5,9 +5,9 @@ var games = [
         "guide" : "<p>Ruutu on täynnä esineitä ja asioita eisttäviä kuvia.</p>" +
                   "<p>Tehtävänä on etsiä kohdekuvat (näkyvissä tehtäväruudun alalaidassa) mahdollisimman nopeasti koskettamalla kutakin kohdekuvaa.</p>" +
                   "<p>Väärän valinnan voit poistaa koskettamalla kohdekuvaa uudestaan.</p>" +
-                  "<p>Tehtävän suoritettuasi paina ... </p>" +
+                  "<p>Tehtävän suoritettuasi paina tehtäväruudun alareunassa näkyvää kuvaa.</p>" +
                   "<p>Tehtävä voidaan keskeyttää Takaisin -nappulasta.</p>",
-        "video" : "./video/test.webm"
+        "video" : "./video/small.mp4"
     },
 	{"gameId": 2, "title" : "Tekstiviesti"},
 	{"gameId": 3, "title" : "Sudoku"},

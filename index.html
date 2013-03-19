@@ -13,21 +13,44 @@
     <link href="css/styles.css" rel="stylesheet">
 
 
+
     <script id="kuvaEtsintaTemplate" type="text/template">
         <div class="item-collection">
-            <% _.each(arr, function(arr) { %>
-                <img src=" <%= arr.itemPic %> " />
+            <% _.each(myArr, function(myArr) { %>
+                <img class="selectable" src=" <%= myArr.itemPic %> " />
             <% }); %>
         </div>
 
-        <img class="target" src="<%= targetPic %>" />
+        <div class="text-center">
+            <img class="target" src="<%= targetPic %>" />
+            <button class="btn btn-large bottom-right finish">Valmis</button>
+            <button class="btn btn-large bottom-left quit">Lopeta peli</button>
+        </div>
+
+
+    </script>
+
+    <script id="resultsViewTemplate" type="text/template">
+        <h3>Hyvä! Pelasit juuri pelin <%= title %></h3>
+        <ul class="results well">
+            <h4>Tulokset:</h4>
+            <li>Vaikeustaso: </li>
+            <li>Aika: </li>
+            <li>Kohteiden määrä: </li>
+            <li>Oikein: </li>
+            <li>Väärin: </li>
+            <li>Puuttu: </li>
+            <li>Virheitä yhteensä: </li>
+            <br />
+            <a href="#">Näytä kuvaruutu</a>
+
+        </ul>
     </script>
 
 
     <script id="videoTemplate" type="text/template">
-        <video width="100%" controls height="100%" autoplay="autoplay">
-            <source src="<%=video%>" type="video/webm" />
-            Jotain meni vikaan
+        <video id="video" autobuffer controls width="640" height="480">
+            <source src="<%= video %>" type="video/mp4" />
         </video>
 
     </script>
@@ -126,6 +149,7 @@
     <script src="js/views/pregameview.js"></script>
     <script src="js/views/headerview.js"></script>
     <script src="js/views/videoview.js"></script>
+    <script src="js/views/resultsview.js"></script>
 
     <script src="js/views/kuvaetsinta.js"></script>
 

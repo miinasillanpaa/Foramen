@@ -8,7 +8,7 @@ var GameListView = Backbone.View.extend({
     initialize: function (initGames){
         this.games = new Games(initGames);
 		this.$el.html('');
-        var header = new HeaderView({id:0});
+        new HeaderView({id:0});
         this.render();
     },
 
