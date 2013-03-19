@@ -7,7 +7,7 @@ var PreGameView = Backbone.View.extend({
 
 		var variables = {title: this.model.get('title'),
                          guide: this.model.get('guide'),
-                         difficulty: this.model.get('difficulty') };
+                         difficulty: Settings.get('difficulty') };
 
 		var template = _.template( $(this.template).html(), variables );
 
@@ -31,7 +31,7 @@ var PreGameView = Backbone.View.extend({
         $('.hard').removeClass('btn-danger');
 
         this.model.set({'difficulty':'easy'});
-
+		Settings.set({difficulty: 'easy'});
     },
 
     mediumSelected: function() {
@@ -40,7 +40,7 @@ var PreGameView = Backbone.View.extend({
         $('.hard').removeClass('btn-danger');
 
         this.model.set({'difficulty':'medium'});
-
+		Settings.set({difficulty: 'medium'});
     },
 
     hardSelected: function() {
@@ -49,7 +49,7 @@ var PreGameView = Backbone.View.extend({
         $('.medium').removeClass('btn-warning');
 
         this.model.set({'difficulty':'hard'});
-
+		Settings.set({difficulty: 'hard'});
     },
 
     previewVideo: function() {
@@ -63,7 +63,7 @@ var PreGameView = Backbone.View.extend({
         // this.model.save();
         var gameId = this.model.get('gameId');
 
-        router.navigate('game/' + gameId + '/play', true);
+        router.navigate('game/' + gameId + '/play', {trigger: true});
 
     }
 });
