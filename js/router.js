@@ -1,3 +1,5 @@
+window.Settings = new Settings();
+
 window.Router = Backbone.Router.extend({
 	routes: {
 		"" : "gameIndex",
@@ -43,6 +45,7 @@ router.on('route:play', function(id) {
     var gameObj = new Game(selectedGame);
 
     console.log('router /play diff: ' + gameObj.get('difficulty'));
+	console.log('settings difficulty ' + Settings.get('difficulty'));
 
     if( id == 1 ){
         var view = new KuvaEtsinta({ model:gameObj });
