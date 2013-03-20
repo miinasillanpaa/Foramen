@@ -17,7 +17,7 @@ window.Router = Backbone.Router.extend({
 var router = new Router();
 
 router.on('route:getGame', function(id) {
-	//console.log('game selected with id ' + id);
+	var difficulty = Settings.get('difficulty');
 
 	var selectedGame = games[id-1];
 	//console.log(selectedGame);
@@ -44,9 +44,6 @@ router.on('route:play', function(id) {
 
     var gameObj = new Game(selectedGame);
 
-    console.log('router /play diff: ' + gameObj.get('difficulty'));
-	console.log('settings difficulty ' + Settings.get('difficulty'));
-
     if( id == 1 ){
         var view = new KuvaEtsinta({ model:gameObj });
         view.render();
@@ -55,19 +52,5 @@ router.on('route:play', function(id) {
     }
 });
 
-router.on('route:resultsView', function(id) {
-
-    var selectedGame = games[id-1];
-
-    var gameObj = new Game(selectedGame);
-
-    if( id == 1 ){
-
-        var view = new ResultsView({ model:gameObj });
-        view.render();
-    }else{
-        console.log('Nothing here yet.')
-    }
-});
 
 Backbone.history.start();

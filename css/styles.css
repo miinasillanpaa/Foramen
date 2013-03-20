@@ -1,7 +1,10 @@
-html{
+body{
     overflow: hidden;
+    margin:0;
 }
+h2{
 
+}
 .rounded{
     border-radius: 10px;
 }
@@ -12,6 +15,7 @@ html{
     margin: 10px;
 }
 .game-item{
+
     width:18.25%;
     display: inline-block;
     cursor: pointer;
@@ -38,11 +42,22 @@ html{
     padding:0 30px 0 30px;
     line-height: 1.8;
 }
+.wrap{
+    height:65px;
+    display: table;
+    padding:10px;
+    vertical-align: middle;
+    margin:0 auto;
 
+}
 .game-item h4{
-    line-height: 1.2;
+    line-height: 1.2em;
+    font-size: 1.5em;
     padding:0px 10px 0px 10px;
+    display: table-cell;
+    vertical-align: middle;
     text-align: center;
+
 }
 
 .guide  {
@@ -50,8 +65,8 @@ html{
     padding:0;
 }
 .guide p {
-    font-size: 1.5em;
-    line-height: 1.2;
+    font-size: 1.7em;
+    line-height: 1.3;
     margin: 20px 0px 0px 5px;
 }
 
@@ -76,9 +91,10 @@ html{
 
 }
 .results li{
-    font-size: 1.3em;
-    line-height: 1.3em;
+    font-size: 1.6em;
+    line-height: 1.6em;
 }
+
 .bottom-right{
      position: absolute;
      right:50px;
@@ -88,4 +104,24 @@ html{
     position: absolute;
     left:50px;
     bottom:20px;
+}
+.tiny{
+    font-size: 12px;
+}
+.btn{
+    font-size: 1.5em;
+}
+ul{
+    text-indent: 0;
+    margin:0;
+    padding:0;
+}
+.reset{
+    margin:0;
+}
+.title{
+    margin-left:35px;
+}
+hr{
+    margin-top:5px;
 }

@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" id="screenViewport" content="width=1280, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <title>Pieni piiri - Muistiluuri</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -31,20 +31,42 @@
     </script>
 
     <script id="resultsViewTemplate" type="text/template">
-        <h3>Hyvä! Pelasit juuri pelin <%= title %></h3>
-        <ul class="results well">
-            <h4>Tulokset:</h4>
-            <li>Vaikeustaso: </li>
-            <li>Aika: </li>
-            <li>Kohteiden määrä: </li>
-            <li>Oikein: </li>
-            <li>Väärin: </li>
-            <li>Puuttu: </li>
-            <li>Virheitä yhteensä: </li>
-            <br />
-            <a href="#">Näytä kuvaruutu</a>
+        <h3 class="title">Hyvä! Pelasit juuri pelin <%= title %></h3>
+        <div class="span5 well">
 
-        </ul>
+            <ul class="results pull-left">
+                <li><h4>Tulokset:</h4></li>
+                <li>Vaikeustaso: </li>
+                <li>Käytetty aika: </li>
+                <li>Kohteiden määrä: </li>
+                <li>Oikeat valinnat: </li>
+                <li>Väärät valinnat: </li>
+                <li>Puuttuvat valinnat: </li>
+                <li>Virheet yhteensä: </li>
+                <br/>
+                <li><button class="btn btn-large btn-primary">Näytä kuvaruutu</button></li>
+
+            </ul>
+            <ul class="results pull-right">
+                <li><h4>&nbsp;</h4></li>
+                <li> <%= difficulty %> </li>
+                <li> <%= time %> </li>
+                <li> <%= targets %> kpl</li>
+                <li> <%= correct %> kpl</li>
+                <li> <%= wrong %> kpl</li>
+                <li> <%= missing %> kpl</li>
+                <li> <%= allWrongs %> kpl</li>
+            </ul>
+
+        </div>
+        <div class="span5 well">
+            Tähän esim. edellisen pelin tulokset
+        </div>
+        <div class="clearfix"></div>
+
+
+
+
     </script>
 
 
@@ -57,12 +79,12 @@
 
 
     <script id="gameTemplate" type="text/template">
-        <div class="rounded img-helper" id="select-game">
-            <img src="<%= coverImage %>" />
-        </div>
-        <h4>
-            <%= title %>
-        </h4>
+            <div class="rounded img-helper" id="select-game">
+                <img src="<%= coverImage %>" />
+            </div>
+            <div class="wrap">
+                <h4><%= title %></h4>
+            </div>
     </script>
 
 
@@ -72,13 +94,12 @@
             <h2>Tervetuloa peliin <%= title %>!</h2>
             <p><%= guide %></p>
         </div>
-        <div class="span5 pull-right">
-
+        <div class="span6 pull-right">
 
             <br />
             <h4>Valitse vaikeusaste:</h4>
             <div class="well ">
-                <p><button class="easy btn btn-success btn-large btn-block">Helppo</button></p>
+                <p><button class="easy btn btn-large btn-block">Helppo</button></p>
                 <p><button class="medium btn btn-large btn-block">Keskivaikea</button></p>
                 <p><button class="hard btn btn-large btn-block">Vaikea</button></p>
             </div>
@@ -117,8 +138,7 @@
 
         <div class="clearfix"></div>
         <footer>
-            <hr/>
-            <p class="muted">&copy Pieni piiri 2013</p>
+         <!--   <p class="navbar-fixed-bottom muted">&copy Pieni piiri 2013</p> -->
         </footer>
 
     </div>
@@ -145,6 +165,7 @@
 
     <script src="js/app.js"></script>
     <script src="js/router.js"></script>
+
 
     <!-- fastclick -->
     <script type="text/javascript">

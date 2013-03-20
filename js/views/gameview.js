@@ -3,11 +3,14 @@ var GameView = Backbone.View.extend({
     className: 'game-item rounded',
     template: '#gameTemplate',
 
+
+
 	events: {
-		'click #select-game': 'selectGame'
+        'click': 'selectGame'
 	},
 
     render: function() {
+        console.log(this.$el);
 		var variables = {
                         title: this.model.get('title'),
                         coverImage: this.model.get('coverImage'),
@@ -21,6 +24,7 @@ var GameView = Backbone.View.extend({
     },
 
 	selectGame: function() {
-		router.navigate('game/' + this.model.get('gameId'), true);
-	}
+        console.log('hep');
+        router.navigate('game/' + this.model.get('gameId'), true);
+    }
 });

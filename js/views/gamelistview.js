@@ -26,5 +26,8 @@ var GameListView = Backbone.View.extend({
         });
 
         this.$el.append( gameView.render().el );
+        console.log(this.$el);
     }
+
+
 });

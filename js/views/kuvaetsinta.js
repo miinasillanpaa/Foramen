@@ -1,116 +1,152 @@
 var KuvaEtsinta = Backbone.View.extend({
-    el: $( "#content" ),
+    el: $("#content"),
     template: '#kuvaEtsintaTemplate',
+    initialize: function () {
 
+    },
     render: function () {
 
         //remove headerview
         $('#header').html('');
 
-
-        //TODO: measure time
         var startTime = new Date().getTime();
-
-        console.log('kuvaetsinta diff: ' + this.model.get('difficulty'));
-
-
-
-
-        //TODO: KAlapelissä yht. 54 kalaa joista
-        // 18 oikeita vastauksia, joka kolmas on targettikala (10 tai 11)
+        Settings.set({ startTime : startTime });
 
         var category = 'kalat';
-        var random = Math.floor((Math.random()*20)+1);
-        var targetPic = './pics/'+category+'/'+random+'.png';
+        var targetRandom = Math.floor((Math.random() * 20) + 1);
+        var targetPic = './pics/' + category + '/' + targetRandom + '.png';
 
         var arr = [];
-        for(i=0; i<32; i++) {
-            var random = Math.floor((Math.random()*20)+1);
-            var itemPic = './pics/'+category+'/'+random+'.png';
+        for (i = 0; i < 32; i++) {
 
-            var obj= {itemPic:itemPic};
+            var random = Math.floor((Math.random() * 20) + 1);
 
+            while (random === targetRandom) {
+                random = Math.floor((Math.random() * 20) + 1);
+            }
+
+            var itemPic = './pics/' + category + '/' + random + '.png';
+            var obj = {itemPic: itemPic};
             arr.push(obj);
-            //console.log(arr);
+
         }
 
         var randomSpots = [];
-        for(i=0; i<10; i++) {
-            var randomSpot = Math.floor((Math.random()*31)+1);
+        for (i = 0; i < 10; i++) {
+            var randomSpot = Math.floor((Math.random() * 31) + 1);
             randomSpots.push(randomSpot);
-            arr[randomSpot] = {itemPic: targetPic},{correct: true};
+            arr[randomSpot] = {itemPic: targetPic};
         }
-
-
-
-
-        //console.log(randomSpots);
-        //console.log(arr);
-        //var myArr = JSON.stringify(arr);
-        //console.log(myArr);
-
-       // _.each(arr.itemPic, function(itemPic){});
 
 
         var variables = {targetPic: targetPic, myArr: arr };
         //console.log(variables);
-        var template = _.template( $(this.template).html(), variables );
+        var template = _.template($(this.template).html(), variables);
         this.$el.html(template);
+
+        for (i = 0; i < randomSpots.length; i++) {
+            $('.item-collection img:eq(' + randomSpots[i] + ')').addClass('correct');
+        }
 
         return this;
 
     },
 
-    renderEasyGame: function() {
+    renderEasyGame: function () {
 
     },
 
-    renderMediumGame: function() {
+    renderMediumGame: function () {
 
     },
 
-    renderHardGame: function() {
+    renderHardGame: function () {
 
     },
 
     events: {
-        'click .selectable' : 'selectItem',
-        'click .finish' : 'gameFinish',
-        'click .quit' : 'quitGame'
+        'click .selectable': 'selectItem',
+        'click .finish': 'gameFinish',
+        'click .quit': 'quitGame'
     },
 
     selectItem: function () {
+
         var $target = $(event.target);
         $target.toggleClass('selected');
     },
 
     quitGame: function () {
+        this.undelegateEvents();
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId, true);
+
     },
 
     gameFinish: function () {
-        //TODO : gather results
+        this.undelegateEvents();
+        //time & date
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1;//January is 0!
+        var yyyy = today.getFullYear();
+        if(dd<10){dd='0'+dd}
+        if(mm<10){mm='0'+mm}
+        var hours = today.getHours();
+        var minutes = today.getMinutes();
 
-        var selectable = $('.selectable').length;
-        var selected = $('.selected').length;
-        console.log("Kohteita yhteensä: " + selectable);
-        console.log("Valittuja: " + selected);
-
-        for(var i=0, max=selected; i<max; i++){
-            console.log(this.$el);
-
+        function pad2(number){
+            return (number < 10 ? '0' : '') + number
         }
 
+        var h = pad2(hours);
+        var m = pad2(minutes);
+
+        //other results
+        var selectable = $('.selectable').length;
+        var selected = $('.selected').length;
+        var correctAnswers = $('.selected.correct').length;
+        var allCorrects = $('.correct').length;
+        var wrong = selected - correctAnswers;
+        var missing = allCorrects - correctAnswers;
+        var allWrongs = wrong + missing;
+
+        //get timespent
+        var startTime = Settings.get('startTime');
+        var endTime = new Date().getTime();
+        var time = endTime - startTime;
+
+        function msToStr(ms){
+            var sec = ms / 1000;
+            var nummin = Math.floor((((sec % 31536000) % 86400) % 3600) / 60);
+            var numsec = Math.floor(((sec % 31536000) % 86400) % 3600) % 60;
+
+            if(nummin){
+                return nummin +' min ' + numsec +' s';
+            }else{
+                return numsec + ' s';
+            }
+        }
+
+        var timeSpent = msToStr(time);
 
 
-
-
-        //console.log(all);
-
+         var results = {
+             'pvm' : dd+'/'+mm+'/'+yyyy,
+             'klo' : hours+':'+minutes,
+             'difficulty': Settings.get('difficulty'),
+             'timeSpent' : timeSpent,
+             'targets' : allCorrects,
+             'correct' : correctAnswers,
+             'wrong' : wrong,
+             'missing' : missing,
+             'allWrongs' : allWrongs
+            };
 
         var gameId = this.model.get('gameId');
-        router.navigate('game/' + gameId + '/results', true);
+        var view = new ResultsView({ model: this.model, results: results });
+        view.render();
+        //router.navigate('game/' + gameId + '/results', true);
 
 
     }
