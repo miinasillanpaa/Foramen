@@ -8,6 +8,16 @@ var GameListView = Backbone.View.extend({
     initialize: function (initGames){
         this.games = new Games(initGames);
 		this.$el.html('');
+
+		_.bindAll(this, 'render', 'afterRender');
+		var _this = this;
+
+		this.render = _.wrap(this.render, function(render) {
+				render();
+				_this.afterRender();
+				return _this;
+		});
+
         new HeaderView({id:0});
         this.render();
     },
@@ -17,7 +27,6 @@ var GameListView = Backbone.View.extend({
 		this.games.forEach(function(item, key) {
 			self.renderGame(item);
 		});
-
     },
 
     renderGame: function(item) {
@@ -26,8 +35,11 @@ var GameListView = Backbone.View.extend({
         });
 
         this.$el.append( gameView.render().el );
+    },
 
-    }
+	afterRender: function() {
+
+	}
 
 
 });
