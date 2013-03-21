@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=">
     <meta name="viewport" id="screenViewport" content="width=1280, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     <title>Pieni piiri - Muistiluuri</title>
     <meta name="description" content="">
@@ -15,6 +16,7 @@
 
 
     <script id="kuvaEtsintaTemplate" type="text/template">
+
         <div class="item-collection">
             <% _.each(myArr, function(myArr) { %>
                 <img class="selectable" src=" <%= myArr.itemPic %> " />
@@ -27,10 +29,10 @@
             <button class="btn btn-large bottom-left quit">Lopeta peli</button>
         </div>
 
-
     </script>
 
     <script id="resultsViewTemplate" type="text/template">
+
         <h3 class="title">Hyvä! Pelasit juuri pelin <%= title %></h3>
         <div class="span5 well">
 
@@ -59,32 +61,35 @@
             </ul>
 
         </div>
+
         <div class="span5 well">
             Tähän esim. edellisen pelin tulokset
         </div>
         <div class="clearfix"></div>
 
-
-
-
     </script>
 
 
     <script id="videoTemplate" type="text/template">
-        <video id="video" autobuffer controls width="640" height="480">
-            <source src="<%= video %>" type="video/mp4" />
+
+        <video id="video" autobuffer controls width=640 height=480 >
+            <source type="video/mp4" src="<%=video%>" >
         </video>
 
     </script>
 
 
+
     <script id="gameTemplate" type="text/template">
-            <div class="rounded img-helper" id="select-game">
+
+            <div class="rounded img-helper">
                 <img src="<%= coverImage %>" />
             </div>
+
             <div class="wrap">
                 <h4><%= title %></h4>
             </div>
+
     </script>
 
 

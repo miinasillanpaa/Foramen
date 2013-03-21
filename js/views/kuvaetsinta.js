@@ -6,19 +6,21 @@ var KuvaEtsinta = Backbone.View.extend({
     },
     render: function () {
 
-        //remove headerview
+        //empty headerview
         $('#header').html('');
 
         var startTime = new Date().getTime();
         Settings.set({ startTime : startTime });
 
         var category = 'kalat';
+
+        //creating target picture
         var targetRandom = Math.floor((Math.random() * 20) + 1);
         var targetPic = './pics/' + category + '/' + targetRandom + '.png';
 
+        //creating random items
         var arr = [];
         for (i = 0; i < 32; i++) {
-
             var random = Math.floor((Math.random() * 20) + 1);
 
             while (random === targetRandom) {
@@ -31,6 +33,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
         }
 
+        //overriding some random items with target items
         var randomSpots = [];
         for (i = 0; i < 10; i++) {
             var randomSpot = Math.floor((Math.random() * 31) + 1);
@@ -40,10 +43,10 @@ var KuvaEtsinta = Backbone.View.extend({
 
 
         var variables = {targetPic: targetPic, myArr: arr };
-        //console.log(variables);
         var template = _.template($(this.template).html(), variables);
         this.$el.html(template);
 
+        //add correct class to target fishes
         for (i = 0; i < randomSpots.length; i++) {
             $('.item-collection img:eq(' + randomSpots[i] + ')').addClass('correct');
         }
@@ -51,7 +54,7 @@ var KuvaEtsinta = Backbone.View.extend({
         return this;
 
     },
-
+    //TODO: difficulties to kuvaetsinta
     renderEasyGame: function () {
 
     },
@@ -85,6 +88,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
     gameFinish: function () {
         this.undelegateEvents();
+
         //time & date
         var today = new Date();
         var dd = today.getDate();
@@ -146,7 +150,6 @@ var KuvaEtsinta = Backbone.View.extend({
         var gameId = this.model.get('gameId');
         var view = new ResultsView({ model: this.model, results: results });
         view.render();
-        //router.navigate('game/' + gameId + '/results', true);
 
 
     }

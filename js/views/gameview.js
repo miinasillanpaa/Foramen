@@ -10,7 +10,6 @@ var GameView = Backbone.View.extend({
 	},
 
     render: function() {
-        console.log(this.$el);
 		var variables = {
                         title: this.model.get('title'),
                         coverImage: this.model.get('coverImage'),
@@ -24,7 +23,6 @@ var GameView = Backbone.View.extend({
     },
 
 	selectGame: function() {
-        console.log('hep');
         router.navigate('game/' + this.model.get('gameId'), true);
     }
 });
