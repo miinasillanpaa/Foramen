@@ -19,9 +19,16 @@ var games = [
 	{"gameId": 8, "title" : "Jätkänshakki / Linjat"},
 	{"gameId": 9, "title" : "Solitaire"},
 	{"gameId": 10, "title" : "Mikä ei kuulu joukkoon?"}
+
+
+
 ];
 
-
+$.fn.preload = function() {
+    this.each(function(){
+        $('<img/>')[0].src = this;
+    });
+};
 
 
 

@@ -22,6 +22,7 @@ router.on('route:getGame', function(id) {
 	var difficulty = Settings.get('difficulty');
 
 	var selectedGame = games[id-1];
+
 	var gameObj = new Game(selectedGame);
 	var view = new PreGameView({ model: gameObj });
 	view.render();

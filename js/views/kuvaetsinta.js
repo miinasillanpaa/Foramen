@@ -67,6 +67,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
     },
 
+
     events: {
         'click .selectable': 'selectItem',
         'click .finish': 'gameFinish',

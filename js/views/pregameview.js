@@ -4,6 +4,12 @@ var PreGameView = Backbone.View.extend({
 
 	render: function() {
 
+        if( this.model.get('gameId') == 1 ){
+            this.preload('kalat');
+        }
+
+
+
 		var variables = {title: this.model.get('title'),
                          guide: this.model.get('guide'),
                          difficulty: Settings.get('difficulty') };
@@ -67,5 +73,17 @@ var PreGameView = Backbone.View.extend({
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId + '/play', {trigger: true});
 
+    },
+    preload: function(category) {
+
+        var category = category;
+        var preload = [];
+
+        for(i=1;i<21;i++){
+            var img = './pics/' + category + '/' + i + '.png';
+            preload.push(img);
+        }
+        $(preload).preload();
+        //console.log(preload + ' preloaded')
     }
-});
+ });
