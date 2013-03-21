@@ -11,8 +11,6 @@ var VideoView = Backbone.View.extend({
 
 		this.$el.html(template);
 
-		this.$el.append('<video id="video" autobuffer controls width="640" height="480" ><source type="video/mp4" src="'+ this.model.get('video') + '"></video>');
-
         return this;
     }
 });
