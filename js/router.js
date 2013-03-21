@@ -43,9 +43,6 @@ router.on('route:videoView', function(id) {
     var gameObj = new Game(selectedGame);
     var view = new VideoView({ model: gameObj });
     view.render();
-
-	$('#video-placeholder').append('<video id="video" autobuffer controls width="640" height="480" ><source type="video/mp4" src="'+ gameObj.get('video') + '"></video>');
-
 });
 
 router.on('route:play', function(id) {
