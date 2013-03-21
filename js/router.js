@@ -10,6 +10,16 @@ window.Router = Backbone.Router.extend({
 	},
 
 	gameIndex: function() {
+		var currentUserId = getURLParameter('userId');
+		if (currentUserId) {
+			Settings.set({currentUserId: currentUserId});
+		}
+
+		var returnUrl = getURLParameter('returnUrl');
+		if (returnUrl && returnUrl !== 'null' && returnUrl.length > 0) {
+			Settings.set({returnUrl: returnUrl});
+		}
+
 		new GameListView(games);
 	}
 
@@ -34,8 +44,6 @@ router.on('route:videoView', function(id) {
     var gameObj = new Game(selectedGame);
     var view = new VideoView({ model: gameObj });
     view.render();
-
-
 });
 
 router.on('route:play', function(id) {

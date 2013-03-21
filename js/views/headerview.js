@@ -4,8 +4,6 @@ var HeaderView = Backbone.View.extend({
     template0: _.template($('#mainHeaderTmpl').html()),
     template1: _.template($('#gameHeaderTmpl').html()),
 
-
-
     initialize: function () {
         this.render();
     },
@@ -20,12 +18,20 @@ var HeaderView = Backbone.View.extend({
         }
     },
     events: {
-        'click .back' : 'goBack'
+        'click .back' : 'goBack',
+		'click #back-button': 'goBackToService'
     },
 
     goBack: function() {
         router.navigate('/', true);
-    }
+    },
+
+	goBackToService: function() {
+		var userId = Settings.get('currentUserId');
+		var returnUrl = Settings.get('returnUrl');
+
+		window.location = returnUrl + userId;
+	}
 
 
 });
