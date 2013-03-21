@@ -10,9 +10,6 @@ window.Router = Backbone.Router.extend({
 	},
 
 	gameIndex: function() {
-		//hide phonebook button
-		window.location = 'pienipiiri://hidePhonebookButton/';
-
 		var currentUserId = getURLParameter('userId');
 		if (currentUserId) {
 			Settings.set({currentUserId: currentUserId});
