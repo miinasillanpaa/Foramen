@@ -16,7 +16,7 @@ var PreGameView = Backbone.View.extend({
 
 		var template = _.template( $(this.template).html(), variables );
 
-        new HeaderView({id:1});
+
 		this.$el.html(template);
 
 
@@ -65,11 +65,13 @@ var PreGameView = Backbone.View.extend({
     },
 
     previewVideo: function() {
+        this.undelegateEvents();
          var gameId = this.model.get('gameId');
          router.navigate('game/' + gameId + '/video', true);
     },
 
     play: function() {
+        this.undelegateEvents();
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId + '/play', {trigger: true});
 

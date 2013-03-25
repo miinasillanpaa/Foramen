@@ -22,7 +22,6 @@
     <link href="css/styles.css" rel="stylesheet">
 
 
-
     <script id="kuvaEtsintaTemplate" type="text/template">
 
         <div class="item-collection">
@@ -54,7 +53,7 @@
                 <li>Puuttuvat valinnat: </li>
                 <li>Virheet yhteensä: </li>
                 <br/>
-                <li><button class="btn btn-large btn-primary">Näytä kuvaruutu</button></li>
+                <li><button class="btn btn-large btn-primary screen">Näytä kuvaruutu</button></li>
 
             </ul>
             <ul class="results pull-right">
@@ -78,8 +77,11 @@
     </script>
 
 
+
     <script id="videoTemplate" type="text/template">
-        <iframe width="760" height="515" src="http://www.youtube.com/embed/iBtczW2NM88?autoplay=1" frameborder="0"></iframe>
+        <iframe class="center" width="1120" height="630" src="http://www.youtube.com/embed/ZKs0OZM0M9k?rel=0&vq=hd720&autoplay=1" frameborder="0"></iframe>
+
+
     </script>
 
     <script id="gameTemplate" type="text/template">
@@ -123,14 +125,16 @@
 
     <script id="mainHeaderTmpl" type="text/template">
         <h2>Muistiluuri</h2>
-        <button class="btn btn-large" id="back-button">Takaisin</button>
+        <button class="btn btn-large backToService" id="back-button"><i class="icon-home"></i> Takaisin</button>
         <hr />
     </script>
 
-    <script id="gameHeaderTmpl" type="text/template">
-        <button class="back btn btn-large"><i class="icon-chevron-left"></i> Takaisin</button>
+    <script id="backHeaderTmpl" type="text/template">
+        <button class="back-root btn btn-large"><i class="icon-chevron-left"></i> Takaisin</button>
         <hr />
     </script>
+
+
 
 </head>
 
@@ -170,6 +174,7 @@
     <script src="js/views/videoview.js"></script>
     <script src="js/views/resultsview.js"></script>
     <script src="js/views/kuvaetsinta.js"></script>
+    <script src="js/views/playedgameview.js"></script>
 
     <script src="js/app.js"></script>
     <script src="js/router.js"></script>

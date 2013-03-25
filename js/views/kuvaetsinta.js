@@ -87,6 +87,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
     },
 
+
     gameFinish: function () {
         this.undelegateEvents();
 
@@ -99,6 +100,7 @@ var KuvaEtsinta = Backbone.View.extend({
         if(mm<10){mm='0'+mm}
         var hours = today.getHours();
         var minutes = today.getMinutes();
+
 
         function pad2(number){
             return (number < 10 ? '0' : '') + number
@@ -115,6 +117,9 @@ var KuvaEtsinta = Backbone.View.extend({
         var wrong = selected - correctAnswers;
         var missing = allCorrects - correctAnswers;
         var allWrongs = wrong + missing;
+
+        //Snapshot of the game
+        var gameScreen = $("#content").html();
 
         //get timespent
         var startTime = Settings.get('startTime');
@@ -145,13 +150,14 @@ var KuvaEtsinta = Backbone.View.extend({
              'correct' : correctAnswers,
              'wrong' : wrong,
              'missing' : missing,
-             'allWrongs' : allWrongs
+             'allWrongs' : allWrongs,
+             'gameScreen' : gameScreen
             };
 
         var gameId = this.model.get('gameId');
         var view = new ResultsView({ model: this.model, results: results });
         view.render();
-
+        router.navigate('game/' + this.model.get('gameId') + '/results', true);
 
     }
 

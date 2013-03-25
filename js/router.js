@@ -6,7 +6,8 @@ window.Router = Backbone.Router.extend({
 		"game/:id": "getGame",
         "game/:id/video": "videoView",
         "game/:id/play": "play",
-        "game/:id/results" : "resultsView"
+        "game/:id/results" : "resultsView",
+        "game/:id/results/screen" : "playedGameView"
 	},
 
 	gameIndex: function() {
@@ -32,10 +33,12 @@ router.on('route:getGame', function(id) {
 	var difficulty = Settings.get('difficulty');
 
 	var selectedGame = games[id-1];
-
 	var gameObj = new Game(selectedGame);
 	var view = new PreGameView({ model: gameObj });
+
+    new HeaderView({id:1,gameId:id});
 	view.render();
+
 });
 
 router.on('route:videoView', function(id) {
@@ -43,7 +46,10 @@ router.on('route:videoView', function(id) {
     var selectedGame = games[id-1];
     var gameObj = new Game(selectedGame);
     var view = new VideoView({ model: gameObj });
+
+    new HeaderView({id:2,gameId:id});
     view.render();
+
 });
 
 router.on('route:play', function(id) {
@@ -54,9 +60,15 @@ router.on('route:play', function(id) {
         var view = new KuvaEtsinta({ model:gameObj });
         view.render();
     }else{
-        console.log('Nothing here yet.')
+        $('#content').html('Nothing here yet!');
     }
 });
+router.on('route:resultsView', function(id) {
+    //new HeaderView({id:2,gameId:id});
+});
+router.on('route:playedGameView', function(id) {
+    $('#header').html('');
 
+});
 
 Backbone.history.start();
