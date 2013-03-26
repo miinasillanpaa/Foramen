@@ -2,10 +2,10 @@ var games = [
 	{
         "gameId": 1,
         "title" : "Kuvaetsintä",
-        "guide" : "<p>Ruutu on täynnä esineitä ja asioita eisttäviä kuvia.</p>" +
+        "guide" : "<p>Ruutu on täynnä esineitä ja asioita esittäviä kuvia.</p>" +
                   "<p>Tehtävänä on etsiä kohdekuvat (näkyvissä tehtäväruudun alalaidassa) mahdollisimman nopeasti koskettamalla kutakin kohdekuvaa.</p>" +
                   "<p>Väärän valinnan voit poistaa koskettamalla kohdekuvaa uudestaan.</p>" +
-                  "<p>Tehtävän suoritettuasi paina tehtäväruudun alareunassa näkyvää kuvaa.</p>" +
+                  "<p>Tehtävän suoritettuasi paina tehtäväruudun alareunassa näkyvää Valmis -näppäintä.</p>" +
                   "<p>Tehtävä voidaan keskeyttää Takaisin -nappulasta.</p>",
         "video" : "video/small.mp4",
         "coverImage" : "./img/fish.png"
