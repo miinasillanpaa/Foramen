@@ -21,10 +21,6 @@
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 
-
-    <!-- video.js -->
-    <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
-
     <script id="kuvaEtsintaTemplate" type="text/template">
 
         <div class="item-collection">
@@ -82,9 +78,8 @@
 
 
     <script id="videoTemplate" type="text/template">
-
-        <iframe class="center" width="1120" height="630" src="http://www.youtube.com/embed/ZKs0OZM0M9k?rel=0&vq=hd720&autoplay=1" frameborder="0"></iframe>
-
+        <div id="iframe-placeholder"></div>
+        <!--<iframe class="center" width="1120" height="630" src="http://www.youtube.com/embed/ZKs0OZM0M9k?rel=0&vq=hd720&autoplay=1" frameborder="0"></iframe>-->
     </script>
 
     <script id="gameTemplate" type="text/template">
@@ -159,7 +154,6 @@
     </div>
 
     <!-- javascript -->
-    <script src="http://vjs.zencdn.net/c/video.js"></script>
     <script src="js/lib/jquery-1.9.1.min.js"></script>
     <script src="js/lib/underscore-min.js"></script>
     <script src="js/lib/backbone.min.js"></script>

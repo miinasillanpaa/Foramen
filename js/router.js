@@ -50,6 +50,8 @@ router.on('route:videoView', function(id) {
     new HeaderView({id:2,gameId:id});
     view.render();
 
+	$('#iframe-placeholder').html('<iframe class="center" width="1120" height="630" src="http://www.youtube.com/embed/ZKs0OZM0M9k?rel=0" frameborder="0"></iframe>');
+
 });
 
 router.on('route:play', function(id) {
