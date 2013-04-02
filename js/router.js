@@ -50,7 +50,7 @@ router.on('route:videoView', function(id) {
     new HeaderView({id:2,gameId:id});
     view.render();
 
-	$('#iframe-placeholder').html('<iframe class="center" width="1120" height="630" src="http://www.youtube.com/embed/ZKs0OZM0M9k?rel=0" frameborder="0"></iframe>');
+	//$('#iframe-placeholder').html('<iframe class="center" width="1120" height="630" src="http://www.youtube.com/embed/ZKs0OZM0M9k?rel=0" frameborder="0"></iframe>');
 
 });
 
@@ -59,8 +59,11 @@ router.on('route:play', function(id) {
     var selectedGame = games[id-1];
     var gameObj = new Game(selectedGame);
     if( id == 1 ){
-        var view = new KuvaEtsinta({ model:gameObj });
-        view.render();
+        var view1= new KuvaEtsinta({ model:gameObj });
+        view1.render();
+    }else if( id == 2){
+        var view2 = new TekstiviestiGameView({ model:gameObj });
+        view2.render();
     }else{
         $('#content').html('Nothing here yet!');
     }

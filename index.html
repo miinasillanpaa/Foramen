@@ -21,6 +21,61 @@
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 
+    <!-- templates start -->
+
+    <script id="tekstiviestiAnswerTemplate" type="text/template">
+        <div class="span5">
+
+                <% _.each(questions, function(questions) { %>
+                        <button class="btn btn-block q-button"><%= questions %></button>
+                 <% }); %>
+        </div>
+        <div class="span4 options-area">
+            <div class="options options-senders">
+                <% _.each(senders, function(senders) { %>
+                <button class="btn btn-block a-button"><%= senders %></button>
+                <% }); %>
+            </div>
+            <div class="options options-receivers hidden">
+                <% _.each(receivers, function(receivers) { %>
+                <button class="btn btn-block a-button"><%= receivers %></button>
+                <% }); %>
+            </div>
+            <div class="options options-places hidden">
+                <% _.each(places, function(places) { %>
+                <button class="btn btn-block a-button"><%= places %></button>
+                <% }); %>
+            </div>
+            <div class="options options-times hidden">
+                <% _.each(times, function(times) { %>
+                <button class="btn btn-block a-button"><%= times %></button>
+                <% }); %>
+            </div>
+            <div class="options options-items hidden">
+                <% _.each(items, function(items) { %>
+                <button class="btn btn-block a-button"><%= items %></button>
+                <% }); %>
+            </div>
+        </div>
+        <div class="span2 txt-answers"></div>
+
+        <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
+        <button class="btn btn-large bottom-right bigger check">Tarkista</button>
+        <button class="btn btn-large bottom-center-right bigger hidden correct-answers">Näytä oikeat</button>
+        <button class="btn btn-large bottom-right bigger hidden continue">Jatka</button>
+    </script>
+
+    <script id="tekstiviestiGameTemplate" type="text/template">
+    <div class="phone-container">
+        <img class="phone center" src="img/device-iphone5.png" />
+        <div class="textmessage left">
+            <%= message %>
+        </div>
+    </div>
+     <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
+    </script>
+
+
     <script id="kuvaEtsintaTemplate" type="text/template">
 
         <div class="item-collection">
@@ -30,20 +85,22 @@
         </div>
 
         <div class="text-center">
-            <img class="target" src="<%= targetPic %>" />
-            <button class="btn btn-large bottom-right finish">Valmis</button>
-            <button class="btn btn-large bottom-left quit">Lopeta peli</button>
+            <% _.each(targetPic, function(targetPic) { %>
+                <img class="target" src="<%= targetPic.targetPic %>" />
+            <% }); %>
+            <button class="btn btn-large bottom-right bigger finish">Valmis</button>
+            <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
         </div>
 
     </script>
 
     <script id="resultsViewTemplate" type="text/template">
 
-        <h3 class="title">Hyvä! Pelasit juuri pelin <%= title %></h3>
+        <h2 class="title"><%= title %> harjoitteen tulokset</h2>
         <div class="span5 well">
 
             <ul class="results pull-left">
-                <li><h4>Tulokset:</h4></li>
+
                 <li>Vaikeustaso: </li>
                 <li>Käytetty aika: </li>
                 <li>Kohteiden määrä: </li>
@@ -52,11 +109,11 @@
                 <li>Puuttuvat valinnat: </li>
                 <li>Virheet yhteensä: </li>
                 <br/>
-                <li><button class="btn btn-large btn-primary screen">Näytä kuvaruutu</button></li>
+
 
             </ul>
             <ul class="results pull-right">
-                <li><h4>&nbsp;</h4></li>
+
                 <li> <%= difficulty %> </li>
                 <li> <%= time %> </li>
                 <li> <%= targets %> kpl</li>
@@ -66,10 +123,30 @@
                 <li> <%= allWrongs %> kpl</li>
             </ul>
 
+            <button class="btn btn-large btn-primary btn-block bigger screen">Näytä kuvaruutu</button>
+
+
+
         </div>
 
-        <div class="span5 well">
-            Tähän esim. edellisen pelin tulokset
+        <div class="span6">
+            <div class="alert alert-success alert-bigger">
+                Paransit omaa ennätystäsi!
+            </div>
+
+            <div class="well">
+                <h3>Henkilökohtainen ennätyksesi:</h3>
+                <ul class="record">
+                    <li>Vaikeustaso: <span class="answer-row">Helppo</span></li>
+                    <li>Käytetty aika: <span class="answer-row">6s</span></li>
+                    <li>Kohteiden määrä: <span class="answer-row">9 kpl</span></li>
+                    <li>Oikeat valinnat: <span class="answer-row">9 kpl</span></li>
+                    <li>Väärät valinnat: <span class="answer-row">0 kpl</span></li>
+                    <li>Puuttuvat valinnat: <span class="answer-row">0 kpl</span></li>
+                    <li>Virheet yhteensä: <span class="answer-row">0 kpl</span></li>
+                </ul>
+            </div>
+
         </div>
         <div class="clearfix"></div>
 
@@ -78,8 +155,10 @@
 
 
     <script id="videoTemplate" type="text/template">
-        <div id="iframe-placeholder"></div>
-        <!--<iframe class="center" width="1120" height="630" src="http://www.youtube.com/embed/ZKs0OZM0M9k?rel=0&vq=hd720&autoplay=1" frameborder="0"></iframe>-->
+
+        <!--<iframe class="center" width="853" height="480" src="http://www.youtube.com/embed/ZKs0OZM0M9?rel=0&vq=hd720" frameborder="0"></iframe>-->
+        <!--<div id="iframe-placeholder"></div>-->
+        <iframe class="center" width="1120" height="630" src="http://www.youtube.com/embed/ZKs0OZM0M9k?rel=0&vq=hd720&autohide=1&amp;showinfo=0" frameborder="0"></iframe>
     </script>
 
     <script id="gameTemplate" type="text/template">
@@ -97,27 +176,30 @@
 
     <script id="preGameTemplate" type="text/template">
 
+
         <div class="span6 guide">
-            <h2>Tervetuloa peliin <%= title %>!</h2>
+            <h2>Tervetuloa harjoitukseen <%= title %>!</h2>
             <p><%= guide %></p>
         </div>
         <div class="span6 pull-right">
 
-            <br />
-            <h4>Valitse vaikeusaste:</h4>
+
+            <h3>Valitse vaikeusaste:</h3>
             <div class="well ">
-                <p><button class="easy btn btn-large btn-block">Helppo</button></p>
-                <p><button class="medium btn btn-large btn-block">Keskivaikea</button></p>
-                <p><button class="hard btn btn-large btn-block">Vaikea</button></p>
+                <p><button class="easy btn btn-large bigger btn-block">Taso I</button></p>
+                <p><button class="medium btn btn-large bigger btn-block">Taso II</button></p>
+                <p><button class="hard btn btn-large bigger btn-block">Taso III</button></p>
             </div>
             <br />
 
 
         </div>
         <div class="clearfix"></div>
-        <button class="btn btn-large btn-primary pull-right play">Aloita peli</button>
+        <div class="pregame-options">
+        <button class="btn btn-large btn-primary pull-right bigger play">Aloita</button>
         <h4 class="pull-right spacer">Tai</h4>
-        <button class="btn btn-large pull-right preview">Katso esimerkkisuoritus tästä</button>
+        <button class="btn btn-large pull-right bigger preview">Katso esimerkkisuoritus</button>
+        </div>
 
     </script>
 
@@ -128,11 +210,11 @@
     </script>
 
     <script id="backHeaderTmpl" type="text/template">
-        <button class="back-root btn btn-large"><i class="icon-chevron-left"></i> Takaisin</button>
+        <button class="btn btn-large back-root"><i class="icon-chevron-left"></i> Takaisin</button>
         <hr />
     </script>
 
-
+    <!-- templates end -->
 
 </head>
 
@@ -159,6 +241,7 @@
     <script src="js/lib/backbone.min.js"></script>
     <script src="js/lib/bootstrap.min.js"></script>
     <script src="js/lib/fastclick.js"></script>
+    <script src="js/lib/jquery.transit.min.js"></script>
 
     <script src="js/helpers/helpers.js"></script>
     <script src="js/models/settings.js"></script>
@@ -171,8 +254,12 @@
     <script src="js/views/headerview.js"></script>
     <script src="js/views/videoview.js"></script>
     <script src="js/views/resultsview.js"></script>
-    <script src="js/views/kuvaetsinta.js"></script>
     <script src="js/views/playedgameview.js"></script>
+
+    <script src="js/views/kuvaetsinta.js"></script>
+    <script src="js/views/tekstiviestigameview.js"></script>
+    <script src="js/views/tekstiviestianswerview.js"></script>
+
 
     <script src="js/app.js"></script>
     <script src="js/router.js"></script>

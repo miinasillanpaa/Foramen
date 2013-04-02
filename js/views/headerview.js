@@ -10,7 +10,7 @@ var HeaderView = Backbone.View.extend({
     },
 
     render: function () {
-        console.log(this);
+        //console.log(this);
         if(this.id == 0){
             this.$el.html(this.template0);
             return this;

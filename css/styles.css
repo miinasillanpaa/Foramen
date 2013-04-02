@@ -1,10 +1,12 @@
 body{
     overflow: hidden;
     margin:0;
+    padding:0;
 }
 h2{
 
 }
+
 .rounded{
     border-radius: 10px;
 }
@@ -41,19 +43,24 @@ h2{
 .spacer{
     padding:0 30px 0 30px;
     line-height: 1.8;
+    font-size: 2em;
+
 }
 .wrap{
     height:65px;
     display: table;
-    padding:10px;
+    padding:0px 0px 10px 0px;
     vertical-align: middle;
     margin:0 auto;
 
 }
 .game-item h4{
+    margin-top:0px;
     line-height: 1.2em;
-    font-size: 1.5em;
-    padding:0px 10px 0px 10px;
+
+    height: 2.9em;
+    font-size: 1.7em;
+    padding:0px;
     display: table-cell;
     vertical-align: middle;
     text-align: center;
@@ -65,12 +72,13 @@ h2{
     padding:0;
 }
 .guide p {
-    font-size: 1.7em;
+    font-size: 1.9em;
     line-height: 1.3;
     margin: 20px 0px 0px 5px;
 }
 
 #header{
+    z-index: 10;
     margin-top:10px;
 }
 .selectable{
@@ -85,13 +93,13 @@ h2{
     padding:0;
 
 }
+
 .results{
     list-style-type: none;
-
-
 }
+
 .results li{
-    font-size: 1.6em;
+    font-size: 1.9em;
     line-height: 1.6em;
 }
 
@@ -100,6 +108,11 @@ h2{
      right:50px;
      bottom:20px;
  }
+.bottom-center-right{
+    position: absolute;
+    right:200px;
+    bottom:20px;
+}
 .bottom-left{
     position: absolute;
     left:50px;
@@ -137,3 +150,101 @@ hr{
     display: block;
     margin: 0 auto;
 }
+
+.pregame-options{
+    position: absolute;
+    right: 40px;
+    bottom: 20px;
+}
+
+.bigger{
+    padding: 20px;
+    font-size: 2em;
+}
+.bigger-correct{
+    height:49px;
+    padding:10px;
+    margin-top:5px;
+    font-size: 1.5em;
+    line-height: 1em;
+
+}
+
+.alert-bigger{
+    text-align: center;
+    padding:40px;
+    font-size: 2em;
+    font-weight: bold;
+    letter-spacing: 1px;
+
+}
+
+
+
+
+.record{
+    list-style-type: none;
+}
+.record li{
+    font-size: 1.9em;
+    line-height: 1.6em;
+}
+
+.answer-row{
+    float:right;
+}
+
+/* tekstiviestipeli */
+
+.phone-container{
+
+}
+img.phone{
+    z-index: -1;
+    margin-top: 0px;
+    width:350px;
+    -webkit-backface-visibility: hidden;
+
+}
+.textmessage{
+    text-align: left;
+    position: absolute;
+    top: 40px;
+    left: 80px;
+    width: 850px;
+    font-size:5em;
+    line-height: 1;
+    background-color: #e8e8e8;
+    padding: 20px;
+    border-radius: 20px;
+}
+.textmessage:after{
+    content:"";
+    position:absolute;
+    bottom:-15px; /* value = - border-top-width - border-bottom-width */
+    left:50px; /* controls horizontal position */
+    border-width:25px 25px 0; /* vary these values to change the angle of the vertex */
+    border-style:solid;
+    border-color:#e8e8e8 transparent;
+    /* reduce the damage in FF3.0 */
+    display:block;
+    width:0;
+}
+.textmessage.left:after{
+    top:85px; /* controls vertical position */
+    left:-30px; /* value = - border-left-width - border-right-width */
+    bottom:auto;
+    border-width:30px 30px 30px 0;
+    border-color:transparent #e8e8e8;
+}
+
+.q-button{
+    padding: 20px;
+    font-size: 1.6em;
+    line-height: 1.2em;
+}
+.a-button{
+     padding: 20px;
+     font-size: 1.6em;
+     line-height: 1.2em;
+ }

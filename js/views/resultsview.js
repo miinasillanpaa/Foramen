@@ -14,6 +14,10 @@ var ResultsView = Backbone.View.extend({
             difficulty = 'Vaikea';
         }
 
+        //todo: Palaute: verrataan samalla tasolla (I, II, III) pelattujen keskiarvoon. Lisäksi: HIENOA! Teit parhaan
+        // tuloksesi! tai Paransit ennätystäsi! kommentti olisi kannustava
+
+
         var  variables = {
                          pvm : this.options.results.pvm,
                          klo : this.options.results.klo,
