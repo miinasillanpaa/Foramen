@@ -271,7 +271,13 @@ img.phone{
     display: table-cell;
     vertical-align: middle;
 }
+.ansArray{
+    font-size: 9em;
+    letter-spacing: 0.2em;
+    margin-top:100px;
+    margin-bottom:-100px;
 
+}
 .box{
     color: #000;
     display: inline;
@@ -291,14 +297,20 @@ img.phone{
     margin-top: -100px;
     font-size: 6em;
     letter-spacing: 0.3em;
+    cursor: pointer;
 }
+.answers{
+    display: inline-block;
+    color: darkgreen ;
+    padding:0 20px 0 2px;
+    margin:0;
 
+
+}
 
 
 .box p{
     color: #000;
-
-
 }
 
 .active{
@@ -308,11 +320,4 @@ img.phone{
 
 .choices{
     display: inline;
-}
-.answers{
-
-    margin-top: 100px;
-    display: inline;
-
-
 }

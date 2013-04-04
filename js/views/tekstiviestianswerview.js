@@ -325,9 +325,6 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         Settings.set({'txtPlaceDom':unsetButton});
         Settings.set({'txtReceiverDom':unsetButton});
         Settings.set({'txtTimeDom':unsetButton});
-
-        this.undelegateEvents();
-
     }
 
 

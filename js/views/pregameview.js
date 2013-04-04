@@ -3,12 +3,9 @@ var PreGameView = Backbone.View.extend({
 	template: '#preGameTemplate',
 
 	render: function() {
-
-        if( this.model.get('gameId') == 1 ){
+		if( this.model.get('gameId') == 1 ){
             this.preload('kalat');
         }
-
-
 
 		var variables = {title: this.model.get('title'),
                          guide: this.model.get('guide'),
@@ -16,9 +13,7 @@ var PreGameView = Backbone.View.extend({
 
 		var template = _.template( $(this.template).html(), variables );
 
-
 		this.$el.html(template);
-
 
         var diff = Settings.get('difficulty');
         if(diff === 'easy'){
@@ -28,6 +23,7 @@ var PreGameView = Backbone.View.extend({
         }else{
             this.hardSelected();
         }
+
 	},
 
     events: {
@@ -35,8 +31,7 @@ var PreGameView = Backbone.View.extend({
         'click .medium' : 'mediumSelected',
         'click .hard' : 'hardSelected',
         'click .preview' : 'previewVideo',
-        'click .play' : 'play'
-
+        'click #play-game' : 'play'
     },
 
     easySelected: function() {
@@ -65,15 +60,15 @@ var PreGameView = Backbone.View.extend({
     },
 
     previewVideo: function() {
-        this.undelegateEvents();
          var gameId = this.model.get('gameId');
          router.navigate('game/' + gameId + '/video', true);
     },
 
     play: function() {
-        this.undelegateEvents();
+		console.log('play button clicked!');
         var gameId = this.model.get('gameId');
-        router.navigate('game/' + gameId + '/play', {trigger: true});
+
+		router.navigate('game/' + gameId + '/play', {trigger: true});
 
     },
     preload: function(category) {
@@ -87,5 +82,8 @@ var PreGameView = Backbone.View.extend({
         }
         $(preload).preload();
         //console.log(preload + ' preloaded')
-    }
+    },
+	setModel: function(model) {
+		this.model = model;
+	}
  });

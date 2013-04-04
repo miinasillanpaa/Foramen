@@ -1,18 +1,14 @@
 var KuvaEtsinta = Backbone.View.extend({
     el: $("#content"),
     template: '#kuvaEtsintaTemplate',
-    initialize: function () {
 
-    },
     render: function () {
 
         //empty headerview
         $('#header').empty();
 
-       var startTime = new Date().getTime();
+       	var startTime = new Date().getTime();
         Settings.set({ startTime : startTime });
-
-
 
         if(Settings.get('difficulty') == 'easy'){
             var easyGame = this.renderEasyGame();
@@ -49,7 +45,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
         //creating random items
         var arr = [];
-        for (i = 0; i < 32; i++) {
+        for (var i = 0; i < 32; i++) {
             var random = Math.floor((Math.random() * 20) + 1);
 
             while (random === targetRandom) {
@@ -65,11 +61,11 @@ var KuvaEtsinta = Backbone.View.extend({
         //overriding some random items with target items
         var randomSpots = [];
 
-        for (i = 0; i < 10; i++) {
+        for (var i = 0; i < 10; i++) {
             var unique = true;
             var randomSpot = Math.floor((Math.random() * 31) + 1);
 
-            for (j=0; j<10; j++){
+            for (var j=0; j<10; j++){
                 if(randomSpots[j] === randomSpot){
                     unique = false;
                 }
@@ -85,11 +81,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
         console.log(randomSpots);
 
-
         return {myArr: arr, targetPic: [{'targetPic':targetPic}], randomSpots: randomSpots}
-
-
-
     },
 
     renderMediumGame: function () {
@@ -99,11 +91,11 @@ var KuvaEtsinta = Backbone.View.extend({
         //creating target pictures
         var targets = [];
 
-        for(i=0; i < 2; i++) {
+        for(var i=0; i < 2; i++) {
             var unique = true;
             var target = Math.floor((Math.random() * 20) + 1);
 
-            for(j=0; j<2; j++){
+            for(var j=0; j<2; j++){
                 if(targets[j] === target){
                     unique = false;
                 }
@@ -120,7 +112,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
         //creating random items
         var arr = [];
-        for (i = 0; i < 32; i++) {
+        for (var i = 0; i < 32; i++) {
             var random = Math.floor((Math.random() * 20) + 1);
 
             while (random === targets[0] || random === targets[1] ) {
@@ -136,11 +128,11 @@ var KuvaEtsinta = Backbone.View.extend({
         //overriding some random items with target items
         var randomSpots = [];
         var uniqueNum = 0;
-        for (i = 0; i < 10; i++) {
+        for (var i = 0; i < 10; i++) {
             var unique = true;
             var randomSpot = Math.floor((Math.random() * 31) + 1);
 
-            for (j=0; j<10; j++){
+            for (var j=0; j<10; j++){
                 if(randomSpots[j] === randomSpot){
                     unique = false;
                 }
@@ -162,9 +154,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
         }
 
-
         return {myArr: arr, targetPic: [{ 'targetPic':targetPicOne}, {'targetPic':targetPicTwo }], randomSpots: randomSpots}
-
     },
 
     renderHardGame: function () {
@@ -174,11 +164,11 @@ var KuvaEtsinta = Backbone.View.extend({
         //creating target pictures
         var targets = [];
 
-        for(i=0; i < 3; i++) {
+        for(var i=0; i < 3; i++) {
             var unique = true;
             var target = Math.floor((Math.random() * 20) + 1);
 
-            for(j=0; j<3; j++){
+            for(var j=0; j<3; j++){
                 if(targets[j] === target){
                     unique = false;
                 }
@@ -197,7 +187,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
         //creating random items
         var arr = [];
-        for (i = 0; i < 32; i++) {
+        for (var i = 0; i < 32; i++) {
             var random = Math.floor((Math.random() * 20) + 1);
 
             while (random === targets[0] || random === targets[1] || random == targets[2] ) {
@@ -213,11 +203,11 @@ var KuvaEtsinta = Backbone.View.extend({
         //overriding some random items with target items
         var randomSpots = [];
         var uniqueNum = 0;
-        for (i = 0; i < 10; i++) {
+        for (var i = 0; i < 10; i++) {
             var unique = true;
             var randomSpot = Math.floor((Math.random() * 31) + 1);
 
-            for (j=0; j<10; j++){
+            for (var j=0; j<10; j++){
                 if(randomSpots[j] === randomSpot){
                     unique = false;
                 }
@@ -242,10 +232,7 @@ var KuvaEtsinta = Backbone.View.extend({
         }
 
         return {myArr: arr, targetPic: [{ 'targetPic':targetPicOne }, { 'targetPic':targetPicTwo }, { 'targetPic':targetPicThree }], randomSpots: randomSpots}
-
-
     },
-
 
     events: {
         'click .selectable': 'selectItem',
@@ -254,19 +241,18 @@ var KuvaEtsinta = Backbone.View.extend({
     },
 
     selectItem: function () {
-        var $target = $(event.target);
-        $target.toggleClass('selected');
+        var target = $(event.target);
+        target.toggleClass('selected');
     },
 
     quitGame: function () {
-        this.undelegateEvents();
+		this.undelegateEvents();
+
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId, true);
     },
 
     gameFinish: function () {
-        this.undelegateEvents();
-
         //time & date
         var today = new Date();
         var dd = today.getDate();

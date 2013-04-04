@@ -1,3 +1,8 @@
+var App = {
+	preGameview: null,
+	currentGameView: null
+};
+
 var games = [
 	{
         "gameId": 1,
@@ -17,9 +22,9 @@ var games = [
                   "<p>Tehtävänä on painaa mieleen tekstiviesti.</p>" +
                   "<p>Mieleenpainamisen jälkeen näytetään joukko kysymyksiä. ..</p>"
     },
-	{"gameId": 3, "title" : "Sanojen tunnistamistehtävä"},
-	{"gameId": 4, "title" : "Visuaalinen sarjamuisti Ärsykkeet samanaikaisesti"},
-	{"gameId": 5, "title" : "Audatiivinen interferenssi-tehtävä"},
+	{"gameId": 3, "title" : "Sanojen tunnistaminen"},
+	{"gameId": 4, "title" : "Visuaalinen sarjamuisti"},
+	{"gameId": 5, "title" : "Audatiivinen interferenssi"},
 	{"gameId": 6, "title" : "KIM-yhdistelmä"},
 	{"gameId": 7, "title" : "Päättele salasana"},
 	{"gameId": 8, "title" : "Sudoku-tehtävät"},

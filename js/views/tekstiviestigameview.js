@@ -55,7 +55,7 @@ var TekstiviestiGameView = Backbone.View.extend({
         var myModel = this.model;
 
 
-        setTimeout(
+        var timer = setTimeout(
             function() {
                 console.log(myModel);
               $('.phone').transition({
@@ -73,6 +73,9 @@ var TekstiviestiGameView = Backbone.View.extend({
                 })
             },4000); //time to wait before zoom in
 
+        $('.quit').click( function() {
+            clearTimeout(timer)
+        });
 
 
         return this;
@@ -82,17 +85,11 @@ var TekstiviestiGameView = Backbone.View.extend({
         'click .quit': 'quitGame'
     },
 
-    quitGame: function () {
+    quitGame: function (e) {
         this.undelegateEvents();
-        this.$el.removeData().unbind();
+
         var gameId = this.model.get('gameId');
-        router.navigate('game/' + gameId, true);
-
-
-
-
-
-
+        router.navigate('game/' + gameId, {trigger:true});
     },
 
     message1: function () {

@@ -6,43 +6,37 @@ var Sarjamuisti = Backbone.View.extend({
 
         $('#header').empty();
 
-
         var choices = [0,1,2,3,4,5,6,7,8,9]
         var numArray = [];
         var timePerNum = 1500;
         var time;
-        var arrLenght;
+        var arrLength;
 
         if(Settings.get('difficulty') == 'easy'){
-            arrLenght = 3;
-            time = arrLenght*timePerNum;
+            arrLength = 3;
+            time = arrLength*timePerNum;
         }else if(Settings.get('difficulty') == 'medium'){
-            arrLenght = 5;
-            time = arrLenght*timePerNum;
+            arrLength = 5;
+            time = arrLength*timePerNum;
         }else{
-            arrLenght = 7;
-            time = arrLenght*timePerNum;
+            arrLength = 7;
+            time = arrLength*timePerNum;
         }
 
-        for(i=0; i<arrLenght; i++){
+        for(i=0; i<arrLength; i++){
             var num = Math.floor(Math.random() * 10);
             numArray.push(num);
         }
-        Settings.set({ numArray:numArray });
-        console.log(numArray); //oikeat tallessa täällä!
 
-        setTimeout(
+        var timer = setTimeout(
             function () {
                 $('.numOptions').removeClass('hidden');
                 $('.box').addClass('black');
-
-                var rand = Math.floor(Math.random() * arrLenght);
+                $('.finish').removeAttr("disabled");
+                $('.check').removeAttr("disabled");
+                var rand = Math.floor(Math.random() * arrLength);
                 $('.box:eq(' + rand + ')').addClass('active').removeClass('available');
-
-
             },time);
-
-
 
         var variables = { numArray : numArray, choices : choices };
 
@@ -55,13 +49,13 @@ var Sarjamuisti = Backbone.View.extend({
     events:{
         'click .quit': 'quitGame',
         'click .choices' : 'numberPicked',
-        'click .check' : 'checkAnswers',
+        'click .check' : 'showCorrects',
         'click .finish' : 'finish'
     },
 
     quitGame: function () {
         this.undelegateEvents();
-        this.$el.removeData().unbind();
+
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId, true);
 
@@ -69,40 +63,38 @@ var Sarjamuisti = Backbone.View.extend({
 
     numberPicked: function () {
         var target= event.target.innerHTML;
-
         $('.active').html(target);
         $('.active').removeClass('black');
         $('.box').removeClass('active');
         this.nextRandom();
-
-
-
-
-
     },
+
     nextRandom: function () {
         var availableBoxes = $('.available').length;
-
+        var availableArr = [];
         //todo: nyt se lähtee ekan randomin jälkeen aina vasemmalta oikealle
         if(availableBoxes === 0){
-            console.log('finihs')
+            $('.finish').addClass('btn-success');
         }else{
-            var available = $('.available').index('.box');
-            console.log(available)
-            $('.box:eq(' + available+ ')').addClass('active').removeClass('available');
+            $('.available.box').each(function ( index ) {
+                availableArr.push(index);
+            });
+
+            var num = Math.floor(Math.random() * availableArr.length);
+            $('.available:eq(' + availableArr[num] + ')').addClass('active').removeClass('available');
+
         }
-
-
     },
 
-    checkAnswers: function () {
-        var numArray = Settings.get('numArray');
-        console.log(numArray);
+    showCorrects: function () {
+        $('.answers').removeClass('hidden');
+        $('.choices').hide();
     },
 
     finish: function () {
-
-
+        this.undelegateEvents();
+        var view = new Sarjamuisti({model:this.model});
+        view.render();
 
     }
 
