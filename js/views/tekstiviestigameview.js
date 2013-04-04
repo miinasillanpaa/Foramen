@@ -84,15 +84,9 @@ var TekstiviestiGameView = Backbone.View.extend({
 
     quitGame: function () {
         this.undelegateEvents();
-        this.$el.removeData().unbind();
+
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId, true);
-
-
-
-
-
-
     },
 
     message1: function () {

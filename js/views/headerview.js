@@ -37,23 +37,18 @@ var HeaderView = Backbone.View.extend({
     },
 
     goRoot: function() {
-        this.undelegateEvents();
-        router.navigate('/', true);
+        router.navigate('/', {trigger: true });
     },
 
     goToGameSetup: function() {
-        this.undelegateEvents();
-        router.navigate('game/' + this.options.gameId, true);
+        router.navigate('game/' + this.options.gameId, {trigger: true});
     },
 
-
     historyBack: function () {
-      this.undelegateEvents();
       window.history.back();
     },
 
 	goBackToService: function() {
-        this.undelegateEvents();
 		var userId = Settings.get('currentUserId');
 		var returnUrl = Settings.get('returnUrl');
 

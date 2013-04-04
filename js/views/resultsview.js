@@ -53,8 +53,6 @@ var ResultsView = Backbone.View.extend({
     },
 
     viewSnapshot: function () {
-        this.undelegateEvents();
-
         var difficulty = '';
         if( this.options.results.difficulty == 'easy' ){
             difficulty = 'Helppo';

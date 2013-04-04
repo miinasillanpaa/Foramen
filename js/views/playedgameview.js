@@ -22,7 +22,6 @@ var PlayedGameView = Backbone.View.extend({
     },
 
     toResults : function () {
-        this.undelegateEvents();
         router.navigate( '/game/' + this.options.variables.gameId + '/results', true );
         var view = new ResultsView({ model: this.model, results: this.options.variables });
         new HeaderView({id:2, gameId: this.options.variables.gameId });

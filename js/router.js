@@ -22,6 +22,10 @@ window.Router = Backbone.Router.extend({
 		}
 
 		new GameListView(games);
+
+		if (App.currentGameView != null) {
+			App.currentGameView.undelegateEvents();
+		}
 	}
 
 });
@@ -34,11 +38,16 @@ router.on('route:getGame', function(id) {
 
 	var selectedGame = games[id-1];
 	var gameObj = new Game(selectedGame);
-	var view = new PreGameView({ model: gameObj });
+
+	if (App.preGameview === null) {
+		App.preGameview = new PreGameView({ model: gameObj });
+	} else {
+		App.preGameview.setModel(gameObj);
+	}
 
     new HeaderView({id:1,gameId:id});
-	view.render();
 
+	App.preGameview.render();
 });
 
 router.on('route:videoView', function(id) {
@@ -50,25 +59,23 @@ router.on('route:videoView', function(id) {
     new HeaderView({id:2,gameId:id});
     view.render();
 
-	//$('#iframe-placeholder').html('<iframe class="center" width="1120" height="630" src="http://www.youtube.com/embed/ZKs0OZM0M9k?rel=0" frameborder="0"></iframe>');
-
 });
 
 router.on('route:play', function(id) {
-
-    var selectedGame = games[id-1];
+	var selectedGameIndex = parseInt(id-1);
+    var selectedGame = games[selectedGameIndex];
     var gameObj = new Game(selectedGame);
 
-    console.log(id);
-    //todo both games get triggered if visited before (??)
-    if( id == 1 ){
-        var view1= new KuvaEtsinta({ model:gameObj });
+    console.log('route:play with id ' + id);
+
+	if( parseInt(id) === 1 ){
+        var view1 = new KuvaEtsinta({ model:gameObj });
+		App.currentGameView = view1;
         view1.render();
-
-    }else if( id == 2){
+    } else if( parseInt(id) === 2){
         var view2 = new TekstiviestiGameView({ model:gameObj });
+		App.currentGameView = view2;
         view2.render();
-
     }else{
         $('#content').html('Nothing here yet!');
     }

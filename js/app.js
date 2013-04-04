@@ -1,3 +1,8 @@
+var App = {
+	preGameview: null,
+	currentGameView: null
+};
+
 var games = [
 	{
         "gameId": 1,
