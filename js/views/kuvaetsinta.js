@@ -7,7 +7,7 @@ var KuvaEtsinta = Backbone.View.extend({
     render: function () {
 
         //empty headerview
-        $('#header').html('');
+        $('#header').empty();
 
        var startTime = new Date().getTime();
         Settings.set({ startTime : startTime });

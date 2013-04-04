@@ -23,6 +23,25 @@
 
     <!-- templates start -->
 
+    <script id="sarjamuistiTemplate" type="text/template">
+            <div class="text-center numArray">
+                <% _.each(numArray, function(numArray) { %>
+
+                  <div class="well answers"><%= numArray %></div>
+                  <div class="box available"><%= numArray %></div>
+
+                <% }) %>
+            </div>
+            <div class="text-center numOptions hidden">
+                <% _.each(choices, function(choices) { %>
+                    <div class="choices"><%= choices %></div>
+                <% }) %>
+            </div>
+        <button class="btn btn-large bottom-right bigger finish">Valmis</button>
+        <button class="btn btn-large bottom-center-right bigger check">Tarkista</button>
+        <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
+    </script>
+
     <script id="tekstiviestiAnswerTemplate" type="text/template">
         <div class="span5">
 
@@ -67,7 +86,7 @@
 
     <script id="tekstiviestiGameTemplate" type="text/template">
     <div class="phone-container">
-        <embed hidden="true" src="sounds/iphone-sms.mp3">
+        <audio id="audio" autoplay="autoplay" src="sounds/iphone-sms.mp3" type="audio/mpeg" ></audio>
         <img class="phone center" src="img/device-iphone5.png" />
         <div class="textmessage left">
             <%= message %>
@@ -121,10 +140,6 @@
 
 
             </div>
-
-
-
-
 
         </div>
 
@@ -258,6 +273,7 @@
     <script src="js/views/kuvaetsinta.js"></script>
     <script src="js/views/tekstiviestigameview.js"></script>
     <script src="js/views/tekstiviestianswerview.js"></script>
+    <script src="js/views/sarjamuistigameview.js"></script>
 
 
     <script src="js/app.js"></script>

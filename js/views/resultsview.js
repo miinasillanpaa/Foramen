@@ -7,11 +7,11 @@ var ResultsView = Backbone.View.extend({
 
         var difficulty = '';
         if( this.options.results.difficulty == 'easy' ){
-            difficulty = 'Helppo';
+            difficulty = 'Taso I';
         }else if( this.options.results.difficulty == 'medium' ){
-            difficulty = 'Keskivaikea';
+            difficulty = 'Taso II';
         }else{
-            difficulty = 'Vaikea';
+            difficulty = 'Taso III';
         }
 
         //todo: Palaute: verrataan samalla tasolla (I, II, III) pelattujen keskiarvoon. Lisäksi: HIENOA! Teit parhaan
