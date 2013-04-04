@@ -58,12 +58,17 @@ router.on('route:play', function(id) {
 
     var selectedGame = games[id-1];
     var gameObj = new Game(selectedGame);
+
+    console.log(id);
+    //todo both games get triggered if visited before (??)
     if( id == 1 ){
         var view1= new KuvaEtsinta({ model:gameObj });
         view1.render();
+
     }else if( id == 2){
         var view2 = new TekstiviestiGameView({ model:gameObj });
         view2.render();
+
     }else{
         $('#content').html('Nothing here yet!');
     }

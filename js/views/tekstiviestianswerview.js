@@ -6,7 +6,7 @@ var TekstiviestiAnswerView = Backbone.View.extend({
     },
 
     render: function () {
-
+        console.log(this);
         var variables = { questions: this.options.variables.questions,
                           senders: this.options.variables.senders,
                           receivers: this.options.variables.receivers,
@@ -15,7 +15,7 @@ var TekstiviestiAnswerView = Backbone.View.extend({
                           items: this.options.variables.items,
                           corrects: this.options.variables.corrects,
                           correctStrings: this.options.variables.correctStrings};
-        console.log(variables);
+        //console.log(variables);
         var template = _.template( $(this.template).html(), variables );
         this.$el.html(template);
 
@@ -28,7 +28,7 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         $('button:eq(4)').addClass('question-item');
 
 
-        console.log(this.options.variables.corrects.time);
+        //console.log(this.options.variables.corrects.time);
 
         //correct anwers
         $('.options-senders button:eq('+ this.options.variables.corrects.sender +')').addClass('correct');
@@ -172,6 +172,10 @@ var TekstiviestiAnswerView = Backbone.View.extend({
 
 
         $('.q-button').attr("disabled", "disabled");
+
+      //  var correctsNum = $('.a-button.correct').length;
+      //  console.log("oikein: "+correctsNum);
+
         $('.a-button.correct').addClass('btn-success');
         $('.a-button').addClass('btn-danger');
 
@@ -196,10 +200,10 @@ var TekstiviestiAnswerView = Backbone.View.extend({
 
         $('.txt-answers').empty();
         $('.txt-answers').append("<div class='bigger-correct'>"+sender+"</div>");
-        $('.txt-answers').append("<div class='bigger-correct'>"+receiver+"</div>");
-        $('.txt-answers').append("<div class='bigger-correct'>"+place+"</div>");
-        $('.txt-answers').append("<div class='bigger-correct'>"+time+"</div>");
-        $('.txt-answers').append("<div class='bigger-correct'>"+item+"</div>");
+        $('.txt-answers').append("<div class='bigger-correct spaceTop'>"+receiver+"</div>");
+        $('.txt-answers').append("<div class='bigger-correct spaceTop'>"+place+"</div>");
+        $('.txt-answers').append("<div class='bigger-correct spaceTop'>"+time+"</div>");
+        $('.txt-answers').append("<div class='bigger-correct spaceTop'>"+item+"</div>");
 
         $('.correct-answers').attr("disabled","disabled");
 
@@ -209,8 +213,121 @@ var TekstiviestiAnswerView = Backbone.View.extend({
     },
 
     continue : function () {
-        var view = new TekstiviestiGameView({  });
-        view.render();
+
+        var playThruNum = Settings.get('playThruNum');
+        Settings.set({ 'playThruNum' : playThruNum+1 });
+        //console.log(Settings.get('playThruNum'));
+
+        //todo: collect results
+
+
+        if(Settings.get('playThruNum') === 1){
+            console.log(this);
+            Settings.results = [];
+            var corrects = $('.a-button.correct').length;
+            var wrongs = 5 - corrects;
+
+            Settings.results.push( [ corrects,wrongs ] );
+            console.log(Settings.results);
+            console.log(Settings.results[0][0] +' / '+ Settings.results[0][1]);
+
+            var view = new TekstiviestiGameView({ model: this.model });
+            view.render();
+
+        }else if(Settings.get('playThruNum') === 2){
+            var corrects = $('.a-button.correct').length;
+            var wrongs = 5 - corrects;
+
+            Settings.results.push( [ corrects,wrongs ] );
+
+
+
+            var view = new TekstiviestiGameView({ model: this.model });
+            view.render();
+
+        }else if(Settings.get('playThruNum') === 3){
+            var corrects = $('.a-button.correct').length;
+            var wrongs = 5 - corrects;
+
+            Settings.results.push( [ corrects,wrongs ] );
+
+            var view = new TekstiviestiGameView({ model:this.model });
+            view.render();
+        }else if(Settings.get('playThruNum') === 4){
+            var corrects = $('.a-button.correct').length;
+            var wrongs = 5 - corrects;
+
+            Settings.results.push( [ corrects,wrongs ] );
+
+            var view = new TekstiviestiGameView({ model: this.model });
+            view.render();
+
+        }else if(Settings.get('playThruNum') === 5){
+            var corrects = $('.a-button.correct').length;
+            var wrongs = 5 - corrects;
+
+            Settings.results.push( [ corrects,wrongs ] );
+
+            var correctTot = Settings.results[0][0]+Settings.results[1][0]+Settings.results[2][0]+Settings.results[3][0]+Settings.results[4][0];
+            var wrongTot = Settings.results[0][1]+Settings.results[1][1]+Settings.results[2][1]+Settings.results[3][1]+Settings.results[4][1];
+
+            var results = {
+                'pvm' : '',
+                'klo' : '',
+                'difficulty' : Settings.get('difficulty'),
+                'data' : [
+                    {
+                        'name' : 'Tekstiviesti 1:',
+                        'value' : Settings.results[0][0] +' oikein / '+ Settings.results[0][1]+' väärin'
+                    },
+                    {
+                        'name' : 'Tekstiviesti 2:',
+                        'value' : Settings.results[1][0] +' oikein / '+ Settings.results[1][1]+' väärin'
+                    },
+                    {
+                        'name' : 'Tekstiviesti 3:',
+                        'value' : Settings.results[2][0] +' oikein / '+ Settings.results[2][1]+' väärin'
+                    },
+                    {
+                        'name' : 'Tekstiviesti 4:',
+                        'value' : Settings.results[3][0] +' oikein / '+ Settings.results[3][1]+' väärin'
+                    },
+                    {
+                        'name' : 'Tekstiviesti 5:',
+                        'value' : Settings.results[4][0] +' oikein / '+ Settings.results[4][1]+' väärin'
+                    },
+                    {
+                        'name' : 'Yhteensä:',
+                        'value' : correctTot + ' oikein / ' + wrongTot +' väärin'
+                    }
+                ]
+            };
+
+            var gameId = this.model.get('gameId');
+
+
+
+            Settings.set({ 'playThruNum' : 0 });
+            var view = new ResultsView({ model: this.model, results: results });
+            view.render();
+        }
+
+
+
+
+
+
+        //back to defaults
+        var unsetButton = '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>';
+
+        Settings.set({'txtSenderDom':unsetButton});
+        Settings.set({'txtItemDom':unsetButton});
+        Settings.set({'txtPlaceDom':unsetButton});
+        Settings.set({'txtReceiverDom':unsetButton});
+        Settings.set({'txtTimeDom':unsetButton});
+
+        this.undelegateEvents();
+
     }
 
 

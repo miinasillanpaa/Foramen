@@ -57,7 +57,7 @@
                 <% }); %>
             </div>
         </div>
-        <div class="span2 txt-answers"></div>
+        <div class="span3 txt-answers"></div>
 
         <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
         <button class="btn btn-large bottom-right bigger check">Tarkista</button>
@@ -67,6 +67,7 @@
 
     <script id="tekstiviestiGameTemplate" type="text/template">
     <div class="phone-container">
+        <embed hidden="true" src="sounds/iphone-sms.mp3">
         <img class="phone center" src="img/device-iphone5.png" />
         <div class="textmessage left">
             <%= message %>
@@ -96,34 +97,32 @@
 
     <script id="resultsViewTemplate" type="text/template">
 
+         <!--
+         todo remake resultsview so that results can vary from game to game
+         -->
         <h2 class="title"><%= title %> harjoitteen tulokset</h2>
         <div class="span5 well">
 
-            <ul class="results pull-left">
+            <div class="results pull-left">
+                <p>Vaikeustaso: </p>
 
-                <li>Vaikeustaso: </li>
-                <li>Käytetty aika: </li>
-                <li>Kohteiden määrä: </li>
-                <li>Oikeat valinnat: </li>
-                <li>Väärät valinnat: </li>
-                <li>Puuttuvat valinnat: </li>
-                <li>Virheet yhteensä: </li>
-                <br/>
+                <% _.each(data, function(data) { %>
+                    <p><%= data.name %></p>
+                <% }); %>
+
+            </div>
+
+            <div class="results align-right">
+                <p> <%= difficulty %></p>
+
+                <% _.each(data, function(data) { %>
+                    <p><%= data.value %></p>
+                 <% }); %>
 
 
-            </ul>
-            <ul class="results pull-right">
+            </div>
 
-                <li> <%= difficulty %> </li>
-                <li> <%= time %> </li>
-                <li> <%= targets %> kpl</li>
-                <li> <%= correct %> kpl</li>
-                <li> <%= wrong %> kpl</li>
-                <li> <%= missing %> kpl</li>
-                <li> <%= allWrongs %> kpl</li>
-            </ul>
 
-            <button class="btn btn-large btn-primary btn-block bigger screen">Näytä kuvaruutu</button>
 
 
 

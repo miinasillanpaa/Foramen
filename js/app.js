@@ -18,7 +18,7 @@ var games = [
                   "<p>Mieleenpainamisen jälkeen näytetään joukko kysymyksiä. ..</p>"
     },
 	{"gameId": 3, "title" : "Sanojen tunnistamistehtävä"},
-	{"gameId": 4, "title" : "Ärsykkeet samanaikaisesti"},
+	{"gameId": 4, "title" : "Visuaalinen sarjamuisti Ärsykkeet samanaikaisesti"},
 	{"gameId": 5, "title" : "Audatiivinen interferenssi-tehtävä"},
 	{"gameId": 6, "title" : "KIM-yhdistelmä"},
 	{"gameId": 7, "title" : "Päättele salasana"},

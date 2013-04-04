@@ -6,8 +6,10 @@ var PlayedGameView = Backbone.View.extend({
 
         $('#header').html('');
 
+        console.log(this);
+
         $('#content').empty();
-        $('#content').html(this.options.variables.gameScreen);
+        $('#content').html(this.options.variables.hiddenData.gameScreen);
 
         $('.quit').hide();
         $('.finish').hide();

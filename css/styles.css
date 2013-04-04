@@ -95,12 +95,16 @@ h2{
 }
 
 .results{
-    list-style-type: none;
+
 }
 
-.results li{
+.align-right{
+    text-align: right;
+}
+
+.results p{
     font-size: 1.9em;
-    line-height: 1.6em;
+    line-height: 1.2em;
 }
 
 .bottom-right{
@@ -162,12 +166,16 @@ hr{
     font-size: 2em;
 }
 .bigger-correct{
-    height:49px;
-    padding:10px;
-    margin-top:5px;
-    font-size: 1.5em;
-    line-height: 1em;
+    display:block;
+    padding:21px;
+    width:100%;
+    font-size: 1.6em;
+    line-height: 1.2em;
 
+}
+
+.spaceTop{
+    margin-top: 5px;
 }
 
 .alert-bigger{
@@ -248,3 +256,6 @@ img.phone{
      font-size: 1.6em;
      line-height: 1.2em;
  }
+.btn-bolder {
+    padding: 20px;
+}

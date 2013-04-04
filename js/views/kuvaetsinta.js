@@ -320,13 +320,41 @@ var KuvaEtsinta = Backbone.View.extend({
              'pvm' : dd+'/'+mm+'/'+yyyy,
              'klo' : hours+':'+minutes,
              'difficulty': Settings.get('difficulty'),
-             'timeSpent' : timeSpent,
-             'targets' : allCorrects,
-             'correct' : correctAnswers,
-             'wrong' : wrong,
-             'missing' : missing,
-             'allWrongs' : allWrongs,
-             'gameScreen' : gameScreen
+             'data' : [
+                 {
+                    'name' : 'Käytetty aika:',
+                    'value' : timeSpent
+                 },
+                 {
+                     'name' : 'Kohteiden määrä:',
+                     'value' : allCorrects+' kpl'
+                 },
+                 {
+                     'name' : 'Oikeat valinnat:',
+                     'value' : correctAnswers+' kpl'
+                 },
+                 {
+                     'name' : 'Väärät valinnat:',
+                     'value' : wrong+' kpl'
+                 },
+                 {
+                     'name' : 'Puuttuvat valinnat:',
+                     'value' : missing+' kpl'
+                 },
+                 {
+                     'name' : 'Virheet yhteensä:',
+                     'value' : allWrongs+' kpl'
+                 },
+                 {
+                     'name' : '',
+                     'value' : '<button class="btn btn-large btn-primary btn-block btn-bolder screen">Näytä kuvaruutu</button>'
+                 }
+             ],
+             'hiddenData':
+                 {
+                     'gameScreen' : gameScreen
+                 }
+
             };
 
         var gameId = this.model.get('gameId');
