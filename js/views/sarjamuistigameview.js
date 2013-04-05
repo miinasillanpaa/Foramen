@@ -32,6 +32,7 @@ var Sarjamuisti = Backbone.View.extend({
             function () {
                 $('.numOptions').removeClass('hidden');
                 $('.box').addClass('black');
+                $('.box').text('_');
                 $('.finish').removeAttr("disabled");
                 $('.check').removeAttr("disabled");
                 var rand = Math.floor(Math.random() * arrLength);
@@ -93,8 +94,119 @@ var Sarjamuisti = Backbone.View.extend({
 
     finish: function () {
         this.undelegateEvents();
-        var view = new Sarjamuisti({model:this.model});
-        view.render();
+        var playThruNum = Settings.get('playThruNum');
+
+
+        function answerCheck () {
+            var nums = $('.box').length;
+            var right = 0;
+            for(var i=0; i<nums; i++){
+                var correct = $('.answers:eq('+i+')').text();
+                var answered = $('.box:eq('+i+')').text();
+                if( correct === answered ){
+                    right++;
+                }
+            }
+
+            var wrong = nums - right;
+            if(wrong === 0){
+                var correctSeries = (Settings.get('correctSeries'))+1;
+                Settings.set({'correctSeries':correctSeries });
+                console.log(correctSeries);
+            }else{
+                var wrongSeries = (Settings.get('wrongSeries'))+1;
+                Settings.set({'wrongSeries':wrongSeries})
+            }
+
+            Settings.set({ 'playThruNum' : playThruNum+1 });
+        }
+
+
+        if (Settings.get('playThruNum') === 0) {
+
+            var correctSeries = 0;
+            var wrongSeries = 0;
+            Settings.set({'correctSeries':correctSeries });
+            Settings.set({'wrongSeries':wrongSeries});
+
+            answerCheck();
+
+            var view = new Sarjamuisti({model:this.model});
+            view.render();
+
+        }else if (Settings.get('playThruNum') === 1) {
+
+            answerCheck();
+
+            var view = new Sarjamuisti({model:this.model});
+            view.render();
+
+        }else if (Settings.get('playThruNum') === 2) {
+
+            answerCheck();
+
+            var view = new Sarjamuisti({model:this.model});
+            view.render();
+
+        }else if (Settings.get('playThruNum') === 3) {
+
+            answerCheck();
+
+            var view = new Sarjamuisti({model:this.model});
+            view.render();
+
+
+        }else{
+
+            answerCheck();
+
+            var seriesLength;
+            if(Settings.get('difficulty') === 'easy' ){
+                seriesLength = 3;
+            }else if(Settings.get('difficulty') === 'medium'){
+                seriesLength = 5;
+            }else{
+                seriesLength = 7;
+            }
+
+            var seriesTot = 5;
+            var correctSeries = Settings.get('correctSeries');
+            var wrongSeries = Settings.get('wrongSeries');
+
+            var results = {
+                'pvm' : '',
+                'klo' : '',
+                'difficulty' : Settings.get('difficulty'),
+                'data' : [
+                    {
+                        'name' : 'Sarjojen lukumäärä:',
+                        'value' : seriesTot
+                    },
+                    {
+                        'name' : 'Sarjojen pituus:',
+                        'value' : seriesLength
+                    },
+                    {
+                        'name' : 'Oikeat sarjat:',
+                        'value' : correctSeries
+                    },
+                    {
+                        'name' : 'Väärät sarjat:',
+                        'value' : wrongSeries
+                    }
+                ]
+            };
+
+            var gameId = this.model.get('gameId');
+
+            Settings.set({ 'playThruNum' : 0 });
+            var view = new ResultsView({ model: this.model, results: results })
+            view.render();
+
+        }
+
+
+
 
     }
 

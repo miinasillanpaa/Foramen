@@ -6,18 +6,13 @@ var TekstiviestiGameView = Backbone.View.extend({
 
         $('#header').html('');
 
+        var txtVisibleTime;
         if(Settings.get('difficulty') == 'easy'){
-            //todo: remove debug txt visibility time
-            //var txtVisibleTime = 90*1000;
-            console.log('easy game started');
-            var txtVisibleTime = 3000;
-
+            txtVisibleTime = 90*1000;
         }else if(Settings.get('difficulty') == 'medium'){
-            console.log('medium game started');
-            var txtVisibleTime = 60*1000;
+            txtVisibleTime = 60*1000;
         }else{
-            console.log('hard game started');
-            var txtVisibleTime = 30*1000;
+            txtVisibleTime = 30*1000;
         }
 
         var randomMessage = (Math.floor((Math.random() * 5) + 1));
@@ -43,14 +38,10 @@ var TekstiviestiGameView = Backbone.View.extend({
                           corrects : myMsg.corrects,
                           correctStrings : myMsg.correctStrings };
 
-       // console.log(variables);
-
         var template = _.template( $(this.template).html(), variables );
         this.$el.html(template);
 
-
-        $('.textmessage').hide();
-
+        $('.textmessage').addClass('hidden');
 
         var myModel = this.model;
 
@@ -60,26 +51,27 @@ var TekstiviestiGameView = Backbone.View.extend({
                 console.log(myModel);
               $('.phone').transition({
                     scale: 5
-
                 }, 2500, 'ease', function() {
-                    $('.textmessage').show( function() {
-                        setTimeout(
-                            function () {
-                                var view = new TekstiviestiAnswerView({ model: myModel, variables: variables });
-                                view.render();
-                            }, txtVisibleTime
-                        )
-                    } );
-                })
+                    $('.textmessage').removeClass('hidden');
+                    setTimeout(
+                        function () {
+                            var view = new TekstiviestiAnswerView({ model: myModel, variables: variables });
+                            view.render();
+                        }, txtVisibleTime
+                    )
+
+                });
             },4000); //time to wait before zoom in
 
         $('.quit').click( function() {
             clearTimeout(timer)
         });
 
-
         return this;
     },
+
+
+
 
     events: {
         'click .quit': 'quitGame'

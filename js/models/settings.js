@@ -11,8 +11,11 @@ var Settings = Backbone.Model.extend({
         txtPlaceDom: '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>',
         txtReceiverDom: '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>',
         txtTimeDom: '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>',
-        playThruNum: 0
 
+
+
+        playThruNum: 0,
+        results: []
 	}
 
 

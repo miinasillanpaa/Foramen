@@ -218,8 +218,6 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         Settings.set({ 'playThruNum' : playThruNum+1 });
         //console.log(Settings.get('playThruNum'));
 
-        //todo: collect results
-
 
         if(Settings.get('playThruNum') === 1){
             console.log(this);
