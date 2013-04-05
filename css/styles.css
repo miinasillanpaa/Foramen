@@ -280,19 +280,32 @@ img.phone{
 
 }
 .box{
+
     color: #000;
     display: inline;
     padding: 10px 18px 0px 38px;
     margin-left:-40px;
     marrgin-right: -40px;
-    border: 3px solid white;
-    outline: 3px solid white;
+    border: 9px solid white;
+    
+
 }
+.box p{
+
+}
+
 .black{
+
     background-color: #000;
-    border: 3px solid black;
-    outline: 3px solid black;
+    border: 9px solid black;
+
 }
+
+.active{
+    box-shadow: 0 0 0 3px #fff, 0 0 0 6px red;
+
+}
+
 
 .numOptions{
     margin-top: -100px;
@@ -305,9 +318,6 @@ img.phone{
     color: darkgreen ;
     padding:0 20px 0 2px;
     margin:0;
-
-
-
 }
 
 
@@ -315,10 +325,7 @@ img.phone{
     color: #000;
 }
 
-.active{
-    border: 3px solid white;
-    outline: 3px solid red;
-}
+
 
 .choices{
     display: inline;

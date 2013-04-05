@@ -32,7 +32,6 @@ var Sarjamuisti = Backbone.View.extend({
             function () {
                 $('.numOptions').removeClass('hidden');
                 $('.box').addClass('black');
-                $('.box').text('_');
                 $('.finish').removeAttr("disabled");
                 $('.check').removeAttr("disabled");
                 var rand = Math.floor(Math.random() * arrLength);
@@ -65,6 +64,7 @@ var Sarjamuisti = Backbone.View.extend({
     numberPicked: function () {
         var target= event.target.innerHTML;
         $('.active').html(target);
+        $('.active').addClass('answered');
         $('.active').removeClass('black');
         $('.box').removeClass('active');
         this.nextRandom();
@@ -100,9 +100,16 @@ var Sarjamuisti = Backbone.View.extend({
         function answerCheck () {
             var nums = $('.box').length;
             var right = 0;
+            var answered;
             for(var i=0; i<nums; i++){
                 var correct = $('.answers:eq('+i+')').text();
-                var answered = $('.box:eq('+i+')').text();
+                if( $('.box:eq('+i+')').hasClass('answered')){
+                    answered = $('.box:eq('+i+')').text();
+                } else{
+                    answered = false;
+                }
+
+                console.log(answered + "=" + correct);
                 if( correct === answered ){
                     right++;
                 }
