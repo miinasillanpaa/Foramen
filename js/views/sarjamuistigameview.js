@@ -173,9 +173,26 @@ var Sarjamuisti = Backbone.View.extend({
             var correctSeries = Settings.get('correctSeries');
             var wrongSeries = Settings.get('wrongSeries');
 
+            //time & date
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1;//January is 0!
+            var yyyy = today.getFullYear();
+            if(dd<10){dd='0'+dd}
+            if(mm<10){mm='0'+mm}
+            var hours = today.getHours();
+            var minutes = today.getMinutes();
+
+            function pad2(number){
+                return (number < 10 ? '0' : '') + number
+            }
+
+            var h = pad2(hours);
+            var m = pad2(minutes);
+
             var results = {
-                'pvm' : '',
-                'klo' : '',
+                'pvm' : dd+'/'+mm+'/'+yyyy,
+                'klo' : h+':'+m,
                 'difficulty' : Settings.get('difficulty'),
                 'data' : [
                     {
