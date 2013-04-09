@@ -78,6 +78,11 @@ router.on('route:play', function(id) {
 		App.currentGameView = view2;
         view2.render();
 
+    }else if( parseInt(id) === 3){
+        var view3 = new SanojenTunnistaminen({ model: gameObj });
+        App.currentGameView = view3;
+        view3.render();
+
     }else if( parseInt(id) === 4){
         var view4 = new Sarjamuisti({ model:gameObj });
         App.currentGameView = view4;

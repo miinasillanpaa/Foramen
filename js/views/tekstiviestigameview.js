@@ -3,7 +3,7 @@ var TekstiviestiGameView = Backbone.View.extend({
     template: '#tekstiviestiGameTemplate',
 
     render: function () {
-
+        console.log('tekstiviesti');
         $('#header').html('');
 
         var txtVisibleTime;
@@ -48,7 +48,7 @@ var TekstiviestiGameView = Backbone.View.extend({
 
         var timer = setTimeout(
             function() {
-                console.log(myModel);
+                //console.log(myModel);
               $('.phone').transition({
                     scale: 5
                 }, 2500, 'ease', function() {
@@ -77,9 +77,9 @@ var TekstiviestiGameView = Backbone.View.extend({
         'click .quit': 'quitGame'
     },
 
-    quitGame: function (e) {
+    quitGame: function () {
         this.undelegateEvents();
-
+        Settings.set({ 'playThruNum' : 0 });
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId, {trigger:true});
     },
@@ -369,8 +369,7 @@ var TekstiviestiGameView = Backbone.View.extend({
         var correctStrings = { 'receiver':randReceiver, 'sender':randSender, 'item':randItem, 'place':randPlace, 'time':randTime }
 
         var message = randReceiver + "! Joudumme sopimaan uuden kokousajan. Uusi aika on "+randTime+". Paikka on entinen "+randPlace+". Ota mukaan "+randItem+". "+randSender;
-        //console.log(message);
-        //console.log("corrects: "+randReceiver+" "+randSender+" "+randItem+" "+randPlace+" "+randTime);
+
         return {  message:message,
             questions: questions,
             receivers : receivers,

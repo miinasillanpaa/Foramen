@@ -12,10 +12,30 @@ var Settings = Backbone.Model.extend({
         txtReceiverDom: '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>',
         txtTimeDom: '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>',
 
+        //Sanojen tunnistaminen
+        startPos: "",
+        selector: "",
+        targetAmount: "",
 
 
         playThruNum: 0,
-        results: []
+        results: [],
+
+        scrollerResults:{
+            corrects:0,
+            wrongs:0,
+            selectorPresses:0
+        },
+
+        categories: {
+            'animals' : [   'KIRAHVI','KILPIKONNA','LEIJONA','SIKA','KOIRA','KAMELI','KAURIS',
+                            'LAMMAS','HIIRI','KISSA','HÄRKÄ','LEHMÄ','PANDA','KARHU','KETTU',
+                            'ORAVA','ETANA','KÄÄRME','HYLJE','HEVONEN' ]
+        }
+
+
+
+
 	}
 
 

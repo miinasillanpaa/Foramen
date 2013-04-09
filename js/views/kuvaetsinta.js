@@ -3,7 +3,7 @@ var KuvaEtsinta = Backbone.View.extend({
     template: '#kuvaEtsintaTemplate',
 
     render: function () {
-
+        console.log('kalapeli');
         //empty headerview
         $('#header').empty();
 

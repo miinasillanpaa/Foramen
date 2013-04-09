@@ -3,7 +3,7 @@ var Sarjamuisti = Backbone.View.extend({
     template: '#sarjamuistiTemplate',
 
     render: function () {
-
+        console.log('sarjamuistigame');
         $('#header').empty();
 
         var choices = [0,1,2,3,4,5,6,7,8,9]
@@ -38,10 +38,18 @@ var Sarjamuisti = Backbone.View.extend({
                 $('.box:eq(' + rand + ')').addClass('active').removeClass('available');
             },time);
 
+
+
+
         var variables = { numArray : numArray, choices : choices };
 
         var template = _.template( $(this.template).html(), variables );
         this.$el.html(template);
+
+        $('.quit').click( function () {
+            clearTimeout(timer);
+        });
+
         return this;
 
     },
@@ -55,14 +63,15 @@ var Sarjamuisti = Backbone.View.extend({
 
     quitGame: function () {
         this.undelegateEvents();
-
+        Settings.set({ 'playThruNum' : 0 });
+        Settings.set({ 'results' : [] });
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId, true);
 
     },
 
     numberPicked: function () {
-        var target= event.target.innerHTML;
+        var target = event.target.innerHTML;
         $('.active').html(target);
         $('.active').addClass('answered');
         $('.active').removeClass('black');
@@ -109,7 +118,6 @@ var Sarjamuisti = Backbone.View.extend({
                     answered = false;
                 }
 
-                console.log(answered + "=" + correct);
                 if( correct === answered ){
                     right++;
                 }

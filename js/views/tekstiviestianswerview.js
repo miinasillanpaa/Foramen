@@ -1,12 +1,9 @@
 var TekstiviestiAnswerView = Backbone.View.extend({
     el: ( '#content' ),
     template: '#tekstiviestiAnswerTemplate',
-    initialize: function () {
-
-    },
 
     render: function () {
-        console.log(this);
+        console.log('tekstiviesti asnwer');
         var variables = { questions: this.options.variables.questions,
                           senders: this.options.variables.senders,
                           receivers: this.options.variables.receivers,
@@ -105,7 +102,6 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         //given answer
         var $answer = $(event.target);
         $answer.addClass('btn-primary');
-        //console.log($answer);
 
         var dom = event.target;
         Settings.set({ txtSenderDom : dom });
@@ -213,21 +209,16 @@ var TekstiviestiAnswerView = Backbone.View.extend({
     },
 
     continue : function () {
-
+        this.undelegateEvents();
         var playThruNum = Settings.get('playThruNum');
         Settings.set({ 'playThruNum' : playThruNum+1 });
-        //console.log(Settings.get('playThruNum'));
-
 
         if(Settings.get('playThruNum') === 1){
-            console.log(this);
             Settings.results = [];
             var corrects = $('.a-button.correct').length;
             var wrongs = 5 - corrects;
 
             Settings.results.push( [ corrects,wrongs ] );
-            console.log(Settings.results);
-            console.log(Settings.results[0][0] +' / '+ Settings.results[0][1]);
 
             var view = new TekstiviestiGameView({ model: this.model });
             view.render();
@@ -237,8 +228,6 @@ var TekstiviestiAnswerView = Backbone.View.extend({
             var wrongs = 5 - corrects;
 
             Settings.results.push( [ corrects,wrongs ] );
-
-
 
             var view = new TekstiviestiGameView({ model: this.model });
             view.render();
@@ -320,17 +309,10 @@ var TekstiviestiAnswerView = Backbone.View.extend({
 
             var gameId = this.model.get('gameId');
 
-
-
             Settings.set({ 'playThruNum' : 0 });
             var view = new ResultsView({ model: this.model, results: results });
             view.render();
         }
-
-
-
-
-
 
         //back to defaults
         var unsetButton = '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>';
