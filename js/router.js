@@ -88,6 +88,10 @@ router.on('route:play', function(id) {
         App.currentGameView = view4;
         view4.render();
 
+    }else if( parseInt(id) === 9){
+        var view9 = new Konstruointi({ model:gameObj });
+        App.currentGameView = view9;
+        view9.render();
     }else{
         $('#content').html('Nothing here yet!');
     }
