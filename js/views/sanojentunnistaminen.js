@@ -4,7 +4,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
     render: function () {
         $('#header').empty();
-        //todo kategorian saa valita itse?
+
 
 
         Settings.results = [];
@@ -28,16 +28,16 @@ var SanojenTunnistaminen = Backbone.View.extend({
         var mover = setInterval(this.scrollText, moveTime);
 
 
-
-
         var text = this.stringMaker();
-        var startPos = text.length - 20;
+
+        var textString = Settings.get('textString');
+
+        var startPos = textString.length - 17;
         Settings.set({startPos : startPos });
 
         var timer = setTimeout(
             function () {
                 clearInterval(mover);
-                console.log(this);
                 var amount = Settings.get('targetAmount');
                 var corrects = Settings.get('scrollerResults').corrects;
                 var wrongs = Settings.get('scrollerResults').wrongs - (Settings.get('scrollerResults').selectorPresses)*19;
@@ -74,6 +74,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
 
                 myView.undelegateEvents();
+
                 var view = new ResultsView({ model: myView.model, results: results });
                 view.render();
                 router.navigate('game/' + gameId + '/results', true);
@@ -110,21 +111,18 @@ var SanojenTunnistaminen = Backbone.View.extend({
     },
 
     scrollText: function () {
-
-        var text = $('.scroller').text().replace(/\s/g, '');
-        var selector = "";
-
+        var text = Settings.get('textString');
         var pos = Settings.get('startPos');
+
         pos--;
         Settings.set({ startPos : pos });
-        $('.scroller').transition({ x: '+=51' })
+
+        $('.scroller').transition({ x: '+=50' });
         selector = text.substr(pos,10);
-
-        Settings.set({ selector : selector })
-
     },
     stringMaker: function () {
         var text = "";
+        var textString = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ";
         var amount;
         var chars;
@@ -136,10 +134,14 @@ var SanojenTunnistaminen = Backbone.View.extend({
             chars = 150;
             firstRandPos = Math.floor(Math.random()*(127-137+1)+127);
 
-            for( var j = 0; j < amount; j++ ){
-                var to = 5;
-                var from = 15;
-                var randomDist = Math.floor(Math.random()*(to-from+1)+from);
+            var to;
+            var from;
+            var randomDist;
+
+            for( var i = 0; i < amount; i++ ){
+                to = 5;
+                from = 15;
+                randomDist = Math.floor(Math.random()*(to-from+1)+from);
 
                 randomDistance.push(randomDist);
             }
@@ -150,9 +152,9 @@ var SanojenTunnistaminen = Backbone.View.extend({
             firstRandPos = Math.floor(Math.random()*(172-182+1)+172);
 
             for( var j = 0; j < amount; j++ ){
-                var to = 5;
-                var from = 15;
-                var randomDist = Math.floor(Math.random()*(to-from+1)+from);
+                to = 5;
+                from = 15;
+                randomDist = Math.floor(Math.random()*(to-from+1)+from);
 
                 randomDistance.push(randomDist);
             }
@@ -162,10 +164,10 @@ var SanojenTunnistaminen = Backbone.View.extend({
             chars = 400;
             firstRandPos = Math.floor(Math.random()*(370-380+1)+370);
 
-            for( var j = 0; j < amount; j++ ){
-                 var to = 13;
-                 var from = 23;
-                 var randomDist = Math.floor(Math.random()*(to-from+1)+from);
+            for( var k = 0; k < amount; k++ ){
+                 to = 13;
+                 from = 23;
+                 randomDist = Math.floor(Math.random()*(to-from+1)+from);
 
                  randomDistance.push(randomDist);
             }
@@ -175,16 +177,13 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         var animals = Settings.get('categories').animals;
 
-
-
-
         var uniqueItems = [];
-        for(var a = 0; a < amount; a++ ){
+        for(var l = 0; l < amount; l++ ){
             var unique = true;
             var randomItem = animals[Math.floor(Math.random() * animals.length )];
 
-            for( var b = 0; b < amount; b++ ){
-                if( uniqueItems[b] === randomItem ) {
+            for( var m = 0; m < amount; m++ ){
+                if( uniqueItems[m] === randomItem ) {
                     unique = false;
                 }
             }
@@ -192,41 +191,34 @@ var SanojenTunnistaminen = Backbone.View.extend({
             if(unique){
                 uniqueItems.push(randomItem);
             }else{
-                a--;
+                l--;
             }
         }
 
-
-
-
-
-
-        for( var i=0; i < chars; i++ ){
-            text += possible.charAt( Math.floor( Math.random() * possible.length ));
+        for( var n=0; n < chars; n++ ){
+            var posChar = possible.charAt( Math.floor( Math.random() * possible.length ));
+            text += '<span>'+ posChar +'</span>';
+            textString += posChar;
 
         var arr = [];
         arr.push(firstRandPos);
 
-            //todo haittaako että arr yhden pidempi kuin uniqueItems
-
-            for(var k = 0; k < amount; k++){
-                var spot = arr[k]-randomDistance[k];
+            for(var o = 0; o < amount; o++){
+                var spot = arr[o]-randomDistance[o];
                 arr.push(spot);
-                //console.log(k);
-                if (i === arr[k] ) {
-                    console.log(uniqueItems[k]);
-                    text += uniqueItems[k];
+
+                if (n === arr[o] ) {
+                    var myItem = uniqueItems[o];
+                    textString += myItem;
+
+                    for(var p=0; p<myItem.length; p++) {
+                        text += '<span>'+ myItem.charAt(p) +'</span>';
+                    }
                 }
             }
-
         }
 
-
-
-        console.log(text);
-        //console.log(uniqueItems); //correct answers
-        console.log(arr);
-        //console.log(randomDistance);
+        Settings.set({ textString:textString });
         return text;
     },
 
@@ -235,44 +227,34 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         var selectorPresses = Settings.get('scrollerResults').selectorPresses;
         selectorPresses++;
+
         var corrects = Settings.get('scrollerResults').corrects;
         var wrongs = Settings.get('scrollerResults').wrongs;
 
-        //todo make all vary(randomness)
-        var all = 11;
-        //var missing = Settings.get('results').missing;
         var _results = _.omit(Settings.get('scrollerResults'));
         var _categories = _.omit(Settings.get('categories'));
 
-        //console.log(animals);
-        //todo resuls (kohteeht, oikein, väärin, puuttuu, virheet yhteensä)
-
         var selector = Settings.get('selector');
 
-        for( var i = 0; i < animals.length; i++){
+        for( var i = 0; i < animals.length; i++ ){
 
             if( selector.indexOf(animals[i]) !== -1 ){
-
                 corrects++;
                 _results.corrects = corrects;
 
-                console.log('correct '+animals[i] + ' to be removed');
                  delete animals[i];
                 _categories.animals = animals;
-            }else{
-                //todo parse 20=1, 19=0
-                wrongs++ ; //remember to parse this ( times 20)
-                _results.wrongs = wrongs;
 
-              /*  var wrongs = all-corrects;
-                _results.wrongs = wrongs; */
+            }else{
+                wrongs++ ;
+                _results.wrongs = wrongs;
             }
         }
+
         _results.selectorPresses = selectorPresses;
         Settings.set({ scrollerResults: _results });
         Settings.set({ categories:_categories });
 
         console.log(Settings.get('scrollerResults'));
-        console.log(selector);
     }
 });

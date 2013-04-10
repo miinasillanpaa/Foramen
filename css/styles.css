@@ -7,14 +7,14 @@ body{
 .rounded{
     border-radius: 10px;
 }
-.img-helper{
 
+.img-helper{
     border: 1px solid #dddddd;
     overflow: hidden;
     margin: 10px;
 }
-.game-item{
 
+.game-item{
     width:18.25%;
     display: inline-block;
     cursor: pointer;
@@ -23,7 +23,6 @@ body{
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1))); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10+,Safari5.1+ */
     margin: 10px;
-
 }
 
 .game-item:hover{
@@ -31,8 +30,8 @@ body{
     background: -moz-linear-gradient(-45deg, rgba(238,238,238,1) 0%, rgba(204,204,204,1) 16%, rgba(204,204,204,1) 45%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(16%,rgba(204,204,204,1)), color-stop(45%,rgba(204,204,204,1))); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(-45deg, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 16%,rgba(204,204,204,1) 45%); /* Chrome10+,Safari5.1+ */
-
 }
+
 .difficulty{
     padding-top:50px;
 }
@@ -41,33 +40,32 @@ body{
     padding:0 30px 0 30px;
     line-height: 1.8;
     font-size: 2em;
-
 }
+
 .wrap{
     height:65px;
     display: table;
     padding:0px 0px 10px 0px;
     vertical-align: middle;
     margin:0 auto;
-
 }
+
 .game-item h4{
     margin-top:0px;
     line-height: 1.2em;
-
     height: 2.9em;
     font-size: 1.7em;
     padding:0px;
     display: table-cell;
     vertical-align: middle;
     text-align: center;
-
 }
 
 .guide  {
     margin:0;
     padding:0;
 }
+
 .guide p {
     font-size: 1.9em;
     line-height: 1.3;
@@ -78,6 +76,7 @@ body{
     z-index: 10;
     margin-top:10px;
 }
+
 .selectable{
     margin:5px;
     border:5px solid white;
@@ -88,10 +87,6 @@ body{
     border:5px solid #515151;
     margin:5px;
     padding:0;
-
-}
-
-.results{
 
 }
 
@@ -109,33 +104,41 @@ body{
      right:50px;
      bottom:20px;
  }
+
 .bottom-center-right{
     position: absolute;
     right:200px;
     bottom:20px;
 }
+
 .bottom-left{
     position: absolute;
     left:50px;
     bottom:20px;
 }
+
 .tiny{
     font-size: 12px;
 }
+
 .btn{
     font-size: 1.5em;
 }
+
 ul{
     text-indent: 0;
     margin:0;
     padding:0;
 }
+
 .reset{
     margin:0;
 }
+
 .title{
     margin-left:35px;
 }
+
 hr{
     margin-top:5px;
 }
@@ -144,7 +147,6 @@ hr{
     position: absolute;
     top:10px;
     right:80px;
-
 }
 
 .center{
@@ -162,13 +164,13 @@ hr{
     padding: 20px;
     font-size: 2em;
 }
+
 .bigger-correct{
     display:block;
     padding:21px;
     width:100%;
     font-size: 1.6em;
     line-height: 1.2em;
-
 }
 
 .spaceTop{
@@ -181,15 +183,12 @@ hr{
     font-size: 2em;
     font-weight: bold;
     letter-spacing: 1px;
-
 }
-
-
-
 
 .record{
     list-style-type: none;
 }
+
 .record li{
     font-size: 1.9em;
     line-height: 1.6em;
@@ -201,29 +200,26 @@ hr{
 
 /* tekstiviestipeli */
 
-.phone-container{
-
-}
 img.phone{
     z-index: -1;
     margin-top: 0px;
     width:350px;
     -webkit-backface-visibility: hidden;
-
 }
+
 .textmessage{
     text-align: left;
     position: absolute;
     top: 40px;
     left: 80px;
     width: 950px;
-
     font-size:5em;
     line-height: 1;
     background-color: #e8e8e8;
     padding: 20px;
     border-radius: 20px;
 }
+
 .textmessage:after{
     content:"";
     position:absolute;
@@ -236,6 +232,7 @@ img.phone{
     display:block;
     width:0;
 }
+
 .textmessage.left:after{
     top:85px; /* controls vertical position */
     left:-30px; /* value = - border-left-width - border-right-width */
@@ -260,7 +257,6 @@ img.phone{
 
 /* visuaalinen sarjamuisti */
 
-
 .numArray{
     font-size: 8em;
     letter-spacing: 0.2em;
@@ -283,25 +279,21 @@ img.phone{
     margin-left:-40px;
     marrgin-right: -40px;
     border: 6px solid white;
-
-
-
 }
 
+.box p{
+     color: #000;
+ }
 
 .black{
-
     background-color: #000;
     border: 6px solid black;
-
 }
 
 .active{
     border:6px solid black;
     box-shadow: 0 0 0 3px #fff, 0 0 0 6px red;
-
 }
-
 
 .numOptions{
     margin-top: -100px;
@@ -309,19 +301,13 @@ img.phone{
     letter-spacing: 0.3em;
     cursor: pointer;
 }
+
 .answers{
     display: inline-block;
     color: darkgreen ;
     padding:0 23px 0 3px;
     margin:0;
 }
-
-
-.box p{
-    color: #000;
-}
-
-
 
 .choices{
     display: inline;
@@ -331,23 +317,25 @@ img.phone{
 
 @font-face {
     font-family: 'courier-new';
-    src: url(/piiri-foramen/fonts/Courier_New.ttf);
+    src: url(/piiri-foramen/fonts/Courier_Bold.ttf);
 }
 
 .scroller{
     white-space: nowrap;
     font-family: courier-new;
     font-weight: bold;
-     letter-spacing: 0.295em;
-    /* letter-spacing: 0.30339285714333em; font-size:4em; */
-
     position: absolute;
-    top:255px;
+    top:200px;
     right:0;
     font-size: 4.1em;
+    overflow: hidden;
+}
 
-
-
+.scroller span{
+    float: left;
+    padding-top:60px;
+    width: 50px;
+    height:100px;
 }
 
 .selector{
@@ -356,14 +344,14 @@ img.phone{
     opacity: 0.5;
     width: 500px;
     height: 80px;
-    top:220px;
-    left:440px;
+    top: 220px;
+    left: 420px;
 }
 
 .onTarget{
     position: absolute;
     bottom: 200px;
-    left:440px;
+    left: 420px;
     width: 500px;
     height: 150px;
 }

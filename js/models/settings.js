@@ -16,27 +16,36 @@ var Settings = Backbone.Model.extend({
         startPos: "",
         selector: "",
         targetAmount: "",
-
-
-        playThruNum: 0,
-        results: [],
-
         scrollerResults:{
             corrects:0,
             wrongs:0,
             selectorPresses:0
         },
 
+        //commonly used
+        playThruNum: 0,
+        results: [],
+
+
+
         categories: {
-            'animals' : [   'KIRAHVI','KILPIKONNA','LEIJONA','SIKA','KOIRA','KAMELI','KAURIS',
-                            'LAMMAS','HIIRI','KISSA','HÄRKÄ','LEHMÄ','PANDA','KARHU','KETTU',
-                            'ORAVA','ETANA','KÄÄRME','HYLJE','HEVONEN' ]
+            'animals' :     [   "KISSA","HILLERI","HEVONEN","LEHMÄ","LAMMAS","SÄRKI","MATO","AHVEN",
+                                "TIIKERI","KÄÄRME","SAMMAKKO","ILVES","KORPPI","KIRVA","KARHU","AHMA",
+                                "KYY","ROTTA","SUSI","MÄYRÄ"
+            ],
+            'professions' : [   "LÄÄKÄRI","MYYJÄ","PARTURI","OPETTAJA","HOITAJA","VARTIJA","KAPTEENI",
+                                "LENTÄJÄ","SEPPÄ","KOKKI","NÄYTTELIJÄ","POSTELJOONI","METSURI","KÄTILÖ",
+                                "VALMENTAJA","TERAPEUTTI","TARJOILIJA","KEITTÄJÄ","OHJAAJA","OMPELIJA",
+                                "YRITTÄJÄ","KYLVETTÄJÄ","OPTIKKO"
+            ],
+            'plants' :      [   "OMENA","BANAANI","PÄÄRYNÄ","NEKTARIINI","SIPULI","TOMAATTI","LILJA",
+                                "RUUSU","KOIVU","ESIKKO","MANSIKKA","MUURAIN","HORSMA","KANERVA",
+                                "VEHNÄ","LEPPÄ","MÄNTY","OHRA","RUIS","APRIKOOSI"
+            ]
+
         }
-
-
-
-
 	}
 
-
 });
+//looks a bit ugly when scrolling but works.
+window.onscroll = function () { window.scrollTo(0, 0); };

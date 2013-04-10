@@ -23,7 +23,6 @@ var GameListView = Backbone.View.extend({
     },
 
     render: function() {
-        console.log(this);
 		var self = this;
 		this.games.forEach(function(item, key) {
 			self.renderGame(item);
