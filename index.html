@@ -24,7 +24,63 @@
     <!-- templates start -->
 
     <script id="konstruointiTemplate" type="text/template">
-        konstruointi
+
+        <div class="text-center construct-body">
+
+            <div class="span6 construct">
+
+                <div class="firstRow">
+                    <% _.each(firstRow, function(firstRow) { %>
+                    <img class="firstRow" src="./pics/konstruktio/<%= firstRow %>.png">
+                    <% }) %>
+                </div>
+
+                <div class="secondRow">
+                    <% _.each(secondRow, function(secondRow) { %>
+                    <img class="secondRow" src="./pics/konstruktio/<%= secondRow %>.png">
+                    <% }) %>
+                </div>
+
+                <div class="thirdRow">
+                    <% _.each(thirdRow, function(thirdRow) { %>
+                    <img class="thirdRow" src="./pics/konstruktio/<%= thirdRow %>.png">
+                <% }) %>
+
+            </div>
+
+            </div>
+
+
+            <div class="span6 construct-answer">
+                <div class="firstRow">
+                    <% _.each(answerFirstRow, function(answerFirstRow) { %>
+                        <img class="firstRow answerBlock" src="./pics/konstruktio/<%= answerFirstRow %>.png">
+                    <% }) %>
+                </div>
+                <div class="secondRow">
+                    <% _.each(answerSecondRow, function(answerSecondRow) { %>
+                        <img class="secondRow answerBlock" src="./pics/konstruktio/<%= answerSecondRow %>.png">
+                    <% }) %>
+                </div>
+                <div class="thirdRow">
+                    <% _.each(answerThirdRow, function(answerThirdRow) { %>
+                        <img class="thirdRow answerBlock" src="./pics/konstruktio/<%= answerThirdRow %>.png">
+                    <% }) %>
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <div class="text-center answerblocks ">
+            <% _.each(answerChoices, function(answerChoices) { %>
+            <img class="selectable" src="<%= answerChoices %>" />
+            <% }) %>
+        </div>
+
+        <button class="btn btn-large bottom-right bigger finish">Valmis</button>
+
     </script>
 
     <script id="sanojenTunnistaminenTemplate" type="text/template">

@@ -355,3 +355,65 @@ img.phone{
     width: 500px;
     height: 150px;
 }
+
+/* KONSTRUOINTI */
+
+.construct-body{
+    margin-top:100px;
+}
+
+.construct img{
+    width:100px;
+    height: 100px;
+    margin-left:-5px;
+
+    /*easy & medium game
+    border-bottom: 2px solid black;
+    border-left: 2px solid black;*/
+}
+
+.construct-answer img{
+    width:100px;
+    height: 100px;
+    margin-left:-5px;
+}
+.firstRow img{
+    border-top: 2px solid black;
+}
+.firstRow img:first-child{
+    border-left: 2px solid black;
+}
+.firstRow img:last-child{
+    border-right: 2px solid black;
+}
+.answerblocks{
+    left:-50px;
+    padding-top: 80px;
+    display: inline-block;
+}
+.answerblocks img{
+    width: 90px;
+    height: 90px;
+}
+
+.construct img{
+    border: 2px solid black;
+}
+
+
+
+.bordered-bottom-answer img{
+    border-bottom: 2px solid black;
+}
+.bordered-bottom-answer img:first-child{
+     border-left: 2px solid black;
+}
+.bordered-bottom-answer img:last-child{
+    border-right: 2px solid black;
+}
+.bordered-mid-answer img:first-child{
+    border-left: 2px solid black;
+}
+.bordered-mid-answer img:last-child{
+    border-right: 2px solid black;
+}

@@ -11,15 +11,12 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         var myView = this;
         var gameId = this.model.get('gameId');
-
-        //todo get rid of debug time 4min
         var exerciseTime = 1000*60*4;
         var moveTime;
 
         if( Settings.get('difficulty') === 'easy' ){
             moveTime = 1500;
         }else if( Settings.get('difficulty') === 'medium' ){
-            //todo more letter is between?
             moveTime = 1000;
         }else{
             moveTime = 500;
@@ -71,8 +68,10 @@ var SanojenTunnistaminen = Backbone.View.extend({
                         }
                     ]
                 };
-
-
+                Settings.set({ scrollerResults: {   corrects:0,
+                                                    wrongs:0,
+                                                    selectorPresses:0} });
+                Settings.set({ scroller: "" });
                 myView.undelegateEvents();
 
                 var view = new ResultsView({ model: myView.model, results: results });
@@ -88,6 +87,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         var template = _.template( $(this.template).html(), variables );
         this.$el.html(template);
+
 
         $('.quit').click(function() {
            clearTimeout(timer);
@@ -118,7 +118,9 @@ var SanojenTunnistaminen = Backbone.View.extend({
         Settings.set({ startPos : pos });
 
         $('.scroller').transition({ x: '+=50' });
-        selector = text.substr(pos,10);
+        var selector = text.substr(pos,10);
+        Settings.set({ selector:selector });
+
     },
     stringMaker: function () {
         var text = "";
@@ -235,7 +237,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
         var _categories = _.omit(Settings.get('categories'));
 
         var selector = Settings.get('selector');
-
+        console.log(selector);
         for( var i = 0; i < animals.length; i++ ){
 
             if( selector.indexOf(animals[i]) !== -1 ){
@@ -250,7 +252,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
                 _results.wrongs = wrongs;
             }
         }
-
+        console.log(corrects);
         _results.selectorPresses = selectorPresses;
         Settings.set({ scrollerResults: _results });
         Settings.set({ categories:_categories });
