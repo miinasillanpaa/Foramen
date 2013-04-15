@@ -4,11 +4,18 @@ var Salasana = Backbone.View.extend({
 
     render: function () {
 
-        var serials = this.createSerial();
+        $('#header').empty();
+
+        var serial = this.createSerial();
+        Settings.set({serial:serial});
 
         var template = _.template( $(this.template).html() ) ;
         this.$el.html(template);
-        return this;
+
+    },
+
+    events : {
+        'click .submit' : 'checkGuess'
     },
 
     createSerial: function() {
@@ -19,12 +26,28 @@ var Salasana = Backbone.View.extend({
 
             var easy = serials.easy;
             var random = Math.floor(Math.random() * easy.length);
-            console.log(easy[random]);
+            return easy[random];
 
         }else if(difficulty === 'medium'){
 
         }else{
 
         }
+    },
+
+    checkGuess: function () {
+        console.log('check');
+        var guess = $('.serial-input').val().toUpperCase();
+        $('.guesses').append('<p>'+guess+'</p>');
+        $('.serial-input').val('');
+        $('.serial-input').focus();
+
+
+
+
+
     }
+
+
+
 });

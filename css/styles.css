@@ -420,10 +420,16 @@ img.phone{
 
 /* PÄÄTTELE SALANA */
 
-
+.myForm{
+    margin-top:100px;
+}
  .serial-input{
     height: 52px !important;
     font-size: 1.2em !important;
     margin-top: 10px;
-     text-transform: uppercase;
+    text-transform: uppercase;
 }
+
+ .submit{
+     margin-left:20px;
+ }
