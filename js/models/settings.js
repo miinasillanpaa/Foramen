@@ -1,9 +1,10 @@
 var Settings = Backbone.Model.extend({
 	defaults: {
-		currentUserId: '',
+		currentUserId: null,
+		authToken: null,
 		returnUrl: 'https://pienipiiri.fi/mobile/?userId=',
 		difficulty: 'easy',
-
+		backendUrl: 'https://pienipiiri.fi',
 
         //Tekstiviesti exercise specific
         txtSenderDom: '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>',
@@ -158,30 +159,6 @@ var Settings = Backbone.Model.extend({
             ],
             "hard" : []
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 });
