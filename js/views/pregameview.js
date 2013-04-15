@@ -3,8 +3,11 @@ var PreGameView = Backbone.View.extend({
 	template: '#preGameTemplate',
 
 	render: function() {
-		if( this.model.get('gameId') == 1 ){
+        var gameId = this.model.get('gameId');
+		if( gameId === 1 ){
             this.preload('kalat');
+        }else if ( gameId = 9){
+            this.preload('konstruktio');
         }
 
 		var variables = {title: this.model.get('title'),
@@ -71,18 +74,27 @@ var PreGameView = Backbone.View.extend({
 		router.navigate('game/' + gameId + '/play', {trigger: true});
 
     },
+
     preload: function(category) {
 
         var category = category;
         var preload = [];
-
-        for(i=1;i<21;i++){
-            var img = './pics/' + category + '/' + i + '.png';
-            preload.push(img);
+        var img;
+        if(category === 'konstruktio'){
+            for(var j=0;j<12;j++){
+                img = './pics/' + category + '/' + j + '.png';
+                preload.push(img);
+            }
+        }else{
+            for(var i=1;i<21;i++){
+                img = './pics/' + category + '/' + i + '.png';
+                preload.push(img);
+            }
         }
         $(preload).preload();
         //console.log(preload + ' preloaded')
     },
+
 	setModel: function(model) {
 		this.model = model;
 	}
