@@ -366,10 +366,6 @@ img.phone{
     width:100px;
     height: 100px;
     margin-left:-5px;
-
-    /*easy & medium game
-    border-bottom: 2px solid black;
-    border-left: 2px solid black;*/
 }
 
 .construct-answer img{
@@ -377,15 +373,17 @@ img.phone{
     height: 100px;
     margin-left:-5px;
 }
-.firstRow img{
+
+.firstRow-answer img{
     border-top: 2px solid black;
 }
-.firstRow img:first-child{
+.firstRow-answer img:first-child{
     border-left: 2px solid black;
 }
-.firstRow img:last-child{
+.firstRow-answer img:last-child{
     border-right: 2px solid black;
 }
+
 .answerblocks{
     left:-50px;
     padding-top: 80px;
@@ -396,24 +394,36 @@ img.phone{
     height: 90px;
 }
 
-.construct img{
-    border: 2px solid black;
-}
-
-
-
-.bordered-bottom-answer img{
+.border-bottom{
     border-bottom: 2px solid black;
 }
-.bordered-bottom-answer img:first-child{
+
+.bordered{
+    border: 1px solid black;
+}
+
+.bordered-bottom img{
+    border-bottom: 2px solid black;
+}
+.bordered-bottom img:first-child{
      border-left: 2px solid black;
 }
-.bordered-bottom-answer img:last-child{
+.bordered-bottom img:last-child{
     border-right: 2px solid black;
 }
-.bordered-mid-answer img:first-child{
+.bordered-mid img:first-child{
     border-left: 2px solid black;
 }
-.bordered-mid-answer img:last-child{
+.bordered-mid img:last-child{
     border-right: 2px solid black;
+}
+
+/* PÄÄTTELE SALANA */
+
+
+ .serial-input{
+    height: 52px !important;
+    font-size: 1.2em !important;
+    margin-top: 10px;
+     text-transform: uppercase;
 }

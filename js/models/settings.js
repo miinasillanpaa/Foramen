@@ -135,6 +135,28 @@ var Settings = Backbone.Model.extend({
                                  [7,0,2] ] }
 
              ]
+        },
+
+        salasanat: {
+            "easy" : [
+                "ABI","AHO","AIE","AJO","ANE","APE","APU","ARA","ARO","ASE","ASU","AVU","BOA","DUO","EGO","ELO","EMI",
+                "EMO","EMU","EMÄ","ENO","ERÄ","EVÄ","HAI","IEN","IES","IHO","IKÄ","ILO","IMU","ISI","ITU","ITÄ","ÄES",
+                "IVA","JAE","KOE","KUU","KYY","KÖÖ","LUU","MAA","OKA","OLO","ORA","ORI","OSA","OTE","PAI","PUO","YTY","ÄLY",
+                "PUU","PÄÄ","RAE","SEI","SUO","SUU","SÄE","SÄÄ","TAE","TIE","TII","TIU","TYÖ","TÄI","UFO","UHO","URA","UTU"
+            ],
+            "medium" : [
+                "AAMU","AUTO","AASI","ASKI","ASTE","ALKU","ALMU","AARI","ARKI","AKKU","ARPI","APPI","ARVO","AIKA",
+                "AATE","AAVE","AHJO","AHMA","AIHE","AINE","AIRO","AITA","AIVO","AKKA","AHTI","ALHO","ALMU","ANSA",
+                "ANTI","ARMO","ARPA","ASIA","ASTE","AULA","AUMA","AURA","EVÄS","ESTE","ENNE","ELIÖ","ELIN","EHTO",
+                "EMÄS","ERHE","ESSU","ESTO","EURO","EHTO","HAJU","HOME","HELA","HAME","HIUS","HIKI","HALU","HYVE",
+                "HAKA","HAKE","HANA","HARA","HAVU","HEDE","HELA","HELY","HERA","HIHA","HITU","HOVI","HUHU","HUPI",
+                "HUVI","HYMY","HÄKÄ","HÄLY","HÄMY","HÄTÄ","HÄÄT","IDEA","IHME","IHRA","ILMA","ILME","ILTA","ILVE",
+                "INHO","IONI","ITIÖ","ISKU","ITKU","JADE","JAKO","JANA","JANO","JAOS","JODI","JOKI","JONO","JUNA",
+                "JYVÄ","JÄTE","KALA","KANI","KARE","KARI","KATE","KATO","KATU","KEHO","KEHÄ","KEKO","KELA","KELO",
+                "KERÄ","KESÄ","KIDE","KIHO","KILO","KIVI","KOHU","KOHO","KOKO","KOLA","KONE","KORI","KORU","KOTI",
+                "KOTA","KUDE","KUJA","KULO","KUMU","KYKY","KYNÄ","KÄPY","KÄSI","KÖLI","LAKI","LASI"
+            ],
+            "hard" : []
         }
 
 

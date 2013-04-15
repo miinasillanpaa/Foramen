@@ -88,6 +88,11 @@ router.on('route:play', function(id) {
         App.currentGameView = view4;
         view4.render();
 
+    }else if( parseInt(id) === 7){
+        var view7 = new Salasana({ model:gameObj });
+        App.currentGameView = view7;
+        view7.render();
+
     }else if( parseInt(id) === 9){
         var view9 = new Konstruointi({ model:gameObj });
         App.currentGameView = view9;

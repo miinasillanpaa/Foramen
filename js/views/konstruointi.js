@@ -31,16 +31,44 @@ var Konstruointi = Backbone.View.extend({
         $('.answerblocks img:first-child').addClass('selected');
 
         if(difficulty === 'easy'){
-            $('.construct .firstRow').addClass('bordered');
+            $('.construct-answer .firstRow').addClass('firstRow-answer');
+            $('.construct .firstRow').addClass('firstRow-answer');
             $('.construct .secondRow').addClass('bordered-bottom');
-            $('.construct-answer .secondRow').addClass('bordered-bottom-answer');
+            $('.construct-answer .secondRow').addClass('bordered-bottom');
+
+            $('.construct img').addClass('bordered');
+
         }else if(difficulty === 'medium'){
 
-            $('.construct-answer .secondRow').addClass('bordered-mid-answer');
-            $('.construct-answer .thirdRow').addClass('bordered-bottom-answer');
+            $('.construct .firstRow').addClass('firstRow-answer');
+
+            $('.construct .secondRow img:first-child').css('border-left','2px solid black');
+            $('.construct .secondRow img:last-child').css('border-right','2px solid black');
+
+            $('.construct .thirdRow img').addClass('border-bottom');
+            $('.construct .thirdRow img:first-child').css('border-left','2px solid black');
+            $('.construct .thirdRow img:last-child').css('border-right','2px solid black');
+
+            $('.construct-answer .firstRow').addClass('firstRow-answer');
+            $('.construct-answer .secondRow').addClass('bordered-mid');
+            $('.construct-answer .thirdRow').addClass('bordered-bottom');
+
+            $('.construct img').addClass('bordered');
+
         }else{
-            $('.construct-answer .secondRow').addClass('bordered-mid-answer');
-            $('.construct-answer .thirdRow').addClass('bordered-bottom-answer');
+
+            $('.construct .firstRow').addClass('firstRow-answer');
+
+            $('.construct .secondRow img:first-child').css('border-left','2px solid black');
+            $('.construct .secondRow img:last-child').css('border-right','2px solid black');
+
+            $('.construct .thirdRow img').addClass('border-bottom');
+            $('.construct .thirdRow img:first-child').css('border-left','2px solid black');
+            $('.construct .thirdRow img:last-child').css('border-right','2px solid black');
+
+            $('.construct-answer .firstRow').addClass('firstRow-answer');
+            $('.construct-answer .secondRow').addClass('bordered-mid');
+            $('.construct-answer .thirdRow').addClass('bordered-bottom');
         }
 
         return this;
@@ -51,7 +79,16 @@ var Konstruointi = Backbone.View.extend({
       'click .selectable' : 'selectBlock',
       'click .answerBlock ' : 'placeBlock',
       'click .finish' : 'getResults',
-      'click .continue' : 'continueGame'
+      'click .continue' : 'continueGame',
+      'click .quit' : 'quitGame'
+    },
+
+    quitGame: function () {
+      this.undelegateEvents();
+      Settings.set({ results: [] });
+      Settings.set({ 'playThruNum' : 0 });
+      var gameId = this.model.get('gameId');
+      router.navigate('game/' + gameId, {trigger:true});
     },
 
     renderAnswerChoices: function () {
@@ -196,7 +233,7 @@ var Konstruointi = Backbone.View.extend({
                 return true;
             }
         }
-        var wrong = './pics/konstruktio/X.png';
+        var wrong = './pics/konstruktio/11.png';
 
         for( var j = 0; j < firstRow.length+1; j++ ){
             if( correctConstruct.firstRow[j] !== firstRow[j] ){

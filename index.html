@@ -22,6 +22,17 @@
     <link href="css/styles.css" rel="stylesheet">
 
     <!-- templates start -->
+    <script id="salasanaTemplate" type="text/template">
+        <div class="span4">
+            guesses here
+        </div>
+        <div class="span6">
+            <form>
+                <input class="serial-input input-large" type="text" placeholder="Päättele salasana">
+                <button class="btn bigger">Valmis</button>
+            </form>
+        </div>
+    </script>
 
     <script id="konstruointiTemplate" type="text/template">
 
@@ -80,6 +91,7 @@
         </div>
 
         <button class="btn btn-large bottom-right bigger finish">Valmis</button>
+        <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
 
     </script>
 
@@ -351,6 +363,7 @@
     <script src="js/views/sarjamuistigameview.js"></script>
     <script src="js/views/sanojentunnistaminen.js"></script>
     <script src="js/views/konstruointi.js"></script>
+    <script src="js/views/salasana.js"></script>
 
     <script src="js/app.js"></script>
     <script src="js/router.js"></script>
