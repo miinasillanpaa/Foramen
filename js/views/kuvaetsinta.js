@@ -287,24 +287,12 @@ var KuvaEtsinta = Backbone.View.extend({
         var endTime = new Date().getTime();
         var time = endTime - startTime;
 
-        function msToStr(ms){
-            var sec = ms / 1000;
-            var nummin = Math.floor((((sec % 31536000) % 86400) % 3600) / 60);
-            var numsec = Math.floor(((sec % 31536000) % 86400) % 3600) % 60;
-
-            if(nummin){
-                return nummin +' min ' + numsec +' s';
-            }else{
-                return numsec + ' s';
-            }
-        }
-
         var timeSpent = msToStr(time);
 
 
          var results = {
              'pvm' : dd+'/'+mm+'/'+yyyy,
-             'klo' : hours+':'+minutes,
+             'klo' : h+':'+m,
              'difficulty': Settings.get('difficulty'),
              'data' : [
                  {

@@ -6,7 +6,7 @@ var Sarjamuisti = Backbone.View.extend({
         console.log('sarjamuistigame');
         $('#header').empty();
 
-        var choices = [0,1,2,3,4,5,6,7,8,9]
+        var choices = [0,1,2,3,4,5,6,7,8,9];
         var numArray = [];
         var timePerNum = 1500;
         var time;

@@ -209,19 +209,6 @@ var Konstruointi = Backbone.View.extend({
         var startTime = Settings.get('startTime');
         var endTime = new Date().getTime();
         var time = endTime - startTime;
-
-        function msToStr(ms){
-            var sec = ms / 1000;
-            var nummin = Math.floor((((sec % 31536000) % 86400) % 3600) / 60);
-            var numsec = Math.floor(((sec % 31536000) % 86400) % 3600) % 60;
-
-            if(nummin){
-                return nummin +' min ' + numsec +' s';
-            }else{
-                return numsec + ' s';
-            }
-        }
-
         var timeSpent = msToStr(time);
 
 
@@ -352,6 +339,7 @@ var Konstruointi = Backbone.View.extend({
             Settings.set({ results: [] });
             view = new ResultsView({ model: this.model, results:results });
             view.render();
+            router.navigate('game/' + this.model.get('gameId') + '/results', true);
         }
 
 
