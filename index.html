@@ -23,14 +23,17 @@
 
     <!-- templates start -->
     <script id="salasanaTemplate" type="text/template">
-        <div class="span4 guesses">
+        <div class="span5 guesses">
 
         </div>
 
         <div class="span6 myForm">
+                <p class="pw-hint">Kirjoita tähän päättelemäsi salasana</p>
                 <input class="serial-input input-large" type="text" placeholder="Päättele salasana">
                 <button class="btn bigger submit">Valmis</button>
+                <span class="text-danger help-block"></span>
         </div>
+        <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
     </script>
 
     <script id="konstruointiTemplate" type="text/template">

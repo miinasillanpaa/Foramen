@@ -421,15 +421,40 @@ img.phone{
 /* PÄÄTTELE SALANA */
 
 .myForm{
-    margin-top:100px;
+    margin-top:170px;
 }
  .serial-input{
+    width: 225px;
     height: 52px !important;
     font-size: 1.2em !important;
     margin-top: 10px;
     text-transform: uppercase;
 }
 
- .submit{
+.submit{
      margin-left:20px;
  }
+
+.text-danger{
+    font-size: 1.5em;
+    color:red;
+}
+
+.guesses{
+    padding-top: 5px;
+    font-size: 3em;
+    letter-spacing: 0.2em;
+    padding-left: 150px;
+}
+
+.guesses p{
+    padding:12px;
+}
+
+.alert-password{
+    font-weight: bold;
+    letter-spacing: 0.2em;
+}
+.pw-hint{
+    font-size: 1.77em;
+}
