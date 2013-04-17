@@ -253,22 +253,9 @@ var KuvaEtsinta = Backbone.View.extend({
     },
 
     gameFinish: function () {
-        //time & date
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1;//January is 0!
-        var yyyy = today.getFullYear();
-        if(dd<10){dd='0'+dd}
-        if(mm<10){mm='0'+mm}
-        var hours = today.getHours();
-        var minutes = today.getMinutes();
-
-        function pad2(number){
-            return (number < 10 ? '0' : '') + number
-        }
-
-        var h = pad2(hours);
-        var m = pad2(minutes);
+        var date = getDateTime();
+        var pvm = date.pvm;
+        var klo = date.klo;
 
         //other results
         var selectable = $('.selectable').length;
@@ -291,8 +278,8 @@ var KuvaEtsinta = Backbone.View.extend({
 
 
          var results = {
-             'pvm' : dd+'/'+mm+'/'+yyyy,
-             'klo' : h+':'+m,
+             'pvm' : pvm,
+             'klo' : klo,
              'difficulty': Settings.get('difficulty'),
              'data' : [
                  {

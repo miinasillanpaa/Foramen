@@ -24,9 +24,6 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         $('button:eq(3)').addClass('question-time');
         $('button:eq(4)').addClass('question-item');
 
-
-        //console.log(this.options.variables.corrects.time);
-
         //correct anwers
         $('.options-senders button:eq('+ this.options.variables.corrects.sender +')').addClass('correct');
         $('.options-receivers button:eq('+ this.options.variables.corrects.receiver +')').addClass('correct');
@@ -258,26 +255,13 @@ var TekstiviestiAnswerView = Backbone.View.extend({
             var correctTot = Settings.results[0][0]+Settings.results[1][0]+Settings.results[2][0]+Settings.results[3][0]+Settings.results[4][0];
             var wrongTot = Settings.results[0][1]+Settings.results[1][1]+Settings.results[2][1]+Settings.results[3][1]+Settings.results[4][1];
 
-            //time & date
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth()+1;//January is 0!
-            var yyyy = today.getFullYear();
-            if(dd<10){dd='0'+dd}
-            if(mm<10){mm='0'+mm}
-            var hours = today.getHours();
-            var minutes = today.getMinutes();
-
-            function pad2(number){
-                return (number < 10 ? '0' : '') + number
-            }
-
-            var h = pad2(hours);
-            var m = pad2(minutes);
+            var date = getDateTime();
+            var pvm = date.pvm;
+            var klo = date.klo;
 
             var results = {
-                'pvm' : dd+'/'+mm+'/'+yyyy,
-                'klo' : h+':'+m,
+                'pvm' : pvm,
+                'klo' : klo,
                 'difficulty' : Settings.get('difficulty'),
                 'data' : [
                     {

@@ -120,17 +120,10 @@ var Konstruointi = Backbone.View.extend({
 
         }
 
-
-
         var firstRow = construct[rand][rand][0];
 
         var secondRow = construct[rand][rand][1];
-       // var firstRow = constructions.get('2x2')
 
-        //console.log(easy);
-        console.log(firstRow);
-        console.log(secondRow);
-        console.log(thirdRow);
         Settings.set({construct: { firstRow:firstRow, secondRow:secondRow, thirdRow:thirdRow } });
         return { firstRow:firstRow, secondRow:secondRow, thirdRow:thirdRow }
 
@@ -242,7 +235,6 @@ var Konstruointi = Backbone.View.extend({
             }
         }
 
-
         var roundResults;
 
         if(difficulty === 'easy'){
@@ -270,7 +262,6 @@ var Konstruointi = Backbone.View.extend({
                 results.push(roundResults);
             }
         }
-    console.log(results);
     Settings.set({ results:results });
     },
 
@@ -278,7 +269,6 @@ var Konstruointi = Backbone.View.extend({
         this.undelegateEvents();
         var playThruNum = Settings.get('playThruNum');
 
-        console.log(playThruNum);
         var view;
 
         if(playThruNum < 4){
@@ -291,26 +281,13 @@ var Konstruointi = Backbone.View.extend({
 
             var preResults = Settings.get('results');
 
-            //time & date
-            var today = new Date();
-            var dd = today.getDate();
-            var mm = today.getMonth()+1;//January is 0!
-            var yyyy = today.getFullYear();
-            if(dd<10){dd='0'+dd}
-            if(mm<10){mm='0'+mm}
-            var hours = today.getHours();
-            var minutes = today.getMinutes();
-
-            function pad2(number){
-                return (number < 10 ? '0' : '') + number
-            }
-
-            var h = pad2(hours);
-            var m = pad2(minutes);
+            var date = getDateTime();
+            var pvm = date.pvm;
+            var klo = date.klo;
 
             var results = {
-                'pvm' : dd+'/'+mm+'/'+yyyy,
-                'klo' : h+':'+m,
+                'pvm' : pvm,
+                'klo' : klo,
                 'difficulty' : Settings.get('difficulty'),
                 'data' : [
                     {
@@ -334,7 +311,7 @@ var Konstruointi = Backbone.View.extend({
                         'value' : preResults[4][0].correct + ", ajassa "+preResults[4][1].time
                     }
                 ]
-            }
+            };
 
             Settings.set({ results: [] });
             view = new ResultsView({ model: this.model, results:results });

@@ -41,9 +41,13 @@ var SanojenTunnistaminen = Backbone.View.extend({
                 var missing = amount - corrects;
                 var wrongTot = wrongs+missing;
 
+                var date = getDateTime();
+                var pvm = date.pvm;
+                var klo = date.klo;
+
                 var results = {
-                  /*  'pvm' : dd+'/'+mm+'/'+yyyy, //todo make global
-                    'klo' : h+':'+m, */
+                    'pvm' : pvm,
+                    'klo' : klo,
                     'difficulty' : Settings.get('difficulty'),
                     'data' : [
                         {

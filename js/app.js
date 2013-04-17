@@ -96,6 +96,29 @@ function removeA(arr) {
     return arr;
 }
 
+function getDateTime() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;//January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10){dd='0'+dd}
+    if(mm<10){mm='0'+mm}
+    var hours = today.getHours();
+    var minutes = today.getMinutes();
+
+    function pad2(number){
+        return (number < 10 ? '0' : '') + number
+    }
+
+    var h = pad2(hours);
+    var m = pad2(minutes);
+
+    return {'pvm': dd+'/'+mm+'/'+yyyy, 'klo': h+':'+m}
+}
+
+
+
+
 /*window.onscroll = function() {
     document.body.scrollTop = 0;
 };*/

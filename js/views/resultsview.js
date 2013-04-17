@@ -5,7 +5,7 @@ var ResultsView = Backbone.View.extend({
     render: function () {
 
         var myView = this;
-
+        console.log(this);
         var difficulty = '';
         if( this.options.results.difficulty == 'easy' ){
             difficulty = 'Taso I';
@@ -21,7 +21,6 @@ var ResultsView = Backbone.View.extend({
                          difficulty : difficulty,
                          data : this.options.results.data,
                          hiddenData : this.options.results.hiddenData,
-
                          title : this.model.get('title'),
                          gameId : this.model.get('gameId')
         };
@@ -46,7 +45,6 @@ var ResultsView = Backbone.View.extend({
 
         this.undelegateEvents();
 
-        console.log('view snapshot');
         var difficulty = '';
         if( this.options.results.difficulty == 'easy' ){
             difficulty = 'Helppo';
