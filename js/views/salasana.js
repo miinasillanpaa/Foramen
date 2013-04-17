@@ -15,14 +15,17 @@ var Salasana = Backbone.View.extend({
         }else{
             var serialsArr = Settings.get('serialsArr')
         }
-
         console.log(serialsArr);
 
         var template = _.template( $(this.template).html() ) ;
         this.$el.html(template);
-        $('.serial-input').focus();
 
+        //hack but does the trick
+        $('.myForm input[type=text]').keyup(function() {
+            $(this).val($(this).val().toUpperCase());
+        });
 
+        return this;
     },
 
     events : {
@@ -43,22 +46,10 @@ var Salasana = Backbone.View.extend({
     },
 
     goToResults: function () {
-        //time & date
-        var today = new Date();
-        var dd = today.getDate();
-        var mm = today.getMonth()+1;//January is 0!
-        var yyyy = today.getFullYear();
-        if(dd<10){dd='0'+dd}
-        if(mm<10){mm='0'+mm}
-        var hours = today.getHours();
-        var minutes = today.getMinutes();
+        var date = getDateTime();
+        var pvm = date.pvm;
+        var klo = date.klo;
 
-        function pad2(number){
-            return (number < 10 ? '0' : '') + number
-        }
-
-        var h = pad2(hours);
-        var m = pad2(minutes);
 
         var startTime = Settings.get('startTime');
         var endTime = new Date().getTime();
@@ -70,8 +61,8 @@ var Salasana = Backbone.View.extend({
         var round2score = Settings.get('pwGameChecks')[1].checks - round1score;
         var round3score = Settings.get('pwGameChecks')[2].checks - round2score-round1score;
 
-        var results = {'pvm' : dd+'/'+mm+'/'+yyyy,
-            'klo' : h+':'+m,
+        var results = {'pvm' : pvm,
+            'klo' : klo,
             'difficulty' : Settings.get('difficulty'),
             'data' : [
                 {
@@ -122,10 +113,12 @@ var Salasana = Backbone.View.extend({
     },
 
     createSerials: function() {
+
         var difficulty = Settings.get('difficulty');
         var serials = Settings.get('salasanat');
         var arr = [];
         var random;
+
         if(difficulty === 'easy' ){
             var easy = serials.easy;
             for( var i=0; i<3; i++ ) {
@@ -151,12 +144,14 @@ var Salasana = Backbone.View.extend({
 
 
     checkGuess: function () {
+
         var playThruNum = Settings.get('playThruNum');
         var difficulty = Settings.get('difficulty');
         var guess = $('.serial-input').val().toUpperCase();
         $('.serial-input').focus();
-        var serial;
+        $('.myForm span').text('');
 
+        var serial;
         if(playThruNum === 0 ){
             serial = Settings.get('serialsArr')[0];
         }else if( playThruNum === 1){
@@ -164,7 +159,6 @@ var Salasana = Backbone.View.extend({
         }else{
             serial = Settings.get('serialsArr')[2];
         }
-
 
         var guessArr = [];
         for(var i=0; i<guess.length; i++){
@@ -178,33 +172,21 @@ var Salasana = Backbone.View.extend({
             serialArr.push(serialChar);
         }
 
-
-
         if(guess.length !== serial.length){
             $('.myForm span').text('Tarkista arvauksen pituus');
         }else{
 
-
             var checks = Settings.get('pwChecks');
-
             var scrollerChecks = Settings.get('scrollerChecks');
 
             scrollerChecks++;
             Settings.set({scrollerChecks:scrollerChecks});
-
-            checks = checks+1;
-            console.log("checks: "+checks);
-            console.log("playthrus: "+playThruNum);
+            checks++;
             Settings.set({pwChecks:checks});
 
-
-            console.log(scrollerChecks);
             if(scrollerChecks > 5){
                 $('.guesses').transition({ y: '-=54' });
             }
-
-
-
 
             var gameChecks;
             var obj;
@@ -217,7 +199,7 @@ var Salasana = Backbone.View.extend({
                     $('.guesses p:last-child').append('&bull;&bull;&bull;');
                     $('.guesses p:last-child').addClass("alert-success alert-password");
                     $('.myForm input').attr("disabled","disabled");
-                    $('.myForm input').attr("placeholder", "Vastasit oikein!")
+                    $('.myForm input').attr("placeholder", "Oikein!");
                     $('.myForm button').removeClass('submit').addClass('continue btn-success');
                     $('.myForm button').text("Jatka");
 
@@ -360,7 +342,6 @@ var Salasana = Backbone.View.extend({
                     this.goToResults();
 
                 }else{
-
 
                     $('.guesses').append('<p>'+guess+'</p>');
                     $('.serial-input').val('');
