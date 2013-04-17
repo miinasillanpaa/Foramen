@@ -426,9 +426,11 @@ img.phone{
  .serial-input{
     width: 225px;
     height: 52px !important;
-    font-size: 1.2em !important;
+    font-size: 2em !important;
+    line-height: 2em;
     margin-top: 10px;
     text-transform: uppercase;
+    line-height: 1 !important;
 }
 
 .submit{
@@ -456,5 +458,5 @@ img.phone{
     letter-spacing: 0.2em;
 }
 .pw-hint{
-    font-size: 1.77em;
+    font-size: 2em;
 }
