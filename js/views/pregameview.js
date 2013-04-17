@@ -6,7 +6,9 @@ var PreGameView = Backbone.View.extend({
         var gameId = this.model.get('gameId');
 		if( gameId === 1 ){
             this.preload('kalat');
-        }else if ( gameId = 9){
+        }else if ( gameId === 6){
+            this.preload('KIM');
+        }else if ( gameId === 9){
             this.preload('konstruktio');
         }
 
@@ -83,6 +85,11 @@ var PreGameView = Backbone.View.extend({
         if(category === 'konstruktio'){
             for(var j=0;j<12;j++){
                 img = './pics/' + category + '/' + j + '.png';
+                preload.push(img);
+            }
+        }else if(category === 'KIM'){
+            for(var k=0;k<68;k++){
+                img = './pics/' + category + '/' + k + '.png';
                 preload.push(img);
             }
         }else{

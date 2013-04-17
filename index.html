@@ -22,10 +22,24 @@
     <link href="css/styles.css" rel="stylesheet">
 
     <!-- templates start -->
-    <script id="salasanaTemplate" type="text/template">
-        <div class="span5 guesses">
 
+    <script id="KIMTemplate" type="text/template">
+        <div class="items targets">
+            <% _.each(targets, function(targets) { %>
+                <img class="item" src="./pics/KIM/<%=targets%>.png">
+            <% }); %>
         </div>
+
+        <div class="items allItems hidden">
+            <% _.each(bluffs, function(bluffs) { %>
+                <img class="kim-item selectable" src="./pics/KIM/<%=bluffs%>.png">
+            <% }); %>
+            <button class="btn bigger bottom-right finish">Valmis</button>
+        </div>
+    </script>
+
+    <script id="salasanaTemplate" type="text/template">
+        <div class="span5 guesses"></div>
 
         <div class="span6 myForm">
                 <p class="pw-hint">Kirjoita päättelemäsi salasana</p>
@@ -281,7 +295,7 @@
 
 
         <div class="span6 guide">
-            <h2>Tervetuloa harjoitukseen <%= title %>!</h2>
+            <h2><%= title %></h2>
             <p><%= guide %></p>
         </div>
         <div class="span6 pull-right">
@@ -367,6 +381,7 @@
     <script src="js/views/sanojentunnistaminen.js"></script>
     <script src="js/views/konstruointi.js"></script>
     <script src="js/views/salasana.js"></script>
+    <script src="js/views/KIM.js"></script>
 
     <script src="js/app.js"></script>
     <script src="js/router.js"></script>

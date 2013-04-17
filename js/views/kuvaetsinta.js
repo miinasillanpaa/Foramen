@@ -34,7 +34,7 @@ var KuvaEtsinta = Backbone.View.extend({
         return this;
 
     },
-    //TODO: difficulties to kuvaetsinta
+
     renderEasyGame: function () {
 
         var category = 'kalat';

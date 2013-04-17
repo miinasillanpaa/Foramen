@@ -262,7 +262,7 @@ var Konstruointi = Backbone.View.extend({
                 results.push(roundResults);
             }
         }
-    Settings.set({ results:results });
+        Settings.set({ results:results });
     },
 
     continueGame: function () {
@@ -273,7 +273,7 @@ var Konstruointi = Backbone.View.extend({
 
         if(playThruNum < 4){
             playThruNum++;
-            Settings.set({ playThruNum : playThruNum })
+            Settings.set({ playThruNum : playThruNum });
             view = new Konstruointi({ model:this.model });
             view.render();
         }else{

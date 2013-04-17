@@ -460,3 +460,24 @@ img.phone{
 .pw-hint{
     font-size: 2em;
 }
+
+/* KIM  */
+
+.item{
+    border: 5px solid white;
+    margin: 10px;
+    padding:5px;
+}
+.kim-item{
+    padding:5px;
+}
+
+.success-border{
+    border: 5px solid green;
+}
+.danger-border{
+    border: 5px solid red;
+}
+.warning-border{
+    border: 5px solid #faa732;
+}

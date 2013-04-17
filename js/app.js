@@ -47,7 +47,12 @@ var games = [
     },
 	{
         "gameId": 7,
-        "title" : "Päättele salasana"
+        "title" : "Päättele salasana",
+        "guide" : "<p>Kuvaruudulla näkyy tyhjä tekstikenttä. Tehtävänä on päätellä koneen valitsema salasana, joka on perusmuodossa oleva substantiivi eli nimisana.</p>"+
+                  "<p>Kenttään kirjoitetaan mikä tahansa määritellyn pituinen sana ja painetaan Valmis-painiketta.</p>"+
+                  "<p>Kone kirjoittaa sanan ruudulle ja ilmoittaa kuinka monta sanan kirjaimista on oikeita ja oikealla paikalla (musta ympyrä) ja kuinka monta sanan kirjaimista on oikeita, mutta väärällä paikalla (valkoinen ympyrä).</p>"+
+                  "<p>Yritä päätellä salasana koneen antamien vihjeiden avulla.</p>"
+
     },
 	{
         "gameId": 8,
