@@ -76,6 +76,7 @@ var KIM = Backbone.View.extend({
     },
 
     addBluffs: function (targets) {
+        console.log('add bluffs');
         var targets = targets;
         var itemsLength = this.itemsLength();
 
@@ -123,6 +124,7 @@ var KIM = Backbone.View.extend({
 
     checkCorrects: function () {
         var targets = Settings.get('targets');
+        var visible = targets.length*1500;
 
         var targetImg = [];
         for( var i=0; i<targets.length; i++ ) {
@@ -130,17 +132,19 @@ var KIM = Backbone.View.extend({
             targetImg.push(img);
         }
 
+        var correct=0;
+        var wrong=0;
         var selected = [];
         for(var j=0; j < $('.selected').length; j++){
             var selection = $('img.selected:nth('+j+')').attr('src');
             selected.push(selection);
 
             if( $.inArray(selection, targetImg) > -1 ){
-                console.log('oikea valinta');
+                correct++;
                 $('img.selected:nth('+j+')').addClass('success-border');
 
             }else if( $.inArray(selection, targetImg) === -1 ){
-                console.log('kuvaa ei etsitty');
+                wrong++;
                 $('img.selected:nth('+j+')').addClass('danger-border');
             }
         }
@@ -153,14 +157,26 @@ var KIM = Backbone.View.extend({
             }
         }
 
+        var that = this;
+        if(correct === targets.length && wrong === 0) {
 
+            var results = {};
+            var view = new ResultsView({model:this.model, results: results});
+            view.render();
 
-        console.log(targetImg);
-        console.log(selected);
+        }else{
 
-
+            $('.selectable').hide();
+            $('.warning-border').show();
+            $('.success-border').show();
+            var timer = setTimeout(function() {
+                    var bluffs = that.addBluffs(targets);
+                    for(var i=0; i < $('.allItems img').length; i++){
+                        var img = '<img class="kim-item selectable" src="./pics/KIM/'+bluffs[i]+'.png"/>';
+                        $('.allItems img:nth('+i+')').replaceWith(img)
+                    }
+                    $('.selectable').show().removeClass('warning-border success-border danger-border selected');
+            },visible)
+        }
     }
-
-
-
 });
