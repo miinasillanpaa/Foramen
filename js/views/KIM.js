@@ -6,8 +6,7 @@ var KIM = Backbone.View.extend({
 
         $('#header').empty();
 
-        //todo remove debug time (4500)
-        var visible = this.itemsLength()*2000;
+        var visible = this.itemsLength()*4000;
 
         var targets = this.renderTargets();
         Settings.set({targets:targets});
@@ -23,13 +22,24 @@ var KIM = Backbone.View.extend({
             },visible);
 
         this.$el.html(template);
+
+        $('.quit').click( function() {
+            clearTimeout(timer)
+        });
+
         return this;
 
     },
 
     events: {
         'click .selectable' : 'selectItem',
-        'click .finish' : 'checkCorrects'
+        'click .finish' : 'checkCorrects',
+        'click .quit' : 'quitGame'
+    },
+    quitGame: function () {
+        this.undelegateEvents();
+        var gameId = this.model.get('gameId');
+        router.navigate('game/' + gameId, true);
     },
 
     selectItem: function () {
@@ -124,7 +134,7 @@ var KIM = Backbone.View.extend({
 
     checkCorrects: function () {
         var targets = Settings.get('targets');
-        var visible = targets.length*1500;
+        var visible = targets.length*4500;
 
         var targetImg = [];
         for( var i=0; i<targets.length; i++ ) {
@@ -159,7 +169,7 @@ var KIM = Backbone.View.extend({
 
         var that = this;
         if(correct === targets.length && wrong === 0) {
-
+            this.undelegateEvents();
             var results = {};
             var view = new ResultsView({model:this.model, results: results});
             view.render();
@@ -177,6 +187,10 @@ var KIM = Backbone.View.extend({
                     }
                     $('.selectable').show().removeClass('warning-border success-border danger-border selected');
             },visible)
+
+            $('.quit').click( function() {
+                clearTimeout(timer)
+            });
         }
     }
 });
