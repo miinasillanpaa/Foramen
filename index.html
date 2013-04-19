@@ -224,28 +224,32 @@
 
 
         <h2 class="title"><%= title %> harjoitteen tulokset</h2>
-        <div class="span5 well">
+        <div class="span5">
+            <div class="well">
 
-            <div class="results pull-left">
-                <p>Vaikeustaso: </p>
+                <div class="results pull-left">
+                    <p>Vaikeustaso: </p>
 
-                <% _.each(data, function(data) { %>
-                    <p><%= data.name %></p>
-                <% }); %>
+                    <% _.each(data, function(data) { %>
+                        <p><%= data.name %></p>
+                    <% }); %>
 
+                </div>
+
+                <div class="results align-right">
+                    <p> <%= difficulty %></p>
+
+                    <% _.each(data, function(data) { %>
+                        <p><%= data.value %></p>
+                     <% }); %>
+
+
+                </div>
             </div>
-
-            <div class="results align-right">
-                <p> <%= difficulty %></p>
-
-                <% _.each(data, function(data) { %>
-                    <p><%= data.value %></p>
-                 <% }); %>
-
-
-            </div>
-
+            <button class="btn btn-success btn-block bigger new-game">Pelaa uudestaan</button>
         </div>
+
+
 
         <div class="span6">
             <div class="alert alert-success alert-bigger">
@@ -254,15 +258,24 @@
 
             <div class="well">
                 <h3>Henkilökohtainen ennätyksesi:</h3>
-                <ul class="record">
-                    <li>Vaikeustaso: <span class="answer-row">Helppo</span></li>
-                    <li>Käytetty aika: <span class="answer-row">6s</span></li>
-                    <li>Kohteiden määrä: <span class="answer-row">9 kpl</span></li>
-                    <li>Oikeat valinnat: <span class="answer-row">9 kpl</span></li>
-                    <li>Väärät valinnat: <span class="answer-row">0 kpl</span></li>
-                    <li>Puuttuvat valinnat: <span class="answer-row">0 kpl</span></li>
-                    <li>Virheet yhteensä: <span class="answer-row">0 kpl</span></li>
-                </ul>
+                <div class="results pull-left">
+                    <p>Vaikeustaso: </p>
+
+                    <% _.each(data, function(data) { %>
+                    <p><%= data.name %></p>
+                    <% }); %>
+
+                </div>
+
+                <div class="results align-right">
+                    <p> <%= difficulty %></p>
+
+                    <% _.each(data, function(data) { %>
+                    <p><%= data.value %></p>
+                    <% }); %>
+
+
+                </div>
             </div>
 
         </div>

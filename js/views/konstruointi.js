@@ -8,8 +8,6 @@ var Konstruointi = Backbone.View.extend({
         var startTime = new Date().getTime();
         Settings.set({ startTime : startTime });
 
-        //todo 5 in row
-
         var difficulty = Settings.get('difficulty');
 
         var construct = this.renderConstruct(difficulty);
@@ -86,7 +84,6 @@ var Konstruointi = Backbone.View.extend({
     quitGame: function () {
       this.undelegateEvents();
       Settings.set({ results: [] });
-      Settings.set({ 'playThruNum' : 0 });
       var gameId = this.model.get('gameId');
       router.navigate('game/' + gameId, {trigger:true});
     },
@@ -163,7 +160,7 @@ var Konstruointi = Backbone.View.extend({
         var firstRow = [];
         var secondRow = [];
         var thirdRow  = null;
-        var results = Settings.get('results');
+        var results = [];
 
         var button = $(event.target);
         button.removeClass('finish').addClass('continue btn-success')
@@ -210,9 +207,10 @@ var Konstruointi = Backbone.View.extend({
                 if(arr1[i] !== arr2[i]){
                     return false;
                 }
-                return true;
             }
+            return true;
         }
+
         var wrong = './pics/konstruktio/11.png';
 
         for( var j = 0; j < firstRow.length+1; j++ ){
@@ -236,6 +234,10 @@ var Konstruointi = Backbone.View.extend({
         }
 
         var roundResults;
+
+        console.log(correctConstruct.firstRow +" - "+firstRow);
+        console.log(correctConstruct.secondRow +" - "+secondRow);
+        console.log(correctConstruct.thirdRow +" - "+thirdRow);
 
         if(difficulty === 'easy'){
             if( (arraysIdentical(correctConstruct.firstRow, firstRow) === true) &&
@@ -267,20 +269,10 @@ var Konstruointi = Backbone.View.extend({
 
     continueGame: function () {
         this.undelegateEvents();
-        var playThruNum = Settings.get('playThruNum');
 
-        var view;
 
-        if(playThruNum < 4){
-            playThruNum++;
-            Settings.set({ playThruNum : playThruNum });
-            view = new Konstruointi({ model:this.model });
-            view.render();
-        }else{
-            Settings.set({ playThruNum : 0 });
-
-            var preResults = Settings.get('results');
-
+            var results = Settings.get('results');
+            console.log(results);
             var date = getDateTime();
             var pvm = date.pvm;
             var klo = date.klo;
@@ -291,36 +283,25 @@ var Konstruointi = Backbone.View.extend({
                 'difficulty' : Settings.get('difficulty'),
                 'data' : [
                     {
-                        'name' : 'Tehtävä 1:',
-                        'value' : preResults[0][0].correct + ", ajassa "+preResults[0][1].time
+                        'name' : 'Konstruointi suoritettu:',
+                        'value' : results[0][0].correct
                     },
                     {
-                        'name' : 'Tehtävä 2:',
-                        'value' : preResults[1][0].correct + ", ajassa "+preResults[1][1].time
-                    },
-                    {
-                        'name' : 'Tehtävä 3:',
-                        'value' : preResults[2][0].correct + ", ajassa "+preResults[2][1].time
-                    },
-                    {
-                        'name' : 'Tehtävä 4:',
-                        'value' : preResults[3][0].correct + ", ajassa "+preResults[3][1].time
-                    },
-                    {
-                        'name' : 'Tehtävä 5:',
-                        'value' : preResults[4][0].correct + ", ajassa "+preResults[4][1].time
+                        'name' : 'Käytetty aika:',
+                        'value' : results[0][1].time
                     }
                 ]
             };
 
             Settings.set({ results: [] });
+            var view;
             view = new ResultsView({ model: this.model, results:results });
             view.render();
             router.navigate('game/' + this.model.get('gameId') + '/results', true);
         }
 
 
-    }
+
 
 
 });

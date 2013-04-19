@@ -23,8 +23,7 @@ var Settings = Backbone.Model.extend({
             selectorPresses:0
         },
         //Salasana quiz
-        pwChecks:0,
-        pwGameChecks: [],
+        checks:0,
         scrollerChecks:0,
 
         //commonly used

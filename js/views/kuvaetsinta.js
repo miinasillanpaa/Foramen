@@ -241,6 +241,7 @@ var KuvaEtsinta = Backbone.View.extend({
     },
 
     selectItem: function () {
+        console.log('selected');
         var target = $(event.target);
         target.toggleClass('selected');
     },
@@ -308,7 +309,7 @@ var KuvaEtsinta = Backbone.View.extend({
                  },
                  {
                      'name' : '',
-                     'value' : '<button class="btn btn-large btn-primary btn-block btn-bolder screen">Näytä kuvaruutu</button>'
+                     'value' : '<button class="btn btn-primary btn-block btn-bolder screen">Näytä kuvaruutu</button>'
                  }
              ],
              'hiddenData':
@@ -317,7 +318,7 @@ var KuvaEtsinta = Backbone.View.extend({
                  }
 
             };
-
+        this.undelegateEvents();
         var gameId = this.model.get('gameId');
         var view = new ResultsView({ model: this.model, results: results });
         view.render();

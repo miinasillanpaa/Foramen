@@ -3,7 +3,6 @@ var TekstiviestiAnswerView = Backbone.View.extend({
     template: '#tekstiviestiAnswerTemplate',
 
     render: function () {
-        console.log('tekstiviesti asnwer');
         var variables = { questions: this.options.variables.questions,
                           senders: this.options.variables.senders,
                           receivers: this.options.variables.receivers,
@@ -12,7 +11,7 @@ var TekstiviestiAnswerView = Backbone.View.extend({
                           items: this.options.variables.items,
                           corrects: this.options.variables.corrects,
                           correctStrings: this.options.variables.correctStrings};
-        //console.log(variables);
+
         var template = _.template( $(this.template).html(), variables );
         this.$el.html(template);
 
@@ -50,8 +49,6 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         'click .check' : 'checkAnswers',
         'click .correct-answers' : 'showCorrectAnswers',
         'click .continue' : 'continue'
-
-
     },
 
 
@@ -96,16 +93,14 @@ var TekstiviestiAnswerView = Backbone.View.extend({
 
     toReceiver : function () {
         $('.options-senders .a-button').removeClass('btn-primary');
-        //given answer
         var $answer = $(event.target);
         $answer.addClass('btn-primary');
 
         var dom = event.target;
         Settings.set({ txtSenderDom : dom });
-
         this.activateReceiver();
-
     },
+
     toPlace : function () {
         $('.options-receivers .a-button').removeClass('btn-primary');
         var $answer = $(event.target);
@@ -113,9 +108,9 @@ var TekstiviestiAnswerView = Backbone.View.extend({
 
         var dom = event.target;
         Settings.set({ txtReceiverDom : dom });
-
         this.activatePlace();
     },
+
     toTime : function () {
         $('.options-places .a-button').removeClass('btn-primary');
         var $answer = $(event.target);
@@ -123,9 +118,9 @@ var TekstiviestiAnswerView = Backbone.View.extend({
 
         var dom = event.target;
         Settings.set({ txtPlaceDom : dom });
-
         this.activateTime();
     },
+
     toItem : function () {
         $('.options-times .a-button').removeClass('btn-primary');
         var $answer = $(event.target);
@@ -133,9 +128,9 @@ var TekstiviestiAnswerView = Backbone.View.extend({
 
         var dom = event.target;
         Settings.set({ txtTimeDom : dom });
-
         this.activateItem();
     },
+
     inItem : function () {
         $('.options-items .a-button').removeClass('btn-primary');
         var $answer = $(event.target);
@@ -143,11 +138,9 @@ var TekstiviestiAnswerView = Backbone.View.extend({
 
         var dom = event.target;
         Settings.set({ txtItemDom : dom });
-
     },
 
     checkAnswers : function () {
-        //$('.options').addClass('hidden');
         $('.q-button').removeClass('btn-primary');
 
         var senderDom = Settings.get('txtSenderDom');
@@ -163,11 +156,8 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         $('.options-area').append(timeDom);
         $('.options-area').append(itemDom);
 
-
         $('.q-button').attr("disabled", "disabled");
 
-      //  var correctsNum = $('.a-button.correct').length;
-      //  console.log("oikein: "+correctsNum);
 
         $('.a-button.correct').addClass('btn-success');
         $('.a-button').addClass('btn-danger');
@@ -199,104 +189,38 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         $('.txt-answers').append("<div class='bigger-correct spaceTop'>"+item+"</div>");
 
         $('.correct-answers').attr("disabled","disabled");
-
-
-
-
     },
 
     continue : function () {
         this.undelegateEvents();
-        var playThruNum = Settings.get('playThruNum');
-        Settings.set({ 'playThruNum' : playThruNum+1 });
 
-        if(Settings.get('playThruNum') === 1){
-            Settings.results = [];
-            var corrects = $('.a-button.correct').length;
-            var wrongs = 5 - corrects;
+        var corrects = $('.a-button.correct').length;
+        var wrongs = 5 - corrects;
+        var date = getDateTime();
+        var pvm = date.pvm;
+        var klo = date.klo;
 
-            Settings.results.push( [ corrects,wrongs ] );
+        var results = {
+           'pvm' : pvm,
+           'klo' : klo,
+           'difficulty' : Settings.get('difficulty'),
+           'data' : [
+               {
+                   'name' : 'Oikein:',
+                   'value' : corrects + " kpl"
+               },
+               {
+                   'name' : 'Väärin:',
+                   'value' : wrongs + " kpl"
+               }
 
-            var view = new TekstiviestiGameView({ model: this.model });
-            view.render();
+            ]
+        };
 
-        }else if(Settings.get('playThruNum') === 2){
-            var corrects = $('.a-button.correct').length;
-            var wrongs = 5 - corrects;
+        var gameId = this.model.get('gameId');
+        var view = new ResultsView({ model: this.model, results: results });
+        view.render();
 
-            Settings.results.push( [ corrects,wrongs ] );
-
-            var view = new TekstiviestiGameView({ model: this.model });
-            view.render();
-
-        }else if(Settings.get('playThruNum') === 3){
-            var corrects = $('.a-button.correct').length;
-            var wrongs = 5 - corrects;
-
-            Settings.results.push( [ corrects,wrongs ] );
-
-            var view = new TekstiviestiGameView({ model:this.model });
-            view.render();
-        }else if(Settings.get('playThruNum') === 4){
-            var corrects = $('.a-button.correct').length;
-            var wrongs = 5 - corrects;
-
-            Settings.results.push( [ corrects,wrongs ] );
-
-            var view = new TekstiviestiGameView({ model: this.model });
-            view.render();
-
-        }else if(Settings.get('playThruNum') === 5){
-            var corrects = $('.a-button.correct').length;
-            var wrongs = 5 - corrects;
-
-            Settings.results.push( [ corrects,wrongs ] );
-
-            var correctTot = Settings.results[0][0]+Settings.results[1][0]+Settings.results[2][0]+Settings.results[3][0]+Settings.results[4][0];
-            var wrongTot = Settings.results[0][1]+Settings.results[1][1]+Settings.results[2][1]+Settings.results[3][1]+Settings.results[4][1];
-
-            var date = getDateTime();
-            var pvm = date.pvm;
-            var klo = date.klo;
-
-            var results = {
-                'pvm' : pvm,
-                'klo' : klo,
-                'difficulty' : Settings.get('difficulty'),
-                'data' : [
-                    {
-                        'name' : 'Tekstiviesti 1:',
-                        'value' : Settings.results[0][0] +' oikein / '+ Settings.results[0][1]+' väärin'
-                    },
-                    {
-                        'name' : 'Tekstiviesti 2:',
-                        'value' : Settings.results[1][0] +' oikein / '+ Settings.results[1][1]+' väärin'
-                    },
-                    {
-                        'name' : 'Tekstiviesti 3:',
-                        'value' : Settings.results[2][0] +' oikein / '+ Settings.results[2][1]+' väärin'
-                    },
-                    {
-                        'name' : 'Tekstiviesti 4:',
-                        'value' : Settings.results[3][0] +' oikein / '+ Settings.results[3][1]+' väärin'
-                    },
-                    {
-                        'name' : 'Tekstiviesti 5:',
-                        'value' : Settings.results[4][0] +' oikein / '+ Settings.results[4][1]+' väärin'
-                    },
-                    {
-                        'name' : 'Yhteensä:',
-                        'value' : correctTot + ' oikein / ' + wrongTot +' väärin'
-                    }
-                ]
-            };
-
-            var gameId = this.model.get('gameId');
-
-            Settings.set({ 'playThruNum' : 0 });
-            var view = new ResultsView({ model: this.model, results: results });
-            view.render();
-        }
 
         //back to defaults
         var unsetButton = '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>';

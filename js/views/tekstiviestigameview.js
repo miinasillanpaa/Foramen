@@ -3,12 +3,11 @@ var TekstiviestiGameView = Backbone.View.extend({
     template: '#tekstiviestiGameTemplate',
 
     render: function () {
-        console.log('tekstiviesti');
         $('#header').html('');
 
         var txtVisibleTime;
         if(Settings.get('difficulty') == 'easy'){
-            txtVisibleTime = 90*1000;
+            txtVisibleTime = 90*1; //todo remove debug time
         }else if(Settings.get('difficulty') == 'medium'){
             txtVisibleTime = 60*1000;
         }else{
@@ -44,15 +43,16 @@ var TekstiviestiGameView = Backbone.View.extend({
         $('.textmessage').addClass('hidden');
 
         var myModel = this.model;
-
-        var timer = setTimeout(
+        var phoneTimer;
+        var msgTimer;
+        phoneTimer = setTimeout(
             function() {
 
               $('.phone').transition({
                     scale: 5
                 }, 2500, 'ease', function() {
                     $('.textmessage').removeClass('hidden');
-                    setTimeout(
+                    msgTimer = setTimeout(
                         function () {
                             var view = new TekstiviestiAnswerView({ model: myModel, variables: variables });
                             view.render();
@@ -63,7 +63,8 @@ var TekstiviestiGameView = Backbone.View.extend({
             },4000); //time to wait before zoom in
 
         $('.quit').click( function() {
-            clearTimeout(timer)
+            window.clearTimeout(phoneTimer);
+            window.clearTimeout(msgTimer);
         });
         return this;
     },

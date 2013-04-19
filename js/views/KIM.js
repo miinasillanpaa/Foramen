@@ -51,7 +51,7 @@ var KIM = Backbone.View.extend({
         var diff = Settings.get('difficulty');
         var itemsLength;
         if(diff === 'easy'){
-            itemsLength = 4;
+            itemsLength = 8;
         }else if(diff === 'medium'){
             itemsLength = 14;
         }else{

@@ -230,7 +230,7 @@ var Sarjamuisti = Backbone.View.extend({
             };
 
             var gameId = this.model.get('gameId');
-
+            this.undelegateEvents();
             Settings.set({ 'playThruNum' : 0 });
             var view = new ResultsView({ model: this.model, results: results })
             view.render();
