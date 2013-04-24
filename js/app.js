@@ -39,11 +39,18 @@ var games = [
     },
 	{
         "gameId": 5,
-        "title" : "Audatiivinen interferenssi"
+        "title" : "Audatiivinen interferenssi",
+        "guide" : "<p>Kovaäänisistä kuuluu sarja sanoja. Tehtävänä on painaa sarja mieleen.</p>"+
+                  "<p>Tämän jälkeen ruudulle ilmestyy häirintätehtävä. Tehtävänä on painaa Bingo-näppäintä, kun ruudulle ilmestyy eläin.</p>"+
+                  "<p>Häirintätehtävän jälkeen mieleenpainettu sarja kirjoitetaan ruudukkoon vapaassa järjestyksessä. Kun koko sarja on kirjoitettu painetaan Valmis-näppäintä, jolloin näkyviin tulee oikeiden vastauksien määrä.</p>"
+
     },
 	{
         "gameId": 6,
-        "title" : "KIM-yhdistelmä"
+        "title" : "KIM-yhdistelmä",
+        "guide" : "<p>Ruudulla näkyy esineiden kuvia. Tehtävänä on painaa kuvat mieleen.</p>"+
+                  "<p>Mieleenpainamisen jälkeen ruudulle ilmestyy aiemmin esitetyt kuvat ja joukko muita kuvia. Tehtävänä on tunnistaa aiemmin esitetyt kuvat. Tunnistaminen osoitetaan koskettamalla kuvaa.</p>"+
+                  "<p>Kun tehtävä on suoritettu painetaan Valmis-nappulaa, jonka jälkeen kone näyttää oikeat vastaukset vihreällä ja puuttuvat oranssilla. Jos kaikki kuvat muistettiin peli loppuu. Jos kaikkia ei muistettu peliä jatketaan kunnes kaikki muistetaan tai kymmenen kierrosta</p>"
     },
 	{
         "gameId": 7,
@@ -52,7 +59,6 @@ var games = [
                   "<p>Kenttään kirjoitetaan mikä tahansa määritellyn pituinen sana ja painetaan Valmis-painiketta.</p>"+
                   "<p>Kone kirjoittaa sanan ruudulle ja ilmoittaa kuinka monta sanan kirjaimista on oikeita ja oikealla paikalla (musta ympyrä) ja kuinka monta sanan kirjaimista on oikeita, mutta väärällä paikalla (valkoinen ympyrä).</p>"+
                   "<p>Yritä päätellä salasana koneen antamien vihjeiden avulla.</p>"
-
     },
 	{
         "gameId": 8,

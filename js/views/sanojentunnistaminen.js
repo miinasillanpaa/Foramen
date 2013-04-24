@@ -86,7 +86,8 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
 
         var variables = {
-            text : text
+            text : text,
+            textCategory : Settings.get('textCategory')
         };
 
         var template = _.template( $(this.template).html(), variables );
@@ -181,12 +182,37 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         Settings.set({targetAmount:amount});
 
-        var animals = Settings.get('categories').animals;
+        var selectedCat = Settings.get('textCategory');
+        var items;
+        if(selectedCat === 'eläimet'){
+            items = Settings.get('categories').eläimet
+        }else if(selectedCat === 'ammatit'){
+            items = Settings.get('categories').ammatit
+        }else if(selectedCat === 'kasvit'){
+            items = Settings.get('categories').kasvit
+        }else if(selectedCat === 'kaupungit'){
+            items = Settings.get('categories').kaupungit
+        }else if(selectedCat === 'miesten nimet'){
+            items = Settings.get('categories').miesten
+        }else if(selectedCat === 'naisten nimet'){
+            items = Settings.get('categories').naisten
+        }else if(selectedCat === 'sisustus'){
+            items = Settings.get('categories').sisustus
+        }else if(selectedCat === 'soittimet'){
+            items = Settings.get('categories').soittimet
+        }else if(selectedCat === 'työkalut'){
+            items = Settings.get('categories').työkalut
+        }else if(selectedCat === 'urheilu'){
+            items = Settings.get('categories').urheilu
+        }else if(selectedCat === 'valtiot'){
+            items = Settings.get('categories').valtiot
+        }
+        console.log(items);
 
         var uniqueItems = [];
         for(var l = 0; l < amount; l++ ){
             var unique = true;
-            var randomItem = animals[Math.floor(Math.random() * animals.length )];
+            var randomItem = items[Math.floor(Math.random() * items.length )];
 
             for( var m = 0; m < amount; m++ ){
                 if( uniqueItems[m] === randomItem ) {
@@ -229,7 +255,8 @@ var SanojenTunnistaminen = Backbone.View.extend({
     },
 
     getSelectorText: function () {
-        var animals = Settings.get('categories').animals;
+
+        var items = Settings.get('categories').Settings.get('textCategory');
 
         var selectorPresses = Settings.get('scrollerResults').selectorPresses;
         selectorPresses++;
@@ -242,14 +269,14 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         var selector = Settings.get('selector');
         console.log(selector);
-        for( var i = 0; i < animals.length; i++ ){
+        for( var i = 0; i < items.length; i++ ){
 
-            if( selector.indexOf(animals[i]) !== -1 ){
+            if( selector.indexOf(items[i]) !== -1 ){
                 corrects++;
                 _results.corrects = corrects;
 
-                 delete animals[i];
-                _categories.animals = animals;
+                 delete items[i];
+                _categories.items = items;
 
             }else{
                 wrongs++ ;

@@ -86,7 +86,7 @@ var KIM = Backbone.View.extend({
     },
 
     addBluffs: function (targets) {
-        console.log('add bluffs');
+        $('.finish').removeClass('hidden');
         var targets = targets;
         var itemsLength = this.itemsLength();
 
@@ -133,8 +133,17 @@ var KIM = Backbone.View.extend({
     },
 
     checkCorrects: function () {
+        $('.finish').addClass('hidden');
         var targets = Settings.get('targets');
         var visible = targets.length*4500;
+        var playthruNum = Settings.get('playThruNum');
+
+        if(playthruNum === 9){
+            console.log('end game nevertheless')
+        }
+
+        playthruNum++;
+        Settings.set({playThruNum:playthruNum});
 
         var targetImg = [];
         for( var i=0; i<targets.length; i++ ) {
@@ -158,6 +167,10 @@ var KIM = Backbone.View.extend({
                 $('img.selected:nth('+j+')').addClass('danger-border');
             }
         }
+        var arr = Settings.get('results');
+        var obj = {round:playthruNum, correct:correct, wrong:wrong, tot:targets.length};
+        arr.push(obj);
+        Settings.set({results:arr});
 
         for(var k=0; k<targetImg.length; k++){
             if( ($.inArray(targetImg[k], selected)) === -1 ){
@@ -168,9 +181,91 @@ var KIM = Backbone.View.extend({
         }
 
         var that = this;
-        if(correct === targets.length && wrong === 0) {
+        if ((correct === targets.length && wrong === 0) || (playthruNum === 10)) {
             this.undelegateEvents();
-            var results = {};
+
+            var date = getDateTime();
+            var pvm = date.pvm;
+            var klo = date.klo;
+
+            var round1 = Settings.get('results')[0];
+
+            if(Settings.get('results')[1]){
+                var round2 = Settings.get('results')[1];
+            }
+            if(Settings.get('results')[2]){
+                var round3 = Settings.get('results')[2];
+            }
+            if(Settings.get('results')[3]){
+                var round4 = Settings.get('results')[3];
+            }
+            if(Settings.get('results')[4]){
+                var round5 = Settings.get('results')[4];
+            }
+            if(Settings.get('results')[5]){
+                var round6 = Settings.get('results')[5];
+            }
+            if(Settings.get('results')[6]){
+                var round7 = Settings.get('results')[6];
+            }
+            if(Settings.get('results')[7]){
+                var round8 = Settings.get('results')[7];
+            }
+            if(Settings.get('results')[8]){
+                var round9 = Settings.get('results')[8];
+            }
+            if(Settings.get('results')[9]){
+                var round10 = Settings.get('results')[9];
+            }
+
+            var results = {
+                'pvm' : pvm,
+                'klo' : klo,
+                'difficulty': Settings.get('difficulty'),
+                'data' : [
+                    {
+                        'name' : 'Kierros ' + round1.round +":",
+                        'value' : round1.correct +" / "+round1.tot
+                    },
+                    {
+                        'name' : 'Kierros ' + round2.round +":",
+                        'value' : round2.correct +" / "+round2.tot
+                    },
+                    {
+                        'name' : 'Kierros ' + round3.round +":",
+                        'value' : round3.correct +" / "+round3.tot
+                    },
+                    {
+                        'name' : 'Kierros ' + round4.round +":",
+                        'value' : round4.correct +" / "+round4.tot
+                    },
+                    {
+                        'name' : 'Kierros ' + round5.round +":",
+                        'value' : round5.correct +" / "+round5.tot
+                    },
+                    {
+                        'name' : 'Kierros ' + round6.round +":",
+                        'value' : round6.correct +" / "+round6.tot
+                    },
+                    {
+                        'name' : 'Kierros ' + round7.round +":",
+                        'value' : round7.correct +" / "+round7.tot
+                    },
+                    {
+                        'name' : 'Kierros ' + round8.round +":",
+                        'value' : round8.correct +" / "+round8.tot
+                    },
+                    {
+                        'name' : 'Kierros ' + round9.round +":",
+                        'value' : round9.correct +" / "+round9.tot
+                    },
+                    {
+                        'name' : 'Kierros ' + round10.round +":",
+                        'value' : round10.correct +" / "+round10.tot
+                    }
+
+                ]
+            };
             var view = new ResultsView({model:this.model, results: results});
             view.render();
 
@@ -180,13 +275,14 @@ var KIM = Backbone.View.extend({
             $('.warning-border').show();
             $('.success-border').show();
             var timer = setTimeout(function() {
+
                     var bluffs = that.addBluffs(targets);
                     for(var i=0; i < $('.allItems img').length; i++){
                         var img = '<img class="kim-item selectable" src="./pics/KIM/'+bluffs[i]+'.png"/>';
                         $('.allItems img:nth('+i+')').replaceWith(img)
                     }
                     $('.selectable').show().removeClass('warning-border success-border danger-border selected');
-            },visible)
+            },visible);
 
             $('.quit').click( function() {
                 clearTimeout(timer)

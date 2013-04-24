@@ -3,8 +3,6 @@ var KuvaEtsinta = Backbone.View.extend({
     template: '#kuvaEtsintaTemplate',
 
     render: function () {
-        console.log('kalapeli');
-        //empty headerview
         $('#header').empty();
 
        	var startTime = new Date().getTime();
@@ -37,7 +35,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
     renderEasyGame: function () {
 
-        var category = 'kalat';
+        var category = Settings.get('category');
 
         //creating target picture
         var targetRandom = Math.floor((Math.random() * 20) + 1);
@@ -86,7 +84,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
     renderMediumGame: function () {
 
-        var category = 'kalat';
+        var category = Settings.get('category');
 
         //creating target pictures
         var targets = [];
@@ -159,7 +157,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
     renderHardGame: function () {
 
-        var category = 'kalat';
+        var category = Settings.get('category');
 
         //creating target pictures
         var targets = [];

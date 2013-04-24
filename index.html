@@ -113,6 +113,7 @@
     </script>
 
     <script id="sanojenTunnistaminenTemplate" type="text/template">
+        <h2 class="hint">Etsit ryhmän: <span class="text-success"> <%= textCategory %> </span> sanoja</h2>
         <div class="selector"> </div>
         <div class="scroller">
             <%= text %>
@@ -321,7 +322,40 @@
                 <p><button class="medium btn btn-large bigger btn-block">Taso II</button></p>
                 <p><button class="hard btn btn-large bigger btn-block">Taso III</button></p>
             </div>
-            <br />
+
+            <div class="categories hidden">
+                <h3>Valitse etsittävien ryhmä:</h3>
+                <div class="category-scroller">
+                    <div class="inner-img">
+                        <div class="fade-left"></div>
+                        <div class="fade-right"></div>
+                    <% _.each(categoryImg, function(categoryImg) { %>
+                        <img class="category" src="<%= categoryImg %>" />
+                    <% }); %>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="categories-text hidden">
+                <h3>Valitse etsittävien ryhmä:</h3>
+                <div class="category-scroller">
+                    <div class="inner-img-short">
+                        <div class="fade-left"></div>
+                        <div class="fade-right"></div>
+                        <% _.each(titleImg, function(titleImg) { %>
+                            <img class="text-category fixed-size" src="<%= titleImg %>" />
+                        <% }); %>
+                        <br/>
+                        <div class="category-titles">
+                            <% _.each(categories, function(categories) { %>
+                                <span class="category-title"><%= categories %></span>
+                            <% }); %>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
 
 
         </div>
@@ -337,12 +371,12 @@
     <script id="mainHeaderTmpl" type="text/template">
         <h2>Muistiluuri</h2>
         <button class="btn btn-large backToService" id="back-button"><i class="icon-home"></i> Takaisin</button>
-        <hr />
+
     </script>
 
     <script id="backHeaderTmpl" type="text/template">
         <button class="btn btn-large back-root"><i class="icon-chevron-left"></i> Takaisin</button>
-        <hr />
+
     </script>
 
     <!-- templates end -->

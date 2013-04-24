@@ -12,13 +12,89 @@ var PreGameView = Backbone.View.extend({
             this.preload('konstruktio');
         }
 
+
+
 		var variables = {title: this.model.get('title'),
                          guide: this.model.get('guide'),
-                         difficulty: Settings.get('difficulty') };
-
+                         difficulty: Settings.get('difficulty'),
+                         categoryImg: Settings.get('categoryImg'),
+                         categories: Settings.get('categories').titles,
+                         titleImg: Settings.get('categories').titleImg};
+        console.log(variables);
 		var template = _.template( $(this.template).html(), variables );
 
 		this.$el.html(template);
+
+        var category = Settings.get('category');
+        var textCat = Settings.get('textCategory');
+        if( gameId === 1 ){
+            $('.categories').removeClass('hidden');
+        }else if ( gameId === 3){
+            $('.categories-text').removeClass('hidden');
+
+        }
+
+
+        if(textCat === 'eläimet'){
+            $('.inner-img-short img:nth(0)').addClass('selected')
+        }else if(textCat === 'ammatit'){
+            $('.inner-img-short img:nth(1)').addClass('selected')
+        }else if(textCat === 'kasvit'){
+            $('.inner-img-short img:nth(2)').addClass('selected')
+        }else if(textCat === 'kaupungit'){
+            $('.inner-img-short img:nth(3)').addClass('selected')
+        }else if(textCat === 'miesten nimet'){
+            $('.inner-img-short img:nth(4)').addClass('selected')
+        }else if(textCat === 'naisten nimet'){
+            $('.inner-img-short img:nth(5)').addClass('selected')
+        }else if(textCat === 'sisustus'){
+            $('.inner-img-short img:nth(6)').addClass('selected')
+        }else if(textCat === 'soittimet'){
+            $('.inner-img-short img:nth(7)').addClass('selected')
+        }else if(textCat === 'työkalut'){
+            $('.inner-img-short img:nth(8)').addClass('selected')
+        }else if(textCat === 'urheilu'){
+            $('.inner-img-short img:nth(9)').addClass('selected')
+        }else if(textCat === 'valtiot'){
+            $('.inner-img-short img:nth(10)').addClass('selected')
+        }
+        //todo scroll to specific item
+
+
+        if(category === 'dinosaurukset'){
+            $('.inner-img img:nth(0)').addClass('selected');
+            this.preload('dinosaurukset');
+        }else if(category === 'elaimet'){
+            this.preload('elaimet');
+            $('.inner-img img:nth(1)').addClass('selected');
+        }else if(category === 'hedelmat'){
+            this.preload('hedelmat');
+            $('.inner-img img:nth(2)').addClass('selected');
+        }else if(category === 'kalat'){
+            this.preload('kalat');
+            $('.inner-img img:nth(3)').addClass('selected');
+        }else if(category === 'kansallispuvut'){
+            this.preload('kansallispuvut');
+            $('.inner-img img:nth(4)').addClass('selected');
+        }else if(category === 'kasvit'){
+            this.preload('kasvit');
+            $('.inner-img img:nth(5)').addClass('selected');
+        }else if(category === 'linnut'){
+            this.preload('linnut');
+            $('.inner-img img:nth(6)').addClass('selected');
+        }else if(category === 'liput'){
+            this.preload('liput');
+            $('.inner-img img:nth(7)').addClass('selected');
+        }else if(category === 'soittimet'){
+            this.preload('soittimet');
+            $('.inner-img img:nth(8)').addClass('selected');
+        }else if(category === 'tyokalut'){
+            this.preload('tyokalut');
+            $('.inner-img img:nth(9)').addClass('selected');
+        }else if(category === 'urheiluvalineet'){
+            this.preload('urheiluvalineet');
+            $('.inner-img img:nth(10)').addClass('selected');
+        }
 
         var diff = Settings.get('difficulty');
         if(diff === 'easy'){
@@ -36,7 +112,32 @@ var PreGameView = Backbone.View.extend({
         'click .medium' : 'mediumSelected',
         'click .hard' : 'hardSelected',
         'click .preview' : 'previewVideo',
-        'click #play-game' : 'play'
+        'click #play-game' : 'play',
+        'click .category' : 'selectCategory',
+        'click .text-category' : 'selectTextCategory'
+    },
+
+    selectCategory: function () {
+
+        $('.category').removeClass('selected');
+        var target = $(event.target);
+        target.toggleClass('selected');
+        var src = target.attr('src');
+        var c = src.substring(7,src.length-6);
+        Settings.set({category:c});
+        console.log(c);
+
+    },
+
+    selectTextCategory: function () {
+        $('.text-category').removeClass('selected');
+        var target = $(event.target);
+        var index = target.index()-1;
+        var cat = $('span:nth-child('+index+')').text().toLowerCase();
+
+        Settings.set({textCategory:cat});
+        console.log(Settings.get('textCategory'));
+        target.toggleClass('selected');
     },
 
     easySelected: function() {

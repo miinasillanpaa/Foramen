@@ -4,6 +4,8 @@ var Settings = Backbone.Model.extend({
 		authToken: null,
 		returnUrl: 'https://pienipiiri.fi/mobile/?userId=',
 		difficulty: 'easy',
+        category: 'kalat',
+        textCategory: 'eläimet',
 		backendUrl: 'https://pienipiiri.fi',
 
         //Tekstiviesti exercise specific
@@ -30,21 +32,62 @@ var Settings = Backbone.Model.extend({
         playThruNum: 0,
         results: [],
 
-
+        categoryImg: [
+            './pics/dinosaurukset/1.png',
+            './pics/elaimet/1.png',
+            './pics/hedelmat/1.png',
+            './pics/kalat/1.png',
+            './pics/kansallispuvut/1.png',
+            './pics/kasvit/1.png',
+            './pics/linnut/1.png',
+            './pics/liput/1.png',
+            './pics/soittimet/1.png',
+            './pics/tyokalut/1.png',
+            './pics/urheiluvalineet/1.png'
+        ],
 
         categories: {
-            'animals' :     [   "KISSA","HILLERI","HEVONEN","LEHMÄ","LAMMAS","SÄRKI","MATO","AHVEN",
-                                "TIIKERI","KÄÄRME","SAMMAKKO","ILVES","KORPPI","KIRVA","KARHU","AHMA",
-                                "KYY","ROTTA","SUSI","MÄYRÄ"
+            'titles' :      [   "ELÄIMET","AMMATIT","KASVIT","KAUPUNGIT","MIESTEN NIMET","NAISTEN NIMET",
+                                "SISUSTUS","SOITTIMET","TYÖKALUT","URHEILU","VALTIOT"
             ],
-            'professions' : [   "LÄÄKÄRI","MYYJÄ","PARTURI","OPETTAJA","HOITAJA","VARTIJA","KAPTEENI",
-                                "LENTÄJÄ","SEPPÄ","KOKKI","NÄYTTELIJÄ","POSTELJOONI","METSURI","KÄTILÖ",
-                                "VALMENTAJA","TERAPEUTTI","TARJOILIJA","KEITTÄJÄ","OHJAAJA","OMPELIJA",
-                                "YRITTÄJÄ","KYLVETTÄJÄ","OPTIKKO"
+            'titleImg' :    [   "./pics/elaimet/1.png","./pics/KIM/22.png","./pics/kasvit/1.png","./pics/KIM/16.png",
+                                "./pics/kansallispuvut/1.png","./pics/kansallispuvut/16.png","./pics/KIM/28.png",
+                                "./pics/soittimet/5.png","./pics/tyokalut/2.png","./pics/urheiluvalineet/6.png","./pics/liput/1.png"
             ],
-            'plants' :      [   "OMENA","BANAANI","PÄÄRYNÄ","NEKTARIINI","SIPULI","TOMAATTI","LILJA",
-                                "RUUSU","KOIVU","ESIKKO","MANSIKKA","MUURAIN","HORSMA","KANERVA",
-                                "VEHNÄ","LEPPÄ","MÄNTY","OHRA","RUIS","APRIKOOSI"
+
+            'eläimet' :     [   "KISSA","HILLERI","HEVONEN","LEHMÄ","LAMMAS","SÄRKI","MATO","AHVEN","TIIKERI","KÄÄRME",
+                                "SAMMAKKO","ILVES","KORPPI","KIRVA","KARHU","AHMA","KYY","ROTTA","SUSI","MÄYRÄ"
+            ],
+            'ammatit' :     [   "LÄÄKÄRI","MYYJÄ","PARTURI","OPETTAJA","HOITAJA","VARTIJA","KAPTEENI","LENTÄJÄ","SEPPÄ",
+                                "KOKKI","NÄYTTELIJÄ","POSTELJOONI","METSURI","KÄTILÖ","VALMENTAJA","TERAPEUTTI",
+                                "TARJOILIJA","KEITTÄJÄ","OHJAAJA","OMPELIJA","YRITTÄJÄ","KYLVETTÄJÄ","OPTIKKO"
+            ],
+            'kasvit' :      [   "OMENA","BANAANI","PÄÄRYNÄ","NEKTARIINI","SIPULI","TOMAATTI","LILJA","RUUSU","KOIVU",
+                                "ESIKKO","MANSIKKA","MUURAIN","HORSMA","KANERVA","VEHNÄ","LEPPÄ","MÄNTY","OHRA","RUIS","APRIKOOSI"
+            ],
+            'kaupungit' :   [   "MADRID","LISSABON","OSLO","REYKJAVIK","BERLIINI","LIMA","LONTOO","SOFIA","ATEENA","VARSOVA",
+                                "BUDAPEST","BERN","JERUSALEM","BEIRUT","TOKIO","WASHINGTON","SYDNEY","MOSKOVA","BOGOTA"
+            ],
+            "miesten" :     [   "JUSSI","ARI","VÄINÖ","VILLE","KALLE","JUUSO","MATTI","PENTTI","EEMELI","TAPIO","JUKKA",
+                                "MARTTI","LASSE","MAURI","PEKKA","LAURI","ILKKA","ALPO","SEPPO","EINO"
+            ],
+            "naisten" :     [   "ANNA","ANNE","ANU","LIISA","EILA","AILA","VIRVE","SATU","ARJA","TELLERVO","KERTTU","EMMA",
+                                "KATJA","IRMA","IRMELI","PÄIVI","AIJA","RIITTA","IDA","KATRI"
+            ],
+            "sisustus" :    [   "TUOLI","RYIJY","PENKKI","SOHVA","PÖYTÄ","HYLLY","ARKKU","KIRSTU","VITRIINI","RAHI","VERHO",
+                                "MATTO","TAULU","JULISTE","TYYNY","LAMPPU","PEILI","RYIJY","SÄRMI","HETEKA"
+            ],
+            "soittimet" :   [   "SELLO","PIANO","FLYYGELI","TAMBURIINI","HUILU","TRIANGELI","PICCOLO","HARPPU","VIULU",
+                                "TUUBA","BASSO","TORVI","SITAR","URUT","TRUMPETTI","CEMBALO","SITRA","MANDOLIINI","KSYLOFONI","PILLI"
+            ],
+            "työkalut"  :   [   "SAHA","RUUVI","PORA","HONKA","LAPIO","KUOKKA","HARA","MEISSELI","TALTTA","HÖYLÄ","KANKI",
+                                "VIILA","KIRVES","MUTTERI","PIHDIT","LEKA","SORVI","JYRSIN","TUNKKI"
+            ],
+            "urheilu" :     [   "SQUASH","GOLF","VOIMISTELU","UINTI","KÄVELY","HÖLKKÄ","HIIHTO","LASKETTELU","AMMUNTA",
+                                "NYRKKEILY","PAINI","TRIATHLON","DARTS","JUDO"
+            ],
+            "valtiot" :     [   "SUOMI","RUOTSI","VIETNAM","TANSKA","VIRO","LATVIA","SAKSA","ZAIRE","RANSKA","BELGIA",
+                                "KOLUMBIA","EGYPTI","BOLIVIA","VENÄJÄ","SUDAN","LIBANON","INTIA","MEKSIKO","JAPANI"
             ]
 
         },
@@ -233,4 +276,4 @@ var Settings = Backbone.Model.extend({
     }
 });
 //looks a bit ugly when scrolling but works.
-window.onscroll = function () { window.scrollTo(0, 0); };
+//window.onscroll = function () { window.scrollTo(0, 0); };

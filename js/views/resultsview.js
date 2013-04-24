@@ -34,6 +34,8 @@ var ResultsView = Backbone.View.extend({
 
         });
 
+        $('#content').css('overflow-y','scroll');
+
         return this;
     },
 

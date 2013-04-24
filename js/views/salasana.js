@@ -30,7 +30,7 @@ var Salasana = Backbone.View.extend({
     quitGame : function () {
         this.undelegateEvents();
         Settings.set({ 'checks' : 0 });
-
+        Settings.set({ 'scrollerChecks': 0 });
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId, {trigger:true});
     },
@@ -133,6 +133,7 @@ var Salasana = Backbone.View.extend({
             var scrollerChecks = Settings.get('scrollerChecks');
 
             scrollerChecks++;
+            console.log(scrollerChecks);
             Settings.set({scrollerChecks:scrollerChecks});
             if(scrollerChecks > 5){
                 $('.guesses').transition({ y: '-=54' });

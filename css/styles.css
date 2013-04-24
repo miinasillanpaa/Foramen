@@ -3,6 +3,11 @@ body{
     margin:0;
     padding:0;
 }
+#header{
+
+    margin-top:10px;
+    z-index: 10;
+}
 
 .rounded{
     border-radius: 10px;
@@ -72,10 +77,54 @@ body{
     margin: 20px 0px 0px 5px;
 }
 
-#header{
-    z-index: 10;
-    margin-top:10px;
+.categories{
 }
+
+.category-scroller{
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+.inner-img{
+    width: 1750px;
+}
+.inner-img-short{
+    width: 1625px;
+}
+.inner-img-short img:first-of-type{
+    margin-left:75px;
+}
+.inner-img-short img:last-child{
+    margin-right:75px;
+}
+.category{
+    border:5px solid white;
+    margin:5px;
+    padding:0;
+}
+.inner-img img:first-of-type{
+    margin-left:75px;
+}
+.inner-img img:last-child{
+    margin-right:75px;
+}
+.fade-left{
+    position: fixed;
+    z-index: 99;
+
+    width: 100px;
+    height: 150px;
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+
+}
+.fade-right{
+    position: fixed;
+    z-index: 99;
+    margin-left:475px;
+    width: 100px;
+    height: 150px;
+    background: -webkit-gradient(linear, right top, left top, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+}
+
 
 .selectable{
     margin:5px;
@@ -84,7 +133,7 @@ body{
 }
 
 .selected{
-    border:5px solid #515151;
+    border:5px solid #515151 !important;
     margin:5px;
     padding:0;
 
@@ -144,9 +193,9 @@ hr{
 }
 
 .backToService{
-    position: absolute;
-    top:10px;
-    right:80px;
+    position: fixed;
+    top:15px;
+    right:75px;
 }
 
 .center{
@@ -357,6 +406,11 @@ img.phone{
     height: 150px;
 }
 
+.hint{
+    margin-left:120px;
+    margin-top:150px;
+}
+
 /* KONSTRUOINTI */
 
 .construct-body{
@@ -481,4 +535,30 @@ img.phone{
 }
 .warning-border{
     border: 5px solid #faa732;
+}
+.category-titles{
+    margin-left:75px;
+}
+.category-title{
+    display: inline-block;
+    width: 100px;
+    font-size: 1.4em;
+    line-height: 1;
+    font-weight: bold;
+    padding:0 8px 0 8px;
+    text-align: center;
+    margin-right:12px;
+    margin-top:-5px;
+
+}
+
+.fixed-size{
+    width:108px;
+    height:108px;
+
+}
+.text-category{
+    border:5px solid white;
+    margin:5px;
+    padding:0;
 }

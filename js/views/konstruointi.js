@@ -163,7 +163,7 @@ var Konstruointi = Backbone.View.extend({
         var results = [];
 
         var button = $(event.target);
-        button.removeClass('finish').addClass('continue btn-success')
+        button.removeClass('finish').addClass('continue btn-success');
         button.text("Jatka");
 
         var firstRowfirst = parseInt( $('.construct-answer .firstRow img:first-child').attr('src').replace(/\D/g,'') );
