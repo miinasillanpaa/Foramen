@@ -4,7 +4,7 @@ var Salasana = Backbone.View.extend({
 
     render: function () {
 
-        $('#header').empty();
+        $('#header').empty().hide();
 
         var startTime = new Date().getTime();
         Settings.set({ startTime : startTime });

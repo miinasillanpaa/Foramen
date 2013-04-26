@@ -46,7 +46,7 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         'click .options-times .a-button' : 'toItem',
         'click .options-items .a-button' : 'inItem',
 
-        'click .check' : 'checkAnswers',
+        'click .txt-check' : 'checkAnswers',
         'click .correct-answers' : 'showCorrectAnswers',
         'click .continue' : 'continue'
     },
@@ -164,7 +164,7 @@ var TekstiviestiAnswerView = Backbone.View.extend({
 
         $('.options-area .a-button').removeClass('btn-primary');
 
-        $('.check').addClass('hidden');
+        $('.txt-check').addClass('hidden');
         $('.correct-answers').removeClass('hidden');
         $('.continue').removeClass('hidden');
 

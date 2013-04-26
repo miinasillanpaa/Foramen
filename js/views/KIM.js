@@ -4,7 +4,7 @@ var KIM = Backbone.View.extend({
 
     render: function () {
 
-        $('#header').empty();
+        $('#header').empty().hide();
 
         var visible = this.itemsLength()*4000;
 
@@ -189,33 +189,52 @@ var KIM = Backbone.View.extend({
             var klo = date.klo;
 
             var round1 = Settings.get('results')[0];
+            console.log(round1);
 
+
+            var emptyRound = {
+                correct: "-",
+                wrong:"-",
+                tot: "-"
+            };
+
+            var round2 = emptyRound;
+            var round3 = emptyRound;
+            var round4 = emptyRound;
+            var round5 = emptyRound;
+            var round6 = emptyRound;
+            var round7 = emptyRound;
+            var round8 = emptyRound;
+            var round9 = emptyRound;
+            var round10 = emptyRound;
+
+            console.log(round10);
             if(Settings.get('results')[1]){
-                var round2 = Settings.get('results')[1];
+                round2 = Settings.get('results')[1];
             }
             if(Settings.get('results')[2]){
-                var round3 = Settings.get('results')[2];
+                round3 = Settings.get('results')[2];
             }
             if(Settings.get('results')[3]){
-                var round4 = Settings.get('results')[3];
+                round4 = Settings.get('results')[3];
             }
             if(Settings.get('results')[4]){
-                var round5 = Settings.get('results')[4];
+                round5 = Settings.get('results')[4];
             }
             if(Settings.get('results')[5]){
-                var round6 = Settings.get('results')[5];
+                round6 = Settings.get('results')[5];
             }
             if(Settings.get('results')[6]){
-                var round7 = Settings.get('results')[6];
+                round7 = Settings.get('results')[6];
             }
             if(Settings.get('results')[7]){
-                var round8 = Settings.get('results')[7];
+                round8 = Settings.get('results')[7];
             }
             if(Settings.get('results')[8]){
-                var round9 = Settings.get('results')[8];
+                round9 = Settings.get('results')[8];
             }
             if(Settings.get('results')[9]){
-                var round10 = Settings.get('results')[9];
+                round10 = Settings.get('results')[9];
             }
 
             var results = {
@@ -224,43 +243,43 @@ var KIM = Backbone.View.extend({
                 'difficulty': Settings.get('difficulty'),
                 'data' : [
                     {
-                        'name' : 'Kierros ' + round1.round +":",
+                        'name' : 'Kierros 1:',
                         'value' : round1.correct +" / "+round1.tot
                     },
                     {
-                        'name' : 'Kierros ' + round2.round +":",
+                        'name' : 'Kierros 2:',
                         'value' : round2.correct +" / "+round2.tot
                     },
                     {
-                        'name' : 'Kierros ' + round3.round +":",
+                        'name' : 'Kierros 3:',
                         'value' : round3.correct +" / "+round3.tot
                     },
                     {
-                        'name' : 'Kierros ' + round4.round +":",
+                        'name' : 'Kierros 4:',
                         'value' : round4.correct +" / "+round4.tot
                     },
                     {
-                        'name' : 'Kierros ' + round5.round +":",
+                        'name' : 'Kierros 5:',
                         'value' : round5.correct +" / "+round5.tot
                     },
                     {
-                        'name' : 'Kierros ' + round6.round +":",
+                        'name' : 'Kierros 6:',
                         'value' : round6.correct +" / "+round6.tot
                     },
                     {
-                        'name' : 'Kierros ' + round7.round +":",
+                        'name' : 'Kierros 7:',
                         'value' : round7.correct +" / "+round7.tot
                     },
                     {
-                        'name' : 'Kierros ' + round8.round +":",
+                        'name' : 'Kierros 8:',
                         'value' : round8.correct +" / "+round8.tot
                     },
                     {
-                        'name' : 'Kierros ' + round9.round +":",
+                        'name' : 'Kierros 9:',
                         'value' : round9.correct +" / "+round9.tot
                     },
                     {
-                        'name' : 'Kierros ' + round10.round +":",
+                        'name' : 'Kierros 10:',
                         'value' : round10.correct +" / "+round10.tot
                     }
 
@@ -268,6 +287,7 @@ var KIM = Backbone.View.extend({
             };
             var view = new ResultsView({model:this.model, results: results});
             view.render();
+            router.navigate('game/' +this.model.get('gameId') + '/results', true)
 
         }else{
 

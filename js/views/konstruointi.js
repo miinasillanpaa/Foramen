@@ -3,7 +3,7 @@ var Konstruointi = Backbone.View.extend({
    template: '#konstruointiTemplate',
 
     render: function () {
-        $('#header').empty();
+        $('#header').empty().hide();
 
         var startTime = new Date().getTime();
         Settings.set({ startTime : startTime });

@@ -3,7 +3,7 @@ var KuvaEtsinta = Backbone.View.extend({
     template: '#kuvaEtsintaTemplate',
 
     render: function () {
-        $('#header').empty();
+        $('#header').hide();
 
        	var startTime = new Date().getTime();
         Settings.set({ startTime : startTime });
@@ -317,10 +317,14 @@ var KuvaEtsinta = Backbone.View.extend({
 
             };
         this.undelegateEvents();
+
+        router.navigate('game/' + this.model.get('gameId') + '/results', true);
         var gameId = this.model.get('gameId');
         var view = new ResultsView({ model: this.model, results: results });
+
         view.render();
-        router.navigate('game/' + this.model.get('gameId') + '/results', true);
+
+
 
     }
 

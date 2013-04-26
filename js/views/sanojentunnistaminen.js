@@ -3,7 +3,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
     template: '#sanojenTunnistaminenTemplate',
 
     render: function () {
-        $('#header').empty();
+        $('#header').empty().hide();
 
 
 

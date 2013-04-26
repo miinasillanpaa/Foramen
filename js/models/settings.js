@@ -32,6 +32,11 @@ var Settings = Backbone.Model.extend({
         playThruNum: 0,
         results: [],
 
+        // Audatiivinen Interferenssi
+        corrects: 0,
+        wrongs:0,
+        stringCorrects:0,
+
         categoryImg: [
             './pics/dinosaurukset/1.png',
             './pics/elaimet/1.png',

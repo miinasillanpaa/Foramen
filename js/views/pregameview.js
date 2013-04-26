@@ -3,6 +3,9 @@ var PreGameView = Backbone.View.extend({
 	template: '#preGameTemplate',
 
 	render: function() {
+
+        $('#header').show();
+
         var gameId = this.model.get('gameId');
 		if( gameId === 1 ){
             this.preload('kalat');

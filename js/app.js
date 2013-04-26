@@ -20,8 +20,8 @@ var games = [
         "title" : "Tekstiviesti",
         "guide" :   "<p>Ruudulle ilmestyy matkapuhelimen kuva. Merkkiäänen jälkeen puhelimen ruudulle ilmestyy tekstiviesti. Tehtävänä on painaa mieleen tekstiviesti.</p>" +
                     "<p>Mieleenpainamisen jälkeen näytetään joukko kysymyksiä ja niiden vastausvaihtoehtoja. Kunkin kysymyksen vastausvaihtoehdot näytetään kun kysymys on aktiivisena. Vastaa kysymykseen koskettamalla vastausta.</p>" +
-                    '<p>Vastaamisen jälkeen paina "Tarkista"-näppäintä, jolloin oikeat vastaukset näytetään vihreällä ja väärät punaisella.</p>' +
-                    "<p>Tekstiviestejä näytetään yhteensä viisi kappaletta peräkkäin.</p>"
+                    '<p>Vastaamisen jälkeen paina "Tarkista"-näppäintä, jolloin oikeat vastaukset näytetään vihreällä ja väärät punaisella.</p>',
+        "coverImage" : "./img/txt.png"
     },
 	{
         "gameId": 3,
@@ -50,7 +50,7 @@ var games = [
         "title" : "KIM-yhdistelmä",
         "guide" : "<p>Ruudulla näkyy esineiden kuvia. Tehtävänä on painaa kuvat mieleen.</p>"+
                   "<p>Mieleenpainamisen jälkeen ruudulle ilmestyy aiemmin esitetyt kuvat ja joukko muita kuvia. Tehtävänä on tunnistaa aiemmin esitetyt kuvat. Tunnistaminen osoitetaan koskettamalla kuvaa.</p>"+
-                  "<p>Kun tehtävä on suoritettu painetaan Valmis-nappulaa, jonka jälkeen kone näyttää oikeat vastaukset vihreällä ja puuttuvat oranssilla. Jos kaikki kuvat muistettiin peli loppuu. Jos kaikkia ei muistettu peliä jatketaan kunnes kaikki muistetaan tai kymmenen kierrosta</p>"
+                  "<p>Kun tehtävä on suoritettu painetaan Valmis-nappulaa, jonka jälkeen kone näyttää oikeat vastaukset vihreällä ja puuttuvat oranssilla. Jos kaikki kuvat muistettiin peli loppuu. Jos kaikkia ei muistettu peliä jatketaan kunnes kaikki muistetaan tai kymmenen kierrosta.</p>"
     },
 	{
         "gameId": 7,
@@ -69,8 +69,8 @@ var games = [
         "title" : "Konstruointi",
         "guide" :   "<p>Ruudulla näkyy kaksi neliön muotoista aluetta. Vasemmanpuoleinen neliö on mallikuvio, joka on koottu alareunassa olevista pienistä neliöistä.</p>"+
                     "<p>Tehtävänä on koota oikeanpuolimmainen neliö mallikuvion mukaiseksi.</p>"+
-                    "<p>Kokoaminen tapahtuu koskettamalla ensin ruudun alareunassa näkyvää pientä neliötä ja sen jälkeen vastaavaa kohtaa koottavassa ruudukossa.</p>" +
-                    "<p>Tehtäviä on yhteensä viisi kappaletta peräkkäin.</p>"
+                    "<p>Kokoaminen tapahtuu koskettamalla ensin ruudun alareunassa näkyvää pientä neliötä ja sen jälkeen vastaavaa kohtaa koottavassa ruudukossa.</p>",
+        "coverImage" : "./img/konstruointi.png"
     },
 	{
         "gameId": 10,

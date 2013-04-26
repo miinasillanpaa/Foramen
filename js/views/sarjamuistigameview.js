@@ -4,7 +4,7 @@ var Sarjamuisti = Backbone.View.extend({
 
     render: function () {
         console.log('sarjamuistigame');
-        $('#header').empty();
+        $('#header').empty().hide();
 
         var choices = [0,1,2,3,4,5,6,7,8,9];
         var numArray = [];
@@ -33,7 +33,7 @@ var Sarjamuisti = Backbone.View.extend({
                 $('.numOptions').removeClass('hidden');
                 $('.box').addClass('black');
                 $('.finish').removeAttr("disabled");
-                $('.check').removeAttr("disabled");
+                $('.ser-check').removeAttr("disabled");
                 var rand = Math.floor(Math.random() * arrLength);
                 $('.box:eq(' + rand + ')').addClass('active').removeClass('available');
             },time);
@@ -47,7 +47,7 @@ var Sarjamuisti = Backbone.View.extend({
         this.$el.html(template);
 
         $('.quit').click( function () {
-            clearTimeout(timer);
+            window.clearTimeout(timer);
         });
 
         return this;
@@ -57,7 +57,7 @@ var Sarjamuisti = Backbone.View.extend({
     events:{
         'click .quit': 'quitGame',
         'click .choices' : 'numberPicked',
-        'click .check' : 'showCorrects',
+        'click .ser-check' : 'showCorrects',
         'click .finish' : 'finish'
     },
 
@@ -232,8 +232,11 @@ var Sarjamuisti = Backbone.View.extend({
             var gameId = this.model.get('gameId');
             this.undelegateEvents();
             Settings.set({ 'playThruNum' : 0 });
-            var view = new ResultsView({ model: this.model, results: results })
+            var view = new ResultsView({ model: this.model, results: results });
             view.render();
+            router.navigate('game/' + this.model.get('gameId') + '/results', true);
+
+
 
         }
 

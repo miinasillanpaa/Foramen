@@ -1,32 +1,31 @@
 var HeaderView = Backbone.View.extend({
    el: '#header',
 
-    template0: _.template($('#mainHeaderTmpl').html()),
-    template1: _.template($('#backHeaderTmpl').html()),
+
+    template0: '#mainHeaderTmpl',
+    template1: '#backHeaderTmpl',
 
 
     initialize: function () {
-        this.render();
+
     },
 
     render: function () {
-        //console.log(this);
-        if(this.id == 0){
-            this.$el.html(this.template0);
-            return this;
+        var template;
+        if(parseInt(this.id) === 0){
 
-        }else if(this.id == 2){
-            this.$el.html(this.template1);
-            //this.$el.find('button').removeClass('back-root');
-            //this.$el.find('button').addClass('back-setup');
+            template = _.template( $(this.template0).html());
+            this.$el.html(template);
             return this;
 
 
         }else{
-            this.$el.html(this.template1);
+            var variables  = { title: this.options.gameObj.attributes.title };
+
+            template = _.template( $(this.template1).html(), variables);
+            this.$el.html(template);
             return this;
         }
-
     },
 
     events: {

@@ -4,7 +4,7 @@ var VideoView = Backbone.View.extend({
 
     render: function() {
 
-
+        console.log(this);
 
         var video = { video: this.model.get('video') };
         //console.log(this.model.get('video'));

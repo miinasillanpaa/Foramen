@@ -31,6 +31,9 @@ window.Router = Backbone.Router.extend({
 		if (App.currentGameView != null) {
 			App.currentGameView.undelegateEvents();
 		}
+
+        var hview = new HeaderView({id:0});
+        hview.render();
 	}
 
 });
@@ -50,7 +53,8 @@ router.on('route:getGame', function(id) {
 		App.preGameview.setModel(gameObj);
 	}
 
-    new HeaderView({id:1,gameId:id});
+    var hview = new HeaderView({id:1,gameObj:gameObj});
+    hview.render();
 
 	App.preGameview.render();
 });
@@ -60,9 +64,10 @@ router.on('route:videoView', function(id) {
     var selectedGame = games[id-1];
     var gameObj = new Game(selectedGame);
     var view = new VideoView({ model: gameObj });
-
-    new HeaderView({id:2,gameId:id});
     view.render();
+
+    var hview = new HeaderView({id:2,gameObj:gameObj});
+    hview.render();
 
 });
 
@@ -93,6 +98,11 @@ router.on('route:play', function(id) {
         App.currentGameView = view4;
         view4.render();
 
+    }else if( parseInt(id) === 5){
+        var view5 = new AudatiivinenInterferenssi({ model:gameObj });
+        App.currentGameView = view5;
+        view5.render();
+
     }else if( parseInt(id) === 6){
         var view8 = new KIM({ model:gameObj });
         App.currentGameView = view8;
@@ -112,7 +122,13 @@ router.on('route:play', function(id) {
     }
 });
 router.on('route:resultsView', function(id) {
-    //new HeaderView({id:2,gameId:id});
+    var selectedGameIndex = parseInt(id-1);
+    var selectedGame = games[selectedGameIndex];
+    var gameObj = new Game(selectedGame);
+
+    var hview = new HeaderView({id:2,gameObj:gameObj});
+    hview.render();
+
 });
 router.on('route:playedGameView', function(id) {
     $('#header').html('');
