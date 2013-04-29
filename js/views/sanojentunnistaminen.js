@@ -4,19 +4,18 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
     render: function () {
         $('#header').empty().hide();
+        console.log('sanojen tunnistus');
 
-
-
-        Settings.results = [];
 
         var myView = this;
         var gameId = this.model.get('gameId');
         var exerciseTime = 1000*60*4;
         var moveTime;
 
-        if( Settings.get('difficulty') === 'easy' ){
+        var diff = Settings.get('difficulty');
+        if( diff === 'easy' ){
             moveTime = 1500;
-        }else if( Settings.get('difficulty') === 'medium' ){
+        }else if( diff === 'medium' ){
             moveTime = 1000;
         }else{
             moveTime = 500;
@@ -179,7 +178,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
                  randomDistance.push(randomDist);
             }
         }
-
         Settings.set({targetAmount:amount});
 
         var selectedCat = Settings.get('textCategory');
@@ -207,6 +205,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
         }else if(selectedCat === 'valtiot'){
             items = Settings.get('categories').valtiot
         }
+
         console.log(items);
 
         var uniqueItems = [];
@@ -249,7 +248,8 @@ var SanojenTunnistaminen = Backbone.View.extend({
                 }
             }
         }
-
+        console.log(arr);
+        console.log(textString);
         Settings.set({ textString:textString });
         return text;
     },

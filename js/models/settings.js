@@ -71,7 +71,7 @@ var Settings = Backbone.Model.extend({
                                 "ESIKKO","MANSIKKA","MUURAIN","HORSMA","KANERVA","VEHNÄ","LEPPÄ","MÄNTY","OHRA","RUIS","APRIKOOSI"
             ],
             'kaupungit' :   [   "MADRID","LISSABON","OSLO","REYKJAVIK","BERLIINI","LIMA","LONTOO","SOFIA","ATEENA","VARSOVA",
-                                "BUDAPEST","BERN","JERUSALEM","BEIRUT","TOKIO","WASHINGTON","SYDNEY","MOSKOVA","BOGOTA"
+                                "BUDAPEST","BERN","JERUSALEM","BEIRUT","TOKIO","WASHINGTON","SYDNEY","MOSKOVA","BOGOTA","HELSINKI"
             ],
             "miesten" :     [   "JUSSI","ARI","VÄINÖ","VILLE","KALLE","JUUSO","MATTI","PENTTI","EEMELI","TAPIO","JUKKA",
                                 "MARTTI","LASSE","MAURI","PEKKA","LAURI","ILKKA","ALPO","SEPPO","EINO"
@@ -80,19 +80,19 @@ var Settings = Backbone.Model.extend({
                                 "KATJA","IRMA","IRMELI","PÄIVI","AIJA","RIITTA","IDA","KATRI"
             ],
             "sisustus" :    [   "TUOLI","RYIJY","PENKKI","SOHVA","PÖYTÄ","HYLLY","ARKKU","KIRSTU","VITRIINI","RAHI","VERHO",
-                                "MATTO","TAULU","JULISTE","TYYNY","LAMPPU","PEILI","RYIJY","SÄRMI","HETEKA"
+                                "MATTO","TAULU","JULISTE","TYYNY","LAMPPU","PEILI","RYIJY","SÄRMI","HETEKA","KORISTE"
             ],
             "soittimet" :   [   "SELLO","PIANO","FLYYGELI","TAMBURIINI","HUILU","TRIANGELI","PICCOLO","HARPPU","VIULU",
                                 "TUUBA","BASSO","TORVI","SITAR","URUT","TRUMPETTI","CEMBALO","SITRA","MANDOLIINI","KSYLOFONI","PILLI"
             ],
             "työkalut"  :   [   "SAHA","RUUVI","PORA","HONKA","LAPIO","KUOKKA","HARA","MEISSELI","TALTTA","HÖYLÄ","KANKI",
-                                "VIILA","KIRVES","MUTTERI","PIHDIT","LEKA","SORVI","JYRSIN","TUNKKI"
+                                "VIILA","KIRVES","MUTTERI","PIHDIT","LEKA","SORVI","JYRSIN","TUNKKI","VESURI"
             ],
-            "urheilu" :     [   "SQUASH","GOLF","VOIMISTELU","UINTI","KÄVELY","HÖLKKÄ","HIIHTO","LASKETTELU","AMMUNTA",
-                                "NYRKKEILY","PAINI","TRIATHLON","DARTS","JUDO"
+            "urheilu" :     [   "SQUASH","GOLF","VOIMISTELU","UINTI","KÄVELY","HÖLKKÄ","HIIHTO","LASKETTELU","AMMUNTA","RODEO",
+                                "NYRKKEILY","PAINI","TRIATHLON","DARTS","JUDO","TENNIS","PURJEHDUS","SUUNNISTUS","SOUTU","PYÖRÄILY"
             ],
             "valtiot" :     [   "SUOMI","RUOTSI","VIETNAM","TANSKA","VIRO","LATVIA","SAKSA","ZAIRE","RANSKA","BELGIA",
-                                "KOLUMBIA","EGYPTI","BOLIVIA","VENÄJÄ","SUDAN","LIBANON","INTIA","MEKSIKO","JAPANI"
+                                "KOLUMBIA","EGYPTI","BOLIVIA","VENÄJÄ","SUDAN","LIBANON","INTIA","MEKSIKO","JAPANI","KROATIA"
             ]
 
         },
