@@ -220,6 +220,7 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         var gameId = this.model.get('gameId');
         var view = new ResultsView({ model: this.model, results: results });
         view.render();
+        router.navigate('game/' + gameId + '/results', true);
 
 
         //back to defaults
