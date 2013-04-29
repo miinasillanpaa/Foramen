@@ -300,8 +300,8 @@ img.phone{
     text-align: left;
     position: absolute;
     top: 40px;
-    left: 140px;
-    width: 950px;
+    left: 11%; /*140px*/
+    width: 74%; /*950px*/
     font-size:5em;
     line-height: 1;
     background-color: #e8e8e8;

@@ -9,6 +9,8 @@ var PreGameView = Backbone.View.extend({
         var gameId = this.model.get('gameId');
 		if( gameId === 1 ){
             this.preload('kalat');
+        }else if ( gameId === 5){
+            this.preloadAud('elaimet');
         }else if ( gameId === 6){
             this.preload('KIM');
         }else if ( gameId === 9){
@@ -205,6 +207,29 @@ var PreGameView = Backbone.View.extend({
         $(preload).preload();
         //console.log(preload + ' preloaded')
     },
+
+    preloadAud: function (category) {
+        var category = category;
+        var audio;
+        var elaimet = ['ahma','ahven','hevonen','hilleri','ilves','kaarme','karhu','kirva','kissa','korppi','kyy',
+                       'lammas','lehma','mato','mayra','rotta','sammakko','sarki','susi','tiikeri'];
+
+        for (var i=0; i<elaimet.length; i++){
+            audio = './sounds/audio/' + category + '/' + elaimet[i] + '.mp3';
+            this.loadAudio(audio)
+        }
+
+        //console.log(preload + ' preloaded');
+
+    },
+
+    loadAudio: function (uri) {
+        var audio = new Audio();
+        audio.addEventListener('canplaythrough', false);
+        audio.src = uri;
+        return audio;
+    },
+
 
 	setModel: function(model) {
 		this.model = model;

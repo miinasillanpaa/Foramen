@@ -84,6 +84,7 @@ $.fn.preload = function() {
     });
 };
 
+
 function msToStr(ms){
     var sec = ms / 1000;
     var nummin = Math.floor((((sec % 31536000) % 86400) % 3600) / 60);
