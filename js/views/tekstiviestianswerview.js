@@ -30,6 +30,8 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         $('.options-times button:eq('+ this.options.variables.corrects.time +')').addClass('correct');
         $('.options-items button:eq('+ this.options.variables.corrects.item +')').addClass('correct');
 
+
+
         return this;
     },
 
@@ -48,9 +50,17 @@ var TekstiviestiAnswerView = Backbone.View.extend({
 
         'click .txt-check' : 'checkAnswers',
         'click .correct-answers' : 'showCorrectAnswers',
-        'click .continue' : 'continue'
+        'click .continue' : 'continue',
+
+        'click .quit' : 'quitGame'
     },
 
+    quitGame: function () {
+        this.undelegateEvents();
+        Settings.set({ 'playThruNum' : 0 });
+        var gameId = this.model.get('gameId');
+        router.navigate('game/' + gameId, {trigger:true});
+    },
 
     activateSender : function () {
         $('.q-button').removeClass('btn-primary');

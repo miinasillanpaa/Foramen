@@ -18,6 +18,7 @@ var GameListView = Backbone.View.extend({
 				return _this;
 		});
 
+
         new HeaderView({id:0});
         this.render();
     },

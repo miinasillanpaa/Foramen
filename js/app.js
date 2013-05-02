@@ -28,29 +28,32 @@ var games = [
         "title" : "Sanojen tunnistaminen",
         "guide" :   "<p>Ruudulla näkyy liikkuva kirjainrivi, jonka keskellä on punaisella merkitty kohdealue.</p>" +
                     '<p>Tehtävänä on havaita kohdealueella perusmuodossa oleva substantiivi (nimisana), esimerkiksi "kissa".</p>'+
-                    "<p>Valinta osoitetaan painamalla kohdealueen alapuolella olevaa painiketta.</p>"
+                    "<p>Valinta osoitetaan painamalla kohdealueen alapuolella olevaa painiketta.</p>",
+        'coverImage': './img/sanat.png'
     },
 	{
         "gameId": 4,
         "title" : "Visuaalinen sarjamuisti",
         "guide":    "<p>Ruudulle ilmestyy samanaikaisesti sarja numeroita. Tehtävänä on painaa sarja mieleen.</p>"+
                     "<p>Kun sarja on esitetty, numerot peitetään mustilla neliöillä. Mieleenpalautettavan numeron paikka on merkitty punaisella kehyksellä.</p>"+
-                    "<p>Alhaalla näkyvät numero 0-9, joista valitaan sarjaan kyseinen numero. Sama toistetaan jokaisen mustan neliön kohdalla.</p>"
+                    "<p>Alhaalla näkyvät numero 0-9, joista valitaan sarjaan kyseinen numero. Sama toistetaan jokaisen mustan neliön kohdalla.</p>",
+        "coverImage" : "./img/vis.png"
     },
 	{
         "gameId": 5,
         "title" : "Audatiivinen interferenssi",
         "guide" : "<p>Kovaäänisistä kuuluu sarja sanoja. Tehtävänä on painaa sarja mieleen.</p>"+
                   "<p>Tämän jälkeen ruudulle ilmestyy häirintätehtävä. Tehtävänä on painaa Bingo-näppäintä, kun ruudulle ilmestyy eläin.</p>"+
-                  "<p>Häirintätehtävän jälkeen mieleenpainettu sarja kirjoitetaan ruudukkoon vapaassa järjestyksessä. Kun koko sarja on kirjoitettu painetaan Valmis-näppäintä, jolloin näkyviin tulee oikeiden vastauksien määrä.</p>"
-
+                  "<p>Häirintätehtävän jälkeen mieleenpainettu sarja kirjoitetaan ruudukkoon vapaassa järjestyksessä. Kun koko sarja on kirjoitettu painetaan Valmis-näppäintä, jolloin näkyviin tulee oikeiden vastauksien määrä.</p>",
+        'coverImage' : './img/aud.png'
     },
 	{
         "gameId": 6,
         "title" : "KIM-yhdistelmä",
         "guide" : "<p>Ruudulla näkyy esineiden kuvia. Tehtävänä on painaa kuvat mieleen.</p>"+
                   "<p>Mieleenpainamisen jälkeen ruudulle ilmestyy aiemmin esitetyt kuvat ja joukko muita kuvia. Tehtävänä on tunnistaa aiemmin esitetyt kuvat. Tunnistaminen osoitetaan koskettamalla kuvaa.</p>"+
-                  "<p>Kun tehtävä on suoritettu painetaan Valmis-nappulaa, jonka jälkeen kone näyttää oikeat vastaukset vihreällä ja puuttuvat oranssilla. Jos kaikki kuvat muistettiin peli loppuu. Jos kaikkia ei muistettu peliä jatketaan kunnes kaikki muistetaan tai kymmenen kierrosta.</p>"
+                  "<p>Kun tehtävä on suoritettu painetaan Valmis-nappulaa, jonka jälkeen kone näyttää oikeat vastaukset vihreällä ja puuttuvat oranssilla. Jos kaikki kuvat muistettiin peli loppuu. Jos kaikkia ei muistettu peliä jatketaan kunnes kaikki muistetaan tai kymmenen kierrosta.</p>",
+        "coverImage" : "./img/kim.png"
     },
 	{
         "gameId": 7,
@@ -58,11 +61,13 @@ var games = [
         "guide" : "<p>Kuvaruudulla näkyy tyhjä tekstikenttä. Tehtävänä on päätellä koneen valitsema salasana, joka on perusmuodossa oleva substantiivi eli nimisana.</p>"+
                   "<p>Kenttään kirjoitetaan mikä tahansa määritellyn pituinen sana ja painetaan Valmis-painiketta.</p>"+
                   "<p>Kone kirjoittaa sanan ruudulle ja ilmoittaa kuinka monta sanan kirjaimista on oikeita ja oikealla paikalla (musta ympyrä) ja kuinka monta sanan kirjaimista on oikeita, mutta väärällä paikalla (valkoinen ympyrä).</p>"+
-                  "<p>Yritä päätellä salasana koneen antamien vihjeiden avulla.</p>"
+                  "<p>Yritä päätellä salasana koneen antamien vihjeiden avulla.</p>",
+        "coverImage" : "./img/password.png"
     },
 	{
         "gameId": 8,
-        "title" : "Sudoku-tehtävät"
+        "title" : "Sudoku-tehtävät",
+        'coverImage' : "./img/sudoku.png"
     },
 	{
         "gameId": 9,
@@ -74,7 +79,8 @@ var games = [
     },
 	{
         "gameId": 10,
-        "title" : "Ristinolla"
+        "title" : "Ristinolla",
+        "coverImage" : "./img/ristinolla.png"
     }
 ];
 
@@ -127,7 +133,6 @@ function getDateTime() {
 
     return {'pvm': dd+'/'+mm+'/'+yyyy, 'klo': h+':'+m}
 }
-
 
 
 

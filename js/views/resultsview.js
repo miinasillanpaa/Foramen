@@ -27,7 +27,7 @@ var ResultsView = Backbone.View.extend({
                          gameId : this.model.get('gameId')
         };
 
-        new HeaderView({id:2});
+
         var template = _.template( $(this.template).html(), results  );
         this.$el.html(template);
 
@@ -69,17 +69,17 @@ var ResultsView = Backbone.View.extend({
             gameId : this.model.get('gameId')
         };
 
-
-        var view = new PlayedGameView({ model: this.model, results: results });
-        view.render();
-        router.navigate('game/' + this.model.get('gameId') + '/results/screen', true);
-
+        if(this.model.get('gameId') === 1 ){
+            var view = new PlayedGameView({ model: this.model, results: results });
+            view.render();
+            router.navigate('game/' + this.model.get('gameId') + '/results/screen', true);
+        }
     },
 
     startNewGame: function () {
         Settings.set({results:[]});
         this.undelegateEvents();
-        this.unbind();
+        //this.unbind();
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId + '/play', {trigger: true});
 

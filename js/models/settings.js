@@ -280,5 +280,9 @@ var Settings = Backbone.Model.extend({
 
     }
 });
+
+
+
+
 //looks a bit ugly when scrolling but works.
 //window.onscroll = function () { window.scrollTo(0, 0); };

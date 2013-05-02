@@ -2,6 +2,10 @@ var KIM = Backbone.View.extend({
     el: $(' #content '),
     template: '#KIMTemplate',
 
+    initialize: function () {
+        $(".container").addClass('loading');
+    },
+
     render: function () {
 
         $('#header').empty().hide();
@@ -15,17 +19,23 @@ var KIM = Backbone.View.extend({
         var variables = {targets:targets,bluffs:allItems};
         var template = _.template( $(this.template).html(), variables ) ;
 
-        var timer = setTimeout(
-            function() {
-                $('.targets').addClass('hidden');
-                $('.allItems').removeClass('hidden');
-            },visible);
-
         this.$el.html(template);
+        var timer;
+
+        $("#content").imagesLoaded( function ( $images ){
+            console.log( $images.length + ' images have been loaded');
+            $(".container").removeClass('loading');
+            timer = setTimeout(
+                function() {
+                    $('.targets').addClass('hidden');
+                    $('.allItems').removeClass('hidden');
+                },visible);
+        });
 
         $('.quit').click( function() {
-            clearTimeout(timer)
+            window.clearTimeout(timer)
         });
+
 
         return this;
 
