@@ -41,13 +41,13 @@
     </script>
 
     <script id="KIMTemplate" type="text/template">
-        <div class="items targets">
+        <div class="items targets text-center">
             <% _.each(targets, function(targets) { %>
                 <img class="item" src="./pics/KIM/<%=targets%>.png">
             <% }); %>
         </div>
 
-        <div class="items allItems hidden">
+        <div class="items allItems hidden text-center">
             <% _.each(bluffs, function(bluffs) { %>
                 <img class="kim-item selectable" src="./pics/KIM/<%=bluffs%>.png">
             <% }); %>
@@ -343,39 +343,94 @@
                 <p><button class="hard btn btn-large bigger btn-block">Taso III</button></p>
             </div>
 
-            <div class="categories hidden">
-                <h3>Valitse etsittävien ryhmä:</h3>
-                <div  class="category-scroller">
-                    <div class="inner-img">
-                        <div class="fade-left"></div>
-                        <div class="fade-right"></div>
-                    <% _.each(categoryImg, function(categoryImg) { %>
-                        <img class="category" src="<%= categoryImg %>" />
-                    <% }); %>
+            <div id="categoryCarousel" class="carousel slide hidden">
 
+                <ol class="carousel-indicators">
+                    <li data-target="#categoryCarousel" data-slide-to="0"></li>
+                    <li data-target="#categoryCarousel" data-slide-to="1"></li>
+                    <li data-target="#categoryCarousel" data-slide-to="2"></li>
+                    <li data-target="#categoryCarousel" data-slide-to="3"></li>
+                </ol>
+
+                <div class="carousel-inner">
+                    <div class="item slide1">
+
+                            <div class="slide-borders text-center">
+                                <% _.each(slide1, function(slide1) { %>
+                                    <div class="clicker">&nbsp;</div> <img src="<%= slide1 %>" />
+                                <% }); %>
+
+                                <div class="cat-titles">
+
+                                    <% _.each(slide1Titles, function(slide1Titles) { %>
+                                    <div class="title-background"><h4><%= slide1Titles %></h4></div>
+                                    <% }); %>
+
+                                </div>
+
+                            </div>
                     </div>
-                </div>
-            </div>
+                    <div class="item slide2">
 
-            <div class="categories-text hidden">
-                <h3>Valitse etsittävien ryhmä:</h3>
-                <div class="category-scroller">
-                    <div class="inner-img-short">
-                        <div class="fade-left"></div>
-                        <div class="fade-right"></div>
-                        <% _.each(titleImg, function(titleImg) { %>
-                            <img class="text-category fixed-size" src="<%= titleImg %>" />
-                        <% }); %>
-                        <br/>
-                        <div class="category-titles">
-                            <% _.each(categories, function(categories) { %>
-                                <span class="category-title"><%= categories %></span>
+                        <div class="slide-borders text-center">
+                            <% _.each(slide2, function(slide2) { %>
+                            <div class="clicker">&nbsp;</div> <img src="<%= slide2 %>" />
                             <% }); %>
+
+                            <div class="cat-titles">
+
+                                <% _.each(slide2Titles, function(slide2Titles) { %>
+                                <div class="title-background"><h4><span><%= slide2Titles %></span></h4></div>
+                                <% }); %>
+
+                            </div>
                         </div>
 
                     </div>
+                    <div class="item slide3">
+
+                        <div class="slide-borders text-center">
+                            <% _.each(slide3, function(slide3) { %>
+                            <div class="clicker">&nbsp;</div> <img src="<%= slide3 %>" />
+                            <% }); %>
+
+                            <div class="cat-titles">
+
+                                <% _.each(slide3Titles, function(slide3Titles) { %>
+                                    <div class="title-background"><h4><span><%= slide3Titles %></span></h4></div>
+                                <% }); %>
+
+                            </div>
+                        </div>
+
+                        </div>
+                    <div class="item slide4">
+                        <div class="slide-borders text-center">
+                            <% _.each(slide4, function(slide4) { %>
+                            <div class="clicker">&nbsp;</div> <img src="<%= slide4 %>" />
+                            <% }); %>
+
+                            <div class="cat-titles">
+
+                                <% _.each(slide4Titles, function(slide4Titles) { %>
+                                    <div class="title-background"><h4><span><%= slide4Titles %></span></h4></div>
+                                <% }); %>
+
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
+
+                <a class="slider-control left" href="#categoryCarousel" data-slide="prev">&lsaquo;</a>
+                <a class="slider-control right" href="#categoryCarousel" data-slide="next">&rsaquo;</a>
+
             </div>
+
+
+
+
 
 
         </div>
@@ -431,6 +486,7 @@
     <script src="js/lib/fastclick.min.js"></script>
     <script src="js/lib/jquery.transit.min.js"></script>
     <script src="js/lib/jquery.imagesloaded.min.js"></script>
+    <script src="js/lib/jquery.touchSwipe.min.js"></script>
 
     <script src="js/helpers/helpers.js"></script>
     <script src="js/models/settings.js"></script>
