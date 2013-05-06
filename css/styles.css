@@ -10,7 +10,7 @@ html, body{
     display: none;
     height: 25%;
     background: rgba( 255, 255, 255, .9 )
-    url("/piiri-foramen/img/ajax-loader.gif")
+    url(../img/ajax-loader.gif)
     50% 60%
     no-repeat;
 }
