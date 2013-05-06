@@ -2,6 +2,10 @@ var TekstiviestiGameView = Backbone.View.extend({
     el: $( '#content' ),
     template: '#tekstiviestiGameTemplate',
 
+    initialize: function () {
+        $(".container").addClass('loading');
+    },
+
     render: function () {
         $('#header').empty().hide();
 
@@ -46,27 +50,34 @@ var TekstiviestiGameView = Backbone.View.extend({
         var myModel = this.model;
         var phoneTimer;
         var msgTimer;
-        phoneTimer = setTimeout(
-            function() {
 
-              $('.phone').transition({
-                    scale: 4.5
-                }, 2500, 'ease', function() {
-                    $('.textmessage').removeClass('hidden');
-                    msgTimer = setTimeout(
-                        function () {
-                            var view = new TekstiviestiAnswerView({ model: myModel, variables: variables });
-                            view.render();
-                        }, txtVisibleTime
-                    )
+        $("#content").imagesLoaded( function ( $images ){
+            console.log( $images.length + ' images have been loaded');
+            $(".container").removeClass('loading');
 
-                });
-            },4000); //time to wait before zoom in
+            phoneTimer = setTimeout(
+                function() {
+
+                    $('.phone').transition({
+                        scale: 4.5
+                    }, 2500, 'ease', function() {
+                        $('.textmessage').removeClass('hidden');
+                        msgTimer = setTimeout(
+                            function () {
+                                var view = new TekstiviestiAnswerView({ model: myModel, variables: variables });
+                                view.render();
+                            }, txtVisibleTime
+                        )
+
+                    });
+                },4000); //time to wait before zoom in
+        });
 
         $('.quit').click( function() {
             window.clearTimeout(phoneTimer);
             window.clearTimeout(msgTimer);
         });
+
         return this;
     },
 

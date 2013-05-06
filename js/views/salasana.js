@@ -133,7 +133,6 @@ var Salasana = Backbone.View.extend({
             var scrollerChecks = Settings.get('scrollerChecks');
 
             scrollerChecks++;
-            console.log(scrollerChecks);
             Settings.set({scrollerChecks:scrollerChecks});
             if(scrollerChecks > 5){
                 $('.guesses').transition({ y: '-=54' });

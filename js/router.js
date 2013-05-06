@@ -131,7 +131,6 @@ router.on('route:resultsView', function(id) {
 
 });
 router.on('route:playedGameView', function(id) {
-    $('#header').html('');
 
 });
 

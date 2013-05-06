@@ -2,11 +2,12 @@ var KuvaEtsinta = Backbone.View.extend({
     el: $("#content"),
     template: '#kuvaEtsintaTemplate',
 
+    initialize: function () {
+        $(".container").addClass('loading');
+    },
+
     render: function () {
         $('#header').hide();
-
-       	var startTime = new Date().getTime();
-        Settings.set({ startTime : startTime });
 
         if(Settings.get('difficulty') == 'easy'){
             var easyGame = this.renderEasyGame();
@@ -28,6 +29,13 @@ var KuvaEtsinta = Backbone.View.extend({
         for (i = 0; i < variables.randomSpots.length; i++) {
             $('.item-collection img:eq(' + variables.randomSpots[i] + ')').addClass('correct');
         }
+
+        $("#content").imagesLoaded( function ( $images ){
+           console.log( $images.length + ' images have been loaded');
+           $(".container").removeClass('loading');
+            var startTime = new Date().getTime();
+            Settings.set({ startTime : startTime });
+        });
 
         return this;
 

@@ -2,6 +2,13 @@ var PreGameView = Backbone.View.extend({
 	el: $( '#content' ),
 	template: '#preGameTemplate',
 
+    initialize: function () {
+        var gameId = this.model.get('gameId');
+        if(gameId === 1 || gameId === 3){
+            $(".container").addClass('loading');
+        }
+    },
+
 	render: function() {
 
         $('#header').show();
@@ -9,6 +16,8 @@ var PreGameView = Backbone.View.extend({
         var gameId = this.model.get('gameId');
 		if( gameId === 1 ){
             this.preload('kalat');
+        }else if ( gameId === 5){
+            this.preloadAud('elaimet');
         }else if ( gameId === 6){
             this.preload('KIM');
         }else if ( gameId === 9){
@@ -28,76 +37,82 @@ var PreGameView = Backbone.View.extend({
 
 		this.$el.html(template);
 
-        var category = Settings.get('category');
-        var textCat = Settings.get('textCategory');
         if( gameId === 1 ){
+            var category = Settings.get('category');
             $('.categories').removeClass('hidden');
+
+            if(category === 'dinosaurukset'){
+                $('.inner-img img:nth(0)').addClass('selected');
+                this.preload('dinosaurukset');
+            }else if(category === 'elaimet'){
+                this.preload('elaimet');
+                $('.inner-img img:nth(1)').addClass('selected');
+            }else if(category === 'hedelmat'){
+                this.preload('hedelmat');
+                $('.inner-img img:nth(2)').addClass('selected');
+            }else if(category === 'kalat'){
+                this.preload('kalat');
+                $('.inner-img img:nth(3)').addClass('selected');
+            }else if(category === 'kansallispuvut'){
+                this.preload('kansallispuvut');
+                $('.inner-img img:nth(4)').addClass('selected');
+            }else if(category === 'kasvit'){
+                this.preload('kasvit');
+                $('.inner-img img:nth(5)').addClass('selected');
+            }else if(category === 'linnut'){
+                this.preload('linnut');
+                $('.inner-img img:nth(6)').addClass('selected');
+            }else if(category === 'liput'){
+                this.preload('liput');
+                $('.inner-img img:nth(7)').addClass('selected');
+            }else if(category === 'soittimet'){
+                this.preload('soittimet');
+                $('.inner-img img:nth(8)').addClass('selected');
+            }else if(category === 'tyokalut'){
+                this.preload('tyokalut');
+                $('.inner-img img:nth(9)').addClass('selected');
+            }else if(category === 'urheiluvalineet'){
+                this.preload('urheiluvalineet');
+                $('.inner-img img:nth(10)').addClass('selected');
+            }
         }else if ( gameId === 3){
+            var textCat = Settings.get('textCategory');
             $('.categories-text').removeClass('hidden');
 
+            if(textCat === 'eläimet'){
+                $('.inner-img-short img:nth(0)').addClass('selected')
+            }else if(textCat === 'ammatit'){
+                $('.inner-img-short img:nth(1)').addClass('selected')
+            }else if(textCat === 'kasvit'){
+                $('.inner-img-short img:nth(2)').addClass('selected')
+            }else if(textCat === 'kaupungit'){
+                $('.inner-img-short img:nth(3)').addClass('selected')
+            }else if(textCat === 'miesten nimet'){
+                $('.inner-img-short img:nth(4)').addClass('selected')
+            }else if(textCat === 'naisten nimet'){
+                $('.inner-img-short img:nth(5)').addClass('selected')
+            }else if(textCat === 'sisustus'){
+                $('.inner-img-short img:nth(6)').addClass('selected')
+            }else if(textCat === 'soittimet'){
+                $('.inner-img-short img:nth(7)').addClass('selected')
+            }else if(textCat === 'työkalut'){
+                $('.inner-img-short img:nth(8)').addClass('selected')
+            }else if(textCat === 'urheilu'){
+                $('.inner-img-short img:nth(9)').addClass('selected')
+            }else if(textCat === 'valtiot'){
+                $('.inner-img-short img:nth(10)').addClass('selected')
+            }
+
         }
 
 
-        if(textCat === 'eläimet'){
-            $('.inner-img-short img:nth(0)').addClass('selected')
-        }else if(textCat === 'ammatit'){
-            $('.inner-img-short img:nth(1)').addClass('selected')
-        }else if(textCat === 'kasvit'){
-            $('.inner-img-short img:nth(2)').addClass('selected')
-        }else if(textCat === 'kaupungit'){
-            $('.inner-img-short img:nth(3)').addClass('selected')
-        }else if(textCat === 'miesten nimet'){
-            $('.inner-img-short img:nth(4)').addClass('selected')
-        }else if(textCat === 'naisten nimet'){
-            $('.inner-img-short img:nth(5)').addClass('selected')
-        }else if(textCat === 'sisustus'){
-            $('.inner-img-short img:nth(6)').addClass('selected')
-        }else if(textCat === 'soittimet'){
-            $('.inner-img-short img:nth(7)').addClass('selected')
-        }else if(textCat === 'työkalut'){
-            $('.inner-img-short img:nth(8)').addClass('selected')
-        }else if(textCat === 'urheilu'){
-            $('.inner-img-short img:nth(9)').addClass('selected')
-        }else if(textCat === 'valtiot'){
-            $('.inner-img-short img:nth(10)').addClass('selected')
-        }
-        //todo scroll to specific item
+        $("#content").imagesLoaded( function ( $images ){
+                console.log( $images.length + ' images have been loaded');
+                $(".container").removeClass('loading');
+        });
 
 
-        if(category === 'dinosaurukset'){
-            $('.inner-img img:nth(0)').addClass('selected');
-            this.preload('dinosaurukset');
-        }else if(category === 'elaimet'){
-            this.preload('elaimet');
-            $('.inner-img img:nth(1)').addClass('selected');
-        }else if(category === 'hedelmat'){
-            this.preload('hedelmat');
-            $('.inner-img img:nth(2)').addClass('selected');
-        }else if(category === 'kalat'){
-            this.preload('kalat');
-            $('.inner-img img:nth(3)').addClass('selected');
-        }else if(category === 'kansallispuvut'){
-            this.preload('kansallispuvut');
-            $('.inner-img img:nth(4)').addClass('selected');
-        }else if(category === 'kasvit'){
-            this.preload('kasvit');
-            $('.inner-img img:nth(5)').addClass('selected');
-        }else if(category === 'linnut'){
-            this.preload('linnut');
-            $('.inner-img img:nth(6)').addClass('selected');
-        }else if(category === 'liput'){
-            this.preload('liput');
-            $('.inner-img img:nth(7)').addClass('selected');
-        }else if(category === 'soittimet'){
-            this.preload('soittimet');
-            $('.inner-img img:nth(8)').addClass('selected');
-        }else if(category === 'tyokalut'){
-            this.preload('tyokalut');
-            $('.inner-img img:nth(9)').addClass('selected');
-        }else if(category === 'urheiluvalineet'){
-            this.preload('urheiluvalineet');
-            $('.inner-img img:nth(10)').addClass('selected');
-        }
+
 
         var diff = Settings.get('difficulty');
         if(diff === 'easy'){
@@ -144,7 +159,6 @@ var PreGameView = Backbone.View.extend({
     },
 
     easySelected: function() {
-
         $('.easy').addClass('btn-success');
         $('.medium').removeClass('btn-warning');
         $('.hard').removeClass('btn-danger');
@@ -153,7 +167,6 @@ var PreGameView = Backbone.View.extend({
     },
 
     mediumSelected: function() {
-
         $('.medium').addClass('btn-warning');
         $('.easy').removeClass('btn-success');
         $('.hard').removeClass('btn-danger');
@@ -205,6 +218,26 @@ var PreGameView = Backbone.View.extend({
         $(preload).preload();
         //console.log(preload + ' preloaded')
     },
+
+    preloadAud: function (category) {
+        var category = category;
+        var audio;
+        var elaimet = ['ahma','ahven','hevonen','hilleri','ilves','kaarme','karhu','kirva','kissa','korppi','kyy',
+                       'lammas','lehma','mato','mayra','rotta','sammakko','sarki','susi','tiikeri'];
+
+        for (var i=0; i<elaimet.length; i++){
+            audio = './sounds/audio/' + category + '/' + elaimet[i] + '.mp3';
+            this.loadAudio(audio)
+        }
+    },
+
+    loadAudio: function (uri) {
+        var audio = new Audio();
+        audio.addEventListener('canplaythrough', false);
+        audio.src = uri;
+        return audio;
+    },
+
 
 	setModel: function(model) {
 		this.model = model;
