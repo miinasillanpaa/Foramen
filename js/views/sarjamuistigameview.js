@@ -35,7 +35,7 @@ var Sarjamuisti = Backbone.View.extend({
                 $('.finish').removeAttr("disabled");
                 $('.ser-check').removeAttr("disabled");
                 var rand = Math.floor(Math.random() * arrLength);
-                $('.box:eq(' + rand + ')').addClass('active').removeClass('available');
+                $('.box:eq(' + rand + ')').addClass('actived').removeClass('available');
             },time);
 
 
@@ -72,10 +72,10 @@ var Sarjamuisti = Backbone.View.extend({
 
     numberPicked: function () {
         var target = event.target.innerHTML;
-        $('.active').html(target);
-        $('.active').addClass('answered');
-        $('.active').removeClass('black');
-        $('.box').removeClass('active');
+        $('.actived').html(target);
+        $('.actived').addClass('answered');
+        $('.actived').removeClass('black');
+        $('.box').removeClass('actived');
         this.nextRandom();
     },
 
@@ -91,7 +91,7 @@ var Sarjamuisti = Backbone.View.extend({
             });
 
             var num = Math.floor(Math.random() * availableArr.length);
-            $('.available:eq(' + availableArr[num] + ')').addClass('active').removeClass('available');
+            $('.available:eq(' + availableArr[num] + ')').addClass('actived').removeClass('available');
 
         }
     },

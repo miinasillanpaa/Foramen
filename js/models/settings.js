@@ -38,18 +38,18 @@ var Settings = Backbone.Model.extend({
         stringCorrects:0,
 
         categoryImg: [
-            './pics/dinosaurukset/1.png',
-            './pics/elaimet/1.png',
-            './pics/hedelmat/1.png',
-            './pics/kalat/1.png',
-            './pics/kansallispuvut/1.png',
-            './pics/kasvit/1.png',
-            './pics/linnut/1.png',
-            './pics/liput/1.png',
-            './pics/soittimet/1.png',
-            './pics/tyokalut/1.png',
-            './pics/urheiluvalineet/1.png'
-        ],
+                './pics/dinosaurukset/1.png',
+                './pics/elaimet/1.png',
+                './pics/hedelmat/1.png' ,
+                './pics/kalat/1.png',
+                './pics/kansallispuvut/1.png',
+                './pics/kasvit/1.png' ,
+                './pics/linnut/1.png',
+                './pics/liput/1.png',
+                './pics/soittimet/1.png' ,
+                './pics/tyokalut/1.png',
+                './pics/urheiluvalineet/1.png'
+            ],
 
         categories: {
             'titles' :      [   "ELÄIMET","AMMATIT","KASVIT","KAUPUNGIT","MIESTEN NIMET","NAISTEN NIMET",

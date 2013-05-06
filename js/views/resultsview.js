@@ -35,8 +35,8 @@ var ResultsView = Backbone.View.extend({
             myView.undelegateEvents();
 
         });
-
-        $('#content').css('overflow-y','scroll');
+        $('#content').css('padding-bottom','50px');
+        $('#content').css('overflow-y','auto');
 
         return this;
     },

@@ -19,9 +19,8 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
                 function () {
                     self.changeDistract(distractions,changes);
                     changes++;
-                    if(changes === 18){ //todo change to 18
+                    if(changes === 18){
                         window.clearInterval(interval);
-                        //todo answeview
                         $('.distractions').hide();
                         $('.input-container').removeClass('hidden');
                         $('.input_0').focus();
@@ -48,7 +47,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         }
 
         var timer;
-        if(sounds.length === 2){
+        if( sounds.length === 2 ){
 
             document.getElementById("audio_0").addEventListener('ended', function(){
                 this.pause();

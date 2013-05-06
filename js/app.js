@@ -134,7 +134,14 @@ function getDateTime() {
     return {'pvm': dd+'/'+mm+'/'+yyyy, 'klo': h+':'+m}
 }
 
-
+Array.prototype.chunk = function(chunkSize) {
+    var array=this;
+    return [].concat.apply([],
+        array.map(function(elem,i) {
+            return i%chunkSize ? [] : [array.slice(i,i+chunkSize)];
+        })
+    );
+};
 
 /*window.onscroll = function() {
     document.body.scrollTop = 0;
