@@ -7,7 +7,7 @@ var KIM = Backbone.View.extend({
     },
 
     render: function () {
-
+        console.log('kim render');
         $('#header').empty().hide();
 
         var visible = this.itemsLength()*4000;
@@ -46,8 +46,10 @@ var KIM = Backbone.View.extend({
         'click .finish' : 'checkCorrects',
         'click .quit' : 'quitGame'
     },
+
     quitGame: function () {
         this.undelegateEvents();
+        Settings.set({'playThruNum' : 0});
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId, true);
     },
@@ -192,7 +194,7 @@ var KIM = Backbone.View.extend({
 
         var that = this;
         if ((correct === targets.length && wrong === 0) || (playthruNum === 10)) {
-            this.undelegateEvents();
+
 
             var date = getDateTime();
             var pvm = date.pvm;
@@ -295,6 +297,8 @@ var KIM = Backbone.View.extend({
 
                 ]
             };
+            Settings.set({ 'playThruNum' : 0 });
+            this.undelegateEvents();
             var view = new ResultsView({model:this.model, results: results});
             view.render();
             router.navigate('game/' +this.model.get('gameId') + '/results', true)

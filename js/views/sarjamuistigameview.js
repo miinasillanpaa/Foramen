@@ -3,7 +3,6 @@ var Sarjamuisti = Backbone.View.extend({
     template: '#sarjamuistiTemplate',
 
     render: function () {
-        console.log('sarjamuistigame');
         $('#header').empty().hide();
 
         var choices = [0,1,2,3,4,5,6,7,8,9];
@@ -64,6 +63,8 @@ var Sarjamuisti = Backbone.View.extend({
     quitGame: function () {
         this.undelegateEvents();
         Settings.set({ 'playThruNum' : 0 });
+        Settings.set({ 'correctSeries' : 0 });
+        Settings.set({ 'wrongSeries' : 0 });
         Settings.set({ 'results' : [] });
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId, true);
@@ -82,7 +83,6 @@ var Sarjamuisti = Backbone.View.extend({
     nextRandom: function () {
         var availableBoxes = $('.available').length;
         var availableArr = [];
-        //todo: nyt se lähtee ekan randomin jälkeen aina vasemmalta oikealle
         if(availableBoxes === 0){
             $('.finish').addClass('btn-success');
         }else{
@@ -104,7 +104,9 @@ var Sarjamuisti = Backbone.View.extend({
     finish: function () {
         this.undelegateEvents();
         var playThruNum = Settings.get('playThruNum');
-
+        var correctSeries = Settings.get('correctSeries');
+        var wrongSeries = Settings.get('wrongSeries');
+        var view;
 
         function answerCheck () {
             var nums = $('.box').length;
@@ -125,49 +127,21 @@ var Sarjamuisti = Backbone.View.extend({
 
             var wrong = nums - right;
             if(wrong === 0){
-                var correctSeries = (Settings.get('correctSeries'))+1;
+                correctSeries = (Settings.get('correctSeries'))+1;
                 Settings.set({'correctSeries':correctSeries });
-                console.log(correctSeries);
             }else{
-                var wrongSeries = (Settings.get('wrongSeries'))+1;
-                Settings.set({'wrongSeries':wrongSeries})
+                wrongSeries = (Settings.get('wrongSeries'))+1;
+                Settings.set({'wrongSeries':wrongSeries});
             }
-
             Settings.set({ 'playThruNum' : playThruNum+1 });
         }
 
 
-        if (Settings.get('playThruNum') === 0) {
-
-            var correctSeries = 0;
-            var wrongSeries = 0;
-            Settings.set({'correctSeries':correctSeries });
-            Settings.set({'wrongSeries':wrongSeries});
+        if (Settings.get('playThruNum') !== 4) {
 
             answerCheck();
 
-            var view = new Sarjamuisti({model:this.model});
-            view.render();
-
-        }else if (Settings.get('playThruNum') === 1) {
-
-            answerCheck();
-
-            var view = new Sarjamuisti({model:this.model});
-            view.render();
-
-        }else if (Settings.get('playThruNum') === 2) {
-
-            answerCheck();
-
-            var view = new Sarjamuisti({model:this.model});
-            view.render();
-
-        }else if (Settings.get('playThruNum') === 3) {
-
-            answerCheck();
-
-            var view = new Sarjamuisti({model:this.model});
+            view = new Sarjamuisti({model:this.model});
             view.render();
 
 
@@ -185,8 +159,6 @@ var Sarjamuisti = Backbone.View.extend({
             }
 
             var seriesTot = 5;
-            var correctSeries = Settings.get('correctSeries');
-            var wrongSeries = Settings.get('wrongSeries');
 
             //time & date
             var today = new Date();
@@ -230,9 +202,11 @@ var Sarjamuisti = Backbone.View.extend({
             };
 
             var gameId = this.model.get('gameId');
+            Settings.set({ 'playThruNum'   : 0 });
+            Settings.set({ 'correctSeries' : 0 });
+            Settings.set({ 'wrongSeries'   : 0 });
             this.undelegateEvents();
-            Settings.set({ 'playThruNum' : 0 });
-            var view = new ResultsView({ model: this.model, results: results });
+            view = new ResultsView({ model: this.model, results: results });
             view.render();
             router.navigate('game/' + this.model.get('gameId') + '/results', true);
 

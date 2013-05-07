@@ -79,7 +79,7 @@ var ResultsView = Backbone.View.extend({
     startNewGame: function () {
         Settings.set({results:[]});
         this.undelegateEvents();
-        //this.unbind();
+        this.unbind();
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId + '/play', {trigger: true});
 

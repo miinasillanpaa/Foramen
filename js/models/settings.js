@@ -28,7 +28,8 @@ var Settings = Backbone.Model.extend({
         checks:0,
         scrollerChecks:0,
 
-        //commonly used
+        correctSeries: 0,
+        wrongSeries: 0,
         playThruNum: 0,
         results: [],
 
