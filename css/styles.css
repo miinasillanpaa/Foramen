@@ -334,7 +334,7 @@ img.phone{
     width:0;
 }
 
-.textmessage.left:after{
+.txt-left:after{
     top:85px; /* controls vertical position */
     left:-30px; /* value = - border-left-width - border-right-width */
     bottom:auto;
