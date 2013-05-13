@@ -16,6 +16,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <!-- TODO: test -->
+    <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+    <script src="http://vjs.zencdn.net/c/video.js"></script>
+
     <!-- styles -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -309,9 +313,16 @@
 
     <script id="videoTemplate" type="text/template">
 
-        <!--<iframe class="center" width="853" height="480" src="http://www.youtube.com/embed/ZKs0OZM0M9?rel=0&vq=hd720" frameborder="0"></iframe>-->
-        <!--<div id="iframe-placeholder"></div>-->
-        <iframe class="center" width="1120" height="630" src="http://www.youtube.com/embed/ZKs0OZM0M9k?rel=0&vq=hd720&autohide=1&amp;showinfo=0" frameborder="0"></iframe>
+        <!--
+        <video id="my_video_1" class="video-js vjs-default-skin" controls
+                   preload="auto" width="640" height="264"
+                   data-setup="{}">
+                <source src="video/small.mp4" type='video/mp4'>
+        </video>
+        -->
+
+        <iframe class="center" width="1120" height="630" src="<%= video %>?rel=0&vq=hd720&autohide=1&amp;showinfo=0" frameborder="0"></iframe>
+
     </script>
 
     <script id="gameTemplate" type="text/template">
@@ -429,10 +440,6 @@
             </div>
 
 
-
-
-
-
         </div>
         <div class="clearfix"></div>
         <div class="pregame-options">
@@ -452,7 +459,11 @@
     <script id="backHeaderTmpl" type="text/template">
         <h2><%= title %></h2>
         <button class="btn btn-large back-root"><i class="icon-home"></i> Alkuun</button>
+    </script>
 
+    <script id="historyBackTmpl" type="text/template">
+        <h2><%= title %></h2>
+        <button class="btn btn-large back-history"><i class="icon-chevron-left"></i> Takaisin</button>
     </script>
 
     <!-- templates end -->

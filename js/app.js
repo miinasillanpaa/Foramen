@@ -12,10 +12,13 @@ var games = [
                     "<p>Väärän valinnan voit poistaa koskettamalla kohdekuvaa uudestaan.</p>" +
                     '<p>Tehtävän suoritettuasi paina tehtäväruudun alareunassa näkyvää "Valmis"-näppäintä.</p>' +
                     '<p>Tehtävä voidaan keskeyttää "Lopeta"-nappulasta.</p>',
-        "video" : "video/small.mp4",
+        "video" : "http://www.youtube.com/embed/gHgCxuSLfSw",
         "coverImage" : "./img/fish.png"
     },
+   /* "video" : "http://www.youtube.com/embed/ZKs0OZM0M9k",
+    <iframe width="640" height="480" src="http://www.youtube.com/embed/gHgCxuSLfSw" frameborder="0" allowfullscreen></iframe> */
 	{
+
         "gameId": 2,
         "title" : "Tekstiviesti",
         "guide" :   "<p>Ruudulle ilmestyy matkapuhelimen kuva. Merkkiäänen jälkeen puhelimen ruudulle ilmestyy tekstiviesti. Tehtävänä on painaa mieleen tekstiviesti.</p>" +
@@ -28,7 +31,8 @@ var games = [
         "title" : "Sanojen tunnistaminen",
         "guide" :   "<p>Ruudulla näkyy liikkuva kirjainrivi, jonka keskellä on punaisella merkitty kohdealue.</p>" +
                     '<p>Tehtävänä on havaita kohdealueella perusmuodossa oleva substantiivi (nimisana), esimerkiksi "kissa".</p>'+
-                    "<p>Valinta osoitetaan painamalla kohdealueen alapuolella olevaa painiketta.</p>",
+                    "<p>Valinta osoitetaan painamalla kohdealueen alapuolella olevaa Bingo-painiketta.</p>"+
+                    "<p>Tehtävä kestää neljä minuuttia. Voit kuitenkin keskeyttää tehtävän Lopeta-painikkeella.</p>",
         'coverImage': './img/sanat.png'
     },
 	{
@@ -59,7 +63,7 @@ var games = [
         "gameId": 7,
         "title" : "Päättele salasana",
         "guide" : "<p>Kuvaruudulla näkyy tyhjä tekstikenttä. Tehtävänä on päätellä koneen valitsema salasana, joka on perusmuodossa oleva substantiivi eli nimisana.</p>"+
-                  "<p>Kenttään kirjoitetaan mikä tahansa määritellyn pituinen sana ja painetaan Valmis-painiketta.</p>"+
+                  "<p>Aloita tehtävä painamalla sormella tekstikenttään, jolloin näppäimistö tulee näkyviin. Kenttään kirjoitetaan mikä tahansa määritellyn pituinen sana ja painetaan Valmis-painiketta.</p>"+
                   "<p>Kone kirjoittaa sanan ruudulle ja ilmoittaa kuinka monta sanan kirjaimista on oikeita ja oikealla paikalla (musta ympyrä) ja kuinka monta sanan kirjaimista on oikeita, mutta väärällä paikalla (valkoinen ympyrä).</p>"+
                   "<p>Yritä päätellä salasana koneen antamien vihjeiden avulla.</p>",
         "coverImage" : "./img/password.png"

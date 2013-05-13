@@ -66,7 +66,7 @@ router.on('route:videoView', function(id) {
     var view = new VideoView({ model: gameObj });
     view.render();
 
-    var hview = new HeaderView({id:2,gameObj:gameObj});
+    var hview = new HeaderView({id:3,gameObj:gameObj});
     hview.render();
 
 });

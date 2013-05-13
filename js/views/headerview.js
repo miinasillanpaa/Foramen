@@ -4,6 +4,7 @@ var HeaderView = Backbone.View.extend({
 
     template0: '#mainHeaderTmpl',
     template1: '#backHeaderTmpl',
+    template2: '#historyBackTmpl',
 
 
     initialize: function () {
@@ -12,16 +13,23 @@ var HeaderView = Backbone.View.extend({
 
     render: function () {
         var template;
+        var variables;
+        console.log(this.id);
         if(parseInt(this.id) === 0){
 
             template = _.template( $(this.template0).html());
             this.$el.html(template);
             return this;
 
+        }else if(parseInt(this.id) === 3){
+            variables  = { title: this.options.gameObj.attributes.title };
+            template = _.template( $(this.template2).html(), variables);
+            this.$el.html(template);
+            return this;
 
         }else{
-            var variables  = { title: this.options.gameObj.attributes.title };
 
+            variables  = { title: this.options.gameObj.attributes.title };
             template = _.template( $(this.template1).html(), variables);
             this.$el.html(template);
             return this;
