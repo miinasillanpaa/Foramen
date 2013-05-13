@@ -240,7 +240,7 @@ hr{
     margin-top:5px;
 }
 
-.backToService, .back-root{
+.backToService, .back-root, .back-history{
     position: absolute;
     top:1.2%;
     right:6%;
@@ -459,7 +459,7 @@ img.phone{
 }
 
 .hint{
-    margin-left:120px;
+    margin-left:31%;
     margin-top:150px;
 }
 
