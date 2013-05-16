@@ -342,6 +342,12 @@ img.phone{
     border-color:transparent #e8e8e8;
 }
 
+.options-area{
+    height: 600px;
+    overflow-y: scroll;
+}
+
+
 .q-button{
     padding: 20px;
     font-size: 1.6em;
@@ -417,10 +423,6 @@ img.phone{
 
 /* sanojen tunnistaminen */
 
-/*@font-face {
-    font-family: 'courier-new';
-    src: url(../fonts/Courier_Bold.ttf);
-}*/
 
 @font-face{
     font-family: 'courier-new';
