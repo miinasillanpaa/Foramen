@@ -262,7 +262,6 @@ var PreGameView = Backbone.View.extend({
     },
 
     hardSelected: function() {
-
         $('.hard').addClass('btn-danger');
         $('.easy').removeClass('btn-success');
         $('.medium').removeClass('btn-warning');

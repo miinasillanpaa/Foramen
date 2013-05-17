@@ -34,13 +34,16 @@ var TekstiviestiGameView = Backbone.View.extend({
             myMsg = this.message5();
         }
 
-
-        var variables = { message : myMsg.message, questions : myMsg.questions,
-                          senders : myMsg.senders, receivers : myMsg.receivers,
-                          places : myMsg.places, times : myMsg.times,
-                          items : myMsg.items,
-                          corrects : myMsg.corrects,
-                          correctStrings : myMsg.correctStrings };
+        var variables = {
+            message         : myMsg.message,
+            questions       : myMsg.questions,
+            senders         : myMsg.senders,
+            receivers       : myMsg.receivers,
+            places          : myMsg.places,
+            times           : myMsg.times,
+            items           : myMsg.items,
+            corrects        : myMsg.corrects,
+            correctStrings  : myMsg.correctStrings };
 
         var template = _.template( $(this.template).html(), variables );
         this.$el.html(template);
@@ -140,17 +143,15 @@ var TekstiviestiGameView = Backbone.View.extend({
 
        var message = "Hei " + randReceiver + "! Tavataan "+randTime+" "+randPlace+". Muista ottaa mukaan "+randItem+", jonka lainasin veljellesi! "+randSender;
 
-       return {  message:message,
-                 questions: questions,
-                 receivers : receivers,
-                 senders : senders,
-                 times : times,
-                 items: items,
-                 places : places,
-                 corrects : corrects,
-                 correctStrings : correctStrings
-
-       }
+       return {  message        : message,
+                 questions      : questions,
+                 receivers      : receivers,
+                 senders        : senders,
+                 times          : times,
+                 items          : items,
+                 places         : places,
+                 corrects       : corrects,
+                 correctStrings : correctStrings }
     },
 
     message2: function () {
@@ -198,16 +199,15 @@ var TekstiviestiGameView = Backbone.View.extend({
 
         var message = "Moro " + randReceiver + "! Nähdään "+randPlace+" "+randTime+". Älä unohda ottaa mukaan minulta lainaamaasi "+randItem+". "+randSender;
 
-        return {  message:message,
-            questions: questions,
-            receivers : receivers,
-            senders : senders,
-            times : times,
-            items: items,
-            places : places,
-            corrects : corrects,
-            correctStrings : correctStrings
-        }
+        return {    message         : message,
+                    questions       : questions,
+                    receivers       : receivers,
+                    senders         : senders,
+                    times           : times,
+                    items           : items,
+                    places          : places,
+                    corrects        : corrects,
+                    correctStrings  : correctStrings }
     },
 
     message3: function () {
@@ -255,15 +255,15 @@ var TekstiviestiGameView = Backbone.View.extend({
 
         var message = "Tervehdys " + randReceiver + "! Olemme junassa tulossa mökillesi. Juna on myöhässä 15 minuuttia. Tavataan "+randPlace+" asemalla noin "+randTime+". Otimme mukaan "+randItem+". "+randSender;
 
-        return {  message:message,
-            questions: questions,
-            receivers : receivers,
-            senders : senders,
-            times : times,
-            items: items,
-            places : places,
-            corrects : corrects,
-            correctStrings : correctStrings
+        return {    message         : message,
+                    questions       : questions,
+                    receivers       : receivers,
+                    senders         : senders,
+                    times           : times,
+                    items           : items,
+                    places          : places,
+                    corrects        : corrects,
+                    correctStrings  : correctStrings
         }
     },
 
@@ -313,16 +313,15 @@ var TekstiviestiGameView = Backbone.View.extend({
 
         var message = randReceiver + "-kulta! Kiva kun tulet mummolaan lomalle! Haemme ukin kanssa sinut "+randPlace+" "+randTime+". Muista "+randItem+". "+randSender+ "-mummi";
 
-        return {  message:message,
-            questions: questions,
-            receivers : receivers,
-            senders : senders,
-            times : times,
-            items: items,
-            places : places,
-            corrects : corrects,
-            correctStrings : correctStrings
-        }
+        return {    message         : message,
+                    questions       : questions,
+                    receivers       : receivers,
+                    senders         : senders,
+                    times           : times,
+                    items           : items,
+                    places          : places,
+                    corrects        : corrects,
+                    correctStrings  : correctStrings }
     },
 
     message5: function () {
@@ -368,15 +367,14 @@ var TekstiviestiGameView = Backbone.View.extend({
 
         var message = randReceiver + "! Joudumme sopimaan uuden kokousajan. Uusi aika on "+randTime+". Paikka on entinen "+randPlace+". Ota mukaan "+randItem+". "+randSender;
 
-        return {  message:message,
-            questions: questions,
-            receivers : receivers,
-            senders : senders,
-            times : times,
-            items: items,
-            places : places,
-            corrects : corrects,
-            correctStrings : correctStrings
-        }
+        return {    message         : message,
+                    questions       : questions,
+                    receivers       : receivers,
+                    senders         : senders,
+                    times           : times,
+                    items           : items,
+                    places          : places,
+                    corrects        : corrects,
+                    correctStrings  : correctStrings }
     }
 });

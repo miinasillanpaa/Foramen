@@ -312,8 +312,8 @@ img.phone{
     text-align: left;
     position: absolute;
     top: 40px;
-    left: 11%; /*140px*/
-    width: 74%; /*950px*/
+    left: 10.9375%; /* 140 / 1280 */
+    width: 74.21875%; /* 950 / 1280 */
     font-size:5em;
     line-height: 1;
     background-color: #e8e8e8;
@@ -328,8 +328,7 @@ img.phone{
     left:50px; /* controls horizontal position */
     border-width:25px 25px 0; /* vary these values to change the angle of the vertex */
     border-style:solid;
-    border-color:#e8e8e8 transparent;
-    /* reduce the damage in FF3.0 */
+    border-color:#e8e8e8 transparent; /* reduce the damage in FF3.0 */
     display:block;
     width:0;
 }
