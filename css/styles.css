@@ -766,3 +766,159 @@ a:hover{
 .slide4 .clicker:first-child{
     margin-left: 133px;
 }
+
+
+/* Sudoku */
+
+.sudoku-wrapper {
+  margin: 20px auto 0px auto;
+  display: table;
+  table-layout: fixed;
+}
+
+.sudoku-grid {
+  float: left;
+  text-align: center;
+  display: table;
+  table-layout: fixed;
+}
+
+.sudoku-grid-row {
+  height: 42px;
+}
+
+.sudoku-grid-row-divider {
+  height: 21px;
+}
+
+.sudoku-grid-cell {
+  float: left;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #cccccc;
+  font-size: 35px;
+  font-weight: bold;
+  line-height: 40px;
+}
+
+.sudoku-grid-cell-given {
+  background-color: #e5e5e5;
+}
+
+.sudoku-grid-cell-hint {
+  background-color: #aaffaa;
+}
+
+.sudoku-grid-cell-corrected {
+  background-color: #8888ff;
+}
+
+.sudoku-grid-cell-conflict {
+  background-color: #ffaaaa;
+}
+
+.sudoku-grid-cell-selectable {
+  cursor: pointer;
+}
+
+.sudoku-grid-cell-selectable:hover {
+  background-color: #ffffaa;
+}
+
+.sudoku-grid-cell-selected {
+  border: 1px solid #ff0000;
+}
+
+.sudoku-wrapper-symbol-type-image .sudoku-grid-cell-given .sudoku-grid-cell-content,
+.sudoku-wrapper-symbol-type-image .sudoku-grid-cell-hint .sudoku-grid-cell-content,
+.sudoku-wrapper-symbol-type-image .sudoku-grid-cell-corrected .sudoku-grid-cell-content,
+.sudoku-wrapper-symbol-type-image .sudoku-grid-cell-conflict .sudoku-grid-cell-content {
+  padding: 5px;
+}
+
+.sudoku-grid-cell-image {
+  max-width: 40px;
+  max-height: 40px;
+  display: block;
+}
+
+.sudoku-wrapper-symbol-type-image .sudoku-grid-cell-given .sudoku-grid-cell-image,
+.sudoku-wrapper-symbol-type-image .sudoku-grid-cell-hint .sudoku-grid-cell-image,
+.sudoku-wrapper-symbol-type-image .sudoku-grid-cell-corrected .sudoku-grid-cell-image,
+.sudoku-wrapper-symbol-type-image .sudoku-grid-cell-conflict .sudoku-grid-cell-image {
+  max-width: 30px;
+  max-height: 30px;
+}
+
+.sudoku-grid-cell-divider {
+  float: left;
+  width: 21px;
+  height: 40px;
+}
+
+.sudoku-toolbar {
+  float: left;
+  margin-left: 35px;
+  text-align: center;
+}
+
+.sudoku-toolbar-cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #cccccc;
+  font-size: 35px;
+  font-weight: bold;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+.sudoku-toolbar-cell-image {
+  max-width: 40px;
+  max-height: 40px;
+  display: block;
+}
+
+.sudoku-actions {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.sudoku-action-hint {
+  display: none;
+}
+
+
+/* Ristinolla */
+
+.fiar-grid {
+  margin: 20px auto 0px auto;
+  text-align: center;
+  display: table;
+  table-layout: fixed;
+}
+
+.fiar-grid-row {
+  height: 32px;
+}
+
+.fiar-grid-cell {
+  float: left;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #cccccc;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 30px;
+}
+
+.fiar-grid-cell-selectable {
+  cursor: pointer;
+}
+
+.fiar-grid-cell-selectable:hover {
+  background-color: #ffffaa;
+}
+
+.fiar-grid-cell-winning {
+  background-color: #aaffaa;
+}

@@ -246,6 +246,70 @@
 
     </script>
 
+
+    <script id="sudokuTemplate" type="text/template">
+
+        <div class="sudoku-wrapper sudoku-wrapper-symbol-type-<%= symbols.type %>">
+            <div class="sudoku-grid">
+                <% _.times(grid.numberOfRows, function(rowIndex) { %>
+                    <div class="sudoku-grid-row">
+                        <% _.times(grid.numberOfCols, function(colIndex) { %>
+                            <div id="sudokuGridCell_<%= rowIndex * grid.numberOfCols + colIndex %>" class="sudoku-grid-cell" data-index="<%= rowIndex * grid.numberOfCols + colIndex %>">
+                                <div class="sudoku-grid-cell-content"></div>
+                            </div>
+                            <% if( colIndex < grid.numberOfCols - 1 && ( colIndex + 1 ) % grid.numberOfBlockCols == 0 ) { %>
+                                <div class="sudoku-grid-cell-divider"></div>
+                            <% } %>
+                        <% }); %>
+                    </div>
+                    <% if( rowIndex < grid.numberOfRows - 1 && ( rowIndex + 1 ) % grid.numberOfBlockRows == 0 ) { %>
+                        <div class="sudoku-grid-row-divider"></div>
+                    <% } %>
+                <% }); %>
+            </div>
+            <div class="sudoku-toolbar">
+                <% _.each(symbols.gridSymbols, function(symbol) { %>
+                    <div id="sudokuToolbarCell_<%= symbol.index %>" class="sudoku-toolbar-cell" data-index="<%= symbol.index %>" data-number="<%= symbol.number %>">
+                        <% if( symbols.type == "number" ) { %>
+                            <div class="sudoku-toolbar-cell-content"><%= symbol.number %></div>
+                        <% } else if( symbols.type == "image" ) { %>
+                            <div class="sudoku-toolbar-cell-content">
+                                <img src="./pics/<%= symbols.imageCategory %>/<%= symbol.number %>.png" class="sudoku-toolbar-cell-image" alt="" />
+                            </div>
+                        <% } %>
+                    </div>
+                <% }); %>
+                <div id="sudokuToolbarCell_<%= symbols.eraserSymbol.index %>" class="sudoku-toolbar-cell" data-index="<%= symbols.eraserSymbol.index %>" data-number="<%= symbols.eraserSymbol.number %>">X</div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="sudoku-actions">
+                <button class="btn btn-large sudoku-action-hint">Vihje</button>
+            </div>
+        </div>
+        
+        <button class="btn btn-large bottom-right bigger reset hidden">Uudestaan</button>
+        <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
+
+    </script>
+
+    <script id="ristinollaTemplate" type="text/template">
+
+        <div class="fiar-grid">
+            <% _.each(rows, function(row) { %>
+                <div class="fiar-grid-row">
+                    <% _.each(row.cells, function(cell) { %>
+                        <div id="fiarGridCell_<%= cell.row %>_<%= cell.col %>" class="fiar-grid-cell fiar-grid-cell-selectable" data-row="<%= cell.row %>" data-col="<%= cell.col %>"></div>
+                    <% }); %>
+                </div>
+            <% }); %>
+        </div>
+        
+        <button class="btn btn-large bottom-right bigger reset hidden">Uudestaan</button>
+        <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
+
+    </script>
+
+
     <script id="resultsViewTemplate" type="text/template">
 
 
@@ -518,6 +582,8 @@
     <script src="js/views/salasana.js"></script>
     <script src="js/views/KIM.js"></script>
     <script src="js/views/audinterf.js"></script>
+    <script src="js/views/sudoku.js"></script>
+    <script src="js/views/ristinolla.js"></script>
 
     <script src="js/app.js"></script>
     <script src="js/router.js"></script>
