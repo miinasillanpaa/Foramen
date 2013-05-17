@@ -113,10 +113,21 @@ router.on('route:play', function(id) {
         App.currentGameView = view7;
         view7.render();
 
+    }else if( parseInt(id) === 8){
+        var view8 = new Sudoku({ model:gameObj });
+        App.currentGameView = view8;
+        view8.render();
+
     }else if( parseInt(id) === 9){
         var view9 = new Konstruointi({ model:gameObj });
         App.currentGameView = view9;
         view9.render();
+
+    }else if( parseInt(id) === 10){
+        var view10 = new Ristinolla({ model:gameObj });
+        App.currentGameView = view10;
+        view10.render();
+
     }else{
         $('#content').html('Nothing here yet!');
     }
