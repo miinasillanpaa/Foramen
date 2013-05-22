@@ -1,4 +1,7 @@
 html, body{
+    position: absolute;
+    top:0;
+    left:0;
     overflow: hidden;
     margin:0;
     padding:0;
@@ -117,6 +120,8 @@ html, body{
 }
 
 .guide  {
+    overflow-y: scroll;
+    height: 624px;
     margin:0;
     padding:0;
 }
@@ -256,6 +261,11 @@ hr{
     position: absolute;
     right: 40px;
     bottom: 20px;
+}
+
+.tight{
+    line-height: 0.8;
+    margin-bottom:-5px;
 }
 
 .bigger{
@@ -434,6 +444,15 @@ img.phone{
     font-style: normal;
 }
 
+.timer{
+    padding-top:5px;
+    height: 70px;
+}
+.clock{
+    position:absolute;
+    top:100px;
+    left:460px;
+}
 .scroller{
     white-space: nowrap;
     font-family: courier-new;
@@ -472,7 +491,7 @@ img.phone{
 
 .hint{
     margin-left:31%;
-    margin-top:150px;
+    margin-top:100px;
 }
 
 /* KONSTRUOINTI */
@@ -540,7 +559,7 @@ img.phone{
 /* PÄÄTTELE SALANA */
 
 .myForm{
-    margin-top:170px;
+    margin-top:80px;
 }
  .serial-input{
     width: 225px;
@@ -561,6 +580,8 @@ img.phone{
     color:red;
 }
 
+
+
 .guesses{
     padding-top: 5px;
     font-size: 3em;
@@ -577,8 +598,27 @@ img.phone{
     letter-spacing: 0.2em;
 }
 .pw-hint{
+    height: 41px;
     font-size: 2em;
 }
+.pw-hint span{
+    line-height: 1.5;
+}
+
+.dot-hint{
+    font-size: 22px;
+    height: 25px;
+    padding-left:5px;
+    margin-bottom:5px;
+}
+
+span.bullet{
+    text-align: center;
+    font-size: 40px;
+    float: left;
+    width: 40px;
+}
+
 
 /* KIM  */
 
@@ -922,4 +962,10 @@ a:hover{
 
 .fiar-grid-cell-winning {
   background-color: #aaffaa;
+}
+
+.dark{
+    height: 3px;
+    color: #515151;
+    background-color: #515151;
 }

@@ -15,10 +15,10 @@ var Sarjamuisti = Backbone.View.extend({
             arrLength = 3;
             time = arrLength*timePerNum;
         }else if(Settings.get('difficulty') == 'medium'){
-            arrLength = 5;
+            arrLength = 4;
             time = arrLength*timePerNum;
         }else{
-            arrLength = 7;
+            arrLength = 5;
             time = arrLength*timePerNum;
         }
 
@@ -62,10 +62,10 @@ var Sarjamuisti = Backbone.View.extend({
 
     quitGame: function () {
         this.undelegateEvents();
-        Settings.set({ 'playThruNum' : 0 });
-        Settings.set({ 'correctSeries' : 0 });
-        Settings.set({ 'wrongSeries' : 0 });
-        Settings.set({ 'results' : [] });
+        Settings.set({ 'playThruNum'    : 0  });
+        Settings.set({ 'correctSeries'  : 0  });
+        Settings.set({ 'wrongSeries'    : 0  });
+        Settings.set({ 'results'        : [] });
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId, true);
 
@@ -153,9 +153,9 @@ var Sarjamuisti = Backbone.View.extend({
             if(Settings.get('difficulty') === 'easy' ){
                 seriesLength = 3;
             }else if(Settings.get('difficulty') === 'medium'){
-                seriesLength = 5;
+                seriesLength = 4;
             }else{
-                seriesLength = 7;
+                seriesLength = 5;
             }
 
             var seriesTot = 5;
@@ -210,13 +210,7 @@ var Sarjamuisti = Backbone.View.extend({
             view.render();
             router.navigate('game/' + this.model.get('gameId') + '/results', true);
 
-
-
         }
-
-
-
-
     }
 
 });

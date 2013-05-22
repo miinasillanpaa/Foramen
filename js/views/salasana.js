@@ -106,7 +106,7 @@ var Salasana = Backbone.View.extend({
         var difficulty = Settings.get('difficulty');
         var guess = $('.serial-input').val().toUpperCase();
         $('.serial-input').focus();
-        $('.myForm span').text('');
+
 
         var serial = Settings.get('serial');
 
@@ -123,9 +123,9 @@ var Salasana = Backbone.View.extend({
         }
 
         if(guess.length !== serial.length){
-            $('.myForm span').text('Tarkista arvauksen pituus');
+            $('.pw-hint span').text('Tarkista arvauksen pituus');
         }else{
-
+            $('.pw-hint span').text('Kirjoita päättelemäsi salasana');
             var checks = Settings.get('checks');
             checks++;
             Settings.set({checks:checks});

@@ -4,21 +4,39 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
     render: function () {
         $('#header').empty().hide();
-        console.log('sanojen tunnistus');
-
 
         var myView = this;
         var gameId = this.model.get('gameId');
-        var exerciseTime = 1000*60*4;
+        var exerciseTime = 1000*60*4+2000;
         var moveTime;
 
         var diff = Settings.get('difficulty');
         if( diff === 'easy' ){
             moveTime = 1500;
         }else if( diff === 'medium' ){
-            moveTime = 1000;
+            moveTime = 1001;
         }else{
             moveTime = 500;
+        }
+
+
+
+        var timeLeft = 240; // 4min
+        var timerId = setInterval(countdown, 1000);
+        var totMin, totSec;
+
+        function countdown() {
+            if (timeLeft == 0){
+                window.clearInterval(timerId);
+            }else{
+
+                $('.knob').val(timeLeft).trigger("change");
+
+                totMin = Math.floor(timeLeft/60);
+                totSec = Math.floor(timeLeft-(totMin*60));
+                $('.clock').html(totMin + " minuuttia " + totSec + " sekuntia jäljellä");
+                timeLeft--;
+            }
         }
 
         var mover = setInterval(this.scrollText, moveTime);
@@ -29,10 +47,11 @@ var SanojenTunnistaminen = Backbone.View.extend({
         var textString = Settings.get('textString');
 
         var startPos = textString.length - 17;
-        Settings.set({startPos : startPos });
+        Settings.set({ startPos : startPos });
 
         var timer = setTimeout(
             function () {
+                window.clearInterval(timerId);
                 window.clearInterval(mover);
                 var amount = Settings.get('targetAmount');
                 var corrects = Settings.get('scrollerResults').corrects;
@@ -96,8 +115,15 @@ var SanojenTunnistaminen = Backbone.View.extend({
         $('.quit').click(function() {
            window.clearTimeout(timer);
            window.clearInterval(mover);
+           window.clearInterval(timerId);
         });
+        $('.knob').knob({
+            change : function (value) {
+            },
+            "min":0,
+            "max":240
 
+        });
         return this;
 
     },
@@ -255,9 +281,9 @@ var SanojenTunnistaminen = Backbone.View.extend({
     },
 
     getSelectorText: function () {
-
-        var items = Settings.get('categories').Settings.get('textCategory');
-
+        var category = Settings.get('textCategory');
+        var items = Settings.get('categories')[category];
+        console.log(items);
         var selectorPresses = Settings.get('scrollerResults').selectorPresses;
         selectorPresses++;
 

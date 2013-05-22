@@ -60,6 +60,7 @@ var PreGameView = Backbone.View.extend({
 
         if( gameId === 1 ){
             $('.clicker').hide();
+            $('.categoryTitle').removeClass('hidden');
             $("#categoryCarousel").removeClass('hidden');
             var category = Settings.get('category');
 
@@ -117,6 +118,7 @@ var PreGameView = Backbone.View.extend({
         }else if ( gameId === 3){
             var textCat = Settings.get('textCategory');
             $("#categoryCarousel").removeClass('hidden');
+            $('.wordsTitle').removeClass('hidden');
             console.log(textCat);
             $('.item img').addClass('text-category');
 

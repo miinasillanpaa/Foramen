@@ -30,9 +30,9 @@
     <script id="audInterTemplate" type="text/template">
         <div class="distractions">
             <div class="text-center horizontal-center image hidden">
-                <h3>Paina Bingo! kun näet eläimen</h3>
+                <h3>Paina Löytyi! kun näet eläimen</h3>
                 <img src="" />
-                <button class="btn btn-primary bigger check">BINGO!</button>
+                <button class="btn btn-primary bigger check">Löytyi!</button>
             </div>
         </div>
         <div class="sounds hidden"></div>
@@ -63,11 +63,19 @@
     <script id="salasanaTemplate" type="text/template">
         <div class="span5 guesses"></div>
 
+
         <div class="span6 myForm">
-                <p class="pw-hint">Kirjoita päättelemäsi salasana</p>
+
+                <p class="dot-hint"><span class="bullet"> &bull; </span>= oikea kirjain, oikealla paikalla</p>
+                <p class="dot-hint"><span class="bullet"> &#9702; </span>= oikea kirjain, väärällä paikalla</p>
+
+                <p class="pw-hint">
+                    <span>Kirjoita päättelemäsi salasana</span>
+                </p>
+
                 <input class="serial-input input-large" type="text" placeholder="Paina tähän" />
                 <button class="btn bigger submit">Valmis</button>
-                <span class="text-danger help-block"></span>
+
         </div>
         <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
     </script>
@@ -134,13 +142,15 @@
     </script>
 
     <script id="sanojenTunnistaminenTemplate" type="text/template">
+        <div class="timer text-center">
+            <input class="knob" data-width="100" data-fgColor="#095aa5" data-displayInput=true value="240">
+        </div>
+        <div class="clock bigger text-center">4 minuuttia 0 sekuntia jäljellä</div>
         <h2 class="hint">Etsit ryhmän: <span class="text-success"> <%= textCategory %> </span> sanoja</h2>
         <div class="selector"> </div>
-        <div class="scroller">
-            <%= text %>
+        <div class="scroller"> <%= text %> </div>
 
-        </div>
-        <button class="btn btn-primary bigger onTarget">BINGO!</button>
+        <button class="btn btn-primary bigger onTarget">Löytyi!</button>
         <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
     </script>
 
@@ -235,7 +245,7 @@
                 <img class="selectable" src=" <%= myArr.itemPic %> " />
             <% }); %>
         </div>
-
+        <hr class="dark"/>
         <div class="text-center">
             <% _.each(targetPic, function(targetPic) { %>
                 <img class="target" src="<%= targetPic.targetPic %>" />
@@ -414,8 +424,9 @@
                 <p><button class="hard btn btn-large bigger btn-block">Taso III</button></p>
             </div>
 
+            <h3 class="categoryTitle tight hidden">Valitse tästä tehtävän kuva-aihe:</h3>
+            <h3 class="wordsTitle tight hidden">Valitse tästä tehtävän sana-aihe:</h3>
             <div id="categoryCarousel" class="carousel slide hidden">
-
                 <ol class="carousel-indicators">
                     <li data-target="#categoryCarousel" data-slide-to="0"></li>
                     <li data-target="#categoryCarousel" data-slide-to="1"></li>
@@ -503,7 +514,7 @@
         </div>
         <div class="clearfix"></div>
         <div class="pregame-options">
-        <button class="btn btn-large btn-primary pull-right bigger" id="play-game">Aloita</button>
+        <button class="btn btn-large btn-success pull-right bigger" id="play-game">Aloita</button>
         <h4 class="pull-right spacer">Tai</h4>
         <button class="btn btn-large pull-right bigger preview">Katso esimerkkisuoritus</button>
         </div>
@@ -558,6 +569,7 @@
     <script src="js/lib/jquery.transit.min.js"></script>
     <script src="js/lib/jquery.imagesloaded.min.js"></script>
     <script src="js/lib/jquery.touchSwipe.min.js"></script>
+    <script src="js/lib/jquery.knob.js"></script>
 
     <script src="js/helpers/helpers.js"></script>
     <script src="js/models/settings.js"></script>

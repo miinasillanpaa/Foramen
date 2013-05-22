@@ -6,59 +6,65 @@ var App = {
 var games = [
 	{
         "gameId"     : 1,
-        "title"      : "Kuvaetsintä",
-        "guide"      : "<p>Ruutu on täynnä esineitä ja asioita esittäviä kuvia.</p>" +
-                       "<p>Tehtävänä on etsiä kohdekuvat (näkyvissä tehtäväruudun alalaidassa) mahdollisimman nopeasti koskettamalla kutakin kohdekuvaa.</p>" +
-                       "<p>Väärän valinnan voit poistaa koskettamalla kohdekuvaa uudestaan.</p>" +
-                       '<p>Tehtävän suoritettuasi paina tehtäväruudun alareunassa näkyvää "Valmis"-näppäintä.</p>' +
-                       '<p>Tehtävä voidaan keskeyttää "Lopeta"-nappulasta.</p>',
+        "title"      : "Etsi kuvat",
+        "guide"      : "<p>Ruudulla näkyy kuvia. Ruudun alalaidassa näkyy etsittävät kohdekuvat.</p>" +
+                       "<p>Tehtävänä on etsiä samanlaisia kuvia kuin kohdekuva tai kohdekuvat koskettamalla niitä mahdollisimman nopeasti.</p>" +
+                       "<p>Väärän valinnan voit poistaa koskettamalla kuvaa uudestaan..</p>" +
+                       '<p>Näet tuloksesi painamalla "Valmis".</p>' +
+                       '<p>Tehtävä voidaan keskeyttää painamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/tEkZSAo9OIg",
         "coverImage" : "./img/fish.png"
     },
 	{
 
         "gameId"     : 2,
-        "title"      : "Tekstiviesti",
-        "guide"      : "<p>Ruudulle ilmestyy matkapuhelimen kuva. Merkkiäänen jälkeen puhelimen ruudulle ilmestyy tekstiviesti. Tehtävänä on painaa mieleen tekstiviesti.</p>" +
-                       "<p>Mieleenpainamisen jälkeen näytetään joukko kysymyksiä ja niiden vastausvaihtoehtoja. Kunkin kysymyksen vastausvaihtoehdot näytetään kun kysymys on aktiivisena. Vastaa kysymykseen koskettamalla vastausta.</p>" +
-                       '<p>Vastaamisen jälkeen paina "Tarkista"-näppäintä, jolloin oikeat vastaukset näytetään vihreällä ja väärät punaisella.</p>',
+        "title"      : "Muista viesti",
+        "guide"      : "<p>Ruudulla näkyy matkapuhelimen kuva. Merkkiäänen jälkeen ilmestyy tekstiviesti. Tehtävänä on painaa tekstiviesti mieleen.</p>" +
+                       "<p>Mieleenpainamisen jälkeen näytetään joukko kysymyksiä ja niiden vastausvaihtoehtoja.</p>" +
+                       '<p>Vastausvaihtoehdot tulevat näkyviin, kun painat kysymystä.</p>'+
+                       '<p>Vastaa kysymykseen koskettamalla vastausta.</p>'+
+                       '<p>Paina "Tarkista", jolloin oikeat vastaukset näytetään vihreällä ja väärät punaisella.</p>'+
+                       '<p>Tehtävä voidaan keskeyttää painamalla "Lopeta".</p>',
         "video"     :  "http://www.youtube.com/embed/7htCYIcrVoo",
         "coverImage" : "./img/txt.png"
     },
 	{
         "gameId"     : 3,
-        "title"      : "Sanojen tunnistaminen",
-        "guide"      : "<p>Ruudulla näkyy liikkuva kirjainrivi, jonka keskellä on punaisella merkitty kohdealue.</p>" +
-                       '<p>Tehtävänä on havaita kohdealueella perusmuodossa oleva substantiivi (nimisana), esimerkiksi "kissa".</p>'+
-                       "<p>Valinta osoitetaan painamalla kohdealueen alapuolella olevaa Bingo-painiketta.</p>"+
-                       "<p>Tehtävä kestää neljä minuuttia. Voit kuitenkin keskeyttää tehtävän Lopeta-painikkeella.</p>",
+        "title"      : "Tunnista sanat",
+        "guide"      : "<p>Ruudulla näkyy liikkuva kirjainrivi, jonka keskellä on punaisella merkitty alue.</p>" +
+                       '<p>Tehtävänä on havaita punaisella alueella perusmuodossa oleva substantiivi (nimisana), esimerkiksi "kissa".</p>'+
+                       "<p>Valinta osoitetaan painamalla alueen alapuolella olevaa Löytyi-painiketta.</p>"+
+                       "<p>Tehtävä kestää neljä minuuttia. Voit kuitenkin keskeyttää tehtävän painamalla “Lopeta”.</p>",
         "video"      : "http://www.youtube.com/embed/UlYAon9pjoY",
         'coverImage' : './img/sanat.png'
     },
 	{
         "gameId"     : 4,
-        "title"      : "Visuaalinen sarjamuisti",
-        "guide"      : "<p>Ruudulle ilmestyy samanaikaisesti sarja numeroita. Tehtävänä on painaa sarja mieleen.</p>"+
-                       "<p>Kun sarja on esitetty, numerot peitetään mustilla neliöillä. Mieleenpalautettavan numeron paikka on merkitty punaisella kehyksellä.</p>"+
-                       "<p>Alhaalla näkyvät numero 0-9, joista valitaan sarjaan kyseinen numero. Sama toistetaan jokaisen mustan neliön kohdalla.</p>",
+        "title"      : "Muista näkemäsi numerosarja",
+        "guide"      : "<p>Ruudulla näkyy numerosarja. Tehtävänä on painaa se mieleen.</p>"+
+                       "<p>Kun sarja on esitetty, numerot peitetään mustilla neliöillä. Kulloinkin mieleenpalautettavan numeron paikka on merkitty punaisella kehyksellä. Alarivillä näkyvät numero 0-9. Vastaa koskettamalla alarivin kyseistä numeroa. Sama toistetaan jokaisen mustan neliön kohdalla.</p>"+
+                       "<p>Paina “Tarkista”, jolloin näet oikeat vastaukset.</p>"+
+                       '<p>Muistettavia numerosarjoja tulee viisi peräkkäin. Voit kuitenkin keskeyttää tehtävän painamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/JAyMd0IEPxE",
         "coverImage" : "./img/vis.png"
     },
 	{
         "gameId"     : 5,
-        "title"      : "Audatiivinen interferenssi",
+        "title"      : "Muista kuulemasi sanat",
         "guide"      : "<p>Kovaäänisistä kuuluu sarja sanoja. Tehtävänä on painaa sarja mieleen.</p>"+
-                       "<p>Tämän jälkeen ruudulle ilmestyy häirintätehtävä. Tehtävänä on painaa Bingo-näppäintä, kun ruudulle ilmestyy eläin.</p>"+
-                       "<p>Häirintätehtävän jälkeen mieleenpainettu sarja kirjoitetaan ruudukkoon vapaassa järjestyksessä. Kun koko sarja on kirjoitettu painetaan Valmis-näppäintä, jolloin näkyviin tulee oikeiden vastauksien määrä.</p>",
+                       "<p>Tämän jälkeen ruudulle ilmestyy häirintätehtävä. Tehtävänä on painaa Löytyi-näppäintä, kun ruudulle ilmestyy eläin.</p>"+
+                       "<p>Häirintätehtävän jälkeen mieleenpainettu sarja kirjoitetaan ruudukkoon vapaassa järjestyksessä.</p>"+
+                       '<p>Kun koko sarja on kirjoitettu paina "Valmis", jolloin näkyviin tulee oikeiden vastauksien määrä.</p>'+
+                       '<p>Tehtävä voidaan keskeyttää painamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/BztSh8D8il0",
         'coverImage' : './img/aud.png'
     },
 	{
         "gameId"     : 6,
-        "title"      : "KIM-yhdistelmä",
-        "guide"      : "<p>Ruudulla näkyy esineiden kuvia. Tehtävänä on painaa kuvat mieleen.</p>"+
-                       "<p>Mieleenpainamisen jälkeen ruudulle ilmestyy aiemmin esitetyt kuvat ja joukko muita kuvia. Tehtävänä on tunnistaa aiemmin esitetyt kuvat. Tunnistaminen osoitetaan koskettamalla kuvaa.</p>"+
-                       "<p>Kun tehtävä on suoritettu painetaan Valmis-nappulaa, jonka jälkeen kone näyttää oikeat vastaukset vihreällä ja puuttuvat oranssilla. Jos kaikki kuvat muistettiin peli loppuu. Jos kaikkia ei muistettu peliä jatketaan kunnes kaikki muistetaan tai korkeintaan kymmenen kierrosta.</p>",
+        "title"      : "Muista näkemäsi esineet",
+        "guide"      : "<p>Ruudulla näkyy esineiden kuvia. Tehtävänä on oppia tunnistamaan nämä muiden joukosta.</p>"+
+                       "<p>Mieleenpainamisen jälkeen ruudulle ilmestyy aiemmin esitetyt kuvat ja joukko muita kuvia. Tehtävänä on tunnistaa aiemmin esitetyt kuvat. Tunnistaminen osoitetaan koskettamalla kuvaa</p>"+
+                       '<p>Paina “Valmis”, jonka jälkeen kone näyttää oikeat vastaukset vihreällä ja puuttuvat oranssilla. Jos muistit kaikki kuvat tehtävä loppuu. Mikäli et muistanut kaikkia, tehtävä jatkuu kunnes muistat kaikki tai korkeintaan kymmenen kierrosta.</p>',
         "video"      : "http://www.youtube.com/embed/_HGOhJ1S-gM",
         "coverImage" : "./img/kim.png"
     },
@@ -66,29 +72,43 @@ var games = [
         "gameId"     : 7,
         "title"      : "Päättele salasana",
         "guide"      : "<p>Kuvaruudulla näkyy tyhjä tekstikenttä. Tehtävänä on päätellä koneen valitsema salasana, joka on perusmuodossa oleva substantiivi eli nimisana.</p>"+
-                       "<p>Aloita tehtävä painamalla sormella tekstikenttään, jolloin näppäimistö tulee näkyviin. Kenttään kirjoitetaan mikä tahansa määritellyn pituinen sana ja painetaan Valmis-painiketta.</p>"+
+                       '<p>Aloita tehtävä painamalla sormella tekstikenttään, jolloin näppäimistö tulee näkyviin. Kenttään kirjoitetaan mikä tahansa määritellyn pituinen sana ja painetaan "Valmis".</p>'+
                        "<p>Kone kirjoittaa sanan ruudulle ja ilmoittaa kuinka monta sanan kirjaimista on oikeita ja oikealla paikalla (musta ympyrä) ja kuinka monta sanan kirjaimista on oikeita, mutta väärällä paikalla (valkoinen ympyrä).</p>"+
-                       "<p>Yritä päätellä salasana koneen antamien vihjeiden avulla.</p>",
+                       "<p>Yritä päätellä salasana koneen antamien vihjeiden avulla.</p>"+
+                       '<p>Tehtävä voidaan keskeyttää painamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/IrgFSCQJT3A",
         "coverImage" : "./img/password.png"
     },
 	{
         "gameId"     : 8,
         "title"      : "Sudoku-tehtävät",
+        "guide"      : '<p>Kuvaruudulla näkyy 6x6 -pääruudukko, <br/>joista jokainen ruutu on jaettu edelleen 3x2 -pienruudukkoon.</p>'+
+                       '<p>Tehtävänä on täyttää ruudukon vapaat paikat numeroitta 1-6 siten, että kukin numero voi esiintyä vain kerran jokaisessa pääruudukon pysty- ja vaakarivissä sekä jokaisessa pienruudukossa.</p>'+
+                       '<p>Osa ruuduista on valmiiksi täytetty, eikä niitä voi valita. Valmiiksi täytetyt ruudut on osoitettu harmaalla pohjavärillä.</p>'+
+                       '<p>Ruudukon täyttäminen tapahtuu siten, että haluttua tyhjää ruutua painetaan sormella, joilloin sen ympärille muodstuu punainen kehä. Sivulla olevasta valikosta valitaan koskettamalla haluttu numero.</p>'+
+                       '<p>Kone merkitsee automaattisesti punaisella pohjavärillä, jos ruutu on täytetty sääntöjen vastaisesti.</p>'+
+                       '<p>Tehtävä voidaan keskeyttää painamalla "Lopeta".</p>'+
+                       '<p>Jokeri-tehtävä on normaali 9x9 Sudoku.</p>',
         'coverImage' : "./img/sudoku.png"
     },
 	{
         "gameId"     : 9,
-        "title"      : "Konstruointi",
+        "title"      : "Rakenna kuvio mallista",
         "guide"      : "<p>Ruudulla näkyy kaksi neliön muotoista aluetta. Vasemmanpuoleinen neliö on mallikuvio, joka on koottu alareunassa olevista pienistä neliöistä.</p>"+
                        "<p>Tehtävänä on koota oikeanpuolimmainen neliö mallikuvion mukaiseksi.</p>"+
-                       "<p>Kokoaminen tapahtuu koskettamalla ensin ruudun alareunassa näkyvää pientä neliötä ja sen jälkeen vastaavaa kohtaa koottavassa ruudukossa.</p>",
+                       "<p>Kokoaminen tapahtuu koskettamalla ensin ruudun alareunassa näkyvää pientä neliötä ja sen jälkeen vastaavaa kohtaa koottavassa ruudukossa</p>"+
+                       '<p>Paina “Valmis”. Mikäli kuviossa on virheellisiä tai puuttuvia osia näkyvät ne punaisella X:lla. merkittynä.</p>'+
+                       '<p>Tehtävä voidaan keskeyttää painamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/bBLbo0fK0OU",
         "coverImage" : "./img/konstruointi.png"
     },
 	{
         "gameId"     : 10,
-        "title"      : "Ristinolla",
+        "title"      : "Jätkänshakki",
+        "guide"      : "<p>Kuvaruudulla näkyy tyhjä ruudukko.<br/>Tehtävässä kone pelaa ihmistä vastaan.</p>"+
+                       '<p>Ruudukkoon asetetaan vuorotellen "risti" ja "nolla" (kone asettaa nollan, ihminen ristin). Tavoitteena on saada viisi peräkkäistä ristiä tai nollaa pysty-, vaaka tai vinoruudukkoon.</p>'+
+                       "<p>Valinta osoitetaan koskettamalla haluttua ruutua.</p>"+
+                       '<p>Tehtävä voidaan keskeyttää painamalla "Lopeta" </p>',
         "coverImage" : "./img/ristinolla.png"
     }
 ];
