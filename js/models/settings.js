@@ -4,8 +4,8 @@ var Settings = Backbone.Model.extend({
 		authToken: null,
 		returnUrl: 'https://pienipiiri.fi/mobile/?userId=',
 		difficulty: 'easy',
-        category: 'kalat',
-        textCategory: 'eläimet',
+    category: 'kalat',
+    textCategory: 'eläimet',
 		backendUrl: 'https://pienipiiri.fi',
 
         //Tekstiviesti exercise specific
@@ -277,9 +277,24 @@ var Settings = Backbone.Model.extend({
                 "VOIDE","VOIMA","VUODE","VUOKA","VUONO","VUORI","VUORO","VUOTA","VYÖRY","VÄITE","VÄLKE","VÄYLÄ","YHTIÖ",
                 "YKSIÖ","YNINÄ","YRTTI","ÄÄNNE"
             ]
-        }
-
-    }
+        },
+    
+    
+    sudokuCategory: "numerot",
+    
+    sudokuCategories: {
+      "titles": [ "NUMEROT", "HEDELMÄT" ],
+      "titleImg": [ "./pics/hedelmat/1.png", "./pics/hedelmat/1.png" ]
+    },
+    
+    
+    fiarNumberOfGamesBeforeResults: 3,
+    
+    fiarNumberOfGridRows: 15,
+    fiarNumberOfGridCols: 20
+    
+  }
+  
 });
 
 

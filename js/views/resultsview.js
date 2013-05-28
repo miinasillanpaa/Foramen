@@ -13,8 +13,10 @@ var ResultsView = Backbone.View.extend({
             difficulty = 'Taso I';
         }else if( this.options.results.difficulty == 'medium' ){
             difficulty = 'Taso II';
-        }else{
+        }else if( this.options.results.difficulty == 'hard' ){
             difficulty = 'Taso III';
+        }else if( this.options.results.difficulty == 'joker' ){
+            difficulty = 'Jokeri';
         }
 
         var  results = {
@@ -55,8 +57,10 @@ var ResultsView = Backbone.View.extend({
             difficulty = 'Helppo';
         }else if( this.options.results.difficulty == 'medium' ){
             difficulty = 'Keskivaikea';
-        }else{
+        }else if( this.options.results.difficulty == 'hard' ){
             difficulty = 'Vaikea';
+        }else if( this.options.results.difficulty == 'joker' ){
+            difficulty = 'Jokeri';
         }
 
         var  results = {
@@ -69,7 +73,7 @@ var ResultsView = Backbone.View.extend({
             gameId : this.model.get('gameId')
         };
 
-        if(this.model.get('gameId') === 1 ){
+        if( this.model.get('gameId') === 1 || this.model.get('gameId') === 8 || this.model.get('gameId') === 10 ){
             var view = new PlayedGameView({ model: this.model, results: results });
             view.render();
             router.navigate('game/' + this.model.get('gameId') + '/results/screen', true);

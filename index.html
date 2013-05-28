@@ -258,7 +258,9 @@
 
 
     <script id="sudokuTemplate" type="text/template">
-
+        
+        <audio id="sudokuInvalidMoveSoundFX" src="sounds/iphone-sms.mp3" type="audio/mpeg"></audio>
+        
         <div class="sudoku-wrapper sudoku-wrapper-symbol-type-<%= symbols.type %>">
             <div class="sudoku-grid">
                 <% _.times(grid.numberOfRows, function(rowIndex) { %>
@@ -297,13 +299,13 @@
             </div>
         </div>
         
-        <button class="btn btn-large bottom-right bigger reset hidden">Uudestaan</button>
+        <button class="btn btn-large bottom-right bigger finish hidden">Tuloksiin</button>
         <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
-
+        
     </script>
 
     <script id="ristinollaTemplate" type="text/template">
-
+        
         <div class="fiar-grid">
             <% _.each(rows, function(row) { %>
                 <div class="fiar-grid-row">
@@ -314,9 +316,10 @@
             <% }); %>
         </div>
         
-        <button class="btn btn-large bottom-right bigger reset hidden">Uudestaan</button>
+        <button class="btn btn-large bottom-right bigger finish hidden">Tuloksiin</button>
+        <button class="btn btn-large bottom-right bigger reset hidden">Jatka</button>
         <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
-
+        
     </script>
 
 
@@ -422,6 +425,9 @@
                 <p><button class="easy btn btn-large bigger btn-block">Taso I</button></p>
                 <p><button class="medium btn btn-large bigger btn-block">Taso II</button></p>
                 <p><button class="hard btn btn-large bigger btn-block">Taso III</button></p>
+                <% if( showJoker ) { %>
+                    <p><button class="joker btn btn-large bigger btn-block">Jokeri</button></p>
+                <% } %>
             </div>
 
             <h3 class="categoryTitle tight hidden">Valitse tästä tehtävän kuva-aihe:</h3>

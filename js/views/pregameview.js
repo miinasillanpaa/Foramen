@@ -4,7 +4,7 @@ var PreGameView = Backbone.View.extend({
 
     initialize: function () {
         var gameId = this.model.get('gameId');
-        if(gameId === 1 || gameId === 3){
+        if(gameId === 1 || gameId === 3 || gameId === 8){
             $(".container").addClass('loading');
         }
     },
@@ -14,9 +14,10 @@ var PreGameView = Backbone.View.extend({
         $('#header').show();
         var split = [];
         var txtSplit = [];
+        var showJoker = false;
 
         var gameId = this.model.get('gameId');
-		if( gameId === 1 ){
+        if( gameId === 1 ){
             this.preload('kalat');
             var categoryImg = Settings.get('categoryImg');
             split = categoryImg.chunk(3);
@@ -31,6 +32,13 @@ var PreGameView = Backbone.View.extend({
             this.preloadAud('elaimet');
         }else if ( gameId === 6){
             this.preload('KIM');
+        }else if ( gameId === 8){
+            this.preload('hedelmat');
+            var catImg = Settings.get('sudokuCategories').titleImg;
+            var catTitle = Settings.get('sudokuCategories').titles;
+            split = catImg.chunk(3);
+            txtSplit = catTitle.chunk(3);
+            showJoker = true;
         }else if ( gameId === 9){
             this.preload('konstruktio');
         }
@@ -40,6 +48,7 @@ var PreGameView = Backbone.View.extend({
 		var variables = {title: this.model.get('title'),
                          guide: this.model.get('guide'),
                          difficulty: Settings.get('difficulty'),
+                         showJoker: showJoker,
                          categoryImg: Settings.get('categoryImg'),
                          slide1: split[0],
                          slide1Titles: txtSplit[0],
@@ -115,7 +124,7 @@ var PreGameView = Backbone.View.extend({
                 $('.carousel-inner .item:nth(3)').addClass('active');
             }
 
-        }else if ( gameId === 3){
+        }else if ( gameId === 3 ){
             var textCat = Settings.get('textCategory');
             $("#categoryCarousel").removeClass('hidden');
             $('.wordsTitle').removeClass('hidden');
@@ -168,6 +177,26 @@ var PreGameView = Backbone.View.extend({
                 $('.carousel-inner .item:nth(3)').addClass('active');
             }
 
+        }else if ( gameId === 8 ){
+            
+            var textCat = Settings.get('sudokuCategory');
+            $("#categoryCarousel").removeClass('hidden');
+            console.log(textCat);
+            $('.item img').addClass('text-category');
+            
+            if(textCat === 'numerot'){
+                $('img:nth(0)').addClass('selected');
+                $('ol.carousel-indicators li:nth(0)').addClass('active');
+                $('.carousel-inner .item:nth(0)').addClass('active');
+            }else if(textCat === 'hedelmät'){
+                $('img:nth(1)').addClass('selected');
+                $('ol.carousel-indicators li:nth(0)').addClass('active');
+                $('.carousel-inner .item:nth(0)').addClass('active');
+            }
+            
+            $("#categoryCarousel .carousel-indicators li:gt(0)").remove();
+            $("#categoryCarousel .carousel-inner .item:gt(0)").remove();
+            
         }
 
         $("#categoryCarousel").carousel('pause');
@@ -181,13 +210,12 @@ var PreGameView = Backbone.View.extend({
             }
         });
 
-
         $("#content").imagesLoaded( function ( $images ){
                 console.log( $images.length + ' images have been loaded');
                 $(".container").removeClass('loading');
-
         });
-       // $('.carousel-inner div:nth-child(1)').addClass('active');
+        
+        // $('.carousel-inner div:nth-child(1)').addClass('active');
 /*
         $('.easy').click(function(){
             scroller.scrollTo(500, 0, false);
@@ -201,12 +229,14 @@ var PreGameView = Backbone.View.extend({
  */
 
         var diff = Settings.get('difficulty');
-        if(diff === 'easy'){
+        if(diff === 'easy' || (diff === 'joker' && !showJoker)){
             this.easySelected();
         }else if(diff === 'medium'){
             this.mediumSelected();
-        }else{
+        }else if(diff === 'hard'){
             this.hardSelected();
+        }else if(diff === 'joker'){
+            this.jokerSelected();
         }
 
 	},
@@ -215,13 +245,14 @@ var PreGameView = Backbone.View.extend({
         'click .easy' : 'easySelected',
         'click .medium' : 'mediumSelected',
         'click .hard' : 'hardSelected',
+        'click .joker' : 'jokerSelected',
         'click .preview' : 'previewVideo',
         'click #play-game' : 'play',
         'click .category' : 'selectCategory',
         'click .clicker' : 'selectTextCategory'
     },
 
-    selectCategory: function () {
+    selectCategory: function( event ) {
         $('.category').removeClass('selected');
         var target = $(event.target);
         target.toggleClass('selected');
@@ -229,45 +260,59 @@ var PreGameView = Backbone.View.extend({
         var c = src.substring(7,src.length-6);
         Settings.set({category:c});
         console.log(c);
-
     },
 
 
-    selectTextCategory: function () {
+    selectTextCategory: function( event ) {
 
         $('.text-category').removeClass('selected');
         var index = $(event.target).index();
         if(index > 0){
             index = index/2;
         }
-
+        
         $('.active img.text-category:nth('+index+')').addClass('selected');
         var cat = $('.active h4:nth('+index+')').text().toLowerCase();
-        Settings.set({textCategory:cat});
+        
+        var gameId = this.model.get('gameId');
+        if( gameId === 8 ) {
+          Settings.set({sudokuCategory:cat});
+        } else {
+          Settings.set({textCategory:cat});
+        }
 
     },
 
     easySelected: function() {
-
         $('.easy').addClass('btn-success');
         $('.medium').removeClass('btn-warning');
         $('.hard').removeClass('btn-danger');
-		Settings.set({difficulty: 'easy'});
-
+        $('.joker').removeClass('btn-info');
+        Settings.set({difficulty: 'easy'});
     },
 
     mediumSelected: function() {
         $('.medium').addClass('btn-warning');
         $('.easy').removeClass('btn-success');
         $('.hard').removeClass('btn-danger');
-		Settings.set({difficulty: 'medium'});
+        $('.joker').removeClass('btn-info');
+        Settings.set({difficulty: 'medium'});
     },
 
     hardSelected: function() {
         $('.hard').addClass('btn-danger');
         $('.easy').removeClass('btn-success');
         $('.medium').removeClass('btn-warning');
-		Settings.set({difficulty: 'hard'});
+        $('.joker').removeClass('btn-info');
+        Settings.set({difficulty: 'hard'});
+    },
+    
+    jokerSelected: function() {
+        $('.joker').addClass('btn-info');
+        $('.easy').removeClass('btn-success');
+        $('.medium').removeClass('btn-warning');
+        $('.hard').removeClass('btn-danger');
+        Settings.set({difficulty: 'joker'});
     },
 
     previewVideo: function() {
