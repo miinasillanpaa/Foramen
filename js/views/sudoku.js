@@ -10,8 +10,9 @@ var Sudoku = Backbone.View.extend({
   el: $( "#content" ),
   template: "#sudokuTemplate",
   
+  
   numberOfGivens: 0,
-  fillingMethod: this.CONST_FILLING_METHOD_GUIDED,
+  fillingMethod: 0,
   hintsAvailable: false,
   
   grid: null,
@@ -22,12 +23,24 @@ var Sudoku = Backbone.View.extend({
   selectedUICell: null,
   
   
+  initialize: function() {
+    
+    this.numberOfGivens = 0;
+    this.fillingMethod = this.CONST_FILLING_METHOD_GUIDED;
+    this.hintsAvailable = false;
+    
+    this.grid = null;
+    this.symbols = null;
+    
+    this.numberOfHintsUsed = 0;
+    
+    this.selectedUICell = null;
+    
+  },
+  
   render: function() {
     
     $( "#header" ).empty().hide();
-    
-    var startTime = new Date().getTime();
-    Settings.set( { startTime : startTime } );
     
     var numberOfGridRows = 6;
     var numberOfGridCols = 6;
@@ -63,9 +76,16 @@ var Sudoku = Backbone.View.extend({
       
     }
     
-    // TODO: Fecth from settings.
     var symbolsType = "number";
-    var symbolsImageCategory = "hedelmat";
+    var symbolsImageCategory = null;
+    
+    if( Settings.get( "sudokuCategory" ) == "numerot" ) {
+      symbolsType = "number";
+      symbolsImageCategory = null;
+    } else if( Settings.get( "sudokuCategory" ) == "hedelmät" ) {
+      symbolsType = "image";
+      symbolsImageCategory = "hedelmat";
+    }
     
     this.grid = this.costructGrid( numberOfGridRows, numberOfGridCols, numberOfGridBlockRows, numberOfGridBlockCols );
     this.symbols = this.costructSymbols( numberOfGridRows, symbolsType, symbolsImageCategory );
@@ -78,18 +98,84 @@ var Sudoku = Backbone.View.extend({
     var template = _.template( $( this.template ).html(), data );
     this.$el.html( template );
     
+    $( window ).resize( { game: this }, function( event ) {
+      event.data.game.adjustUICellSize();
+    } );
+    
+    this.adjustUICellSize();
+    
     this.startGame();
     
     return this;
     
   },
   
+  adjustUICellSize: function() {
+    
+    var wrapperHorizontalPaddings = parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-left" ) ) + parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-right" ) );
+    var wrapperVerticalPaddings = parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-top" ) ) + parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-bottom" ) );
+    
+    var widthInUse = this.$el.width() - wrapperHorizontalPaddings;
+    var heightInUse = this.$el.height() - wrapperVerticalPaddings;
+    
+    if( this.hintsAvailable ) {
+      heightInUse -= ( parseInt( this.$el.find( ".sudoku-actions" ).css( "margin-top" ) ) + this.$el.find( ".sudoku-actions" ).height() );
+    }
+    
+    var uiCellSize = 0;
+    
+    var numberOfRowsInUI = this.grid.numberOfRows + ( ( this.grid.numberOfRows / this.grid.numberOfBlockRows ) - 1 ) / 2;
+    var numberOfColsInUI = this.grid.numberOfCols + ( ( this.grid.numberOfCols / this.grid.numberOfBlockCols ) - 1 ) / 2 + 2;
+    
+    var uiCellSizeCalculatedByWidth = Math.floor( widthInUse / numberOfColsInUI ) - 2;
+    var uiCellSizeCalculatedByHeight = Math.floor( heightInUse / numberOfRowsInUI ) - 2;
+    
+    if( uiCellSizeCalculatedByWidth <= uiCellSizeCalculatedByHeight ) {
+      uiCellSize = uiCellSizeCalculatedByWidth;
+    } else {
+      uiCellSize = uiCellSizeCalculatedByHeight;
+    }
+    
+    if( uiCellSize > 0 ) {
+      
+      var cellCSSProperties = {
+        "width": uiCellSize + "px",
+        "height": uiCellSize + "px",
+        "line-height": uiCellSize + "px",
+        "font-size": ( uiCellSize - 5 ) + "px"
+      };
+      
+      var rowDividerCSSProperties = {
+        "height": ( ( uiCellSize / 2 ) + 1 ) + "px"
+      };
+      
+      var cellDividerCSSProperties = {
+        "width": ( ( uiCellSize / 2 ) + 1 ) + "px",
+        "height": uiCellSize + "px"
+      };
+      
+      var toolbarCSSProperties = {
+        "margin-left": uiCellSize + "px"
+      };
+      
+      this.$el.find( ".sudoku-grid-cell" ).css( cellCSSProperties );
+      this.$el.find( ".sudoku-toolbar-cell" ).css( cellCSSProperties );
+      
+      this.$el.find( ".sudoku-grid-row-divider" ).css( rowDividerCSSProperties );
+      this.$el.find( ".sudoku-grid-cell-divider" ).css( cellDividerCSSProperties );
+      
+      this.$el.find( ".sudoku-toolbar" ).css( toolbarCSSProperties );
+      
+    }
+    
+  },
+  
   events: {
     "click .quit" : "quitGame",
-    "click .reset" : "resetGame",
+    "click .finish" : "showGameResults",
     "click .sudoku-action-hint" : "showHint",
     "click .sudoku-grid-cell-selectable" : "humanSelectUICell",
-    "click .sudoku-toolbar-cell" : "humanSelectToolbarUICell"
+    "click .sudoku-toolbar-cell-selectable" : "humanSelectToolbarUICell"
   },
   
   quitGame: function() {
@@ -103,7 +189,7 @@ var Sudoku = Backbone.View.extend({
   
   resetGame: function() {
     
-    $( ".reset" ).css( "visibility", "hidden" ).hide();
+    $( ".finish" ).addClass( "hidden" );
     
     this.grid.empties = [];
     
@@ -132,6 +218,54 @@ var Sudoku = Backbone.View.extend({
     
   },
   
+  showGameResults: function() {
+    
+    this.undelegateEvents();
+    
+    var date = getDateTime();
+    var pvm = date.pvm;
+    var klo = date.klo;
+    
+    var screenJQO = $( "#content" ).clone();
+    
+    screenJQO.find( ".quit, .finish, .sudoku-toolbar, .sudoku-actions" ).remove();
+    
+    var screenHTML = screenJQO.html();
+    
+    var startTime = Settings.get( "startTime" );
+    var endTime = Settings.get( "endTime" );
+    var time = endTime - startTime;
+    
+    var timeSpent = msToStr( time );
+    
+    var results = {
+      "pvm" : pvm,
+      "klo" : klo,
+      "difficulty": Settings.get( "difficulty" ),
+      "data" : [
+        {
+          "name" : "Käytetty aika:",
+          "value" : timeSpent
+        },
+        {
+          "name" : "",
+          "value" : "<button class=\"btn btn-primary btn-block btn-bolder screen\">Näytä kuvaruutu</button>"
+        }
+      ],
+      "hiddenData": {
+        "gameScreen" : screenHTML
+      }
+    };
+    
+    var gameId = this.model.get( "gameId" );
+    var view = new ResultsView( { model: this.model, results: results } );
+    
+    router.navigate( "game/" + gameId + "/results", true );
+    
+    view.render();
+    
+  },
+  
   humanSelectUICell: function( event ) {
     
     var target = $( event.target );
@@ -144,7 +278,7 @@ var Sudoku = Backbone.View.extend({
       uiCell = target.parents( ".sudoku-grid-cell" );
     }
     
-    this.selectUICell( uiCell );
+    this.selectUICell( uiCell, true );
     
   },
   
@@ -178,8 +312,7 @@ var Sudoku = Backbone.View.extend({
           
         } else {
           
-          // TODO: Show on UI.
-          this.log( "Cell value not changed, not correct value." );
+          document.getElementById( "sudokuInvalidMoveSoundFX" ).play();
           
         }
         
@@ -199,13 +332,13 @@ var Sudoku = Backbone.View.extend({
       
       var uiCell = this.getUICellWithGridCell( gridCell );
       
-      this.selectUICell( uiCell );
+      this.selectUICell( uiCell, false );
       
     }
     
   },
   
-  selectUICell: function( uiCell ) {
+  selectUICell: function( uiCell, unselectIfSelected ) {
     
     var same = false;
     
@@ -221,7 +354,7 @@ var Sudoku = Backbone.View.extend({
       
     }
     
-    if( uiCell != null && !same ) {
+    if( uiCell != null && !( same && unselectIfSelected ) ) {
       
       uiCell.addClass( "sudoku-grid-cell-selected" );
       
@@ -239,20 +372,22 @@ var Sudoku = Backbone.View.extend({
         $( ".sudoku-grid-cell" ).addClass( "sudoku-grid-cell-selectable" );
       }
       
+      $( ".sudoku-toolbar-cell" ).addClass( "sudoku-toolbar-cell-selectable" );
+      
       for( var i = 0; i < this.numberOfGivens; i++ ) {
         this.showGiven();
       }
       
       if( this.hintsAvailable ) {
-        $( ".sudoku-action-hint" ).show();
+        $( ".sudoku-wrapper" ).addClass( "sudoku-wrapper-actions-available" );
       }
       
       if( this.fillingMethod == this.CONST_FILLING_METHOD_GUIDED ) {
         this.computerSelectUICell();
       }
       
-      this.undelegateEvents();
-      this.delegateEvents();
+      var startTime = new Date().getTime();
+      Settings.set( { startTime : startTime } );
       
     } else {
       
@@ -286,7 +421,7 @@ var Sudoku = Backbone.View.extend({
       
       gridCell.puzzleValue = value;
       
-      if( this.generatePuzzle( index + 1) ) {
+      if( this.generatePuzzle( index + 1 ) ) {
         return true;
       }
       
@@ -462,6 +597,13 @@ var Sudoku = Backbone.View.extend({
       
     }
     
+    if( solved ) {
+      
+      var endTime = new Date().getTime();
+      Settings.set( { endTime : endTime } );
+      
+    }
+    
     return solved;
     
   },
@@ -489,18 +631,6 @@ var Sudoku = Backbone.View.extend({
   },
   
   updateCellOnUI: function( gridCell ) {
-    
-    /*
-    this.log( "Updating cell on UI" );
-    this.log( "- index = " + gridCell.index );
-    this.log( "- row = " + gridCell.row );
-    this.log( "- col = " + gridCell.col );
-    this.log( "- puzzleValue = " + gridCell.puzzleValue );
-    this.log( "- value = " + gridCell.value );
-    this.log( "- given = " + gridCell.given );
-    this.log( "- hint = " + gridCell.hint );
-    this.log( "- corrected = " + gridCell.corrected );
-    */
     
     var uiCell = this.getUICellWithGridCell( gridCell );
     
@@ -566,6 +696,10 @@ var Sudoku = Backbone.View.extend({
   
   showSolvedOnUI: function() {
     
+    $( ".sudoku-wrapper" ).removeClass( "sudoku-wrapper-actions-available" );
+    
+    $( ".sudoku-toolbar-cell" ).removeClass( "sudoku-toolbar-cell-selectable" );
+    
     var classesToRemove = "sudoku-grid-cell-selected";
     
     if( this.fillingMethod == this.CONST_FILLING_METHOD_RESTRICTED || this.fillingMethod == this.CONST_FILLING_METHOD_FREE ) {
@@ -574,15 +708,7 @@ var Sudoku = Backbone.View.extend({
     
     $( ".sudoku-grid-cell" ).removeClass( classesToRemove );
     
-    // TODO: Show on UI.
-    this.log( "Solved!" );
-    
-    $( ".sudoku-action-hint" ).hide();
-    
-    $( ".reset" ).show().css( "visibility", "visible" );
-    
-    this.undelegateEvents();
-    this.delegateEvents();
+    $( ".finish" ).removeClass( "hidden" );
     
   },
   

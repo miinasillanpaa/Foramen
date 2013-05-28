@@ -10,36 +10,54 @@ var Ristinolla = Backbone.View.extend({
   CONST_COMPUTER: 2,
   CONST_BORDER: 3,
   
+  CONST_DX: [0, -1, -1, -1],
+  CONST_DY: [-1, -1, 0, 1],
+  
   
   el: $( "#content" ),
   template: "#ristinollaTemplate",
   
   
-  computerAI: 1,
-  computerAIWeights: [],
+  computerAI: 0,
+  computerAIWeights: null,
+  
+  numberOfGamesBeforeResults: 0,
+  numberOfGamesPlayed: 0,
+  statisticsPerGame: null,
   
   grid: null,
   
-  dx: [0, -1, -1, -1],
-  dy: [-1, -1, 0, 1],
+  weights: null,
   
-  weights: [0, 0, 0, 0],
+  movesUsedHuman: 0,
+  movesUsedComputer: 0,
   
-  turnNumber: 0,
+  winningLineGridCells: null,
   
-  winner: this.CONST_EMPTY,
-  winningLineGridCells: [],
   
-  scoreHuman: 0,
-  scoreComputer: 0,
-  
+  initialize: function() {
+    
+    this.computerAI = 1;
+    this.computerAIWeights = [];
+    
+    this.numberOfGamesBeforeResults = 1;
+    this.numberOfGamesPlayed = 0;
+    this.statisticsPerGame = [];
+    
+    this.grid = null;
+    
+    this.weights = [0, 0, 0, 0];
+    
+    this.movesUsedHuman = 0;
+    this.movesUsedComputer = 0;
+    
+    this.winningLineGridCells = [];
+    
+  },
   
   render: function() {
     
     $( "#header" ).empty().hide();
-    
-    var startTime = new Date().getTime();
-    Settings.set( { startTime : startTime } );
     
     if( Settings.get( "difficulty" ) == "easy" ) {
       this.computerAI = 0.2;
@@ -51,22 +69,66 @@ var Ristinolla = Backbone.View.extend({
     
     this.computerAIWeights = this.getComputerAIWeights();
     
-    // TODO: Fecth from settings.
-    var numberOfGridRows = 15;
-    var numberOfGridCols = 20;
+    this.numberOfGamesBeforeResults = Settings.get( "fiarNumberOfGamesBeforeResults" );
+    
+    var numberOfGridRows = Settings.get( "fiarNumberOfGridRows" );
+    var numberOfGridCols = Settings.get( "fiarNumberOfGridCols" );
     
     this.grid = this.costructGrid( numberOfGridRows, numberOfGridCols );
     
     var template = _.template( $( this.template ).html(), this.grid );
     this.$el.html( template );
     
+    $( window ).resize( { game: this }, function( event ) {
+      event.data.game.adjustUICellSize();
+    } );
+    
+    this.adjustUICellSize();
+    
+    this.startGame();
+    
     return this;
+    
+  },
+  
+  adjustUICellSize: function() {
+    
+    var gridHorizontalPaddings = parseInt( this.$el.find( ".fiar-grid" ).css( "padding-left" ) ) + parseInt( this.$el.find( ".fiar-grid" ).css( "padding-right" ) );
+    var gridVerticalPaddings = parseInt( this.$el.find( ".fiar-grid" ).css( "padding-top" ) ) + parseInt( this.$el.find( ".fiar-grid" ).css( "padding-bottom" ) );
+    
+    var widthInUse = this.$el.width() - gridHorizontalPaddings;
+    var heightInUse = this.$el.height() - gridVerticalPaddings;
+    
+    var uiCellSize = 0;
+    
+    var uiCellSizeCalculatedByWidth = Math.floor( widthInUse / this.grid.numberOfCols ) - 2;
+    var uiCellSizeCalculatedByHeight = Math.floor( heightInUse / this.grid.numberOfRows ) - 2;
+    
+    if( uiCellSizeCalculatedByWidth <= uiCellSizeCalculatedByHeight ) {
+      uiCellSize = uiCellSizeCalculatedByWidth;
+    } else {
+      uiCellSize = uiCellSizeCalculatedByHeight;
+    }
+    
+    if( uiCellSize > 0 ) {
+      
+      var cssProperties = {
+        "width": uiCellSize + "px",
+        "height": uiCellSize + "px",
+        "line-height": uiCellSize + "px",
+        "font-size": uiCellSize + "px"
+      };
+      
+      this.$el.find( ".fiar-grid-cell" ).css( cssProperties );
+      
+    }
     
   },
   
   events: {
     "click .quit" : "quitGame",
     "click .reset" : "resetGame",
+    "click .finish" : "showGameResults",
     "click .fiar-grid-cell-selectable" : "humanSelectCell"
   },
   
@@ -81,7 +143,8 @@ var Ristinolla = Backbone.View.extend({
   
   resetGame: function() {
     
-    $( ".reset" ).css( "visibility", "hidden" ).hide();
+    $( ".finish" ).addClass( "hidden" );
+    $( ".reset" ).addClass( "hidden" );
     
     for( var i = 0; i < this.grid.numberOfRows; i++ ) {
       
@@ -104,13 +167,110 @@ var Ristinolla = Backbone.View.extend({
     
     this.weights = [0, 0, 0, 0];
     
-    this.turnNumber = 0;
+    this.movesUsedHuman = 0;
+    this.movesUsedComputer = 0;
     
-    this.winner = this.CONST_EMPTY;
     this.winningLineGridCells = [];
     
+    this.startGame();
+    
+  },
+  
+  showGameResults: function() {
+    
     this.undelegateEvents();
-    this.delegateEvents();
+    
+    var date = getDateTime();
+    var pvm = date.pvm;
+    var klo = date.klo;
+    
+    var startTime = Settings.get( "startTime" );
+    var endTime = Settings.get( "endTime" );
+    var time = endTime - startTime;
+    
+    var timeSpent = msToStr( time );
+    
+    var wins = 0;
+    var losses = 0;
+    var ties = 0;
+    
+    var movesUsedTotal = 0;
+    
+    var bestGameStatistics = null;
+    
+    for( var i = 0; i < this.statisticsPerGame.length; i++ ) {
+      
+      var gameStatistics = this.statisticsPerGame[i];
+      
+      if( gameStatistics.win ) {
+        wins += 1;
+      }
+      
+      if( gameStatistics.loss ) {
+        losses += 1;
+      }
+      
+      if( gameStatistics.tie ) {
+        ties += 1;
+      }
+      
+      movesUsedTotal += gameStatistics.movesUsedHuman;
+      
+      if( bestGameStatistics == null ||
+          ( bestGameStatistics.loss && ( gameStatistics.tie || gameStatistics.win ) ) ||
+          ( bestGameStatistics.loss && gameStatistics.loss && bestGameStatistics.movesUsedHuman < gameStatistics.movesUsedHuman ) ||
+          ( bestGameStatistics.tie && gameStatistics.tie && bestGameStatistics.movesUsedHuman < gameStatistics.movesUsedHuman ) ||
+          ( bestGameStatistics.win && gameStatistics.win && bestGameStatistics.movesUsedHuman > gameStatistics.movesUsedHuman ) ) {
+        bestGameStatistics = gameStatistics;
+      }
+      
+    }
+    
+    var movesUsedAverage = Math.round( movesUsedTotal / this.statisticsPerGame.length );
+    
+    var bestGameScreen = bestGameStatistics.screen;
+    
+    var results = {
+      "pvm" : pvm,
+      "klo" : klo,
+      "difficulty": Settings.get( "difficulty" ),
+      "data" : [
+        {
+          "name" : "Käytetty aika:",
+          "value" : timeSpent
+        },
+        {
+          "name" : "Siirtoja per peli:",
+          "value" : movesUsedAverage
+        },
+        {
+          "name" : "Voittoja:",
+          "value" : wins
+        },
+        {
+          "name" : "Häviöitä:",
+          "value" : losses
+        },
+        {
+          "name" : "Tasapelejä:",
+          "value" : ties
+        },
+        {
+          "name" : "",
+          "value" : "<button class=\"btn btn-primary btn-block btn-bolder screen\">Näytä parhaan pelin kuvaruutu</button>"
+        }
+      ],
+      "hiddenData": {
+        "gameScreen" : bestGameScreen
+      }
+    };
+    
+    var gameId = this.model.get( "gameId" );
+    var view = new ResultsView( { model: this.model, results: results } );
+    
+    router.navigate( "game/" + gameId + "/results", true );
+    
+    view.render();
     
   },
   
@@ -122,7 +282,7 @@ var Ristinolla = Backbone.View.extend({
     this.setCell( gridCell, uiCell, this.CONST_HUMAN );
     
     if( this.checkWinner( gridCell ) ) {
-      this.showWinnerOnUI();
+      this.showGameOverOnUI();
     } else {
       this.computerMakeAMove();
     }
@@ -133,7 +293,7 @@ var Ristinolla = Backbone.View.extend({
     
     var moves = [];
     
-    if( this.turnNumber == 0 ) {
+    if( this.movesUsedHuman == 0 && this.movesUsedComputer == 0 ) {
       
       var move = {};
       move.weight = 1;
@@ -175,7 +335,7 @@ var Ristinolla = Backbone.View.extend({
       return ( b.weight - a.weight );
     } );
     
-    var selectedMoveIndex = this.getComputerAIWeightedRandomMoveSelectionIndex();
+    var selectedMoveIndex = this.getComputerAIWeightedRandomMoveSelectionIndex( moves.length - 1 );
     
     var gridCell = moves[selectedMoveIndex].gridCell;
     var uiCell = this.getUICellWithGridCell( gridCell );
@@ -183,7 +343,7 @@ var Ristinolla = Backbone.View.extend({
     this.setCell( gridCell, uiCell, this.CONST_COMPUTER );
     
     if( this.checkWinner( gridCell ) ) {
-      this.showWinnerOnUI();
+      this.showGameOverOnUI();
     }
     
   },
@@ -219,7 +379,7 @@ var Ristinolla = Backbone.View.extend({
     
   },
   
-  getComputerAIWeightedRandomMoveSelectionIndex: function() {
+  getComputerAIWeightedRandomMoveSelectionIndex: function( lastPossibleIndex ) {
     
     var selectedIndex = -1;
     
@@ -227,7 +387,7 @@ var Ristinolla = Backbone.View.extend({
     
     var cumulativeWeight = 0;
     
-    for( var i = 0; selectedIndex == -1 && i < this.computerAIWeights.length; i++ ) {
+    for( var i = 0; selectedIndex == -1 && i < lastPossibleIndex && i < this.computerAIWeights.length; i++ ) {
       
       cumulativeWeight += this.computerAIWeights[i];
       
@@ -237,7 +397,26 @@ var Ristinolla = Backbone.View.extend({
       
     }
     
+    if( selectedIndex == -1 ) {
+      selectedIndex = lastPossibleIndex;
+    }
+    
     return selectedIndex;
+    
+  },
+  
+  startGame: function() {
+    
+    var startTime = new Date().getTime();
+    
+    if( this.numberOfGamesPlayed == 0 ) {
+      Settings.set( { startTime : startTime } );
+    }
+    
+    var gameStatistics = {};
+    gameStatistics.startTime = startTime;
+    
+    this.statisticsPerGame.push( gameStatistics );
     
   },
   
@@ -251,7 +430,11 @@ var Ristinolla = Backbone.View.extend({
       
     }
     
-    this.turnNumber += 1;
+    if( player == this.CONST_HUMAN ) {
+      this.movesUsedHuman += 1;
+    } else if( player == this.CONST_COMPUTER ) {
+      this.movesUsedComputer += 1;
+    }
     
   },
   
@@ -289,8 +472,8 @@ var Ristinolla = Backbone.View.extend({
       
       for( var k = 4; k >= 0; k-- ) {
         
-        i += this.dy[direction];
-        j += this.dx[direction];
+        i += this.CONST_DY[direction];
+        j += this.CONST_DX[direction];
         
         if( i >= 0 && j >= 0 && i < this.grid.numberOfRows && j < this.grid.numberOfCols ) {
           line[k] = this.getGridCellWithRowAndCol( i, j ).value;
@@ -305,8 +488,8 @@ var Ristinolla = Backbone.View.extend({
       
       for( var k = 5; k <= 9; k++ ) {
         
-        i -= this.dy[direction];
-        j -= this.dx[direction];
+        i -= this.CONST_DY[direction];
+        j -= this.CONST_DX[direction];
         
         if( i >= 0 && j >= 0 && i < this.grid.numberOfRows && j < this.grid.numberOfCols ) {
           line[k] = this.getGridCellWithRowAndCol( i, j ).value;
@@ -403,7 +586,11 @@ var Ristinolla = Backbone.View.extend({
   
   checkWinner: function( gridCell ) {
     
-    var weHaveAWinner = false;
+    var gameOver = false;
+    
+    var win = false;
+    var loss = false;
+    var tie = false;
     
     if( gridCell != null ) {
       
@@ -429,8 +616,8 @@ var Ristinolla = Backbone.View.extend({
           
           if( line[p] == lastPlayed ) {
             
-            winningCellRow += this.dy[direction];
-            winningCellCol += this.dx[direction];
+            winningCellRow += this.CONST_DY[direction];
+            winningCellCol += this.CONST_DX[direction];
             
             tempWinningLineGridCells.push( this.getGridCellWithRowAndCol( winningCellRow, winningCellCol ) );
             
@@ -451,8 +638,8 @@ var Ristinolla = Backbone.View.extend({
           
           if( line[p] == lastPlayed ) {
             
-            winningCellRow -= this.dy[direction];
-            winningCellCol -= this.dx[direction];
+            winningCellRow -= this.CONST_DY[direction];
+            winningCellCol -= this.CONST_DX[direction];
             
             tempWinningLineGridCells.push( this.getGridCellWithRowAndCol( winningCellRow, winningCellCol ) );
             
@@ -472,23 +659,51 @@ var Ristinolla = Backbone.View.extend({
 
       if( k >= 5 ) {
         
-        this.winner = lastPlayed;
+        var winner = lastPlayed;
         
         this.winningLineGridCells = tempWinningLineGridCells;
         
-        if( this.winner == this.CONST_HUMAN ) {
-          this.scoreHuman += 1;
-        } else {
-          this.scoreComputer += 1;
+        if( winner == this.CONST_HUMAN ) {
+          win = true;
+        } else if( winner == this.CONST_COMPUTER ) {
+          loss = true;
         }
         
-        weHaveAWinner = true;
+        gameOver = true;
+        
+      }
+      
+      if( !gameOver && !this.gridHasEmptyCells() ) {
+        
+        tie = true;
+        
+        gameOver = true;
         
       }
       
     }
     
-    return weHaveAWinner;
+    if( gameOver ) {
+      
+      this.numberOfGamesPlayed += 1;
+      
+      var endTime = new Date().getTime();
+      
+      var gameStatistics = this.statisticsPerGame[this.numberOfGamesPlayed - 1];
+      gameStatistics.endTime = endTime;
+      gameStatistics.movesUsedHuman = this.movesUsedHuman;
+      gameStatistics.movesUsedComputer = this.movesUsedComputer;
+      gameStatistics.win = win;
+      gameStatistics.loss = loss;
+      gameStatistics.tie = tie;
+      
+      if( this.numberOfGamesPlayed >= this.numberOfGamesBeforeResults ) {
+        Settings.set( { endTime : endTime } );
+      }
+      
+    }
+    
+    return gameOver;
     
   },
   
@@ -505,12 +720,9 @@ var Ristinolla = Backbone.View.extend({
     uiCell.text( cellMark );
     uiCell.removeClass( "fiar-grid-cell-selectable" );
     
-    this.undelegateEvents();
-    this.delegateEvents();
-    
   },
   
-  showWinnerOnUI: function() {
+  showGameOverOnUI: function() {
     
     $( ".fiar-grid-cell" ).removeClass( "fiar-grid-cell-selectable" );
     
@@ -523,16 +735,19 @@ var Ristinolla = Backbone.View.extend({
       
     }
     
-    if( this.winner == this.CONST_HUMAN ) {
-      this.log( "You won!" );
-    } else if( this.winner == this.CONST_COMPUTER ) {
-      this.log( "You lost!" );
+    var screenJQO = $( "#content" ).clone();
+    screenJQO.find( ".quit .reset .finish" ).remove();
+    
+    var screenHTML = screenJQO.html();
+    
+    var gameStatistics = this.statisticsPerGame[this.numberOfGamesPlayed - 1];
+    gameStatistics.screen = screenHTML;
+    
+    if( this.numberOfGamesPlayed >= this.numberOfGamesBeforeResults ) {
+      $( ".finish" ).removeClass( "hidden" );
+    } else {
+      $( ".reset" ).removeClass( "hidden" );
     }
-    
-    $( ".reset" ).show().css( "visibility", "visible" );
-    
-    this.undelegateEvents();
-    this.delegateEvents();
     
   },
   
@@ -577,6 +792,32 @@ var Ristinolla = Backbone.View.extend({
     }
     
     return grid;
+    
+  },
+  
+  gridHasEmptyCells: function() {
+    
+    var hasEmptyCells = false;
+    
+    for( var i = 0; !hasEmptyCells && i < this.grid.numberOfRows; i++ ) {
+      
+      for( var j = 0; !hasEmptyCells && j < this.grid.numberOfCols; j++ ) {
+        
+        var gridCell = this.getGridCellWithRowAndCol( i, j );
+        
+        if( gridCell != null ) {
+          
+          if( gridCell.value == this.CONST_EMPTY ) {
+            hasEmptyCells = true;
+          }
+          
+        }
+        
+      }
+      
+    }
+    
+    return hasEmptyCells;
     
   },
   
