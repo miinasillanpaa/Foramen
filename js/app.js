@@ -82,13 +82,16 @@ var games = [
 	{
         "gameId"     : 8,
         "title"      : "Sudoku-tehtävät",
-        "guide"      : '<p>Kuvaruudulla näkyy 6x6 -pääruudukko, <br/>joista jokainen ruutu on jaettu edelleen 3x2 -pienruudukkoon.</p>'+
-                       '<p>Tehtävänä on täyttää ruudukon vapaat paikat numeroitta 1-6 siten, että kukin numero voi esiintyä vain kerran jokaisessa pääruudukon pysty- ja vaakarivissä sekä jokaisessa pienruudukossa.</p>'+
-                       '<p>Osa ruuduista on valmiiksi täytetty, eikä niitä voi valita. Valmiiksi täytetyt ruudut on osoitettu harmaalla pohjavärillä.</p>'+
-                       '<p>Ruudukon täyttäminen tapahtuu siten, että haluttua tyhjää ruutua painetaan sormella, joilloin sen ympärille muodstuu punainen kehä. Sivulla olevasta valikosta valitaan koskettamalla haluttu numero.</p>'+
-                       '<p>Kone merkitsee automaattisesti punaisella pohjavärillä, jos ruutu on täytetty sääntöjen vastaisesti.</p>'+
-                       '<p>Tehtävä voidaan keskeyttää painamalla "Lopeta".</p>'+
-                       '<p>Jokeri-tehtävä on normaali 9x9 Sudoku.</p>',
+        "guide"      : '<p>Suorituksen kulku riippuu valitusta tasosta.<br/>'+
+                       'Tehtävänä on täyttää ruudukon vapaat paikat hedelmillä tai numeroitta 1-6 siten, että kukin hedelmä tai numero voi esiintyä vain kerran jokaisessa pääruudukon pysty- ja vaaka&shy;rivissä sekä jokaisessa pienruudukossa.</p>'+
+                       '<p>Osa ruuduista on valmiiksi täytetty. Valmiiksi täytetyt ruudut on osoitettu harmaalla pohjavärillä.</p>'+
+                       '<p>Ruudukon täyttäminen tapahtuu siten, että haluttua tyhjää ruutua kosketetaan, joilloin sen ympärille muodstuu punainen kehä,<br/> sitten sivulla olevasta valikosta valitaan koskettamalla haluttu numero.</p>'+
+                       '<p>Tasoilla I, II ja III.  Kuvaruudulla näkyy 6x6 -pääruudukko, joista jokainen ruutu on jaettu edelleen 3x2 -pienruudukkoon. Jokeritasolla pääruudukkoja on 9x9.</p>'+
+                       '<p>Tasolla I: Ohjelma valitsee ruudun johon numero/hedelmä on valittava. Ohjelma ei salli virheellistä valintaa. Ohjelma ilmoittaa virheellisen valintayrityksen äänimerkillä. </p>'+
+                       '<p>Tasolla II: Sekä ruudun, että numeron/hedelmän saa itse valita. Ohjelma ei salli virheellistä valintaa. Ohjelma ilmoittaa virheellisen valintayrityksen äänimerkillä.</p>'+
+                       '<p>Tasolla III ja Jokeritasolla sekä ruudun, että numeron/hedelmän saa valita itse. Ohjelma sallii myös virheellisen valinnan. Virheellinen valinta voidaan korjata koskettamalla uudestaan ruutua ja valitsemalla sivuvalikosta uusi numero/hedelmä. ' +
+                       'Painamalla "Tarkista" voidaan tarkistaa keskeneräisen tai valmiin ruudukon sääntöjen mukaisuus, jolloin ohjelma näyttää ne pysty- ja vaakarivit sekä pienruudukot punaisella värillä, jotka eivät ole sääntöjen mukaisia.</p>'+
+                       '<p>Tehtävä voidaan keskeyttää painamalla "Lopeta".</p>',
         'coverImage' : "./img/sudoku.png"
     },
 	{
