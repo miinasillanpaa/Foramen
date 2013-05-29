@@ -52,6 +52,7 @@ var ResultsView = Backbone.View.extend({
 
         this.undelegateEvents();
 
+        /*
         var difficulty = '';
         if( this.options.results.difficulty == 'easy' ){
             difficulty = 'Helppo';
@@ -62,11 +63,12 @@ var ResultsView = Backbone.View.extend({
         }else if( this.options.results.difficulty == 'joker' ){
             difficulty = 'Jokeri';
         }
+        */
 
         var  results = {
             pvm : this.options.results.pvm,
             klo : this.options.results.klo,
-            difficulty : difficulty,
+            difficulty : this.options.results.difficulty,
             data : this.options.results.data,
             hiddenData : this.options.results.hiddenData,
             title : this.model.get('title'),

@@ -14,6 +14,7 @@ var Sudoku = Backbone.View.extend({
   numberOfGivens: 0,
   fillingMethod: 0,
   hintsAvailable: false,
+  checkAvailable: false,
   
   grid: null,
   symbols: null,
@@ -28,6 +29,7 @@ var Sudoku = Backbone.View.extend({
     this.numberOfGivens = 0;
     this.fillingMethod = this.CONST_FILLING_METHOD_GUIDED;
     this.hintsAvailable = false;
+    this.checkAvailable = false;
     
     this.grid = null;
     this.symbols = null;
@@ -47,21 +49,26 @@ var Sudoku = Backbone.View.extend({
     var numberOfGridBlockRows = 2;
     var numberOfGridBlockCols = 3;
     
-    this.numberOfGivens = 16;
+    this.numberOfGivens = 18;
     this.fillingMethod = this.CONST_FILLING_METHOD_GUIDED;
     this.hintsAvailable = false;
+    this.checkAvailable = false;
     
     if( Settings.get( "difficulty" ) == "easy" ) {
       
+      this.numberOfGivens = 18;
       this.fillingMethod = this.CONST_FILLING_METHOD_GUIDED;
       
     } else if( Settings.get( "difficulty" ) == "medium" ) {
       
+      this.numberOfGivens = 16;
       this.fillingMethod = this.CONST_FILLING_METHOD_RESTRICTED;
       
     } else if( Settings.get( "difficulty" ) == "hard" ) {
       
+      this.numberOfGivens = 14;
       this.fillingMethod = this.CONST_FILLING_METHOD_FREE;
+      this.checkAvailable = true;
       
     } else if( Settings.get( "difficulty" ) == "joker" ) {
       
@@ -73,6 +80,7 @@ var Sudoku = Backbone.View.extend({
       this.numberOfGivens = 36;
       this.fillingMethod = this.CONST_FILLING_METHOD_FREE;
       this.hintsAvailable = true;
+      this.checkAvailable = true;
       
     }
     
@@ -118,7 +126,7 @@ var Sudoku = Backbone.View.extend({
     var widthInUse = this.$el.width() - wrapperHorizontalPaddings;
     var heightInUse = this.$el.height() - wrapperVerticalPaddings;
     
-    if( this.hintsAvailable ) {
+    if( this.hintsAvailable || this.checkAvailable ) {
       heightInUse -= ( parseInt( this.$el.find( ".sudoku-actions" ).css( "margin-top" ) ) + this.$el.find( ".sudoku-actions" ).height() );
     }
     
@@ -174,6 +182,7 @@ var Sudoku = Backbone.View.extend({
     "click .quit" : "quitGame",
     "click .finish" : "showGameResults",
     "click .sudoku-action-hint" : "showHint",
+    "click .sudoku-action-check" : "checkPuzzle",
     "click .sudoku-grid-cell-selectable" : "humanSelectUICell",
     "click .sudoku-toolbar-cell-selectable" : "humanSelectToolbarUICell"
   },
@@ -203,6 +212,10 @@ var Sudoku = Backbone.View.extend({
       gridCell.given = false;
       gridCell.hint = false;
       gridCell.corrected = false;
+      
+      gridCell.inConflictRow = false;
+      gridCell.inConflictCol = false;
+      gridCell.inConflictRegion = false;
       
       gridCell.conflicts = [];
       
@@ -312,7 +325,11 @@ var Sudoku = Backbone.View.extend({
           
         } else {
           
-          document.getElementById( "sudokuInvalidMoveSoundFX" ).play();
+          var invalidMoveSoundFX = document.getElementById( "sudokuInvalidMoveSoundFX" );
+          
+          invalidMoveSoundFX.pause();
+          invalidMoveSoundFX.currentTime = 0;
+          invalidMoveSoundFX.play();
           
         }
         
@@ -378,8 +395,18 @@ var Sudoku = Backbone.View.extend({
         this.showGiven();
       }
       
-      if( this.hintsAvailable ) {
+      if( this.hintsAvailable || this.checkAvailable ) {
+        
+        if( this.hintsAvailable ) {
+          $( ".sudoku-action-hint" ).removeClass( "hidden" );
+        }
+        
+        if( this.checkAvailable ) {
+          $( ".sudoku-action-check" ).removeClass( "hidden" );
+        }
+        
         $( ".sudoku-wrapper" ).addClass( "sudoku-wrapper-actions-available" );
+        
       }
       
       if( this.fillingMethod == this.CONST_FILLING_METHOD_GUIDED ) {
@@ -461,6 +488,8 @@ var Sudoku = Backbone.View.extend({
       
       this.changeValue( gridCell, gridCell.puzzleValue );
       
+      this.unselectCellOnUIIfSelected( gridCell );
+      
     }
     
   },
@@ -476,6 +505,8 @@ var Sudoku = Backbone.View.extend({
       gridCell.hint = true;
       
       this.changeValue( gridCell, gridCell.puzzleValue );
+      
+      this.unselectCellOnUIIfSelected( gridCell );
       
       this.numberOfHintsUsed++;
       
@@ -535,11 +566,15 @@ var Sudoku = Backbone.View.extend({
       
       this.updateCellOnUI( gridCell );
       
-      if( this.checkSolved() ) {
+      if( !this.checkAvailable ) {
         
-        this.selectedUICell = null;
-        
-        this.showSolvedOnUI();
+        if( this.checkSolved() ) {
+          
+          this.selectedUICell = null;
+          
+          this.showSolvedOnUI();
+          
+        }
         
       }
       
@@ -569,6 +604,90 @@ var Sudoku = Backbone.View.extend({
         
         conflicts = true;
         
+      }
+      
+    }
+    
+    return conflicts;
+    
+  },
+  
+  checkPuzzle: function() {
+    
+    var conflictingRowIndices = [];
+    var conflictingColIndices = [];
+    var conflictingRegionIndices = [];
+    
+    for( var i = 0; i < this.grid.cells.length; i++ ) {
+      
+      var gridCell = this.grid.cells[i];
+      
+      gridCell.inConflictRow = false;
+      gridCell.inConflictCol = false;
+      gridCell.inConflictRegion = false;
+      
+      if( gridCell.value > 0 ) {
+        
+        if( this.checkPuzzleConflicts( gridCell, this.grid.rows[gridCell.row] ) && $.inArray( gridCell.row, conflictingRowIndices ) == -1 ) {
+          conflictingRowIndices.push( gridCell.row );
+        }
+        
+        if( this.checkPuzzleConflicts( gridCell, this.grid.cols[gridCell.col] ) && $.inArray( gridCell.col, conflictingColIndices ) == -1 ) {
+          conflictingColIndices.push( gridCell.col );
+        }
+        
+        if( this.checkPuzzleConflicts( gridCell, this.grid.regions[gridCell.region] ) && $.inArray( gridCell.region, conflictingRegionIndices ) == -1 ) {
+          conflictingRegionIndices.push( gridCell.region );
+        }
+        
+      }
+      
+    }
+    
+    for( var i = 0; i < this.grid.cells.length; i++ ) {
+      
+      var gridCell = this.grid.cells[i];
+      
+      if( $.inArray( gridCell.row, conflictingRowIndices ) != -1 ) {
+        gridCell.inConflictRow = true;
+      }
+      
+      if( $.inArray( gridCell.col, conflictingColIndices ) != -1 ) {
+        gridCell.inConflictCol = true;
+      }
+      
+      if( $.inArray( gridCell.region, conflictingRegionIndices ) != -1 ) {
+        gridCell.inConflictRegion = true;
+      }
+      
+      this.updateCellOnUI( gridCell );
+      
+    }
+    
+    if( conflictingRowIndices.length == 0 && conflictingColIndices.length == 0 && conflictingRegionIndices.length == 0 ) {
+      
+      if( this.checkSolved() ) {
+        
+        this.selectedUICell = null;
+        
+        this.showSolvedOnUI();
+        
+      }
+      
+    }
+    
+  },
+  
+  checkPuzzleConflicts: function( gridCell, array ) {
+    
+    var conflicts = false;
+    
+    for( var i = 0; i < array.length; i++ ) {
+      
+      var gridCellToCheck = array[i];
+      
+      if( ( gridCellToCheck != gridCell ) && ( gridCellToCheck.value == gridCell.value ) ) {
+        conflicts = true;
       }
       
     }
@@ -630,6 +749,24 @@ var Sudoku = Backbone.View.extend({
     
   },
   
+  unselectCellOnUIIfSelected: function( gridCell ) {
+    
+    var uiCell = this.getUICellWithGridCell( gridCell );
+    
+    if( this.selectedUICell != null ) {
+      
+      if( this.selectedUICell.attr( "id" ) == uiCell.attr( "id" ) ) {
+        
+        this.selectedUICell.removeClass( "sudoku-grid-cell-selected" );
+        
+        this.selectedUICell = null;
+        
+      }
+      
+    }
+    
+  },
+  
   updateCellOnUI: function( gridCell ) {
     
     var uiCell = this.getUICellWithGridCell( gridCell );
@@ -656,7 +793,7 @@ var Sudoku = Backbone.View.extend({
       
     } else {
       
-      if( gridCell.conflicts.length > 0 ) {
+      if( ( !this.checkAvailable && gridCell.conflicts.length > 0 ) || ( gridCell.inConflictRow || gridCell.inConflictCol || gridCell.inConflictRegion ) ) {
         uiCell.addClass( "sudoku-grid-cell-conflict" );
       }
       
@@ -695,6 +832,8 @@ var Sudoku = Backbone.View.extend({
   },
   
   showSolvedOnUI: function() {
+    
+    $( ".sudoku-action-hint, .sudoku-action-check" ).addClass( "hidden" );
     
     $( ".sudoku-wrapper" ).removeClass( "sudoku-wrapper-actions-available" );
     
@@ -780,6 +919,10 @@ var Sudoku = Backbone.View.extend({
             cell.given = false;
             cell.hint = false;
             cell.corrected = false;
+            
+            cell.inConflictRow = false;
+            cell.inConflictCol = false;
+            cell.inConflictRegion = false;
             
             cell.conflicts = [];
             
