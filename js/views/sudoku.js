@@ -46,8 +46,8 @@ var Sudoku = Backbone.View.extend({
     
     var numberOfGridRows = 6;
     var numberOfGridCols = 6;
-    var numberOfGridBlockRows = 2;
-    var numberOfGridBlockCols = 3;
+    var numberOfGridRegionRows = 2;
+    var numberOfGridRegionCols = 3;
     
     this.numberOfGivens = 18;
     this.fillingMethod = this.CONST_FILLING_METHOD_GUIDED;
@@ -74,8 +74,8 @@ var Sudoku = Backbone.View.extend({
       
       numberOfGridRows = 9;
       numberOfGridCols = 9;
-      numberOfGridBlockRows = 3;
-      numberOfGridBlockCols = 3;
+      numberOfGridRegionRows = 3;
+      numberOfGridRegionCols = 3;
       
       this.numberOfGivens = 36;
       this.fillingMethod = this.CONST_FILLING_METHOD_FREE;
@@ -95,12 +95,14 @@ var Sudoku = Backbone.View.extend({
       symbolsImageCategory = "hedelmat";
     }
     
-    this.grid = this.costructGrid( numberOfGridRows, numberOfGridCols, numberOfGridBlockRows, numberOfGridBlockCols );
+    this.grid = this.costructGrid( numberOfGridRows, numberOfGridCols, numberOfGridRegionRows, numberOfGridRegionCols );
     this.symbols = this.costructSymbols( numberOfGridRows, symbolsType, symbolsImageCategory );
     
     var data = {
       grid: this.grid,
-      symbols: this.symbols
+      symbols: this.symbols,
+      hintsAvailable: this.hintsAvailable,
+      checkAvailable: this.checkAvailable
     };
     
     var template = _.template( $( this.template ).html(), data );
@@ -123,8 +125,8 @@ var Sudoku = Backbone.View.extend({
     var wrapperHorizontalPaddings = parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-left" ) ) + parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-right" ) );
     var wrapperVerticalPaddings = parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-top" ) ) + parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-bottom" ) );
     
-    var widthInUse = this.$el.width() - wrapperHorizontalPaddings;
-    var heightInUse = this.$el.height() - wrapperVerticalPaddings;
+    var widthInUse = this.$el.width() - wrapperHorizontalPaddings - 1;
+    var heightInUse = this.$el.height() - wrapperVerticalPaddings - 1;
     
     if( this.hintsAvailable || this.checkAvailable ) {
       heightInUse -= ( parseInt( this.$el.find( ".sudoku-actions" ).css( "margin-top" ) ) + this.$el.find( ".sudoku-actions" ).height() );
@@ -132,8 +134,8 @@ var Sudoku = Backbone.View.extend({
     
     var uiCellSize = 0;
     
-    var numberOfRowsInUI = this.grid.numberOfRows + ( ( this.grid.numberOfRows / this.grid.numberOfBlockRows ) - 1 ) / 2;
-    var numberOfColsInUI = this.grid.numberOfCols + ( ( this.grid.numberOfCols / this.grid.numberOfBlockCols ) - 1 ) / 2 + 2;
+    var numberOfRowsInUI = this.grid.numberOfRows + ( ( this.grid.numberOfRows / this.grid.numberOfRegionRows ) - 1 ) / 2;
+    var numberOfColsInUI = this.grid.numberOfCols + ( ( this.grid.numberOfCols / this.grid.numberOfRegionCols ) - 1 ) / 2 + 2;
     
     var uiCellSizeCalculatedByWidth = Math.floor( widthInUse / numberOfColsInUI ) - 2;
     var uiCellSizeCalculatedByHeight = Math.floor( heightInUse / numberOfRowsInUI ) - 2;
@@ -144,7 +146,7 @@ var Sudoku = Backbone.View.extend({
       uiCellSize = uiCellSizeCalculatedByHeight;
     }
     
-    if( uiCellSize > 0 ) {
+    if( uiCellSize > 2 ) {
       
       var cellCSSProperties = {
         "width": uiCellSize + "px",
@@ -174,6 +176,56 @@ var Sudoku = Backbone.View.extend({
       
       this.$el.find( ".sudoku-toolbar" ).css( toolbarCSSProperties );
       
+      if( this.checkAvailable ) {
+        
+        var conflictsOverlayRowCSSProperties = {
+          "height": uiCellSize + "px"
+        };
+        
+        var conflictsOverlayRowDividerCSSProperties = {
+          "height": ( ( uiCellSize / 2 ) + 1 ) + "px"
+        };
+        
+        var conflictsOverlayColCSSProperties = {
+          "width": ( uiCellSize + 2 ) + "px"
+        };
+        
+        var conflictsOverlayColDividerCSSProperties = {
+          "width": ( ( uiCellSize / 2 ) + 1 ) + "px"
+        };
+        
+        var conflictsOverlayRegionCSSProperties = {
+          "width": ( this.grid.numberOfRegionCols * ( uiCellSize + 2 ) - 2 ) + "px",
+          "height": ( this.grid.numberOfRegionRows * ( uiCellSize + 2 ) - 2 ) + "px"
+        };
+        
+        var conflictsOverlayRegionHorizontalDividerCSSProperties = {
+          "width": ( ( uiCellSize / 2 ) + 1 ) + "px",
+          "height": ( this.grid.numberOfRegionRows * ( uiCellSize + 2 ) - 2 ) + "px"
+        };
+        
+        var conflictsOverlayRegionVerticalDividerCSSProperties = {
+          "height": ( ( uiCellSize / 2 ) + 1 ) + "px"
+        };
+        
+        this.$el.find( ".sudoku-grid-conflicts-overlay-row" ).css( conflictsOverlayRowCSSProperties );
+        this.$el.find( ".sudoku-grid-conflicts-overlay-row-divider" ).css( conflictsOverlayRowDividerCSSProperties );
+        
+        this.$el.find( ".sudoku-grid-conflicts-overlay-col" ).css( conflictsOverlayColCSSProperties );
+        this.$el.find( ".sudoku-grid-conflicts-overlay-col-divider" ).css( conflictsOverlayColDividerCSSProperties );
+        
+        this.$el.find( ".sudoku-grid-conflicts-overlay-region" ).css( conflictsOverlayRegionCSSProperties );
+        this.$el.find( ".sudoku-grid-conflicts-overlay-region-horizontal-divider" ).css( conflictsOverlayRegionHorizontalDividerCSSProperties );
+        this.$el.find( ".sudoku-grid-conflicts-overlay-region-vertical-divider" ).css( conflictsOverlayRegionVerticalDividerCSSProperties );
+        
+      }
+      
+      this.$el.find( ".sudoku-wrapper" ).removeClass( "hidden" );
+      
+    } else {
+      
+      this.$el.find( ".sudoku-wrapper" ).addClass( "hidden" );
+      
     }
     
   },
@@ -182,7 +234,8 @@ var Sudoku = Backbone.View.extend({
     "click .quit" : "quitGame",
     "click .finish" : "showGameResults",
     "click .sudoku-action-hint" : "showHint",
-    "click .sudoku-action-check" : "checkPuzzle",
+    "click .sudoku-action-check" : "showPuzzleCheckResults",
+    "click .sudoku-action-continue" : "hidePuzzleCheckResults",
     "click .sudoku-grid-cell-selectable" : "humanSelectUICell",
     "click .sudoku-toolbar-cell-selectable" : "humanSelectToolbarUICell"
   },
@@ -212,10 +265,6 @@ var Sudoku = Backbone.View.extend({
       gridCell.given = false;
       gridCell.hint = false;
       gridCell.corrected = false;
-      
-      gridCell.inConflictRow = false;
-      gridCell.inConflictCol = false;
-      gridCell.inConflictRegion = false;
       
       gridCell.conflicts = [];
       
@@ -510,10 +559,6 @@ var Sudoku = Backbone.View.extend({
       
       this.numberOfHintsUsed++;
       
-    } else {
-      
-      this.solve();
-      
     }
     
   },
@@ -612,7 +657,7 @@ var Sudoku = Backbone.View.extend({
     
   },
   
-  checkPuzzle: function() {
+  showPuzzleCheckResults: function() {
     
     var conflictingRowIndices = [];
     var conflictingColIndices = [];
@@ -622,63 +667,71 @@ var Sudoku = Backbone.View.extend({
       
       var gridCell = this.grid.cells[i];
       
-      gridCell.inConflictRow = false;
-      gridCell.inConflictCol = false;
-      gridCell.inConflictRegion = false;
-      
       if( gridCell.value > 0 ) {
         
-        if( this.checkPuzzleConflicts( gridCell, this.grid.rows[gridCell.row] ) && $.inArray( gridCell.row, conflictingRowIndices ) == -1 ) {
+        if( this.showPuzzleCheckResultsCheckConflicts( gridCell, this.grid.rows[gridCell.row] ) && $.inArray( gridCell.row, conflictingRowIndices ) == -1 ) {
           conflictingRowIndices.push( gridCell.row );
         }
         
-        if( this.checkPuzzleConflicts( gridCell, this.grid.cols[gridCell.col] ) && $.inArray( gridCell.col, conflictingColIndices ) == -1 ) {
+        if( this.showPuzzleCheckResultsCheckConflicts( gridCell, this.grid.cols[gridCell.col] ) && $.inArray( gridCell.col, conflictingColIndices ) == -1 ) {
           conflictingColIndices.push( gridCell.col );
         }
         
-        if( this.checkPuzzleConflicts( gridCell, this.grid.regions[gridCell.region] ) && $.inArray( gridCell.region, conflictingRegionIndices ) == -1 ) {
+        if( this.showPuzzleCheckResultsCheckConflicts( gridCell, this.grid.regions[gridCell.region] ) && $.inArray( gridCell.region, conflictingRegionIndices ) == -1 ) {
           conflictingRegionIndices.push( gridCell.region );
         }
         
       }
       
+      this.updateCellOnUI( gridCell, true );
+      
     }
     
-    for( var i = 0; i < this.grid.cells.length; i++ ) {
-      
-      var gridCell = this.grid.cells[i];
-      
-      if( $.inArray( gridCell.row, conflictingRowIndices ) != -1 ) {
-        gridCell.inConflictRow = true;
-      }
-      
-      if( $.inArray( gridCell.col, conflictingColIndices ) != -1 ) {
-        gridCell.inConflictCol = true;
-      }
-      
-      if( $.inArray( gridCell.region, conflictingRegionIndices ) != -1 ) {
-        gridCell.inConflictRegion = true;
-      }
-      
-      this.updateCellOnUI( gridCell );
-      
-    }
+    var solved = false;
     
     if( conflictingRowIndices.length == 0 && conflictingColIndices.length == 0 && conflictingRegionIndices.length == 0 ) {
       
-      if( this.checkSolved() ) {
-        
-        this.selectedUICell = null;
-        
-        this.showSolvedOnUI();
-        
+      solved = this.checkSolved();
+      
+    } else {
+      
+      for( var i = 0; i < conflictingRowIndices.length; i++ ) {
+        $( "#sudokuGridConflictsOverlayRow_" + conflictingRowIndices[i] ).css( "visibility", "visible" );
       }
+      
+      for( var i = 0; i < conflictingColIndices.length; i++ ) {
+        $( "#sudokuGridConflictsOverlayCol_" + conflictingColIndices[i] ).css( "visibility", "visible" );
+      }
+      
+      for( var i = 0; i < conflictingRegionIndices.length; i++ ) {
+        $( "#sudokuGridConflictsOverlayRegion_" + conflictingRegionIndices[i] ).css( "visibility", "visible" );
+      }
+      
+      $( ".sudoku-grid-conflicts-overlay" ).removeClass( "hidden" );
+      
+    }
+    
+    if( solved ) {
+      
+      this.selectedUICell = null;
+      
+      this.showSolvedOnUI();
+      
+    } else {
+      
+      this.unselectSelectedCellOnUI();
+      
+      $( ".sudoku-toolbar-cell" ).removeClass( "sudoku-toolbar-cell-selectable" );
+      
+      $( ".sudoku-action-hint" ).addClass( "hidden" );
+      $( ".sudoku-action-check" ).addClass( "hidden" );
+      $( ".sudoku-action-continue" ).removeClass( "hidden" );
       
     }
     
   },
   
-  checkPuzzleConflicts: function( gridCell, array ) {
+  showPuzzleCheckResultsCheckConflicts: function( gridCell, array ) {
     
     var conflicts = false;
     
@@ -693,6 +746,34 @@ var Sudoku = Backbone.View.extend({
     }
     
     return conflicts;
+    
+  },
+  
+  hidePuzzleCheckResults: function() {
+    
+    $( ".sudoku-action-continue" ).addClass( "hidden" );
+    
+    $( ".sudoku-grid-conflicts-overlay" ).addClass( "hidden" );
+    
+    $( ".sudoku-grid-conflicts-overlay-row" ).css( "visibility", "hidden" );
+    $( ".sudoku-grid-conflicts-overlay-col" ).css( "visibility", "hidden" );
+    $( ".sudoku-grid-conflicts-overlay-region" ).css( "visibility", "hidden" );
+    
+    for( var i = 0; i < this.grid.cells.length; i++ ) {
+      
+      var gridCell = this.grid.cells[i];
+      
+      this.updateCellOnUI( gridCell );
+      
+    }
+    
+    $( ".sudoku-toolbar-cell" ).addClass( "sudoku-toolbar-cell-selectable" );
+    
+    if( this.hintsAvailable ) {
+      $( ".sudoku-action-hint" ).removeClass( "hidden" );
+    }
+    
+    $( ".sudoku-action-check" ).removeClass( "hidden" );
     
   },
   
@@ -749,6 +830,18 @@ var Sudoku = Backbone.View.extend({
     
   },
   
+  unselectSelectedCellOnUI: function() {
+    
+    if( this.selectedUICell != null ) {
+      
+      this.selectedUICell.removeClass( "sudoku-grid-cell-selected" );
+      
+      this.selectedUICell = null;
+      
+    }
+    
+  },
+  
   unselectCellOnUIIfSelected: function( gridCell ) {
     
     var uiCell = this.getUICellWithGridCell( gridCell );
@@ -767,13 +860,13 @@ var Sudoku = Backbone.View.extend({
     
   },
   
-  updateCellOnUI: function( gridCell ) {
+  updateCellOnUI: function( gridCell, forceDisabledState ) {
     
     var uiCell = this.getUICellWithGridCell( gridCell );
     
     var classesToRemove = "sudoku-grid-cell-given sudoku-grid-cell-hint sudoku-grid-cell-corrected sudoku-grid-cell-conflict";
     
-    if( this.fillingMethod == this.CONST_FILLING_METHOD_RESTRICTED || this.fillingMethod == this.CONST_FILLING_METHOD_FREE ) {
+    if( forceDisabledState || ( this.fillingMethod == this.CONST_FILLING_METHOD_RESTRICTED || this.fillingMethod == this.CONST_FILLING_METHOD_FREE ) ) {
       classesToRemove += " sudoku-grid-cell-selectable";
     }
     
@@ -793,11 +886,11 @@ var Sudoku = Backbone.View.extend({
       
     } else {
       
-      if( ( !this.checkAvailable && gridCell.conflicts.length > 0 ) || ( gridCell.inConflictRow || gridCell.inConflictCol || gridCell.inConflictRegion ) ) {
+      if( !this.checkAvailable && gridCell.conflicts.length > 0 ) {
         uiCell.addClass( "sudoku-grid-cell-conflict" );
       }
       
-      if( this.fillingMethod == this.CONST_FILLING_METHOD_RESTRICTED || this.fillingMethod == this.CONST_FILLING_METHOD_FREE ) {
+      if( !forceDisabledState && ( this.fillingMethod == this.CONST_FILLING_METHOD_RESTRICTED || this.fillingMethod == this.CONST_FILLING_METHOD_FREE ) ) {
         uiCell.addClass( "sudoku-grid-cell-selectable" );
       }
       
@@ -833,7 +926,7 @@ var Sudoku = Backbone.View.extend({
   
   showSolvedOnUI: function() {
     
-    $( ".sudoku-action-hint, .sudoku-action-check" ).addClass( "hidden" );
+    $( ".sudoku-action-hint, .sudoku-action-check, .sudoku-action-continue" ).addClass( "hidden" );
     
     $( ".sudoku-wrapper" ).removeClass( "sudoku-wrapper-actions-available" );
     
@@ -851,19 +944,22 @@ var Sudoku = Backbone.View.extend({
     
   },
   
-  costructGrid: function( numberOfRows, numberOfCols, numberOfBlockRows, numberOfBlockCols ) {
+  costructGrid: function( numberOfRows, numberOfCols, numberOfRegionRows, numberOfRegionCols ) {
     
     var grid = {};
     
     if( ( numberOfRows != null && numberOfRows > 0 ) && ( numberOfCols != null && numberOfCols > 0 ) &&
-        ( numberOfBlockRows != null && numberOfBlockRows > 0 ) && ( numberOfBlockCols != null && numberOfBlockCols > 0 ) ) {
+        ( numberOfRegionRows != null && numberOfRegionRows > 0 ) && ( numberOfRegionCols != null && numberOfRegionCols > 0 ) ) {
       
-      if( numberOfRows % numberOfBlockRows == 0 && numberOfCols % numberOfBlockCols == 0 ) {
+      if( numberOfRows % numberOfRegionRows == 0 && numberOfCols % numberOfRegionCols == 0 ) {
+        
+        var numberOfRegions = ( numberOfRows / numberOfRegionRows ) * ( numberOfCols / numberOfRegionCols );
         
         grid.numberOfRows = numberOfRows;
         grid.numberOfCols = numberOfCols;
-        grid.numberOfBlockRows = numberOfBlockRows;
-        grid.numberOfBlockCols = numberOfBlockCols;
+        grid.numberOfRegionRows = numberOfRegionRows;
+        grid.numberOfRegionCols = numberOfRegionCols;
+        grid.numberOfRegions = numberOfRegions;
         
         var possibleCellValues = [];
         
@@ -880,8 +976,6 @@ var Sudoku = Backbone.View.extend({
         var regions = [];
         
         var empties = [];
-        
-        var numberOfRegions = ( numberOfRows / numberOfBlockRows ) * ( numberOfCols / numberOfBlockCols );
         
         for( var i = 0; i < numberOfRows; i++ ) {
           rows.push( [] );
@@ -903,7 +997,7 @@ var Sudoku = Backbone.View.extend({
             
             var rowIndex = i;
             var colIndex = j;
-            var regionIndex = ( Math.floor( i / numberOfBlockRows ) * numberOfBlockRows + Math.floor( j / numberOfBlockCols ) );
+            var regionIndex = ( Math.floor( i / numberOfRegionRows ) * numberOfRegionRows + Math.floor( j / numberOfRegionCols ) );
             
             var cell = {};
             
@@ -919,10 +1013,6 @@ var Sudoku = Backbone.View.extend({
             cell.given = false;
             cell.hint = false;
             cell.corrected = false;
-            
-            cell.inConflictRow = false;
-            cell.inConflictCol = false;
-            cell.inConflictRegion = false;
             
             cell.conflicts = [];
             
