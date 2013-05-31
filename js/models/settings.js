@@ -291,7 +291,7 @@ var Settings = Backbone.Model.extend({
     fiarNumberOfGamesBeforeResults: 3,
     
     fiarNumberOfGridRows: 15,
-    fiarNumberOfGridCols: 20
+    fiarNumberOfGridCols: 15
     
   }
   

@@ -96,8 +96,8 @@ var Ristinolla = Backbone.View.extend({
     var gridHorizontalPaddings = parseInt( this.$el.find( ".fiar-grid" ).css( "padding-left" ) ) + parseInt( this.$el.find( ".fiar-grid" ).css( "padding-right" ) );
     var gridVerticalPaddings = parseInt( this.$el.find( ".fiar-grid" ).css( "padding-top" ) ) + parseInt( this.$el.find( ".fiar-grid" ).css( "padding-bottom" ) );
     
-    var widthInUse = this.$el.width() - gridHorizontalPaddings;
-    var heightInUse = this.$el.height() - gridVerticalPaddings;
+    var widthInUse = this.$el.width() - gridHorizontalPaddings - 1;
+    var heightInUse = this.$el.height() - gridVerticalPaddings - 1;
     
     var uiCellSize = 0;
     
@@ -110,7 +110,7 @@ var Ristinolla = Backbone.View.extend({
       uiCellSize = uiCellSizeCalculatedByHeight;
     }
     
-    if( uiCellSize > 0 ) {
+    if( uiCellSize > 2 ) {
       
       var cssProperties = {
         "width": uiCellSize + "px",
@@ -120,6 +120,12 @@ var Ristinolla = Backbone.View.extend({
       };
       
       this.$el.find( ".fiar-grid-cell" ).css( cssProperties );
+      
+      this.$el.find( ".fiar-grid" ).removeClass( "hidden" );
+      
+    } else {
+      
+      this.$el.find( ".fiar-grid" ).addClass( "hidden" );
       
     }
     

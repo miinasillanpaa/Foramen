@@ -263,21 +263,56 @@
         
         <div class="sudoku-wrapper sudoku-wrapper-symbol-type-<%= symbols.type %>">
             <div class="sudoku-grid">
-                <% _.times(grid.numberOfRows, function(rowIndex) { %>
-                    <div class="sudoku-grid-row">
-                        <% _.times(grid.numberOfCols, function(colIndex) { %>
-                            <div id="sudokuGridCell_<%= rowIndex * grid.numberOfCols + colIndex %>" class="sudoku-grid-cell" data-index="<%= rowIndex * grid.numberOfCols + colIndex %>">
-                                <div class="sudoku-grid-cell-content"></div>
-                            </div>
-                            <% if( colIndex < grid.numberOfCols - 1 && ( colIndex + 1 ) % grid.numberOfBlockCols == 0 ) { %>
-                                <div class="sudoku-grid-cell-divider"></div>
-                            <% } %>
-                        <% }); %>
+                <div class="sudoku-grid-content">
+                    <% _.times(grid.numberOfRows, function(rowIndex) { %>
+                        <div class="sudoku-grid-row">
+                            <% _.times(grid.numberOfCols, function(colIndex) { %>
+                                <div id="sudokuGridCell_<%= rowIndex * grid.numberOfCols + colIndex %>" class="sudoku-grid-cell" data-index="<%= rowIndex * grid.numberOfCols + colIndex %>">
+                                    <div class="sudoku-grid-cell-content"></div>
+                                </div>
+                                <% if( colIndex < grid.numberOfCols - 1 && ( colIndex + 1 ) % grid.numberOfRegionCols == 0 ) { %>
+                                    <div class="sudoku-grid-cell-divider"></div>
+                                <% } %>
+                            <% }); %>
+                        </div>
+                        <% if( rowIndex < grid.numberOfRows - 1 && ( rowIndex + 1 ) % grid.numberOfRegionRows == 0 ) { %>
+                            <div class="sudoku-grid-row-divider"></div>
+                        <% } %>
+                    <% }); %>
+                </div>
+                <% if( checkAvailable ) { %>
+                    <div class="sudoku-grid-conflicts-overlay hidden">
+                        <div class="sudoku-grid-conflicts-overlay-rows">
+                            <% _.times(grid.numberOfRows, function(rowIndex) { %>
+                                <div id="sudokuGridConflictsOverlayRow_<%= rowIndex %>" class="sudoku-grid-conflicts-overlay-row"></div>
+                                <% if( rowIndex < grid.numberOfRows - 1 && ( rowIndex + 1 ) % grid.numberOfRegionRows == 0 ) { %>
+                                    <div class="sudoku-grid-conflicts-overlay-row-divider"></div>
+                                <% } %>
+                            <% }); %>
+                        </div>
+                        <div class="sudoku-grid-conflicts-overlay-cols">
+                            <% _.times(grid.numberOfCols, function(colIndex) { %>
+                                <div id="sudokuGridConflictsOverlayCol_<%= colIndex %>" class="sudoku-grid-conflicts-overlay-col">
+                                    <div class="sudoku-grid-conflicts-overlay-col-content"></div>
+                                </div>
+                                <% if( colIndex < grid.numberOfCols - 1 && ( colIndex + 1 ) % grid.numberOfRegionCols == 0 ) { %>
+                                    <div class="sudoku-grid-conflicts-overlay-col-divider"></div>
+                                <% } %>
+                            <% }); %>
+                        </div>
+                        <div class="sudoku-grid-conflicts-overlay-regions">
+                            <% _.times(grid.numberOfRegions, function(regionIndex) { %>
+                                <div id="sudokuGridConflictsOverlayRegion_<%= regionIndex %>" class="sudoku-grid-conflicts-overlay-region"></div>
+                                <% if( regionIndex < grid.numberOfRegions - 1 && ( regionIndex + 1 ) % ( grid.numberOfCols / grid.numberOfRegionCols ) != 0 ) { %>
+                                    <div class="sudoku-grid-conflicts-overlay-region-horizontal-divider"></div>
+                                <% } %>
+                                <% if( regionIndex < grid.numberOfRegions - 1 && ( regionIndex + 1 ) % ( grid.numberOfCols / grid.numberOfRegionCols ) == 0 ) { %>
+                                    <div class="sudoku-grid-conflicts-overlay-region-vertical-divider"></div>
+                                <% } %>
+                            <% }); %>
+                        </div>
                     </div>
-                    <% if( rowIndex < grid.numberOfRows - 1 && ( rowIndex + 1 ) % grid.numberOfBlockRows == 0 ) { %>
-                        <div class="sudoku-grid-row-divider"></div>
-                    <% } %>
-                <% }); %>
+                <% } %>
             </div>
             <div class="sudoku-toolbar">
                 <% _.each(symbols.gridSymbols, function(symbol) { %>
@@ -297,6 +332,7 @@
             <div class="sudoku-actions">
                 <button class="btn btn-large sudoku-action-hint hidden">Vihje</button>
                 <button class="btn btn-large sudoku-action-check hidden">Tarkista</button>
+                <button class="btn btn-large sudoku-action-continue hidden">Jatka</button>
             </div>
         </div>
         
