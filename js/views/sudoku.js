@@ -24,6 +24,9 @@ var Sudoku = Backbone.View.extend({
   selectedUICell: null,
   
   
+  soundFXPlaying: false,
+  
+  
   initialize: function() {
     
     this.numberOfGivens = 0;
@@ -37,6 +40,8 @@ var Sudoku = Backbone.View.extend({
     this.numberOfHintsUsed = 0;
     
     this.selectedUICell = null;
+    
+    this.soundFXPlaying = false;
     
   },
   
@@ -374,11 +379,41 @@ var Sudoku = Backbone.View.extend({
           
         } else {
           
-          var invalidMoveSoundFX = document.getElementById( "sudokuInvalidMoveSoundFX" );
-          
-          invalidMoveSoundFX.pause();
-          invalidMoveSoundFX.currentTime = 0;
-          invalidMoveSoundFX.play();
+          if( !this.soundFXPlaying ) {
+            
+            var invalidMoveSoundFXPrototype = document.getElementById( "sudokuInvalidMoveSoundFX" );
+            
+            var invalidMoveSoundFX = new Audio( invalidMoveSoundFXPrototype.src );
+            
+            var game = this;
+            
+            invalidMoveSoundFX.addEventListener( "waiting", function() {
+              game.soundFXPlaying = true;
+            } );
+            
+            invalidMoveSoundFX.addEventListener( "abort", function() {
+              game.soundFXPlaying = false;
+            } );
+            
+            invalidMoveSoundFX.addEventListener( "error", function() {
+              game.soundFXPlaying = false;
+            } );
+            
+            invalidMoveSoundFX.addEventListener( "stalled", function() {
+              game.soundFXPlaying = false;
+            } );
+            
+            invalidMoveSoundFX.addEventListener( "ended", function() {
+              game.soundFXPlaying = false;
+            } );
+            
+            invalidMoveSoundFX.addEventListener( "paused", function() {
+              game.soundFXPlaying = false;
+            } );
+            
+            invalidMoveSoundFX.play();
+            
+          }
           
         }
         
