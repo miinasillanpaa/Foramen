@@ -26,8 +26,6 @@ var PreGameView = Backbone.View.extend({
             var catTitle = Settings.get('categories').titles;
             split = catImg.chunk(3);
             txtSplit = catTitle.chunk(3);
-            console.log(txtSplit);
-            console.log(split);
         }else if ( gameId === 5){
             this.preloadAud('elaimet');
         }else if ( gameId === 6){
@@ -42,8 +40,6 @@ var PreGameView = Backbone.View.extend({
         }else if ( gameId === 9){
             this.preload('konstruktio');
         }
-
-
 
 		var variables = {title: this.model.get('title'),
                          guide: this.model.get('guide'),
@@ -60,7 +56,7 @@ var PreGameView = Backbone.View.extend({
                          slide4Titles: txtSplit[3],
                          categories: Settings.get('categories').titles,
                          titleImg: Settings.get('categories').titleImg};
-        console.log(variables);
+
 		var template = _.template( $(this.template).html(), variables );
 
 		this.$el.html(template);
@@ -75,7 +71,6 @@ var PreGameView = Backbone.View.extend({
 
             $('.item img').addClass('category');
 
-            console.log(category);
             $('.categories').removeClass('hidden');
 
             if(category === 'dinosaurukset'){
@@ -128,7 +123,6 @@ var PreGameView = Backbone.View.extend({
             var textCat = Settings.get('textCategory');
             $("#categoryCarousel").removeClass('hidden');
             $('.wordsTitle').removeClass('hidden');
-            console.log(textCat);
             $('.item img').addClass('text-category');
 
             if(textCat === 'eläimet'){
@@ -181,7 +175,6 @@ var PreGameView = Backbone.View.extend({
             
             var textCat = Settings.get('sudokuCategory');
             $("#categoryCarousel").removeClass('hidden');
-            console.log(textCat);
             $('.item img').addClass('text-category');
             
             if(textCat === 'numerot'){
@@ -210,23 +203,10 @@ var PreGameView = Backbone.View.extend({
             }
         });
 
-        $("#content").imagesLoaded( function ( $images ){
-                console.log( $images.length + ' images have been loaded');
+        $("#content").imagesLoaded( function (){
                 $(".container").removeClass('loading');
         });
-        
-        // $('.carousel-inner div:nth-child(1)').addClass('active');
-/*
-        $('.easy').click(function(){
-            scroller.scrollTo(500, 0, false);
-        });
 
-        $('.medium').click(function(){
-
-            var val = scroller.getValues();
-            console.log(val);
-        });
- */
 
         var diff = Settings.get('difficulty');
         if(diff === 'easy' || (diff === 'joker' && !showJoker)){
@@ -259,7 +239,6 @@ var PreGameView = Backbone.View.extend({
         var src = target.attr('src');
         var c = src.substring(7,src.length-6);
         Settings.set({category:c});
-        console.log(c);
     },
 
 
@@ -329,9 +308,7 @@ var PreGameView = Backbone.View.extend({
     },
 
     play: function() {
-		console.log('play button clicked!');
         var gameId = this.model.get('gameId');
-
 		router.navigate('game/' + gameId + '/play', {trigger: true});
 
     },
@@ -358,7 +335,6 @@ var PreGameView = Backbone.View.extend({
             }
         }
         $(preload).preload();
-        //console.log(preload + ' preloaded')
     },
 
     preloadAud: function (category) {

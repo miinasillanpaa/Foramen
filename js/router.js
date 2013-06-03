@@ -76,8 +76,6 @@ router.on('route:play', function(id) {
     var selectedGame = games[selectedGameIndex];
     var gameObj = new Game(selectedGame);
 
-    console.log('route:play with id ' + id);
-
 	if( parseInt(id) === 1 ){
         var view1 = new KuvaEtsinta({ model:gameObj });
 		App.currentGameView = view1;

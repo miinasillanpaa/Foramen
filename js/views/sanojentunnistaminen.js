@@ -19,8 +19,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
             moveTime = 500;
         }
 
-
-
         var timeLeft = 240; // 4min
         var knobTimer = setInterval(countdown, 1000);
         var totMin, totSec;
@@ -123,9 +121,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
            window.clearInterval(knobTimer);
         });
         $('.knob').knob({
-            change : function (value) {
-                console.log(value);
-            },
+            change : function (value) {},
             "max": 240,
             "min": 0
 
@@ -238,8 +234,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
             items = Settings.get('categories').valtiot
         }
 
-        console.log(items);
-
         var uniqueItems = [];
         for(var l = 0; l < amount; l++ ){
             var unique = true;
@@ -280,8 +274,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
                 }
             }
         }
-        console.log(arr);
-        console.log(textString);
         Settings.set({ textString:textString });
         return text;
     },
@@ -289,7 +281,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
     getSelectorText: function () {
         var category = Settings.get('textCategory');
         var items = Settings.get('categories')[category];
-        console.log(items);
         var selectorPresses = Settings.get('scrollerResults').selectorPresses;
         selectorPresses++;
 
@@ -300,7 +291,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
         var _categories = _.omit(Settings.get('categories'));
 
         var selector = Settings.get('selector');
-        console.log(selector);
         for( var i = 0; i < items.length; i++ ){
 
             if( selector.indexOf(items[i]) !== -1 ){
@@ -315,11 +305,8 @@ var SanojenTunnistaminen = Backbone.View.extend({
                 _results.wrongs = wrongs;
             }
         }
-        console.log(corrects);
         _results.selectorPresses = selectorPresses;
         Settings.set({ scrollerResults: _results });
         Settings.set({ categories:_categories });
-
-        console.log(Settings.get('scrollerResults'));
     }
 });

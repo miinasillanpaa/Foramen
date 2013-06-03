@@ -7,10 +7,9 @@ var KIM = Backbone.View.extend({
     },
 
     render: function () {
-        console.log('kim render');
         $('#header').empty().hide();
 
-        var visible = this.itemsLength()*4000;
+        var visible = this.itemsLength()*4500;
 
         var targets = this.renderTargets();
         Settings.set({targets:targets});
@@ -22,8 +21,7 @@ var KIM = Backbone.View.extend({
         this.$el.html(template);
         var timer;
 
-        $("#content").imagesLoaded( function ( $images ){
-            console.log( $images.length + ' images have been loaded');
+        $("#content").imagesLoaded( function (){
             $(".container").removeClass('loading');
             timer = setTimeout(
                 function() {
@@ -35,7 +33,6 @@ var KIM = Backbone.View.extend({
         $('.quit').click( function() {
             window.clearTimeout(timer)
         });
-
 
         return this;
 
@@ -69,7 +66,6 @@ var KIM = Backbone.View.extend({
         }else{
             itemsLength = 20;
         }
-
         return itemsLength;
     },
 
@@ -150,10 +146,6 @@ var KIM = Backbone.View.extend({
         var visible = targets.length*4500;
         var playthruNum = Settings.get('playThruNum');
 
-        if(playthruNum === 9){
-            console.log('end game nevertheless')
-        }
-
         playthruNum++;
         Settings.set({playThruNum:playthruNum});
 
@@ -186,28 +178,23 @@ var KIM = Backbone.View.extend({
 
         for(var k=0; k<targetImg.length; k++){
             if( ($.inArray(targetImg[k], selected)) === -1 ){
-                console.log('kuva puuttui');
                 $(".allItems img[src="+'"'+targetImg[k]+'"'+"]").addClass('warning-border');
-
             }
         }
 
         var that = this;
         if ((correct === targets.length && wrong === 0) || (playthruNum === 10)) {
 
-
             var date = getDateTime();
             var pvm = date.pvm;
             var klo = date.klo;
 
             var round1 = Settings.get('results')[0];
-            console.log(round1);
-
 
             var emptyRound = {
-                correct: "-",
-                wrong:"-",
-                tot: "-"
+                correct:    "-",
+                wrong:      "-",
+                tot:        "-"
             };
 
             var round2 = emptyRound;
@@ -220,7 +207,6 @@ var KIM = Backbone.View.extend({
             var round9 = emptyRound;
             var round10 = emptyRound;
 
-            console.log(round10);
             if(Settings.get('results')[1]){
                 round2 = Settings.get('results')[1];
             }

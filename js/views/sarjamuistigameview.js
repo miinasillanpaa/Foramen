@@ -37,9 +37,6 @@ var Sarjamuisti = Backbone.View.extend({
                 $('.box:eq(' + rand + ')').addClass('actived').removeClass('available');
             },time);
 
-
-
-
         var variables = { numArray : numArray, choices : choices };
 
         var template = _.template( $(this.template).html(), variables );
@@ -163,7 +160,7 @@ var Sarjamuisti = Backbone.View.extend({
             //time & date
             var today = new Date();
             var dd = today.getDate();
-            var mm = today.getMonth()+1;//January is 0!
+            var mm = today.getMonth()+1;
             var yyyy = today.getFullYear();
             if(dd<10){dd='0'+dd}
             if(mm<10){mm='0'+mm}
@@ -212,5 +209,4 @@ var Sarjamuisti = Backbone.View.extend({
 
         }
     }
-
 });

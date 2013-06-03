@@ -14,9 +14,8 @@ var HeaderView = Backbone.View.extend({
     render: function () {
         var template;
         var variables;
-        console.log(this.id);
-        if(parseInt(this.id) === 0){
 
+        if(parseInt(this.id) === 0){
             template = _.template( $(this.template0).html());
             this.$el.html(template);
             return this;
@@ -28,7 +27,6 @@ var HeaderView = Backbone.View.extend({
             return this;
 
         }else{
-
             variables  = { title: this.options.gameObj.attributes.title };
             template = _.template( $(this.template1).html(), variables);
             this.$el.html(template);

@@ -235,10 +235,6 @@ var Konstruointi = Backbone.View.extend({
 
         var roundResults;
 
-        console.log(correctConstruct.firstRow +" - "+firstRow);
-        console.log(correctConstruct.secondRow +" - "+secondRow);
-        console.log(correctConstruct.thirdRow +" - "+thirdRow);
-
         if(difficulty === 'easy'){
             if( (arraysIdentical(correctConstruct.firstRow, firstRow) === true) &&
                 (arraysIdentical(correctConstruct.secondRow, secondRow) === true) ) {
@@ -270,9 +266,7 @@ var Konstruointi = Backbone.View.extend({
     continueGame: function () {
         this.undelegateEvents();
 
-
             var results = Settings.get('results');
-            console.log(results);
             var date = getDateTime();
             var pvm = date.pvm;
             var klo = date.klo;

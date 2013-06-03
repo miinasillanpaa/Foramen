@@ -59,8 +59,7 @@ var TekstiviestiGameView = Backbone.View.extend({
         var phoneTimer;
         var msgTimer;
 
-        $("#content").imagesLoaded( function ( $images ){
-            console.log( $images.length + ' images have been loaded');
+        $("#content").imagesLoaded( function (){
             $(".container").removeClass('loading');
 
             phoneTimer = setTimeout(
@@ -124,12 +123,9 @@ var TekstiviestiGameView = Backbone.View.extend({
         });
 
         $('.knob').knob({
-            change : function (value) {
-                console.log(value);
-            },
+            change : function (value) {},
             "max": txtVisibleTime/1000,
             "min": 0
-
         });
 
         return this;
@@ -146,7 +142,6 @@ var TekstiviestiGameView = Backbone.View.extend({
 
         var memoringTime = endTime - Settings.get('startTime');
         memoringTime = msToStr(memoringTime);
-        console.log(memoringTime);
         Settings.set({ memoringTime: memoringTime });
         var variables = {
             message         : myMsg.message,

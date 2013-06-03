@@ -3,8 +3,6 @@ var GameView = Backbone.View.extend({
     className: 'game-item rounded',
     template: '#gameTemplate',
 
-
-
 	events: {
         'click': 'selectGame'
 	},

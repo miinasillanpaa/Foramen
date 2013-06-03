@@ -30,8 +30,7 @@ var KuvaEtsinta = Backbone.View.extend({
             $('.item-collection img:eq(' + variables.randomSpots[i] + ')').addClass('correct');
         }
 
-        $("#content").imagesLoaded( function ( $images ){
-           console.log( $images.length + ' images have been loaded');
+        $("#content").imagesLoaded( function ( ){
            $(".container").removeClass('loading');
             var startTime = new Date().getTime();
             Settings.set({ startTime : startTime });
@@ -84,8 +83,6 @@ var KuvaEtsinta = Backbone.View.extend({
             }
 
         }
-
-        console.log(randomSpots);
 
         return {myArr: arr, targetPic: [{'targetPic':targetPic}], randomSpots: randomSpots}
     },
@@ -234,9 +231,7 @@ var KuvaEtsinta = Backbone.View.extend({
             }else{
                 i--;
             }
-
         }
-
         return {myArr: arr, targetPic: [{ 'targetPic':targetPicOne }, { 'targetPic':targetPicTwo }, { 'targetPic':targetPicThree }], randomSpots: randomSpots}
     },
 
@@ -247,14 +242,12 @@ var KuvaEtsinta = Backbone.View.extend({
     },
 
     selectItem: function () {
-        console.log('selected');
         var target = $(event.target);
         target.toggleClass('selected');
     },
 
     quitGame: function () {
 		this.undelegateEvents();
-
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId, true);
     },
@@ -332,11 +325,5 @@ var KuvaEtsinta = Backbone.View.extend({
 
         view.render();
 
-
-
     }
-
-
-
-
 });

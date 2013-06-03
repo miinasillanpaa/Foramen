@@ -195,14 +195,12 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
 
             for(var j=0; j<strings.length; j++){
                 if( inputs[0] === strings[j] ){
-                    console.log('oike');
                     $('.input_0').addClass('input-success');
                     correct++;
                     delete strings[j];
                 }
 
                 if( inputs[1] === strings[j]){
-                    console.log('oike');
                     $('.input_1').addClass('input-success');
                     correct++;
                     delete strings[j];
@@ -214,21 +212,18 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
 
             for(var j=0; j<strings.length; j++){
                 if( inputs[0] === strings[j] ){
-                    console.log('oike');
                     $('.input_0').addClass('input-success');
                     correct++;
                     delete strings[j];
                 }
 
                 if( inputs[1] === strings[j]){
-                    console.log('oike');
                     $('.input_1').addClass('input-success');
                     correct++;
                     delete strings[j];
                 }
 
                 if( inputs[2] === strings[j]){
-                    console.log('oike');
                     $('.input_2').addClass('input-success');
                     correct++;
                     delete strings[j];
@@ -239,28 +234,24 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
 
             for(var j=0; j<strings.length; j++){
                 if( inputs[0] === strings[j] ){
-                    console.log('oike');
                     $('.input_0').addClass('input-success');
                     correct++;
                     delete strings[j];
                 }
 
                 if( inputs[1] === strings[j]){
-                    console.log('oike');
                     $('.input_1').addClass('input-success');
                     correct++;
                     delete strings[j];
                 }
 
                 if( inputs[2] === strings[j]){
-                    console.log('oike');
                     $('.input_2').addClass('input-success');
                     correct++;
                     delete strings[j];
                 }
 
                 if( inputs[3] === strings[j]){
-                    console.log('oike');
                     $('.input_3').addClass('input-success');
                     correct++;
                     delete strings[j];

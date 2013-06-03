@@ -183,8 +183,6 @@ var TekstiviestiAnswerView = Backbone.View.extend({
 
     showCorrectAnswers : function () {
         var corrects = this.options.variables.correctStrings;
-        console.log(corrects);
-
         var sender = this.options.variables.correctStrings.sender;
         var receiver = this.options.variables.correctStrings.receiver;
         var place = this.options.variables.correctStrings.place;
@@ -209,7 +207,7 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         var date = getDateTime();
         var pvm = date.pvm;
         var klo = date.klo;
-        
+
         var results;
         if(Settings.get('difficulty') == 'hard' ){
 
