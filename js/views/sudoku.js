@@ -374,10 +374,10 @@ var Sudoku = Backbone.View.extend({
           
         } else {
           
-          var invalidMoveSoundFX = document.getElementById( "sudokuInvalidMoveSoundFX" );
+          var invalidMoveSoundFXPrototype = document.getElementById( "sudokuInvalidMoveSoundFX" );
           
-          invalidMoveSoundFX.pause();
-          invalidMoveSoundFX.currentTime = 0;
+          var invalidMoveSoundFX = new Audio( invalidMoveSoundFXPrototype.src );
+          
           invalidMoveSoundFX.play();
           
         }
