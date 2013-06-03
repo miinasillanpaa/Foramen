@@ -4,18 +4,24 @@ var KIM = Backbone.View.extend({
 
     initialize: function () {
         $(".container").addClass('loading');
+
     },
 
     render: function () {
         $('#header').empty().hide();
 
         var visible = this.itemsLength()*4500;
-
+        this.knobify();
         var targets = this.renderTargets();
         Settings.set({targets:targets});
         var allItems = this.addBluffs(targets);
 
-        var variables = {targets:targets,bluffs:allItems};
+        var knobMax;
+        if(Settings.get('difficulty')       == 'easy') { knobMax = '0:36' }
+        else if(Settings.get('difficulty')  == 'medium') {knobMax = '1:03' }
+        else { knobMax = '1:30' }
+
+        var variables = {targets:targets,bluffs:allItems,knobMax:knobMax};
         var template = _.template( $(this.template).html(), variables ) ;
 
         this.$el.html(template);
@@ -33,6 +39,11 @@ var KIM = Backbone.View.extend({
         $('.quit').click( function() {
             window.clearTimeout(timer)
         });
+        $('.knob').knob({
+            change : function (value) {},
+            "max": (this.itemsLength()*4.5)-1,
+            "min": 0
+        });
 
         return this;
 
@@ -49,6 +60,37 @@ var KIM = Backbone.View.extend({
         Settings.set({'playThruNum' : 0});
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId, true);
+    },
+
+    knobify: function () {
+
+        $('.timer').show();
+        var knobTimer = setInterval(countdown, 1000);
+        var totMin, totSec;
+        var timeLeft = (this.itemsLength()*4.5)-1;
+        function countdown() {
+            if (timeLeft == 0){
+                $(".timer").hide();
+                window.clearInterval(knobTimer);
+            }else{
+                totMin = Math.floor(timeLeft/60);
+                totSec = Math.floor(timeLeft-(totMin*60));
+
+                function pad2(number){
+                    return (number < 10 ? '0' : '') + number
+                }
+
+                totSec = pad2(totSec);
+                $('.knob').val(timeLeft).trigger("change");
+                $('.knob').val(totMin+":"+totSec);
+                timeLeft--;
+
+                $('.quit').click( function () {
+                    window.clearInterval(knobTimer);
+                })
+            }
+        }
+
     },
 
     selectItem: function () {
@@ -144,6 +186,7 @@ var KIM = Backbone.View.extend({
         $('.finish').addClass('hidden');
         var targets = Settings.get('targets');
         var visible = targets.length*4500;
+        this.knobify();
         var playthruNum = Settings.get('playThruNum');
 
         playthruNum++;

@@ -9,12 +9,14 @@ var TekstiviestiGameView = Backbone.View.extend({
     render: function () {
         $('#header').empty().hide();
 
-
         var txtVisibleTime;
+        var knobMax;
         if(Settings.get('difficulty') == 'easy'){
             txtVisibleTime = 60*1000;
+            knobMax = "0:60";
         }else if(Settings.get('difficulty') == 'medium'){
             txtVisibleTime = 30*1000;
+            knobMax = "0:30";
         }else{
             txtVisibleTime = 999999999;
         }
@@ -43,12 +45,10 @@ var TekstiviestiGameView = Backbone.View.extend({
             times           : myMsg.times,
             items           : myMsg.items,
             corrects        : myMsg.corrects,
-            correctStrings  : myMsg.correctStrings };
+            correctStrings  : myMsg.correctStrings,
+            knobMax         : knobMax };
 
         Settings.set({'myMsg': myMsg});
-
-
-
 
         var template = _.template( $(this.template).html(), variables );
         this.$el.html(template);
@@ -58,7 +58,7 @@ var TekstiviestiGameView = Backbone.View.extend({
         var myModel = this.model;
         var phoneTimer;
         var msgTimer;
-
+        var phoneview = this;
         $("#content").imagesLoaded( function (){
             $(".container").removeClass('loading');
 
@@ -79,31 +79,8 @@ var TekstiviestiGameView = Backbone.View.extend({
 
                         }else{
 
-                            $('.quit').click( function() {
-                                window.clearInterval(knobTimer);
-                            });
+                            phoneview.knobify();
 
-                            var knobTimer = setInterval(countdown, 1000);
-                            var totMin, totSec;
-                            var timeLeft = txtVisibleTime/1000;
-                            function countdown() {
-                                if (timeLeft == 0){
-                                    window.clearInterval(knobTimer);
-                                }else{
-
-                                    totMin = Math.floor(timeLeft/60);
-                                    totSec = Math.floor(timeLeft-(totMin*60));
-
-                                    function pad2(number){
-                                        return (number < 10 ? '0' : '') + number
-                                    }
-
-                                    totSec = pad2(totSec);
-                                    $('.knob').val(timeLeft).trigger("change");
-                                    $('.knob').val(totMin+":"+totSec);
-                                    timeLeft--;
-                                }
-                            }
                         }
 
                         msgTimer = setTimeout(
@@ -134,6 +111,41 @@ var TekstiviestiGameView = Backbone.View.extend({
     events: {
         'click .quit': 'quitGame',
         'click .toGame' : 'toGame'
+    },
+
+    knobify: function () {
+        $('.timer').removeClass('hidden');
+        $('.timer').show();
+        var knobTimer = setInterval(countdown, 1000);
+        var totMin, totSec;
+
+        var timeLeft;
+        if(Settings.get('difficulty') == 'easy' ) { timeLeft = 59; }
+        else{ timeLeft = 29; }
+
+        function countdown() {
+            if (timeLeft == 0){
+                $(".timer").hide();
+                window.clearInterval(knobTimer);
+            }else{
+                totMin = Math.floor(timeLeft/60);
+                totSec = Math.floor(timeLeft-(totMin*60));
+
+                function pad2(number){
+                    return (number < 10 ? '0' : '') + number
+                }
+
+                totSec = pad2(totSec);
+                $('.knob').val(timeLeft).trigger("change");
+                $('.knob').val(totMin+":"+totSec);
+                timeLeft--;
+
+                $('.quit').click( function () {
+                    window.clearInterval(knobTimer);
+                })
+            }
+        }
+
     },
 
     toGame: function () {

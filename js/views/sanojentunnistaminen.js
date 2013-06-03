@@ -19,31 +19,9 @@ var SanojenTunnistaminen = Backbone.View.extend({
             moveTime = 500;
         }
 
-        var timeLeft = 240; // 4min
-        var knobTimer = setInterval(countdown, 1000);
-        var totMin, totSec;
-
-        function countdown() {
-            if (timeLeft == 0){
-                window.clearInterval(knobTimer);
-            }else{
-                totMin = Math.floor(timeLeft/60);
-                totSec = Math.floor(timeLeft-(totMin*60));
-
-                function pad2(number){
-                    return (number < 10 ? '0' : '') + number
-                }
-
-                totSec = pad2(totSec);
-                $('.knob').val(timeLeft).trigger("change");
-                $('.knob').val(totMin+":"+totSec);
-
-                timeLeft--;
-            }
-        }
-
         var mover = setInterval(this.scrollText, moveTime);
 
+        this.knobify();
 
         var text = this.stringMaker();
 
@@ -118,7 +96,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
         $('.quit').click(function() {
            window.clearTimeout(timer);
            window.clearInterval(mover);
-           window.clearInterval(knobTimer);
         });
         $('.knob').knob({
             change : function (value) {},
@@ -140,6 +117,35 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId, {trigger:true});
+    },
+
+    knobify: function () {
+
+        var knobTimer = setInterval(countdown, 1000);
+        var totMin, totSec;
+        var timeLeft = 240;
+        function countdown() {
+            if (timeLeft == 0){
+                $(".timer").hide();
+                window.clearInterval(knobTimer);
+            }else{
+                totMin = Math.floor(timeLeft/60);
+                totSec = Math.floor(timeLeft-(totMin*60));
+
+                function pad2(number){
+                    return (number < 10 ? '0' : '') + number
+                }
+
+                totSec = pad2(totSec);
+                $('.knob').val(timeLeft).trigger("change");
+                $('.knob').val(totMin+":"+totSec);
+                timeLeft--;
+
+                $('.quit').click( function () {
+                    window.clearInterval(knobTimer);
+                })
+            }
+        }
     },
 
     scrollText: function () {

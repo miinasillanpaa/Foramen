@@ -45,6 +45,10 @@
     </script>
 
     <script id="KIMTemplate" type="text/template">
+        <div class="timer text-center">
+            <input class="knob" data-width="100" data-fgColor="#379DBB" data-displayInput=true value="<%=knobMax%>">
+        </div>
+
         <div class="items targets text-center">
             <% _.each(targets, function(targets) { %>
                 <img class="item" src="./pics/KIM/<%=targets%>.png">
@@ -225,9 +229,11 @@
     </script>
 
     <script id="tekstiviestiGameTemplate" type="text/template">
-    <div class="timer text-center">
-        <input class="knob" data-width="100" data-fgColor="#379DBB" data-displayInput=true value="">
+
+    <div class="timer text-center hidden">
+        <input class="knob" data-width="100" data-fgColor="#379DBB" data-displayInput=true value="<%=knobMax%>">
     </div>
+
     <div class="phone-container">
         <audio id="audio" autoplay="autoplay" src="sounds/iphone-sms.mp3" type="audio/mpeg" ></audio>
         <img class="phone center" src="img/device-iphone5.png" />
