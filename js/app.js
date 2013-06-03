@@ -7,7 +7,12 @@ var games = [
 	{
         "gameId"     : 1,
         "title"      : "Etsi kuvat",
-        "guide"      : "<p>Ruudulla näkyy kuvia. Ruudun alalaidassa näkyy etsittävät kohdekuvat.</p>" +
+        "guide"      : '<div class="well well-info">'+
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Etsitään yhtä kuvaa</span></p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Etsitään kahta kuvaa</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: Etsitään kolmea kuvaa</p></div>' +
+
+                       "<p>Ruudulla näkyy kuvia. Ruudun alalaidassa näkyy etsittävät kohdekuvat.</p>" +
                        "<p>Tehtävänä on etsiä samanlaisia kuvia kuin kohdekuva tai kohdekuvat koskettamalla niitä mahdollisimman nopeasti.</p>" +
                        "<p>Väärän valinnan voit poistaa koskettamalla kuvaa uudestaan..</p>" +
                        '<p>Näet tuloksesi painamalla "Valmis".</p>' +
@@ -19,99 +24,142 @@ var games = [
 
         "gameId"     : 2,
         "title"      : "Muista viesti",
-        "guide"      : "<p>Ruudulla näkyy matkapuhelimen kuva. Merkkiäänen jälkeen ilmestyy tekstiviesti. Tehtävänä on painaa tekstiviesti mieleen.</p>" +
+        "guide"      : '<div class="well well-info">'+
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Viesti näkyy 60 sekuntia</span></p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Viesti näkyy 30 sekuntia</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: Viesti näkyy haluamasi ajan</p></div>' +
+
+                       "<p>Ruudulla näkyy matkapuhelimen kuva. Merkkiäänen jälkeen ilmestyy tekstiviesti. Tehtävänä on painaa tekstiviesti mieleen.</p>" +
                        "<p>Mieleenpainamisen jälkeen näytetään joukko kysymyksiä ja niiden vastausvaihtoehtoja.</p>" +
-                       '<p>Vastausvaihtoehdot tulevat näkyviin, kun painat kysymystä.</p>'+
+                       '<p>Vastausvaihtoehdot tulevat näkyviin, kun kosketat kysymystä.</p>'+
                        '<p>Vastaa kysymykseen koskettamalla vastausta.</p>'+
-                       '<p>Paina "Tarkista", jolloin oikeat vastaukset näytetään vihreällä ja väärät punaisella.</p>'+
-                       '<p>Tehtävä voidaan keskeyttää painamalla "Lopeta".</p>',
+                       '<p>Kosketa "Tarkista", jolloin oikeat vastaukset näytetään vihreällä ja väärät punaisella.</p>'+
+                       '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"     :  "http://www.youtube.com/embed/7htCYIcrVoo",
         "coverImage" : "./img/txt.png"
     },
 	{
         "gameId"     : 3,
         "title"      : "Tunnista sanat",
-        "guide"      : "<p>Ruudulla näkyy liikkuva kirjainrivi, jonka keskellä on punaisella merkitty alue.</p>" +
+        "guide"      : '<div class="well well-info">'+
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Kirjaimet siirtyvät 1,5 sekunnin välein</span></p>' +
+                        '<p class="lvl-box lvl-med hidden">Taso II: Kirjaimet siirtyvät 1 sekunnin välein</p>' +
+                        '<p class="lvl-box lvl-hard hidden">Taso III: Kirjaimet siirtyvät 0,5 sekunnin välein</p></div>' +
+
+                        "<p>Ruudulla näkyy liikkuva kirjainrivi, jonka keskellä on punaisella merkitty alue.</p>" +
                        '<p>Tehtävänä on havaita punaisella alueella perusmuodossa oleva substantiivi (nimisana), esimerkiksi "kissa".</p>'+
-                       "<p>Valinta osoitetaan painamalla alueen alapuolella olevaa Löytyi-painiketta.</p>"+
-                       "<p>Tehtävä kestää neljä minuuttia. Voit kuitenkin keskeyttää tehtävän painamalla “Lopeta”.</p>",
+                       "<p>Valinta osoitetaan koskettamalla alueen alapuolella olevaa Löytyi-painiketta.</p>"+
+                       '<p>Tehtävä kestää neljä minuuttia. Voit kuitenkin keskeyttää tehtävän koskettamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/UlYAon9pjoY",
         'coverImage' : './img/sanat.png'
     },
 	{
         "gameId"     : 4,
         "title"      : "Muista näkemäsi numerosarja",
-        "guide"      : "<p>Ruudulla näkyy numerosarja. Tehtävänä on painaa se mieleen.</p>"+
+        "guide"      : '<div class="well well-info">'+
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Sarjan pituus 3 numeroa</span></p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Sarjan pituus 4 numeroa</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: Sarjan pituus 5 numeroa</p></div>' +
+
+                       "<p>Ruudulla näkyy numerosarja. Tehtävänä on painaa se mieleen.</p>"+
                        "<p>Kun sarja on esitetty, numerot peitetään mustilla neliöillä. Kulloinkin mieleenpalautettavan numeron paikka on merkitty punaisella kehyksellä. Alarivillä näkyvät numero 0-9. Vastaa koskettamalla alarivin kyseistä numeroa. Sama toistetaan jokaisen mustan neliön kohdalla.</p>"+
-                       "<p>Paina “Tarkista”, jolloin näet oikeat vastaukset.</p>"+
-                       '<p>Muistettavia numerosarjoja tulee viisi peräkkäin. Voit kuitenkin keskeyttää tehtävän painamalla "Lopeta".</p>',
+                       '<p>Kosketa "Tarkista", jolloin näet oikeat vastaukset.</p>'+
+                       '<p>Muistettavia numerosarjoja tulee viisi peräkkäin. Voit kuitenkin keskeyttää tehtävän koskettamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/JAyMd0IEPxE",
         "coverImage" : "./img/vis.png"
     },
 	{
         "gameId"     : 5,
         "title"      : "Muista kuulemasi sanat",
-        "guide"      : "<p>Kovaäänisistä kuuluu sarja sanoja. Tehtävänä on painaa sarja mieleen.</p>"+
-                       "<p>Tämän jälkeen ruudulle ilmestyy häirintätehtävä. Tehtävänä on painaa Löytyi-näppäintä, kun ruudulle ilmestyy eläin.</p>"+
+        "guide"      : '<div class="well well-info">'+
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Sarjan pituus 2 sanaa</span></p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Sarjan pituus 3 numeroa</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: Sarjan pituus 4 numeroa</p></div>' +
+
+                       "<p>Kovaäänisistä kuuluu sarja sanoja. Tehtävänä on painaa sarja mieleen.</p>"+
+                       "<p>Tämän jälkeen ruudulle ilmestyy häirintätehtävä. Tehtävänä on koskettaa Löytyi-näppäintä, kun ruudulle ilmestyy eläin.</p>"+
                        "<p>Häirintätehtävän jälkeen mieleenpainettu sarja kirjoitetaan ruudukkoon vapaassa järjestyksessä.</p>"+
-                       '<p>Kun koko sarja on kirjoitettu paina "Valmis", jolloin näkyviin tulee oikeiden vastauksien määrä.</p>'+
-                       '<p>Tehtävä voidaan keskeyttää painamalla "Lopeta".</p>',
+                       '<p>Kun koko sarja on kirjoitettu kosketa "Valmis"-painiketta, jolloin näkyviin tulee oikeiden vastauksien määrä.</p>'+
+                       '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/BztSh8D8il0",
         'coverImage' : './img/aud.png'
     },
 	{
         "gameId"     : 6,
         "title"      : "Muista näkemäsi esineet",
-        "guide"      : "<p>Ruudulla näkyy esineiden kuvia. Tehtävänä on oppia tunnistamaan nämä muiden joukosta.</p>"+
+        "guide"      : '<div class="well well-info">'+
+                       '<p class="lvl-box lvl-easy hidden">Taso I: 8 etsittävää esinettä</span></p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: 14 etsittävää esinettä</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: 20 etsittävää esinettä</p></div>' +
+
+                       "<p>Ruudulla näkyy esineiden kuvia. Tehtävänä on oppia tunnistamaan nämä muiden joukosta.</p>"+
                        "<p>Mieleenpainamisen jälkeen ruudulle ilmestyy aiemmin esitetyt kuvat ja joukko muita kuvia. Tehtävänä on tunnistaa aiemmin esitetyt kuvat. Tunnistaminen osoitetaan koskettamalla kuvaa</p>"+
-                       '<p>Paina “Valmis”, jonka jälkeen kone näyttää oikeat vastaukset vihreällä ja puuttuvat oranssilla. Jos muistit kaikki kuvat tehtävä loppuu. Mikäli et muistanut kaikkia, tehtävä jatkuu kunnes muistat kaikki tai korkeintaan kymmenen kierrosta.</p>',
+                       '<p>Kosketa “Valmis”, jonka jälkeen kone näyttää oikeat vastaukset vihreällä ja puuttuvat oranssilla. Jos muistit kaikki kuvat tehtävä loppuu. Mikäli et muistanut kaikkia, tehtävä jatkuu kunnes muistat kaikki tai korkeintaan kymmenen kierrosta.</p>',
         "video"      : "http://www.youtube.com/embed/_HGOhJ1S-gM",
         "coverImage" : "./img/kim.png"
     },
 	{
         "gameId"     : 7,
         "title"      : "Päättele salasana",
-        "guide"      : "<p>Kuvaruudulla näkyy tyhjä tekstikenttä. Tehtävänä on päätellä koneen valitsema salasana, joka on perusmuodossa oleva substantiivi eli nimisana.</p>"+
-                       '<p>Aloita tehtävä painamalla sormella tekstikenttään, jolloin näppäimistö tulee näkyviin. Kenttään kirjoitetaan mikä tahansa määritellyn pituinen sana ja painetaan "Valmis".</p>'+
+        "guide"      :  '<div class="well well-info">'+
+                        '<p class="lvl-box lvl-easy hidden">Taso I: Sanan pituus 3 kirjainta</span></p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Sanan pituus 4 kirjainta</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: Sanan pituus 5 kirjainta</p></div>' +
+
+                       "<p>Kuvaruudulla näkyy tyhjä tekstikenttä. Tehtävänä on päätellä koneen valitsema salasana, joka on perusmuodossa oleva substantiivi eli nimisana.</p>"+
+                       '<p>Aloita tehtävä koskettamalla sormella tekstikenttään, jolloin näppäimistö tulee näkyviin. Kenttään kirjoitetaan mikä tahansa määritellyn pituinen sana ja painetaan "Valmis".</p>'+
                        "<p>Kone kirjoittaa sanan ruudulle ja ilmoittaa kuinka monta sanan kirjaimista on oikeita ja oikealla paikalla (musta ympyrä) ja kuinka monta sanan kirjaimista on oikeita, mutta väärällä paikalla (valkoinen ympyrä).</p>"+
                        "<p>Yritä päätellä salasana koneen antamien vihjeiden avulla.</p>"+
-                       '<p>Tehtävä voidaan keskeyttää painamalla "Lopeta".</p>',
+                       '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/IrgFSCQJT3A",
         "coverImage" : "./img/password.png"
     },
 	{
         "gameId"     : 8,
-        "title"      : "Sudoku-tehtävät",
-        "guide"      : '<p>Suorituksen kulku riippuu valitusta tasosta.<br/>'+
-                       'Tehtävänä on täyttää ruudukon vapaat paikat hedelmillä tai numeroitta 1-6 siten, että kukin hedelmä tai numero voi esiintyä vain kerran jokaisessa pääruudukon pysty- ja vaaka&shy;rivissä sekä jokaisessa pienruudukossa.</p>'+
-                       '<p>Osa ruuduista on valmiiksi täytetty. Valmiiksi täytetyt ruudut on osoitettu harmaalla pohjavärillä.</p>'+
-                       '<p>Ruudukon täyttäminen tapahtuu siten, että haluttua tyhjää ruutua kosketetaan, joilloin sen ympärille muodstuu punainen kehä,<br/> sitten sivulla olevasta valikosta valitaan koskettamalla haluttu numero.</p>'+
-                       '<p>Tasoilla I, II ja III.  Kuvaruudulla näkyy 6x6 -pääruudukko, joista jokainen ruutu on jaettu edelleen 3x2 -pienruudukkoon. Jokeritasolla pääruudukkoja on 9x9.</p>'+
-                       '<p>Tasolla I: Ohjelma valitsee ruudun johon numero/hedelmä on valittava. Ohjelma ei salli virheellistä valintaa. Ohjelma ilmoittaa virheellisen valintayrityksen äänimerkillä. </p>'+
-                       '<p>Tasolla II: Sekä ruudun, että numeron/hedelmän saa itse valita. Ohjelma ei salli virheellistä valintaa. Ohjelma ilmoittaa virheellisen valintayrityksen äänimerkillä.</p>'+
-                       '<p>Tasolla III ja Jokeritasolla sekä ruudun, että numeron/hedelmän saa valita itse. Ohjelma sallii myös virheellisen valinnan. Virheellinen valinta voidaan korjata koskettamalla uudestaan ruutua ja valitsemalla sivuvalikosta uusi numero/hedelmä. ' +
-                       'Painamalla "Tarkista" voidaan tarkistaa keskeneräisen tai valmiin ruudukon sääntöjen mukaisuus, jolloin ohjelma näyttää ne pysty- ja vaakarivit sekä pienruudukot punaisella värillä, jotka eivät ole sääntöjen mukaisia.</p>'+
-                       '<p>Tehtävä voidaan keskeyttää painamalla "Lopeta".</p>',
+        "title"      : "Sudoku",
+        "guide"      : '<div class="well well-info">' +
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Kuvaruudulla näkyy 6x6-pääruudukko, josta jokainen ruutu on jaettu edelleen 3x2-pienruudukkoon. Ohjelma valitse ruudun johon numero/hedelmä on täytettävä. Ohjelma ilmoittaa'  +
+                       'virheellisen valintayrityksen äänimerkillä.</span></p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Kuvaruudulla näkyy 6x6-pääruudukko, josta jokainen ruutu on jaettu edelleen 3x2-pienruudukkoon. Sekä ruudun, että numeron/hedelmän saa itse valita.  Ohjelma ilmoittaa' +
+                       'virheellisen valintayrityksen äänimerkillä.</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Tasolla III: Kuvaruudulla näkyy 6x6-pääruudukko, josta jokainen ruutu on jaettu edelleen 3x2-pienruudukkoon. Sekä ruudun, että numeron/hedelmän saa itse valita. Ohjelma sallii myös' +
+                       'virheellisen valinnan. <br/><br/> Kosketa "Tarkista", niin ohjelma ilmoittaa punaisella pohjavärillä, jos ruutu on täytetty sääntöjen vastaisesti. Virheellinen valinta voidaan vaihtaa koskettamalla uudestaan ruutua ja valitsemalla sivuvalikosta uusi numero/hedelmä.</p>' +
+                       '<p class="lvl-box lvl-joker hidden">Jokeritaso: Jokeritasolla pääruudukkoja on 9x9. Sekä ruudun, että numeron/hedelmän saa itse valita. Ohjelma sallii myös virheellisen valinnan. <br/><br/> Kosketa ”Tarkista niin ohjelma ilmoittaa punaisella pohjavärillä,' +
+                       'jos ruutu on täytetty sääntöjen vastaisesti. <br/><br/> Kosketa ”Vihje” saat ohjelmalta apua suodokun täyttämiseen. <br/><br/> Virheellinen valinta voidaan vaihtaa koskettamalla uudestaan ruutua ja valitsemalla sivuvalikosta uusi numero/hedelmä.</p>' +
+                       '</div>' +
+
+                       '<p>Tehtävänä on täyttää ruudukon vapaat paikat hedelmillä tai numeroilla 1-6 siten, että kukin hedelmä tai numero voi esiintyä vain kerran jokaisen pääruudukon pysty- tai vaakarivissä sekä jokaisessa pienruudukossa. Osa ruuduista on valmiiksi täytetty, ne on merkitty harmaalla pohjavärillä.</p>' +
+                       '<p>Ruudukon täyttäminen tapahtuu koskettamalla haluttua tyhjää ruutua, jolloin sen ympärille muodostuu punainen kehä. Sivulla olevasta valikosta valitaan koskettamalla haluttu numero/hedelmä.</p>' +
+                       '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>' +
+                       '<p>Kosketa X kun haluat poistaa virheellisen valinnan.</p>',
         'coverImage' : "./img/sudoku.png"
     },
 	{
         "gameId"     : 9,
         "title"      : "Rakenna kuvio mallista",
-        "guide"      : "<p>Ruudulla näkyy kaksi neliön muotoista aluetta. Vasemmanpuoleinen neliö on mallikuvio, joka on koottu alareunassa olevista pienistä neliöistä.</p>"+
+        "guide"      : '<div class="well info-well>'+
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Pieni ruudukko apuviivoilla</p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Iso ruudukko apuviivoilla</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: Iso ruudukko ilman apuviivoja</p></div>' +
+                       "<p>Ruudulla näkyy kaksi neliön muotoista aluetta. Vasemmanpuoleinen neliö on mallikuvio, joka on koottu alareunassa olevista pienistä neliöistä.</p>"+
                        "<p>Tehtävänä on koota oikeanpuolimmainen neliö mallikuvion mukaiseksi.</p>"+
                        "<p>Kokoaminen tapahtuu koskettamalla ensin ruudun alareunassa näkyvää pientä neliötä ja sen jälkeen vastaavaa kohtaa koottavassa ruudukossa</p>"+
-                       '<p>Paina “Valmis”. Mikäli kuviossa on virheellisiä tai puuttuvia osia näkyvät ne punaisella X:lla. merkittynä.</p>'+
-                       '<p>Tehtävä voidaan keskeyttää painamalla "Lopeta".</p>',
+                       '<p>Kosketa “Valmis”. Mikäli kuviossa on virheellisiä tai puuttuvia osia näkyvät ne punaisella X:lla. merkittynä.</p>'+
+                       '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/bBLbo0fK0OU",
         "coverImage" : "./img/konstruointi.png"
     },
 	{
         "gameId"     : 10,
         "title"      : "Jätkänshakki",
-        "guide"      : "<p>Kuvaruudulla näkyy tyhjä ruudukko.<br/>Tehtävässä kone pelaa ihmistä vastaan.</p>"+
-                       '<p>Ruudukkoon asetetaan vuorotellen "risti" ja "nolla" (kone asettaa nollan, ihminen ristin). Tavoitteena on saada viisi peräkkäistä ristiä tai nollaa pysty-, vaaka tai vinoruudukkoon.</p>'+
+        "guide"      : '<div class="well well-info">'+
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Helppo vastustaja</span></p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Keskinkertainen vastustaja</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: Taitava vastustaja</p></div>' +
+                       "<p>Kuvaruudulla näkyy tyhjä ruudukko.<br/>Tehtävässä kone pelaa ihmistä vastaan.</p>"+
+                       '<p>Ruudukkoon asetetaan vuorotellen "risti" ja "nolla" (kone asettaa nollan, ihminen ristin). Tavoitteena on saada viisi peräkkäistä ristiä tai nollaa pysty-, vaaka- tai vinoruudukkoon.</p>'+
                        "<p>Valinta osoitetaan koskettamalla haluttua ruutua.</p>"+
-                       '<p>Tehtävä voidaan keskeyttää painamalla "Lopeta" </p>',
+                       '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta"</p>',
         "coverImage" : "./img/ristinolla.png"
     }
 ];

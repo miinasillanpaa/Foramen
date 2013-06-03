@@ -284,6 +284,8 @@ var PreGameView = Backbone.View.extend({
     },
 
     easySelected: function() {
+        $('.lvl-box').addClass('hidden');
+        $('.lvl-easy').removeClass('hidden');
         $('.easy').addClass('btn-success');
         $('.medium').removeClass('btn-warning');
         $('.hard').removeClass('btn-danger');
@@ -292,6 +294,8 @@ var PreGameView = Backbone.View.extend({
     },
 
     mediumSelected: function() {
+        $('.lvl-box').addClass('hidden');
+        $('.lvl-med').removeClass('hidden');
         $('.medium').addClass('btn-warning');
         $('.easy').removeClass('btn-success');
         $('.hard').removeClass('btn-danger');
@@ -300,6 +304,8 @@ var PreGameView = Backbone.View.extend({
     },
 
     hardSelected: function() {
+        $('.lvl-box').addClass('hidden');
+        $('.lvl-hard').removeClass('hidden');
         $('.hard').addClass('btn-danger');
         $('.easy').removeClass('btn-success');
         $('.medium').removeClass('btn-warning');
@@ -308,6 +314,8 @@ var PreGameView = Backbone.View.extend({
     },
     
     jokerSelected: function() {
+        $('.lvl-box').addClass('hidden');
+        $('.lvl-joker').removeClass('hidden');
         $('.joker').addClass('btn-info');
         $('.easy').removeClass('btn-success');
         $('.medium').removeClass('btn-warning');
