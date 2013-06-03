@@ -123,7 +123,7 @@ var Salasana = Backbone.View.extend({
         }
 
         if(guess.length !== serial.length){
-            $('.pw-hint span').text('Tarkista arvauksen pituus');
+            $('.pw-hint span').text('Tarkista arvauksen pituus: oikea pituus '+serial.length );
         }else{
             $('.pw-hint span').text('Kirjoita päättelemäsi salasana');
             var checks = Settings.get('checks');

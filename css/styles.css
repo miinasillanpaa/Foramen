@@ -601,10 +601,10 @@ img.phone{
 }
 .pw-hint{
     height: 41px;
-    font-size: 2em;
+    font-size: 1.6em;
 }
 .pw-hint span{
-    line-height: 1.5;
+    line-height: 2;
 }
 
 .dot-hint{
