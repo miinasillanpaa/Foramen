@@ -137,7 +137,7 @@ var games = [
 	{
         "gameId"     : 9,
         "title"      : "Rakenna kuvio mallista",
-        "guide"      : '<div class="well info-well>'+
+        "guide"      : '<div class="well well-info">'+
                        '<p class="lvl-box lvl-easy hidden">Taso I: Pieni ruudukko apuviivoilla</p>' +
                        '<p class="lvl-box lvl-med hidden">Taso II: Iso ruudukko apuviivoilla</p>' +
                        '<p class="lvl-box lvl-hard hidden">Taso III: Iso ruudukko ilman apuviivoja</p></div>' +
