@@ -36,13 +36,14 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         for(var i=0; i<sounds.length; i++){
            if( i=== 0){
                 soundElem = '<audio id="audio_'+i+'" autoplay="autoplay" src='+sounds[i]+' type="audio/mpeg" ></audio>';
-                inputElem = '<input class="input input_'+i+'" type="text" placeholder="Kosketa tähän" />';
+                inputElem = '<input class="input input_'+i+'" type="text" placeholder="Kirjoita tähän" />';
             }else{
                 soundElem = '<audio id="audio_'+i+'" src='+sounds[i]+' type="audio/mpeg" ></audio>';
                 inputElem = '<input class="input input_'+i+'" type="text" />';
             }
             $('.sounds').append(soundElem);
             $('.inputs').append(inputElem);
+            $('.input_1').attr("placeholder", "kuulemasi sanat")
 
         }
 
