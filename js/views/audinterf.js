@@ -23,7 +23,6 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
                         window.clearInterval(interval);
                         $('.distractions').hide();
                         $('.input-container').removeClass('hidden');
-                        $('.input_0').focus();
                     }},3500);
 
             $('.quit').click( function () {
