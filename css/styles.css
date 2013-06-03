@@ -445,8 +445,10 @@ img.phone{
 }
 
 .timer{
-    padding-top:5px;
-    height: 70px;
+    position: absolute;
+    z-index: 999;
+    left:   65px;
+    top:    10px;
 }
 .clock{
     position:absolute;

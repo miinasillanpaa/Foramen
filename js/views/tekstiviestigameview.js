@@ -12,11 +12,11 @@ var TekstiviestiGameView = Backbone.View.extend({
 
         var txtVisibleTime;
         if(Settings.get('difficulty') == 'easy'){
-            txtVisibleTime = 90*1000;
-        }else if(Settings.get('difficulty') == 'medium'){
             txtVisibleTime = 60*1000;
-        }else{
+        }else if(Settings.get('difficulty') == 'medium'){
             txtVisibleTime = 30*1000;
+        }else{
+            txtVisibleTime = 999999999;
         }
 
         var randomMessage = (Math.floor((Math.random() * 5) + 1));
@@ -45,6 +45,11 @@ var TekstiviestiGameView = Backbone.View.extend({
             corrects        : myMsg.corrects,
             correctStrings  : myMsg.correctStrings };
 
+        Settings.set({'myMsg': myMsg});
+
+
+
+
         var template = _.template( $(this.template).html(), variables );
         this.$el.html(template);
 
@@ -65,6 +70,43 @@ var TekstiviestiGameView = Backbone.View.extend({
                         scale: 4.5
                     }, 2500, 'ease', function() {
                         $('.textmessage').removeClass('hidden');
+
+                        if( Settings.get('difficulty') == 'hard' ){
+                            $('.timer').addClass('hidden');
+                            $('.phone-container').append('<button class="btn btn-large bigger bottom-right toGame">Vastaa</button>');
+
+                            var startTime = new Date().getTime();
+                            Settings.set({ startTime : startTime });
+
+                        }else{
+
+                            $('.quit').click( function() {
+                                window.clearInterval(knobTimer);
+                            });
+
+                            var knobTimer = setInterval(countdown, 1000);
+                            var totMin, totSec;
+                            var timeLeft = txtVisibleTime/1000;
+                            function countdown() {
+                                if (timeLeft == 0){
+                                    window.clearInterval(knobTimer);
+                                }else{
+
+                                    totMin = Math.floor(timeLeft/60);
+                                    totSec = Math.floor(timeLeft-(totMin*60));
+
+                                    function pad2(number){
+                                        return (number < 10 ? '0' : '') + number
+                                    }
+
+                                    totSec = pad2(totSec);
+                                    $('.knob').val(timeLeft).trigger("change");
+                                    $('.knob').val(totMin+":"+totSec);
+                                    timeLeft--;
+                                }
+                            }
+                        }
+
                         msgTimer = setTimeout(
                             function () {
                                 var view = new TekstiviestiAnswerView({ model: myModel, variables: variables });
@@ -81,11 +123,44 @@ var TekstiviestiGameView = Backbone.View.extend({
             window.clearTimeout(msgTimer);
         });
 
+        $('.knob').knob({
+            change : function (value) {
+                console.log(value);
+            },
+            "max": txtVisibleTime/1000,
+            "min": 0
+
+        });
+
         return this;
     },
 
     events: {
-        'click .quit': 'quitGame'
+        'click .quit': 'quitGame',
+        'click .toGame' : 'toGame'
+    },
+
+    toGame: function () {
+        var endTime = new Date().getTime();
+        var myMsg = Settings.get('myMsg');
+
+        var memoringTime = endTime - Settings.get('startTime');
+        memoringTime = msToStr(memoringTime);
+        console.log(memoringTime);
+        Settings.set({ memoringTime: memoringTime });
+        var variables = {
+            message         : myMsg.message,
+            questions       : myMsg.questions,
+            senders         : myMsg.senders,
+            receivers       : myMsg.receivers,
+            places          : myMsg.places,
+            times           : myMsg.times,
+            items           : myMsg.items,
+            corrects        : myMsg.corrects,
+            correctStrings  : myMsg.correctStrings };
+
+        var view = new TekstiviestiAnswerView({ model: this.model, variables: variables });
+        view.render();
     },
 
     quitGame: function () {

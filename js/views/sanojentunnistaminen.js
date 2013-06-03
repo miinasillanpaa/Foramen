@@ -22,19 +22,24 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
 
         var timeLeft = 240; // 4min
-        var timerId = setInterval(countdown, 1000);
+        var knobTimer = setInterval(countdown, 1000);
         var totMin, totSec;
 
         function countdown() {
             if (timeLeft == 0){
-                window.clearInterval(timerId);
+                window.clearInterval(knobTimer);
             }else{
-
-                $('.knob').val(timeLeft).trigger("change");
-
                 totMin = Math.floor(timeLeft/60);
                 totSec = Math.floor(timeLeft-(totMin*60));
-                $('.clock').html(totMin + " minuuttia " + totSec + " sekuntia jäljellä");
+
+                function pad2(number){
+                    return (number < 10 ? '0' : '') + number
+                }
+
+                totSec = pad2(totSec);
+                $('.knob').val(timeLeft).trigger("change");
+                $('.knob').val(totMin+":"+totSec);
+
                 timeLeft--;
             }
         }
@@ -51,7 +56,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         var timer = setTimeout(
             function () {
-                window.clearInterval(timerId);
+                window.clearInterval(knobTimer);
                 window.clearInterval(mover);
                 var amount = Settings.get('targetAmount');
                 var corrects = Settings.get('scrollerResults').corrects;
@@ -115,13 +120,14 @@ var SanojenTunnistaminen = Backbone.View.extend({
         $('.quit').click(function() {
            window.clearTimeout(timer);
            window.clearInterval(mover);
-           window.clearInterval(timerId);
+           window.clearInterval(knobTimer);
         });
         $('.knob').knob({
             change : function (value) {
+                console.log(value);
             },
-            "min":0,
-            "max":240
+            "max": 240,
+            "min": 0
 
         });
         return this;

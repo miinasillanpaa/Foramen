@@ -209,23 +209,48 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         var date = getDateTime();
         var pvm = date.pvm;
         var klo = date.klo;
+        
+        var results;
+        if(Settings.get('difficulty') == 'hard' ){
 
-        var results = {
-           'pvm' : pvm,
-           'klo' : klo,
-           'difficulty' : Settings.get('difficulty'),
-           'data' : [
-               {
-                   'name' : 'Oikein:',
-                   'value' : corrects + " kpl"
-               },
-               {
-                   'name' : 'Väärin:',
-                   'value' : wrongs + " kpl"
-               }
+            results = {
+                'pvm' : pvm,
+                'klo' : klo,
+                'difficulty' : Settings.get('difficulty'),
+                'data' : [
+                    {
+                        'name' : 'Oikein:',
+                        'value' : corrects + " kpl"
+                    },
+                    {
+                        'name' : 'Väärin:',
+                        'value' : wrongs + " kpl"
+                    },
+                    {
+                        'name' : 'Muistamiseen<br/> käytetty aika:',
+                        'value' : '<br/>'+Settings.get('memoringTime')
+                    }
+                ]
+            };
 
-            ]
-        };
+        }else{
+
+            results = {
+               'pvm' : pvm,
+               'klo' : klo,
+               'difficulty' : Settings.get('difficulty'),
+               'data' : [
+                   {
+                       'name' : 'Oikein:',
+                       'value' : corrects + " kpl"
+                   },
+                   {
+                       'name' : 'Väärin:',
+                       'value' : wrongs + " kpl"
+                   }
+                ]
+            };
+        }
 
         var gameId = this.model.get('gameId');
         var view = new ResultsView({ model: this.model, results: results });

@@ -143,9 +143,8 @@
 
     <script id="sanojenTunnistaminenTemplate" type="text/template">
         <div class="timer text-center">
-            <input class="knob" data-width="100" data-fgColor="#095aa5" data-displayInput=true value="240">
+            <input class="knob" data-width="100" data-fgColor="#379DBB" data-displayInput=true value="4:00">
         </div>
-        <div class="clock bigger text-center">4 minuuttia 0 sekuntia jäljellä</div>
         <h2 class="hint">Etsit ryhmän: <span class="text-success"> <%= textCategory %> </span> sanoja</h2>
         <div class="selector"> </div>
         <div class="scroller"> <%= text %> </div>
@@ -227,6 +226,9 @@
     </script>
 
     <script id="tekstiviestiGameTemplate" type="text/template">
+    <div class="timer text-center">
+        <input class="knob" data-width="100" data-fgColor="#379DBB" data-displayInput=true value="">
+    </div>
     <div class="phone-container">
         <audio id="audio" autoplay="autoplay" src="sounds/iphone-sms.mp3" type="audio/mpeg" ></audio>
         <img class="phone center" src="img/device-iphone5.png" />
