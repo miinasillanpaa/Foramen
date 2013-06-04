@@ -11,7 +11,6 @@ var KIM = Backbone.View.extend({
         $('#header').empty().hide();
 
         var visible = this.itemsLength()*4500;
-        this.knobify();
         var targets = this.renderTargets();
         Settings.set({targets:targets});
         var allItems = this.addBluffs(targets);
@@ -27,8 +26,10 @@ var KIM = Backbone.View.extend({
         this.$el.html(template);
         var timer;
 
+       var self = this;
         $("#content").imagesLoaded( function (){
             $(".container").removeClass('loading');
+            self.knobify();
             timer = setTimeout(
                 function() {
                     $('.targets').addClass('hidden');
