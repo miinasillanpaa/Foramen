@@ -112,7 +112,7 @@ var games = [
                        "<p>Yritä päätellä salasana koneen antamien vihjeiden avulla.</p>"+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/IrgFSCQJT3A",
-        "coverImage" : "./img/password1.png"
+        "coverImage" : "./img/password.png"
     },
 	{
         "gameId"     : 8,

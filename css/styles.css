@@ -444,14 +444,12 @@ img.phone{
 .timer{
     position: absolute;
     z-index: 999;
-    left:   65px;
-    bottom: 10px;
+    left: 50%;
+    margin-left: -50px;
+    bottom: -80px;
 }
-.clock{
-    position:absolute;
-    top:100px;
-    left:460px;
-}
+
+
 .scroller{
     white-space: nowrap;
     font-family: courier-new;
