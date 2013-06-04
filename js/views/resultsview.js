@@ -6,6 +6,7 @@ var ResultsView = Backbone.View.extend({
 
         $('#header').show();
 
+        var myView = this;
         var difficulty;
         if( this.options.results.difficulty == 'easy' ){
             difficulty = 'Taso I';
