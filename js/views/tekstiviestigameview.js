@@ -102,7 +102,8 @@ var TekstiviestiGameView = Backbone.View.extend({
         $('.knob').knob({
             change : function (value) {},
             "max": txtVisibleTime/1000,
-            "min": 0
+            "min": 0,
+            "readOnly": true
         });
 
         return this;

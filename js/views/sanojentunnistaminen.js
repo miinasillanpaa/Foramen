@@ -100,7 +100,8 @@ var SanojenTunnistaminen = Backbone.View.extend({
         $('.knob').knob({
             change : function (value) {},
             "max": 240,
-            "min": 0
+            "min": 0,
+            "readOnly": true
 
         });
         return this;

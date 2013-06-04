@@ -43,7 +43,8 @@ var KIM = Backbone.View.extend({
         $('.knob').knob({
             change : function (value) {},
             "max": (this.itemsLength()*4.5)-1,
-            "min": 0
+            "min": 0,
+            "readOnly": true
         });
 
         return this;
