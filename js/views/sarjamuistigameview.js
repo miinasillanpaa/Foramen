@@ -93,58 +93,59 @@ var Sarjamuisti = Backbone.View.extend({
         }
     },
 
+    answerCheck: function () {
+
+        var playThruNum = Settings.get('playThruNum');
+        var correctSeries = Settings.get('correctSeries');
+        var wrongSeries = Settings.get('wrongSeries');
+
+        var nums = $('.box').length;
+        var right = 0;
+        var answered;
+        for(var i=0; i<nums; i++){
+            var correct = $('.answers:eq('+i+')').text();
+            if( $('.box:eq('+i+')').hasClass('answered')){
+                answered = $('.box:eq('+i+')').text();
+            } else{
+                answered = false;
+            }
+
+            if( correct === answered ){
+                right++;
+            }
+        }
+
+        var wrong = nums - right;
+        if(wrong === 0){
+            correctSeries = (Settings.get('correctSeries'))+1;
+            Settings.set({'correctSeries':correctSeries });
+        }else{
+            wrongSeries = (Settings.get('wrongSeries'))+1;
+            Settings.set({'wrongSeries':wrongSeries});
+        }
+        Settings.set({ 'playThruNum' : playThruNum+1 });
+
+    },
+
     showCorrects: function () {
         $('.answers').removeClass('hidden');
         $('.choices').hide();
     },
 
     finish: function () {
+
         this.undelegateEvents();
-        var playThruNum = Settings.get('playThruNum');
-        var correctSeries = Settings.get('correctSeries');
-        var wrongSeries = Settings.get('wrongSeries');
         var view;
-
-        function answerCheck () {
-            var nums = $('.box').length;
-            var right = 0;
-            var answered;
-            for(var i=0; i<nums; i++){
-                var correct = $('.answers:eq('+i+')').text();
-                if( $('.box:eq('+i+')').hasClass('answered')){
-                    answered = $('.box:eq('+i+')').text();
-                } else{
-                    answered = false;
-                }
-
-                if( correct === answered ){
-                    right++;
-                }
-            }
-
-            var wrong = nums - right;
-            if(wrong === 0){
-                correctSeries = (Settings.get('correctSeries'))+1;
-                Settings.set({'correctSeries':correctSeries });
-            }else{
-                wrongSeries = (Settings.get('wrongSeries'))+1;
-                Settings.set({'wrongSeries':wrongSeries});
-            }
-            Settings.set({ 'playThruNum' : playThruNum+1 });
-        }
-
 
         if (Settings.get('playThruNum') !== 4) {
 
-            answerCheck();
-
-            view = new Sarjamuisti({model:this.model});
+            this.answerCheck();
+            view = new Sarjamuisti({ model : this.model});
             view.render();
-
 
         }else{
 
-            answerCheck();
+            this.answerCheck();
 
             var seriesLength;
             if(Settings.get('difficulty') === 'easy' ){
@@ -189,11 +190,11 @@ var Sarjamuisti = Backbone.View.extend({
                     },
                     {
                         'name' : 'Oikeat sarjat:',
-                        'value' : correctSeries
+                        'value' : Settings.get('correctSeries')
                     },
                     {
                         'name' : 'Väärät sarjat:',
-                        'value' : wrongSeries
+                        'value' : Settings.get('wrongSeries')
                     }
                 ]
             };
@@ -202,10 +203,11 @@ var Sarjamuisti = Backbone.View.extend({
             Settings.set({ 'playThruNum'   : 0 });
             Settings.set({ 'correctSeries' : 0 });
             Settings.set({ 'wrongSeries'   : 0 });
-            this.undelegateEvents();
+
+
+            router.navigate('game/' + this.model.get('gameId') + '/results', true);
             view = new ResultsView({ model: this.model, results: results });
             view.render();
-            router.navigate('game/' + this.model.get('gameId') + '/results', true);
 
         }
     }
