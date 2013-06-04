@@ -32,10 +32,6 @@ var PreGameView = Backbone.View.extend({
             this.preload('KIM');
         }else if ( gameId === 8){
             this.preload('hedelmat');
-            var catImg = Settings.get('sudokuCategories').titleImg;
-            var catTitle = Settings.get('sudokuCategories').titles;
-            split = catImg.chunk(3);
-            txtSplit = catTitle.chunk(3);
             showJoker = true;
         }else if ( gameId === 9){
             this.preload('konstruktio');
@@ -54,8 +50,8 @@ var PreGameView = Backbone.View.extend({
                          slide3Titles: txtSplit[2],
                          slide4: split[3],
                          slide4Titles: txtSplit[3],
-                         categories: Settings.get('categories').titles,
-                         titleImg: Settings.get('categories').titleImg};
+                         sudokuImg: Settings.get('sudokuCategories').titleImg,
+                         sudokuCat: Settings.get('sudokuCategories').titles };
 
 		var template = _.template( $(this.template).html(), variables );
 
@@ -121,75 +117,67 @@ var PreGameView = Backbone.View.extend({
 
         }else if ( gameId === 3 ){
             var textCat = Settings.get('textCategory');
+            console.log(textCat);
             $("#categoryCarousel").removeClass('hidden');
             $('.wordsTitle').removeClass('hidden');
             $('.item img').addClass('text-category');
-
-            if(textCat === 'eläimet'){
-                $('img:nth(0)').addClass('selected');
+              if(textCat === 'eläimet'){
+                $('.carousel-inner img:nth(0)').addClass('selected');
                 $('ol.carousel-indicators li:nth(0)').addClass('active');
                 $('.carousel-inner .item:nth(0)').addClass('active');
             }else if(textCat === 'ammatit'){
-                $('img:nth(1)').addClass('selected');
+                $('.carousel-inner img:nth(1)').addClass('selected');
                 $('ol.carousel-indicators li:nth(0)').addClass('active');
                 $('.carousel-inner .item:nth(0)').addClass('active');
             }else if(textCat === 'kasvit'){
-                $('img:nth(2)').addClass('selected');
+                $('.carousel-inner img:nth(2)').addClass('selected');
                 $('ol.carousel-indicators li:nth(0)').addClass('active');
                 $('.carousel-inner .item:nth(0)').addClass('active');
             }else if(textCat === 'kaupungit'){
-                $('img:nth(3)').addClass('selected');
+                $('.carousel-inner img:nth(3)').addClass('selected');
                 $('ol.carousel-indicators li:nth(1)').addClass('active');
                 $('.carousel-inner .item:nth(1)').addClass('active');
             }else if(textCat === 'miesten nimet'){
-                $('img:nth(4)').addClass('selected');
+                $('.carousel-inner img:nth(4)').addClass('selected');
                 $('ol.carousel-indicators li:nth(1)').addClass('active');
                 $('.carousel-inner .item:nth(1)').addClass('active');
             }else if(textCat === 'naisten nimet'){
-                $('img:nth(5)').addClass('selected');
+                $('.carousel-inner img:nth(5)').addClass('selected');
                 $('ol.carousel-indicators li:nth(1)').addClass('active');
                 $('.carousel-inner .item:nth(1)').addClass('active');
             }else if(textCat === 'sisustus'){
-                $('img:nth(6)').addClass('selected');
+                $('.carousel-inner img:nth(6)').addClass('selected');
                 $('ol.carousel-indicators li:nth(2)').addClass('active');
                 $('.carousel-inner .item:nth(2)').addClass('active');
             }else if(textCat === 'soittimet'){
-                $('img:nth(7)').addClass('selected');
+                $('.carousel-inner img:nth(7)').addClass('selected');
                 $('ol.carousel-indicators li:nth(2)').addClass('active');
                 $('.carousel-inner .item:nth(2)').addClass('active');
             }else if(textCat === 'työkalut'){
-                $('img:nth(8)').addClass('selected');
+                $('.carousel-inner img:nth(8)').addClass('selected');
                 $('ol.carousel-indicators li:nth(2)').addClass('active');
                 $('.carousel-inner .item:nth(2)').addClass('active');
             }else if(textCat === 'urheilu'){
-                $('img:nth(9)').addClass('selected');
+                $('.carousel-inner img:nth(9)').addClass('selected');
                 $('ol.carousel-indicators li:nth(3)').addClass('active');
                 $('.carousel-inner .item:nth(3)').addClass('active');
             }else if(textCat === 'valtiot'){
-                $('img:nth(10)').addClass('selected');
+                $('.carousel-inner img:nth(10)').addClass('selected');
                 $('ol.carousel-indicators li:nth(3)').addClass('active');
                 $('.carousel-inner .item:nth(3)').addClass('active');
             }
 
         }else if ( gameId === 8 ){
-            
+            $('.sudokuCategoryTitle').removeClass('hidden');
             var textCat = Settings.get('sudokuCategory');
-            $("#categoryCarousel").removeClass('hidden');
-            $('.item img').addClass('text-category');
-            
+            $("#sudokuSelector").removeClass('hidden');
             if(textCat === 'numerot'){
-                $('img:nth(0)').addClass('selected');
-                $('ol.carousel-indicators li:nth(0)').addClass('active');
-                $('.carousel-inner .item:nth(0)').addClass('active');
-            }else if(textCat === 'hedelmät'){
-                $('img:nth(1)').addClass('selected');
-                $('ol.carousel-indicators li:nth(0)').addClass('active');
-                $('.carousel-inner .item:nth(0)').addClass('active');
+                $('#sudokuSelector img:nth(0)').addClass('selected');
+            }else{
+                $('#sudokuSelector img:nth(1)').addClass('selected');
             }
-            
-            $("#categoryCarousel .carousel-indicators li:gt(0)").remove();
-            $("#categoryCarousel .carousel-inner .item:gt(0)").remove();
-            
+
+
         }
 
         $("#categoryCarousel").carousel('pause');
@@ -229,7 +217,8 @@ var PreGameView = Backbone.View.extend({
         'click .preview' : 'previewVideo',
         'click #play-game' : 'play',
         'click .category' : 'selectCategory',
-        'click .clicker' : 'selectTextCategory'
+        'click .clicker' : 'selectTextCategory',
+        'click .sudoku-clicker' : 'selectTextCategory'
     },
 
     selectCategory: function( event ) {
@@ -244,20 +233,28 @@ var PreGameView = Backbone.View.extend({
 
     selectTextCategory: function( event ) {
 
-        $('.text-category').removeClass('selected');
         var index = $(event.target).index();
         if(index > 0){
             index = index/2;
         }
-        
-        $('.active img.text-category:nth('+index+')').addClass('selected');
-        var cat = $('.active h4:nth('+index+')').text().toLowerCase();
-        
+
         var gameId = this.model.get('gameId');
+        var cat;
+
         if( gameId === 8 ) {
+
+          $('.sudoku-img img').removeClass('selected');
+          $('.sudoku-img img:nth('+index+')').addClass('selected');
+          cat = $('#sudokuSelector h4:nth('+index+')').text().toLowerCase();
           Settings.set({sudokuCategory:cat});
+
         } else {
+
+          $('.text-category').removeClass('selected');
+          $('.active img.text-category:nth('+index+')').addClass('selected');
+          cat = $('.active h4:nth('+index+')').text().toLowerCase();
           Settings.set({textCategory:cat});
+
         }
 
     },

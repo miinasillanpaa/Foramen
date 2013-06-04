@@ -284,7 +284,7 @@ var Settings = Backbone.Model.extend({
     
     sudokuCategories: {
       "titles": [ "NUMEROT", "HEDELMÄT" ],
-      "titleImg": [ "./pics/hedelmat/1.png", "./pics/hedelmat/1.png" ]
+      "titleImg": [ "./pics/numbers.png", "./pics/hedelmat/1.png" ]
     },
     
     

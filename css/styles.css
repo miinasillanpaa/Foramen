@@ -132,9 +132,6 @@ html, body{
     margin: 20px 0px 0px 5px;
 }
 
-.categories{
-}
-
 .category-scroller{
     overflow-x: scroll;
     overflow-y: hidden;
@@ -448,7 +445,7 @@ img.phone{
     position: absolute;
     z-index: 999;
     left:   65px;
-    top:    10px;
+    bottom: 10px;
 }
 .clock{
     position:absolute;
@@ -1080,4 +1077,53 @@ a:hover{
     color: #fff;
     margin:0;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* styles for pregame selector of sudoku */
+
+#sudokuSelector{
+
+}
+.sudoku-img{
+    display: inline-block;
+    padding:0 15px;
+    height: 110px !important;
+    width: 110px !important;
+
+}
+
+.sudoku-title{
+    position: absolute;
+    background-color: #515151;
+    opacity: 0.7;
+    height: auto;
+    padding: 0 10px;
+    margin: 0 5px;
+    width: 90px;
+    color: #fff;
+    margin-left: 164px;
+    margin-top: -50px;
+}
+.sudoku-title:last-child{
+    margin-left: 307px;
+
+}
+
+.sudoku-clicker{
+    display: inline-block;
+    position: absolute;
+    z-index:999;
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    opacity: 0;
+    margin-top:5px;
+    margin-left:20px;
+}
+
+.sudoku-clicker:first-child{ /*stupid tablet hack */
+    margin-left: 160px;
+}
+.sudokuCategoryTitle{
+    margin-bottom: 5px;
 }

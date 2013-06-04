@@ -112,7 +112,7 @@ var games = [
                        "<p>Yritä päätellä salasana koneen antamien vihjeiden avulla.</p>"+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/IrgFSCQJT3A",
-        "coverImage" : "./img/password.png"
+        "coverImage" : "./img/password1.png"
     },
 	{
         "gameId"     : 8,
@@ -120,9 +120,9 @@ var games = [
         "guide"      : '<div class="well well-info">' +
                        '<p class="lvl-box lvl-easy hidden">Taso I: Kuvaruudulla näkyy 6x6-pääruudukko, josta jokainen ruutu on jaettu edelleen 3x2-pienruudukkoon. Ohjelma valitse ruudun johon numero/hedelmä on täytettävä. Ohjelma ilmoittaa'  +
                        'virheellisen valintayrityksen äänimerkillä.</span></p>' +
-                       '<p class="lvl-box lvl-med hidden">Taso II: Kuvaruudulla näkyy 6x6-pääruudukko, josta jokainen ruutu on jaettu edelleen 3x2-pienruudukkoon. Sekä ruudun, että numeron/hedelmän saa itse valita.  Ohjelma ilmoittaa' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Kuvaruudulla näkyy 6x6-pääruudukko, josta jokainen ruutu on jaettu edelleen 3x2-pienruudukkoon. Sekä ruudun, että numeron/ hedelmän saa itse valita.  Ohjelma ilmoittaa' +
                        'virheellisen valintayrityksen äänimerkillä.</p>' +
-                       '<p class="lvl-box lvl-hard hidden">Tasolla III: Kuvaruudulla näkyy 6x6-pääruudukko, josta jokainen ruutu on jaettu edelleen 3x2-pienruudukkoon. Sekä ruudun, että numeron/hedelmän saa itse valita. Ohjelma sallii myös' +
+                       '<p class="lvl-box lvl-hard hidden">Tasolla III: Kuvaruudulla näkyy 6x6-pääruudukko, josta jokainen ruutu on jaettu edelleen 3x2-pienruudukkoon. Sekä ruudun, että numeron/ hedelmän saa itse valita. Ohjelma sallii myös' +
                        'virheellisen valinnan. <br/><br/> Kosketa "Tarkista", niin ohjelma ilmoittaa punaisella pohjavärillä, jos ruutu on täytetty sääntöjen vastaisesti. Virheellinen valinta voidaan vaihtaa koskettamalla uudestaan ruutua ja valitsemalla sivuvalikosta uusi numero/hedelmä.</p>' +
                        '<p class="lvl-box lvl-joker hidden">Jokeritaso: Jokeritasolla pääruudukkoja on 9x9. Sekä ruudun, että numeron/hedelmän saa itse valita. Ohjelma sallii myös virheellisen valinnan. <br/><br/> Kosketa ”Tarkista niin ohjelma ilmoittaa punaisella pohjavärillä,' +
                        'jos ruutu on täytetty sääntöjen vastaisesti. <br/><br/> Kosketa ”Vihje” saat ohjelmalta apua suodokun täyttämiseen. <br/><br/> Virheellinen valinta voidaan vaihtaa koskettamalla uudestaan ruutua ja valitsemalla sivuvalikosta uusi numero/hedelmä.</p>' +

@@ -266,7 +266,7 @@
 
     <script id="sudokuTemplate" type="text/template">
         
-        <audio id="sudokuInvalidMoveSoundFX" src="sounds/iphone-sms.mp3" type="audio/mpeg"></audio>
+        <audio id="sudokuInvalidMoveSoundFX" src="sounds/block.mp3" type="audio/mpeg"></audio>
         
         <div class="sudoku-wrapper sudoku-wrapper-symbol-type-<%= symbols.type %>">
             <div class="sudoku-grid">
@@ -463,7 +463,6 @@
         </div>
         <div class="span6 pull-right">
 
-
             <h3>Valitse vaikeusaste:</h3>
             <div class="well ">
                 <p><button class="easy btn btn-large bigger btn-block">Taso I</button></p>
@@ -476,6 +475,22 @@
 
             <h3 class="categoryTitle tight hidden">Valitse tästä tehtävän kuva-aihe:</h3>
             <h3 class="wordsTitle tight hidden">Valitse tästä tehtävän sana-aihe:</h3>
+            <h3 class="sudokuCategoryTitle tight hidden">Valitse sudokun täyttötapa:</h3>
+            <div id="sudokuSelector" class="text-center hidden">
+
+                <% _.each(sudokuImg, function(sudokuImg) { %>
+                        <div class="sudoku-clicker">&nbsp;</div>  <div class="sudoku-img"><img class="selectable" src="<%= sudokuImg%>" /></div>
+                <% }); %>
+
+                <% _.each(sudokuCat, function(sudokuCat) { %>
+                    <div class="sudoku-title title-background"><h4><%= sudokuCat %></h4></div>
+                <% }); %>
+
+
+
+            </div>
+
+
             <div id="categoryCarousel" class="carousel slide hidden">
                 <ol class="carousel-indicators">
                     <li data-target="#categoryCarousel" data-slide-to="0"></li>
