@@ -6,8 +6,7 @@ var ResultsView = Backbone.View.extend({
 
         $('#header').show();
 
-        var myView = this;
-        var difficulty = '';
+        var difficulty;
         if( this.options.results.difficulty == 'easy' ){
             difficulty = 'Taso I';
         }else if( this.options.results.difficulty == 'medium' ){
@@ -28,13 +27,14 @@ var ResultsView = Backbone.View.extend({
                          gameId : this.model.get('gameId')
         };
 
+
         var template = _.template( $(this.template).html(), results  );
         this.$el.html(template);
 
         $('.back-root').click( function() {
             myView.undelegateEvents();
-        });
 
+        });
         $('#content').css('padding-bottom','50px');
         $('#content').css('overflow-y','auto');
 
@@ -49,6 +49,19 @@ var ResultsView = Backbone.View.extend({
     viewSnapshot: function () {
 
         this.undelegateEvents();
+
+        /*
+        var difficulty = '';
+        if( this.options.results.difficulty == 'easy' ){
+            difficulty = 'Helppo';
+        }else if( this.options.results.difficulty == 'medium' ){
+            difficulty = 'Keskivaikea';
+        }else if( this.options.results.difficulty == 'hard' ){
+            difficulty = 'Vaikea';
+        }else if( this.options.results.difficulty == 'joker' ){
+            difficulty = 'Jokeri';
+        }
+        */
 
         var  results = {
             pvm : this.options.results.pvm,
@@ -73,5 +86,9 @@ var ResultsView = Backbone.View.extend({
         this.unbind();
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId + '/play', {trigger: true});
+
+
     }
+
+
 });

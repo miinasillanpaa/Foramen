@@ -48,7 +48,7 @@ var TekstiviestiGameView = Backbone.View.extend({
             correctStrings  : myMsg.correctStrings,
             knobMax         : knobMax };
 
-        Settings.set({'myMsg': myMsg});
+        Settings.set({ 'myMsg' : myMsg });
 
         var template = _.template( $(this.template).html(), variables );
         this.$el.html(template);
@@ -71,6 +71,7 @@ var TekstiviestiGameView = Backbone.View.extend({
                         $('.textmessage').removeClass('hidden');
 
                         if( Settings.get('difficulty') == 'hard' ){
+
                             $('.timer').addClass('hidden');
                             $('.phone-container').append('<button class="btn btn-large bigger bottom-right toGame">Vastaa</button>');
 
@@ -85,6 +86,7 @@ var TekstiviestiGameView = Backbone.View.extend({
 
                         msgTimer = setTimeout(
                             function () {
+                                console.log('tekstiviesti init');
                                 var view = new TekstiviestiAnswerView({ model: myModel, variables: variables });
                                 view.render();
                             }, txtVisibleTime
@@ -140,12 +142,12 @@ var TekstiviestiGameView = Backbone.View.extend({
                 $('.knob').val(timeLeft).trigger("change");
                 $('.knob').val(totMin+":"+totSec);
                 timeLeft--;
-
-                $('.quit').click( function () {
-                    window.clearInterval(knobTimer);
-                })
             }
         }
+
+        $('.quit').click( function () {
+            window.clearInterval(knobTimer);
+        })
 
     },
 

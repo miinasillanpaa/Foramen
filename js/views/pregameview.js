@@ -116,11 +116,12 @@ var PreGameView = Backbone.View.extend({
             }
 
         }else if ( gameId === 3 ){
+
             var textCat = Settings.get('textCategory');
-            console.log(textCat);
             $("#categoryCarousel").removeClass('hidden');
             $('.wordsTitle').removeClass('hidden');
             $('.item img').addClass('text-category');
+
               if(textCat === 'eläimet'){
                 $('.carousel-inner img:nth(0)').addClass('selected');
                 $('ol.carousel-indicators li:nth(0)').addClass('active');
