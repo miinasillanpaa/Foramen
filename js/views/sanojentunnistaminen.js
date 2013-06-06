@@ -32,7 +32,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         var timer = setTimeout(
             function () {
-                window.clearInterval(knobTimer);
                 window.clearInterval(mover);
                 var amount = Settings.get('targetAmount');
                 var corrects = Settings.get('scrollerResults').corrects;
