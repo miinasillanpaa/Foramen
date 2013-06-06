@@ -8,15 +8,15 @@ var games = [
         "gameId"     : 1,
         "title"      : "Etsi kuvat",
         "guide"      : '<div class="well well-info">'+
-                       '<p class="lvl-box lvl-easy hidden">Taso I: Etsitään yhtä kuvaa</span></p>' +
-                       '<p class="lvl-box lvl-med hidden">Taso II: Etsitään kahta kuvaa</p>' +
-                       '<p class="lvl-box lvl-hard hidden">Taso III: Etsitään kolmea kuvaa</p></div>' +
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Etsitään yhtä kuvaa.</p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Etsitään kahta kuvaa.</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: Etsitään kolmea kuvaa.</p></div>' +
 
                        "<p>Ruudulla näkyy kuvia. Ruudun alalaidassa näkyy etsittävät kohdekuvat.</p>" +
                        "<p>Tehtävänä on etsiä samanlaisia kuvia kuin kohdekuva tai kohdekuvat koskettamalla niitä mahdollisimman nopeasti.</p>" +
-                       "<p>Väärän valinnan voit poistaa koskettamalla kuvaa uudestaan..</p>" +
-                       '<p>Näet tuloksesi painamalla "Valmis".</p>' +
-                       '<p>Tehtävä voidaan keskeyttää painamalla "Lopeta".</p>',
+                       "<p>Väärän valinnan voit poistaa koskettamalla kuvaa uudestaan.</p>" +
+                       '<p>Näet tuloksesi koskettamalla "Valmis".</p>' +
+                       '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/tEkZSAo9OIg",
         "coverImage" : "./img/fish.png"
     },
@@ -25,9 +25,9 @@ var games = [
         "gameId"     : 2,
         "title"      : "Muista viesti",
         "guide"      : '<div class="well well-info">'+
-                       '<p class="lvl-box lvl-easy hidden">Taso I: Viesti näkyy 60 sekuntia</span></p>' +
-                       '<p class="lvl-box lvl-med hidden">Taso II: Viesti näkyy 30 sekuntia</p>' +
-                       '<p class="lvl-box lvl-hard hidden">Taso III: Viesti näkyy haluamasi ajan</p></div>' +
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Viesti näkyy 60 sekuntia.</p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Viesti näkyy 30 sekuntia.</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: Viesti näkyy haluamasi ajan.</p></div>' +
 
                        "<p>Ruudulla näkyy matkapuhelimen kuva. Merkkiäänen jälkeen ilmestyy tekstiviesti. Tehtävänä on painaa tekstiviesti mieleen.</p>" +
                        "<p>Mieleenpainamisen jälkeen näytetään joukko kysymyksiä ja niiden vastausvaihtoehtoja.</p>" +
@@ -42,9 +42,9 @@ var games = [
         "gameId"     : 3,
         "title"      : "Tunnista sanat",
         "guide"      : '<div class="well well-info">'+
-                       '<p class="lvl-box lvl-easy hidden">Taso I: Kirjaimet siirtyvät 1,5 sekunnin välein</span></p>' +
-                        '<p class="lvl-box lvl-med hidden">Taso II: Kirjaimet siirtyvät 1 sekunnin välein</p>' +
-                        '<p class="lvl-box lvl-hard hidden">Taso III: Kirjaimet siirtyvät 0,5 sekunnin välein</p></div>' +
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Kirjaimet siirtyvät 1,5 sekunnin välein.</p>' +
+                        '<p class="lvl-box lvl-med hidden">Taso II: Kirjaimet siirtyvät 1 sekunnin välein.</p>' +
+                        '<p class="lvl-box lvl-hard hidden">Taso III: Kirjaimet siirtyvät 0,5 sekunnin välein.</p></div>' +
 
                         "<p>Ruudulla näkyy liikkuva kirjainrivi, jonka keskellä on punaisella merkitty alue.</p>" +
                        '<p>Tehtävänä on havaita punaisella alueella perusmuodossa oleva substantiivi (nimisana), esimerkiksi "kissa".</p>'+
@@ -57,9 +57,9 @@ var games = [
         "gameId"     : 4,
         "title"      : "Muista näkemäsi numerosarja",
         "guide"      : '<div class="well well-info">'+
-                       '<p class="lvl-box lvl-easy hidden">Taso I: Sarjan pituus 3 numeroa</span></p>' +
-                       '<p class="lvl-box lvl-med hidden">Taso II: Sarjan pituus 4 numeroa</p>' +
-                       '<p class="lvl-box lvl-hard hidden">Taso III: Sarjan pituus 5 numeroa</p></div>' +
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Sarjan pituus 3 numeroa.</p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Sarjan pituus 4 numeroa.</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: Sarjan pituus 5 numeroa.</p></div>' +
 
                        "<p>Ruudulla näkyy numerosarja. Tehtävänä on painaa se mieleen.</p>"+
                        "<p>Kun sarja on esitetty, numerot peitetään mustilla neliöillä. Kulloinkin mieleenpalautettavan numeron paikka on merkitty punaisella kehyksellä. Alarivillä näkyvät numero 0-9. Vastaa koskettamalla alarivin kyseistä numeroa. Sama toistetaan jokaisen mustan neliön kohdalla.</p>"+
@@ -72,9 +72,9 @@ var games = [
         "gameId"     : 5,
         "title"      : "Muista kuulemasi sanat",
         "guide"      : '<div class="well well-info">'+
-                       '<p class="lvl-box lvl-easy hidden">Taso I: Sarjan pituus 2 sanaa</span></p>' +
-                       '<p class="lvl-box lvl-med hidden">Taso II: Sarjan pituus 3 numeroa</p>' +
-                       '<p class="lvl-box lvl-hard hidden">Taso III: Sarjan pituus 4 numeroa</p></div>' +
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Sarjan pituus 2 sanaa.</p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Sarjan pituus 3 sanaa.</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: Sarjan pituus 4 sanaa.</p></div>' +
 
                        "<p>Kovaäänisistä kuuluu sarja sanoja. Tehtävänä on painaa sarja mieleen.</p>"+
                        "<p>Tämän jälkeen ruudulle ilmestyy häirintätehtävä. Tehtävänä on koskettaa Löytyi-näppäintä, kun ruudulle ilmestyy eläin.</p>"+
@@ -88,13 +88,13 @@ var games = [
         "gameId"     : 6,
         "title"      : "Muista näkemäsi esineet",
         "guide"      : '<div class="well well-info">'+
-                       '<p class="lvl-box lvl-easy hidden">Taso I: 8 etsittävää esinettä</span></p>' +
-                       '<p class="lvl-box lvl-med hidden">Taso II: 14 etsittävää esinettä</p>' +
-                       '<p class="lvl-box lvl-hard hidden">Taso III: 20 etsittävää esinettä</p></div>' +
+                       '<p class="lvl-box lvl-easy hidden">Taso I: 8 etsittävää esinettä.</p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: 14 etsittävää esinettä.</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: 20 etsittävää esinettä.</p></div>' +
 
                        "<p>Ruudulla näkyy esineiden kuvia. Tehtävänä on oppia tunnistamaan nämä muiden joukosta.</p>"+
                        "<p>Mieleenpainamisen jälkeen ruudulle ilmestyy aiemmin esitetyt kuvat ja joukko muita kuvia. Tehtävänä on tunnistaa aiemmin esitetyt kuvat. Tunnistaminen osoitetaan koskettamalla kuvaa</p>"+
-                       '<p>Kosketa “Valmis”, jonka jälkeen kone näyttää oikeat vastaukset vihreällä ja puuttuvat oranssilla. Jos muistit kaikki kuvat tehtävä loppuu. Mikäli et muistanut kaikkia, tehtävä jatkuu kunnes muistat kaikki tai korkeintaan kymmenen kierrosta.</p>',
+                       '<p>Kosketa “Valmis”, jonka jälkeen kone näyttää oikeat vastaukset vihreällä ja puuttuvat oranssilla. Jos muistit kaikki kuvat tehtävä loppuu. Mikäli et muistanut kaikkia, tehtävä jatkuu kunnes muistat kaikki, kuitenkin korkeintaan kymmenen kierrosta.</p>',
         "video"      : "http://www.youtube.com/embed/_HGOhJ1S-gM",
         "coverImage" : "./img/kim.png"
     },
@@ -102,9 +102,9 @@ var games = [
         "gameId"     : 7,
         "title"      : "Päättele salasana",
         "guide"      :  '<div class="well well-info">'+
-                        '<p class="lvl-box lvl-easy hidden">Taso I: Sanan pituus 3 kirjainta</span></p>' +
-                       '<p class="lvl-box lvl-med hidden">Taso II: Sanan pituus 4 kirjainta</p>' +
-                       '<p class="lvl-box lvl-hard hidden">Taso III: Sanan pituus 5 kirjainta</p></div>' +
+                        '<p class="lvl-box lvl-easy hidden">Taso I: Sanan pituus 3 kirjainta.</p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Sanan pituus 4 kirjainta.</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: Sanan pituus 5 kirjainta.</p></div>' +
 
                        "<p>Kuvaruudulla näkyy tyhjä tekstikenttä. Tehtävänä on päätellä koneen valitsema salasana, joka on perusmuodossa oleva substantiivi eli nimisana.</p>"+
                        '<p>Aloita tehtävä koskettamalla sormella tekstikenttään, jolloin näppäimistö tulee näkyviin. Kenttään kirjoitetaan mikä tahansa määritellyn pituinen sana ja painetaan "Valmis".</p>'+
@@ -118,29 +118,29 @@ var games = [
         "gameId"     : 8,
         "title"      : "Sudoku",
         "guide"      : '<div class="well well-info">' +
-                       '<p class="lvl-box lvl-easy hidden">Taso I: Kuvaruudulla näkyy 6x6-pääruudukko, josta jokainen ruutu on jaettu edelleen 3x2-pienruudukkoon. Ohjelma valitse ruudun johon numero/hedelmä on täytettävä. Ohjelma ilmoittaa'  +
-                       'virheellisen valintayrityksen äänimerkillä.</span></p>' +
-                       '<p class="lvl-box lvl-med hidden">Taso II: Kuvaruudulla näkyy 6x6-pääruudukko, josta jokainen ruutu on jaettu edelleen 3x2-pienruudukkoon. Sekä ruudun, että numeron/ hedelmän saa itse valita.  Ohjelma ilmoittaa' +
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Kuvaruudulla näkyy 6x6-pääruudukko, josta jokainen ruutu on jaettu edelleen 3x2-pienruudukkoon. Ohjelma valitse ruudun johon numero/hedelmä on täytettävä. Ohjelma ilmoittaa '  +
                        'virheellisen valintayrityksen äänimerkillä.</p>' +
-                       '<p class="lvl-box lvl-hard hidden">Tasolla III: Kuvaruudulla näkyy 6x6-pääruudukko, josta jokainen ruutu on jaettu edelleen 3x2-pienruudukkoon. Sekä ruudun, että numeron/ hedelmän saa itse valita. Ohjelma sallii myös' +
-                       'virheellisen valinnan. <br/><br/> Kosketa "Tarkista", niin ohjelma ilmoittaa punaisella pohjavärillä, jos ruutu on täytetty sääntöjen vastaisesti. Virheellinen valinta voidaan vaihtaa koskettamalla uudestaan ruutua ja valitsemalla sivuvalikosta uusi numero/hedelmä.</p>' +
-                       '<p class="lvl-box lvl-joker hidden">Jokeritaso: Jokeritasolla pääruudukkoja on 9x9. Sekä ruudun, että numeron/hedelmän saa itse valita. Ohjelma sallii myös virheellisen valinnan. <br/><br/> Kosketa ”Tarkista niin ohjelma ilmoittaa punaisella pohjavärillä,' +
-                       'jos ruutu on täytetty sääntöjen vastaisesti. <br/><br/> Kosketa ”Vihje” saat ohjelmalta apua suodokun täyttämiseen. <br/><br/> Virheellinen valinta voidaan vaihtaa koskettamalla uudestaan ruutua ja valitsemalla sivuvalikosta uusi numero/hedelmä.</p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Kuvaruudulla näkyy 6x6-pääruudukko, josta jokainen ruutu on jaettu edelleen 3x2-pienruudukkoon. Sekä ruudun, että numeron/ hedelmän saa itse valita.  Ohjelma ilmoittaa ' +
+                       'virheellisen valintayrityksen äänimerkillä.</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Tasolla III: Kuvaruudulla näkyy 6x6-pääruudukko, josta jokainen ruutu on jaettu edelleen 3x2-pienruudukkoon. Sekä ruudun, että numeron/ hedelmän saa itse valita. Ohjelma sallii myös ' +
+                       'virheellisen valinnan. <br/><br/> Kosketa "Tarkista", niin ohjelma ilmoittaa punaisella pohjavärillä, jos ruutu on täytetty sääntöjen vastaisesti. <br/><br/> Virheellinen valinta voidaan vaihtaa koskettamalla uudestaan ruutua ja valitsemalla sivuvalikosta uusi numero/hedelmä. <br/>Kosketa X kun haluat poistaa virheellisen valinnan.</p>' +
+                       '<p class="lvl-box lvl-joker hidden">Jokeritaso: Jokeritasolla pääruudukkoja on 9x9. Sekä ruudun, että numeron/hedelmän saa itse valita. Ohjelma sallii myös virheellisen valinnan. <br/><br/> Kosketa "Tarkista" niin ohjelma ilmoittaa punaisella pohjavärillä,' +
+                       'jos ruutu on täytetty sääntöjen vastaisesti. <br/><br/> Kosketa ”Vihje” saat ohjelmalta apua suodokun täyttämiseen. <br/><br/> Virheellinen valinta voidaan vaihtaa koskettamalla uudestaan ruutua ja valitsemalla sivuvalikosta uusi numero/hedelmä. <br/>Kosketa X kun haluat poistaa virheellisen valinnan.</p>' +
                        '</div>' +
 
                        '<p>Tehtävänä on täyttää ruudukon vapaat paikat hedelmillä tai numeroilla 1-6 siten, että kukin hedelmä tai numero voi esiintyä vain kerran jokaisen pääruudukon pysty- tai vaakarivissä sekä jokaisessa pienruudukossa. Osa ruuduista on valmiiksi täytetty, ne on merkitty harmaalla pohjavärillä.</p>' +
-                       '<p>Ruudukon täyttäminen tapahtuu koskettamalla haluttua tyhjää ruutua, jolloin sen ympärille muodostuu punainen kehä. Sivulla olevasta valikosta valitaan koskettamalla haluttu numero/hedelmä.</p>' +
-                       '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>' +
-                       '<p>Kosketa X kun haluat poistaa virheellisen valinnan.</p>',
+                       '<p>Ruudukon täyttäminen tapahtuu koskettamalla haluttua tyhjää ruutua, jolloin sen ympärille muodostuu sininen kehä. Sivulla olevasta valikosta valitaan koskettamalla haluttu numero/hedelmä.</p>' +
+                       '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         'coverImage' : "./img/sudoku.png"
     },
 	{
         "gameId"     : 9,
         "title"      : "Rakenna kuvio mallista",
         "guide"      : '<div class="well well-info">'+
-                       '<p class="lvl-box lvl-easy hidden">Taso I: Pieni ruudukko apuviivoilla</p>' +
-                       '<p class="lvl-box lvl-med hidden">Taso II: Iso ruudukko apuviivoilla</p>' +
-                       '<p class="lvl-box lvl-hard hidden">Taso III: Iso ruudukko ilman apuviivoja</p></div>' +
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Pieni ruudukko apuviivoilla.</p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Iso ruudukko apuviivoilla.</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: Iso ruudukko ilman apuviivoja.</p></div>' +
+
                        "<p>Ruudulla näkyy kaksi neliön muotoista aluetta. Vasemmanpuoleinen neliö on mallikuvio, joka on koottu alareunassa olevista pienistä neliöistä.</p>"+
                        "<p>Tehtävänä on koota oikeanpuolimmainen neliö mallikuvion mukaiseksi.</p>"+
                        "<p>Kokoaminen tapahtuu koskettamalla ensin ruudun alareunassa näkyvää pientä neliötä ja sen jälkeen vastaavaa kohtaa koottavassa ruudukossa</p>"+
@@ -153,9 +153,9 @@ var games = [
         "gameId"     : 10,
         "title"      : "Jätkänshakki",
         "guide"      : '<div class="well well-info">'+
-                       '<p class="lvl-box lvl-easy hidden">Taso I: Helppo vastustaja</span></p>' +
-                       '<p class="lvl-box lvl-med hidden">Taso II: Keskinkertainen vastustaja</p>' +
-                       '<p class="lvl-box lvl-hard hidden">Taso III: Taitava vastustaja</p></div>' +
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Helppo vastustaja.</p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Keskinkertainen vastustaja.</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: Taitava vastustaja.</p></div>' +
                        "<p>Kuvaruudulla näkyy tyhjä ruudukko.<br/>Tehtävässä kone pelaa ihmistä vastaan.</p>"+
                        '<p>Ruudukkoon asetetaan vuorotellen "risti" ja "nolla" (kone asettaa nollan, ihminen ristin). Tavoitteena on saada viisi peräkkäistä ristiä tai nollaa pysty-, vaaka- tai vinoruudukkoon.</p>'+
                        "<p>Valinta osoitetaan koskettamalla haluttua ruutua.</p>"+
