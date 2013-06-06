@@ -76,7 +76,7 @@ var games = [
                        '<p class="lvl-box lvl-med hidden">Taso II: Sarjan pituus 3 sanaa.</p>' +
                        '<p class="lvl-box lvl-hard hidden">Taso III: Sarjan pituus 4 sanaa.</p></div>' +
 
-                       "<p>Kovaäänisistä kuuluu sarja sanoja. Tehtävänä on painaa sarja mieleen.</p>"+
+                       "<p>Kuulet sarjan sanoja. Tehtävänä on painaa sarja mieleen.</p>"+
                        "<p>Tämän jälkeen ruudulle ilmestyy häirintätehtävä. Tehtävänä on koskettaa Löytyi-näppäintä, kun ruudulle ilmestyy eläin.</p>"+
                        "<p>Häirintätehtävän jälkeen mieleenpainettu sarja kirjoitetaan ruudukkoon vapaassa järjestyksessä.</p>"+
                        '<p>Kun koko sarja on kirjoitettu kosketa "Valmis"-painiketta, jolloin näkyviin tulee oikeiden vastauksien määrä.</p>'+
