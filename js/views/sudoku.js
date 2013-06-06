@@ -13,6 +13,7 @@ var Sudoku = Backbone.View.extend({
   
   numberOfGivens: 0,
   fillingMethod: 0,
+  eraserAvailable: false,
   hintsAvailable: false,
   checkAvailable: false,
   
@@ -56,6 +57,7 @@ var Sudoku = Backbone.View.extend({
     
     this.numberOfGivens = 18;
     this.fillingMethod = this.CONST_FILLING_METHOD_GUIDED;
+    this.eraserAvailable = false;
     this.hintsAvailable = false;
     this.checkAvailable = false;
     
@@ -73,6 +75,7 @@ var Sudoku = Backbone.View.extend({
       
       this.numberOfGivens = 14;
       this.fillingMethod = this.CONST_FILLING_METHOD_FREE;
+      this.eraserAvailable = true;
       this.checkAvailable = true;
       
     } else if( Settings.get( "difficulty" ) == "joker" ) {
@@ -84,6 +87,7 @@ var Sudoku = Backbone.View.extend({
       
       this.numberOfGivens = 36;
       this.fillingMethod = this.CONST_FILLING_METHOD_FREE;
+      this.eraserAvailable = true;
       this.hintsAvailable = true;
       this.checkAvailable = true;
       
@@ -106,6 +110,7 @@ var Sudoku = Backbone.View.extend({
     var data = {
       grid: this.grid,
       symbols: this.symbols,
+      eraserAvailable: this.eraserAvailable,
       hintsAvailable: this.hintsAvailable,
       checkAvailable: this.checkAvailable
     };
@@ -114,10 +119,10 @@ var Sudoku = Backbone.View.extend({
     this.$el.html( template );
     
     $( window ).resize( { game: this }, function( event ) {
-      event.data.game.adjustUICellSize();
+      event.data.game.adjustUISizes();
     } );
     
-    this.adjustUICellSize();
+    this.adjustUISizes();
     
     this.startGame();
     
@@ -125,7 +130,7 @@ var Sudoku = Backbone.View.extend({
     
   },
   
-  adjustUICellSize: function() {
+  adjustUISizes: function() {
     
     var wrapperHorizontalPaddings = parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-left" ) ) + parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-right" ) );
     var wrapperVerticalPaddings = parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-top" ) ) + parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-bottom" ) );
@@ -137,81 +142,119 @@ var Sudoku = Backbone.View.extend({
       heightInUse -= ( parseInt( this.$el.find( ".sudoku-actions" ).css( "margin-top" ) ) + this.$el.find( ".sudoku-actions" ).height() );
     }
     
-    var uiCellSize = 0;
+    var spaceSizeDivider = 20;
     
-    var numberOfRowsInUI = this.grid.numberOfRows + ( ( this.grid.numberOfRows / this.grid.numberOfRegionRows ) - 1 ) / 2;
-    var numberOfColsInUI = this.grid.numberOfCols + ( ( this.grid.numberOfCols / this.grid.numberOfRegionCols ) - 1 ) / 2 + 2;
+    var gridCellSize = 0;
+    var toolbarCellSize = 0;
     
-    var uiCellSizeCalculatedByWidth = Math.floor( widthInUse / numberOfColsInUI ) - 2;
-    var uiCellSizeCalculatedByHeight = Math.floor( heightInUse / numberOfRowsInUI ) - 2;
+    var numberOfRowsInUI = this.grid.numberOfRows + ( ( this.grid.numberOfRows / this.grid.numberOfRegionRows ) + 1 ) / spaceSizeDivider;
+    var numberOfColsInUI = this.grid.numberOfCols + ( ( this.grid.numberOfCols / this.grid.numberOfRegionCols ) + 3 ) / spaceSizeDivider + 1.5;
     
-    if( uiCellSizeCalculatedByWidth <= uiCellSizeCalculatedByHeight ) {
-      uiCellSize = uiCellSizeCalculatedByWidth;
+    var gridCellSizeCalculatedByWidth = Math.floor( widthInUse / numberOfColsInUI ) - 2;
+    var gridCellSizeCalculatedByHeight = Math.floor( heightInUse / numberOfRowsInUI ) - 2;
+    
+    if( gridCellSizeCalculatedByWidth <= gridCellSizeCalculatedByHeight ) {
+      gridCellSize = gridCellSizeCalculatedByWidth;
     } else {
-      uiCellSize = uiCellSizeCalculatedByHeight;
+      gridCellSize = gridCellSizeCalculatedByHeight;
     }
     
-    if( uiCellSize > 2 ) {
+    toolbarCellSize = Math.floor( ( ( numberOfRowsInUI - 2 / spaceSizeDivider ) * ( gridCellSize + 2 ) ) / ( this.grid.possibleCellValues.length + ( this.eraserAvailable ? 1 : 0 ) ) ) - 2;
+    
+    if( gridCellSize > 2 ) {
       
-      var cellCSSProperties = {
-        "width": uiCellSize + "px",
-        "height": uiCellSize + "px",
-        "line-height": uiCellSize + "px",
-        "font-size": ( uiCellSize - 5 ) + "px"
+      var gridContentCSSProperties = {
+        "border-width": Math.floor( gridCellSize / spaceSizeDivider ) + "px"
+      };
+      
+      var gridCellCSSProperties = {
+        "width": gridCellSize + "px",
+        "height": gridCellSize + "px",
+        "line-height": gridCellSize + "px",
+        "font-size": ( gridCellSize - 5 ) + "px"
       };
       
       var rowDividerCSSProperties = {
-        "height": ( ( uiCellSize / 2 ) + 1 ) + "px"
+        "height": Math.floor( gridCellSize / spaceSizeDivider ) + "px"
       };
       
       var cellDividerCSSProperties = {
-        "width": ( ( uiCellSize / 2 ) + 1 ) + "px",
-        "height": uiCellSize + "px"
+        "width": Math.floor( gridCellSize / spaceSizeDivider ) + "px",
+        "height": ( gridCellSize + 2 ) + "px"
       };
       
       var toolbarCSSProperties = {
-        "margin-left": uiCellSize + "px"
+        "margin-top": 0 + "px",
+        "margin-bottom": 0 + "px",
+        "margin-left": ( gridCellSize / 2 ) + "px",
+        "border-width": Math.floor( gridCellSize / spaceSizeDivider ) + "px"
       };
       
-      this.$el.find( ".sudoku-grid-cell" ).css( cellCSSProperties );
-      this.$el.find( ".sudoku-toolbar-cell" ).css( cellCSSProperties );
+      var toolbarCellCSSProperties = {
+        "width": toolbarCellSize + "px",
+        "height": toolbarCellSize + "px",
+        "line-height": toolbarCellSize + "px",
+        "font-size": ( toolbarCellSize - 5 ) + "px"
+      };
       
+      this.$el.find( ".sudoku-grid-content" ).css( gridContentCSSProperties );
+      this.$el.find( ".sudoku-grid-cell" ).css( gridCellCSSProperties );
       this.$el.find( ".sudoku-grid-row-divider" ).css( rowDividerCSSProperties );
       this.$el.find( ".sudoku-grid-cell-divider" ).css( cellDividerCSSProperties );
       
       this.$el.find( ".sudoku-toolbar" ).css( toolbarCSSProperties );
+      this.$el.find( ".sudoku-toolbar-cell" ).css( toolbarCellCSSProperties );
+      
+      var gridContentAndToolbarContentHeightDifference = this.$el.find( ".sudoku-grid-content" ).height() - this.$el.find( ".sudoku-toolbar-content" ).height();
+      
+      if( gridContentAndToolbarContentHeightDifference != 0 ) {
+        
+        var toolbarCSSPropertiesFix = {
+          "margin-top": ( gridContentAndToolbarContentHeightDifference / 2 ) + "px",
+          "margin-bottom": ( gridContentAndToolbarContentHeightDifference / 2 ) + "px"
+        };
+        
+        this.$el.find( ".sudoku-toolbar" ).css( toolbarCSSPropertiesFix );
+        
+      }
       
       if( this.checkAvailable ) {
         
+        var conflictsOverlayContentCSSProperties = {
+          "margin": Math.floor( gridCellSize / spaceSizeDivider ) + "px"
+        };
+        
         var conflictsOverlayRowCSSProperties = {
-          "height": uiCellSize + "px"
+          "height": gridCellSize + "px"
         };
         
         var conflictsOverlayRowDividerCSSProperties = {
-          "height": ( ( uiCellSize / 2 ) + 1 ) + "px"
+          "height": Math.floor( gridCellSize / spaceSizeDivider ) + "px"
         };
         
         var conflictsOverlayColCSSProperties = {
-          "width": ( uiCellSize + 2 ) + "px"
+          "width": ( gridCellSize + 2 ) + "px"
         };
         
         var conflictsOverlayColDividerCSSProperties = {
-          "width": ( ( uiCellSize / 2 ) + 1 ) + "px"
+          "width": Math.floor( gridCellSize / spaceSizeDivider ) + "px"
         };
         
         var conflictsOverlayRegionCSSProperties = {
-          "width": ( this.grid.numberOfRegionCols * ( uiCellSize + 2 ) - 2 ) + "px",
-          "height": ( this.grid.numberOfRegionRows * ( uiCellSize + 2 ) - 2 ) + "px"
+          "width": ( this.grid.numberOfRegionCols * ( gridCellSize + 2 ) - 2 ) + "px",
+          "height": ( this.grid.numberOfRegionRows * ( gridCellSize + 2 ) - 2 ) + "px"
         };
         
         var conflictsOverlayRegionHorizontalDividerCSSProperties = {
-          "width": ( ( uiCellSize / 2 ) + 1 ) + "px",
-          "height": ( this.grid.numberOfRegionRows * ( uiCellSize + 2 ) - 2 ) + "px"
+          "width": Math.floor( gridCellSize / spaceSizeDivider ) + "px",
+          "height": ( this.grid.numberOfRegionRows * ( gridCellSize + 2 ) - 2 ) + "px"
         };
         
         var conflictsOverlayRegionVerticalDividerCSSProperties = {
-          "height": ( ( uiCellSize / 2 ) + 1 ) + "px"
+          "height": Math.floor( gridCellSize / spaceSizeDivider ) + "px"
         };
+        
+        this.$el.find( ".sudoku-grid-conflicts-overlay-content" ).css( conflictsOverlayContentCSSProperties );
         
         this.$el.find( ".sudoku-grid-conflicts-overlay-row" ).css( conflictsOverlayRowCSSProperties );
         this.$el.find( ".sudoku-grid-conflicts-overlay-row-divider" ).css( conflictsOverlayRowDividerCSSProperties );
@@ -1106,13 +1149,18 @@ var Sudoku = Backbone.View.extend({
         
       }
       
-      var eraserSymbol = {};
-      
-      eraserSymbol.index = numberOfSymbols;
-      eraserSymbol.number = 0;
-      
       symbols.gridSymbols = gridSymbols;
-      symbols.eraserSymbol = eraserSymbol;
+      
+      if( this.eraserAvailable ) {
+        
+        var eraserSymbol = {};
+        
+        eraserSymbol.index = numberOfSymbols;
+        eraserSymbol.number = 0;
+        
+        symbols.eraserSymbol = eraserSymbol;
+        
+      }
       
     }
     
