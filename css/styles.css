@@ -677,8 +677,10 @@ span.bullet{
     padding-top:10px;
 }
 .input-container{
-    margin: 0 auto;
-    width: 340px;
+    position: absolute;
+    left: 50%;
+    margin-left: -510px !important;
+
 }
 .input{
     float:right;
@@ -694,11 +696,19 @@ span.bullet{
     color: #468847 !important;
 }
 
+.aud-hint{
+    text-align: left;
+    font-size: 2.2em;
+    line-height: 1.2;
+    margin-top: 15px;
+    color: #808080;
+
+}
+
 .below{
     margin-top:10px;
     padding:46px 0 46px 0;
 }
-
 
 
 .carousel-inner .item img{
