@@ -51,19 +51,6 @@ var ResultsView = Backbone.View.extend({
 
         this.undelegateEvents();
 
-        /*
-        var difficulty = '';
-        if( this.options.results.difficulty == 'easy' ){
-            difficulty = 'Helppo';
-        }else if( this.options.results.difficulty == 'medium' ){
-            difficulty = 'Keskivaikea';
-        }else if( this.options.results.difficulty == 'hard' ){
-            difficulty = 'Vaikea';
-        }else if( this.options.results.difficulty == 'joker' ){
-            difficulty = 'Jokeri';
-        }
-        */
-
         var  results = {
             pvm : this.options.results.pvm,
             klo : this.options.results.klo,
@@ -84,7 +71,7 @@ var ResultsView = Backbone.View.extend({
     startNewGame: function () {
         Settings.set({results:[]});
         this.undelegateEvents();
-        this.unbind();
+        App.currentGameView.undelegateEvents();
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId + '/play', {trigger: true});
 

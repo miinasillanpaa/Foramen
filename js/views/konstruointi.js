@@ -155,7 +155,17 @@ var Konstruointi = Backbone.View.extend({
         target.attr('src',selected);
     },
 
+    arraysIdentical: function (arr1,arr2) {
+        for ( var i = arr1.length; i--; ) {
+            if(arr1[i] !== arr2[i]){
+                return false;
+            }
+        }
+        return true;
+    },
+
     getResults: function () {
+
         var difficulty = Settings.get('difficulty');
         var firstRow = [];
         var secondRow = [];
@@ -202,15 +212,6 @@ var Konstruointi = Backbone.View.extend({
         var timeSpent = msToStr(time);
 
 
-        function arraysIdentical (arr1,arr2) {
-            for ( var i = arr1.length; i--; ) {
-                if(arr1[i] !== arr2[i]){
-                    return false;
-                }
-            }
-            return true;
-        }
-
         var wrong = './pics/konstruktio/11.png';
 
         for( var j = 0; j < firstRow.length+1; j++ ){
@@ -236,8 +237,8 @@ var Konstruointi = Backbone.View.extend({
         var roundResults;
 
         if(difficulty === 'easy'){
-            if( (arraysIdentical(correctConstruct.firstRow, firstRow) === true) &&
-                (arraysIdentical(correctConstruct.secondRow, secondRow) === true) ) {
+            if( (this.arraysIdentical(correctConstruct.firstRow, firstRow) === true) &&
+                (this.arraysIdentical(correctConstruct.secondRow, secondRow) === true) ) {
 
                 roundResults = [ { 'correct' : 'Oikein' },
                                  { 'time' : timeSpent } ];
@@ -248,9 +249,9 @@ var Konstruointi = Backbone.View.extend({
                 results.push(roundResults);
             }
         }else{
-            if( (arraysIdentical(correctConstruct.firstRow, firstRow) === true) &&
-                (arraysIdentical(correctConstruct.secondRow, secondRow) === true) &&
-                (arraysIdentical(correctConstruct.thirdRow, thirdRow) === true) ){
+            if( (this.arraysIdentical(correctConstruct.firstRow, firstRow) === true) &&
+                (this.arraysIdentical(correctConstruct.secondRow, secondRow) === true) &&
+                (this.arraysIdentical(correctConstruct.thirdRow, thirdRow) === true) ){
                 roundResults = [ { 'correct' : 'Oikein' },
                                  { 'time' : timeSpent } ];
                 results.push(roundResults);
@@ -261,12 +262,13 @@ var Konstruointi = Backbone.View.extend({
             }
         }
         Settings.set({ results:results });
+
     },
 
     continueGame: function () {
 
-
-            var res = Settings.get('results');
+            var res = Settings.get('results')
+            Settings.set({ 'results' : [] });
             var date = getDateTime();
             var pvm = date.pvm;
             var klo = date.klo;
@@ -287,17 +289,11 @@ var Konstruointi = Backbone.View.extend({
                 ]
             };
 
-            Settings.set({ results: [] });
             this.undelegateEvents();
-            this.unbind();
             var view;
             view = new ResultsView({ model: this.model, results:results });
             view.render();
             router.navigate('game/' + this.model.get('gameId') + '/results', true);
         }
-
-
-
-
 
 });
