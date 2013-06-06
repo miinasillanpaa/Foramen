@@ -194,8 +194,8 @@ var Settings = Backbone.Model.extend({
             "easy" : [
                 "ABI","AHO","AIE","AJO","ANE","APE","APU","ARA","ARO","ASE","ASU","AVU","BOA","DUO","EGO","ELO","EMI",
                 "EMO","EMU","EMÄ","ENO","ERÄ","EVÄ","HAI","IEN","IES","IHO","IKÄ","ILO","IMU","ISI","ITU","ITÄ","ÄES",
-                "IVA","JAE","KOE","KUU","KYY","KÖÖ","LUU","MAA","OKA","OLO","ORA","ORI","OSA","OTE","PAI","PUO","YTY",
-                "ÄLY","PUU","PÄÄ","RAE","SEI","SUO","SUU","SÄE","SÄÄ","TAE","TIE","TII","TIU","TYÖ","TÄI","UFO","UHO",
+                "IVA","JAE","KOE","KUU","KYY","KÖÖ","LUU","MAA","OKA","OLO","ORA","ORI","OSA","OTE","PAI","YTY","ÄLY",
+                "PUU","PÄÄ","RAE","SEI","SUO","SUU","SÄE","SÄÄ","TAE","TIE","TII","TIU","TYÖ","TÄI","UFO","UHO",
                 "URA","UTU"
             ],
             "medium" : [
