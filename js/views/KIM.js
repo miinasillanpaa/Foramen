@@ -65,7 +65,6 @@ var KIM = Backbone.View.extend({
     },
 
     knobify: function () {
-
         $('.timer').show();
         var knobTimer = setInterval(countdown, 1000);
         var totMin, totSec;
@@ -89,7 +88,11 @@ var KIM = Backbone.View.extend({
 
                 $('.quit').click( function () {
                     window.clearInterval(knobTimer);
+                });
+                $('.finish').click( function () {
+                    window.clearInterval(knobTimer);
                 })
+
             }
         }
 
@@ -203,19 +206,24 @@ var KIM = Backbone.View.extend({
         var correct=0;
         var wrong=0;
         var selected = [];
+
         for(var j=0; j < $('.selected').length; j++){
             var selection = $('img.selected:nth('+j+')').attr('src');
             selected.push(selection);
-
             if( $.inArray(selection, targetImg) > -1 ){
+
                 correct++;
-                $('img.selected:nth('+j+')').addClass('success-border');
+
+                if ( $('img.selected:nth('+j+')').attr('src') === selection ){
+                    $('img.selected:nth('+j+')').addClass('success-border');
+                }
 
             }else if( $.inArray(selection, targetImg) === -1 ){
                 wrong++;
-                $('img.selected:nth('+j+')').addClass('danger-border');
             }
         }
+        $('img.selected').removeClass('selected');
+
         var arr = Settings.get('results');
         var obj = {round:playthruNum, correct:correct, wrong:wrong, tot:targets.length};
         arr.push(obj);
