@@ -31,7 +31,7 @@ var Sarjamuisti = Backbone.View.extend({
             function () {
                 $('.numOptions').removeClass('hidden');
                 $('.box').addClass('black');
-                $('.finish').removeAttr("disabled");
+                $('.next').removeAttr("disabled");
                 $('.ser-check').removeAttr("disabled");
                 var rand = Math.floor(Math.random() * arrLength);
                 $('.box:eq(' + rand + ')').addClass('actived').removeClass('available');
@@ -54,7 +54,7 @@ var Sarjamuisti = Backbone.View.extend({
         'click .quit': 'quitGame',
         'click .choices' : 'numberPicked',
         'click .ser-check' : 'showCorrects',
-        'click .finish' : 'finish'
+        'click .next' : 'finish'
     },
 
     quitGame: function () {
@@ -81,7 +81,7 @@ var Sarjamuisti = Backbone.View.extend({
         var availableBoxes = $('.available').length;
         var availableArr = [];
         if(availableBoxes === 0){
-            $('.finish').addClass('btn-success');
+            $('.next').addClass('btn-success');
         }else{
             $('.available.box').each(function ( index ) {
                 availableArr.push(index);

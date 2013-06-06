@@ -76,9 +76,9 @@ var Konstruointi = Backbone.View.extend({
     events: {
       'click .selectable' : 'selectBlock',
       'click .answerBlock ' : 'placeBlock',
-      'click .finish' : 'getResults',
+      'click .finish' :   'getResults',
       'click .continue' : 'continueGame',
-      'click .quit' : 'quitGame'
+      'click .quit' :     'quitGame'
     },
 
     quitGame: function () {
@@ -264,9 +264,9 @@ var Konstruointi = Backbone.View.extend({
     },
 
     continueGame: function () {
-        this.undelegateEvents();
 
-            var results = Settings.get('results');
+
+            var res = Settings.get('results');
             var date = getDateTime();
             var pvm = date.pvm;
             var klo = date.klo;
@@ -278,16 +278,18 @@ var Konstruointi = Backbone.View.extend({
                 'data' : [
                     {
                         'name' : 'Konstruointi suoritettu:',
-                        'value' : results[0][0].correct
+                        'value' : res[0][0].correct
                     },
                     {
                         'name' : 'Käytetty aika:',
-                        'value' : results[0][1].time
+                        'value' : res[0][1].time
                     }
                 ]
             };
 
             Settings.set({ results: [] });
+            this.undelegateEvents();
+            this.unbind();
             var view;
             view = new ResultsView({ model: this.model, results:results });
             view.render();
