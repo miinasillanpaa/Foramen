@@ -100,8 +100,28 @@ var KIM = Backbone.View.extend({
 
     selectItem: function () {
         var target = $(event.target);
-        target.toggleClass('selected');
+        if( target.hasClass('selected') ) {
+
+            target.toggleClass('selected');
+
+        }else{
+
+            if( $('.selected').length === Settings.get('targets').length ){
+
+                $('#content').find('button').attr('disabled','disabled');
+                $('#content').find('img').prop('disabled',true);
+
+                $('.info-modal').show().html(
+                    'Sinulla on jo '+ $('.selected').length + ' valintaa! <br/><br/>' +
+                    'Voit poistaa valinnan koskettamalla. <button onclick="window.hideModal();" class="btn btn-block btn-primary hide-modal"> Ok </button>'
+                );
+
+            }else{
+                target.toggleClass('selected');
+            }
+        }
     },
+
 
     itemsLength: function () {
         var diff = Settings.get('difficulty');

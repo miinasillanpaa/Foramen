@@ -223,3 +223,8 @@ Array.prototype.chunk = function(chunkSize) {
     );
 };
 
+function hideModal() {
+    $('.info-modal').hide();
+    $('#content').find('button').removeAttr('disabled');
+    $('#content').find('img').prop('disabled',false);
+}

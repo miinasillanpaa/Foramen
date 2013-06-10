@@ -18,6 +18,28 @@ html, body{
     no-repeat;
 }
 
+.info-modal{
+    display: none;
+    position: fixed;
+    height: 200px;
+    width: 350px;
+    background: rgba( 255, 255, 255, 1);
+    top: 30%;
+    margin-top: -100px;
+    left: 50%;
+    margin-left: -175px;
+    text-align: center;
+    padding: 25px 10px;
+    font-size: 2em;
+    line-height: 1.2;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+.info-modal button{
+    margin-top:15px;
+    height: 50px;
+}
+
 .container.loading .modal{
     display: block;
 }
