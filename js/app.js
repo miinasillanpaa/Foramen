@@ -17,7 +17,7 @@ var games = [
                        "<p>Väärän valinnan voit poistaa koskettamalla kuvaa uudestaan.</p>" +
                        '<p>Näet tuloksesi koskettamalla "Valmis".</p>' +
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
-        "video"      : "http://www.youtube.com/embed/tEkZSAo9OIg",
+        "video"      : "http://www.youtube.com/embed/LD0-dkNqlG4",
         "coverImage" : "./img/fish.png"
     },
 	{
@@ -35,7 +35,7 @@ var games = [
                        '<p>Vastaa kysymykseen koskettamalla vastausta.</p>'+
                        '<p>Kosketa "Tarkista", jolloin oikeat vastaukset näytetään vihreällä ja väärät punaisella.</p>'+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
-        "video"     :  "http://www.youtube.com/embed/7htCYIcrVoo",
+        "video"     :  "http://www.youtube.com/embed/uiNBcLuSUpY",
         "coverImage" : "./img/txt.png"
     },
 	{
@@ -50,7 +50,7 @@ var games = [
                        '<p>Tehtävänä on havaita punaisella alueella perusmuodossa oleva substantiivi (nimisana), esimerkiksi "kissa".</p>'+
                        "<p>Valinta osoitetaan koskettamalla alueen alapuolella olevaa Löytyi-painiketta.</p>"+
                        '<p>Tehtävä kestää neljä minuuttia. Voit kuitenkin keskeyttää tehtävän koskettamalla "Lopeta".</p>',
-        "video"      : "http://www.youtube.com/embed/UlYAon9pjoY",
+        "video"      : "http://www.youtube.com/embed/zC7bELbsNiQ",
         'coverImage' : './img/sanat.png'
     },
 	{
@@ -65,7 +65,7 @@ var games = [
                        "<p>Kun sarja on esitetty, numerot peitetään mustilla neliöillä. Kulloinkin mieleenpalautettavan numeron paikka on merkitty punaisella kehyksellä. Alarivillä näkyvät numero 0-9. Vastaa koskettamalla alarivin kyseistä numeroa. Sama toistetaan jokaisen mustan neliön kohdalla.</p>"+
                        '<p>Kosketa "Tarkista", jolloin näet oikeat vastaukset.</p>'+
                        '<p>Muistettavia numerosarjoja tulee viisi peräkkäin. Voit kuitenkin keskeyttää tehtävän koskettamalla "Lopeta".</p>',
-        "video"      : "http://www.youtube.com/embed/JAyMd0IEPxE",
+        "video"      : "http://www.youtube.com/embed/u5Fl1HO1YMU",
         "coverImage" : "./img/vis.png"
     },
 	{
@@ -81,7 +81,7 @@ var games = [
                        "<p>Häirintätehtävän jälkeen mieleenpainettu sarja kirjoitetaan ruudukkoon vapaassa järjestyksessä.</p>"+
                        '<p>Kun koko sarja on kirjoitettu kosketa "Valmis"-painiketta, jolloin näkyviin tulee oikeiden vastauksien määrä.</p>'+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
-        "video"      : "http://www.youtube.com/embed/BztSh8D8il0",
+        "video"      : "http://www.youtube.com/embed/tIflUnbM5-c",
         'coverImage' : './img/aud.png'
     },
 	{
@@ -95,7 +95,7 @@ var games = [
                        "<p>Ruudulla näkyy esineiden kuvia. Tehtävänä on oppia tunnistamaan nämä muiden joukosta.</p>"+
                        "<p>Mieleenpainamisen jälkeen ruudulle ilmestyy aiemmin esitetyt kuvat ja joukko muita kuvia. Tehtävänä on tunnistaa aiemmin esitetyt kuvat. Tunnistaminen osoitetaan koskettamalla kuvaa</p>"+
                        '<p>Kosketa “Valmis”, jonka jälkeen kone näyttää oikeat vastaukset vihreällä ja puuttuvat oranssilla. Jos muistit kaikki kuvat tehtävä loppuu. Mikäli et muistanut kaikkia, tehtävä jatkuu kunnes muistat kaikki, kuitenkin korkeintaan kymmenen kierrosta.</p>',
-        "video"      : "http://www.youtube.com/embed/_HGOhJ1S-gM",
+        "video"      : "http://www.youtube.com/embed/vtMItgiYbfs",
         "coverImage" : "./img/kim.png"
     },
 	{
@@ -111,7 +111,7 @@ var games = [
                        "<p>Kone kirjoittaa sanan ruudulle ja ilmoittaa kuinka monta sanan kirjaimista on oikeita ja oikealla paikalla (musta ympyrä) ja kuinka monta sanan kirjaimista on oikeita, mutta väärällä paikalla (valkoinen ympyrä).</p>"+
                        "<p>Yritä päätellä salasana koneen antamien vihjeiden avulla.</p>"+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
-        "video"      : "http://www.youtube.com/embed/IrgFSCQJT3A",
+        "video"      : "http://www.youtube.com/embed/CaLt6nolbZc",
         "coverImage" : "./img/password.png"
     },
 	{
@@ -131,6 +131,7 @@ var games = [
                        '<p>Tehtävänä on täyttää ruudukon vapaat paikat hedelmillä tai numeroilla 1-6 siten, että kukin hedelmä tai numero voi esiintyä vain kerran jokaisen pääruudukon pysty- tai vaakarivissä sekä jokaisessa pienruudukossa. Osa ruuduista on valmiiksi täytetty, ne on merkitty harmaalla pohjavärillä.</p>' +
                        '<p>Ruudukon täyttäminen tapahtuu koskettamalla haluttua tyhjää ruutua, jolloin sen ympärille muodostuu sininen kehä. Sivulla olevasta valikosta valitaan koskettamalla haluttu numero/hedelmä.</p>' +
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
+		"video"		: "http://www.youtube.com/embed/-guymczoXGc",
         'coverImage' : "./img/sudoku.png"
     },
 	{
@@ -146,7 +147,7 @@ var games = [
                        "<p>Kokoaminen tapahtuu koskettamalla ensin ruudun alareunassa näkyvää pientä neliötä ja sen jälkeen vastaavaa kohtaa koottavassa ruudukossa</p>"+
                        '<p>Kosketa “Valmis”. Mikäli kuviossa on virheellisiä tai puuttuvia osia näkyvät ne punaisella X:lla. merkittynä.</p>'+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
-        "video"      : "http://www.youtube.com/embed/bBLbo0fK0OU",
+        "video"      : "http://www.youtube.com/embed/Rfn_88d_HJc",
         "coverImage" : "./img/konstruointi.png"
     },
 	{
@@ -160,6 +161,7 @@ var games = [
                        '<p>Ruudukkoon asetetaan vuorotellen "risti" ja "nolla" (kone asettaa nollan, ihminen ristin). Tavoitteena on saada viisi peräkkäistä ristiä tai nollaa pysty-, vaaka- tai vinoruudukkoon.</p>'+
                        "<p>Valinta osoitetaan koskettamalla haluttua ruutua.</p>"+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta"</p>',
+		"video"		: "http://www.youtube.com/embed/NMbq0-Abvdo",
         "coverImage" : "./img/ristinolla.png"
     }
 ];
