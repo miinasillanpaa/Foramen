@@ -1,7 +1,9 @@
 var App = {
 	preGameview: null,
-	currentGameView: null
+	currentGameView: null,
+	headerView: null
 };
+
 
 var games = [
 	{
@@ -226,7 +228,77 @@ Array.prototype.chunk = function(chunkSize) {
 };
 
 function hideModal() {
+	$('.overlay').css('display','none');
     $('.info-modal').hide();
     $('#content').find('button').removeAttr('disabled');
     $('#content').find('img').prop('disabled',false);
+}
+
+function hideFeedbackModal(status) {
+	var mood;
+	if(status === 1){
+		mood = "positive";
+	}else if(status === 2){
+		mood = "neutral";
+	}else{
+		mood = "negative";
+	}
+	saveGameFeedback(mood);
+
+	$('.overlay').css('display','none');
+	$('.back-root, .btn-feedback').removeAttr('disabled');
+
+	$('.modal')
+		.css('display','none')
+		.html("");
+}
+
+function toggleFeedbackCheckbox () {
+
+	if( $('#checkboxFeedback').prop('checked') === false) {
+		Settings.set({'showFeedbackModal': false})
+	}else{
+		Settings.set({'showFeedbackModal': true})
+	}
+	console.log(Settings.get('showFeedbackModal'));
+}
+
+var backend = 'http://stage.pienipiiri.fi/frSaveGame';
+function saveGameStart (gameData) {
+
+	$.ajax({
+		url: backend,
+		type: 'POST',
+		data: gameData,
+		success: function(res) {
+			Settings.set({'gameInstanceId': res.id})
+		}
+	})
+}
+
+function saveGameEnd () {
+	var gameInstanceId = Settings.get('gameInstanceId');
+	var scoreObj = Settings.get('score');
+	var data = { 'id': gameInstanceId, 'score': scoreObj };
+
+	$.ajax({
+		url: backend,
+		type: 'POST',
+		data: data,
+		success: function(res) {
+		}
+	})
+}
+
+function saveGameFeedback (mood) {
+	var gameInstanceId = Settings.get('gameInstanceId');
+	var data = { 'id': gameInstanceId, 'feedback': mood };
+
+	$.ajax({
+		url: backend,
+		type: 'POST',
+		data: data,
+		success: function(res) {
+		}
+	})
 }

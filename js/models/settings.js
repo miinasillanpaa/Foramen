@@ -4,9 +4,13 @@ var Settings = Backbone.Model.extend({
 		authToken: null,
 		returnUrl: 'https://pienipiiri.fi/mobile/?userId=',
 		difficulty: 'easy',
+		playerRole: 'Kuntoutuja',
     category: 'kalat',
     textCategory: 'eläimet',
 		backendUrl: 'https://pienipiiri.fi',
+		score: {},
+		gameInstanceId: null,
+		showFeedbackModal: true,
 
         //Tekstiviesti exercise specific
         txtSenderDom: '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>',
