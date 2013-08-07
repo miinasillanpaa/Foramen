@@ -22,7 +22,7 @@ var PlayedGameView = Backbone.View.extend({
         this.undelegateEvents();
 
         router.navigate( '/game/' + this.options.results.gameId + '/results', true );
-        var view = new ResultsView({ model: this.model, results: this.options.results });
+        var view = new ResultsView({ model: this.model, results: this.options.results, fromPlayedGameView: true });
         view.render();
     }
 });

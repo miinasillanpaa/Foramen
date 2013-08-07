@@ -260,7 +260,6 @@ function toggleFeedbackCheckbox () {
 	}else{
 		Settings.set({'showFeedbackModal': true})
 	}
-	console.log(Settings.get('showFeedbackModal'));
 }
 
 var backend = 'http://stage.pienipiiri.fi/frSaveGame';

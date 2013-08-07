@@ -44,14 +44,14 @@ var ResultsView = Backbone.View.extend({
 		Settings.set({'score':score});
 		window.saveGameEnd();
 
-
         var template = _.template( $(this.template).html(), results  );
         this.$el.html(template);
 
+		if( Settings.get('showFeedbackModal') === true) {
+			if ( !this.options.fromPlayedGameView ) {
+				this.showModal();
+			}
 
-		//todo do not show this every time user enters results
-		if(Settings.get('showFeedbackModal') === true) {
-			this.showModal();
 		}
 
 		$('.back-root').click( function() {
