@@ -111,6 +111,7 @@ var KIM = Backbone.View.extend({
                 $('#content').find('button').attr('disabled','disabled');
                 $('#content').find('img').prop('disabled',true);
 
+				$('.overlay').css('display','block');
                 $('.info-modal').show().html(
                     'Olet jo valinnut kaikki '+ $('.selected').length + ' esinettä. <br/><br/>' +
                     'Voit poistaa valinnan koskettamalla. <button onclick="window.hideModal();" class="btn btn-block btn-primary hide-modal"> Ok </button>'

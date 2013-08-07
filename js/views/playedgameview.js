@@ -23,7 +23,6 @@ var PlayedGameView = Backbone.View.extend({
 
         router.navigate( '/game/' + this.options.results.gameId + '/results', true );
         var view = new ResultsView({ model: this.model, results: this.options.results });
-        new HeaderView({id:2, gameId: this.options.results.gameId });
         view.render();
     }
 });

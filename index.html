@@ -372,8 +372,9 @@
 
     <script id="resultsViewTemplate" type="text/template">
 
-
+		<button class="btn btn-info btn-feedback">Anna palautetta</button>
         <h2 class="title">Tulokset</h2>
+
         <div class="span5">
             <div class="well">
 
@@ -402,6 +403,7 @@
 
 
         <div class="span6">
+
             <div class="alert alert-success alert-bigger">
                 Paransit omaa ennätystäsi!
             </div>
@@ -589,29 +591,31 @@
 
     </script>
 
-    <script id="mainHeaderTmpl" type="text/template">
-        <h2>MuistiluuriKymppi</h2>
-        <button class="btn btn-large backToService" id="back-button">Takaisin</button>
+	 <script id="mainHeaderTmpl" type="text/template">
+			<h2>MuistiluuriKymppi</h2>
+			<div class="top-bar-mid"><h4>Harjoittelija: </h4> <button class="btn btn-large btn-info" id="toggle-player"></button></div>
+			<button class="btn btn-large backToService" id="back-button">Takaisin</button>
 
-    </script>
+	</script>
 
-    <script id="backHeaderTmpl" type="text/template">
-        <h2><%= title %></h2>
-        <button class="btn btn-large back-root"><i class="icon-home"></i> Alkuun</button>
-    </script>
+	<script id="backHeaderTmpl" type="text/template">
+			<h2><%= title %></h2>
+			<button class="btn btn-large back-root"><i class="icon-home"></i> Alkuun</button>
+	</script>
 
-    <script id="historyBackTmpl" type="text/template">
-        <h2><%= title %></h2>
-        <button class="btn btn-large back-history"><i class="icon-chevron-left"></i> Takaisin</button>
-    </script>
+	<script id="historyBackTmpl" type="text/template">
+			<h2><%= title %></h2>
+			<button class="btn btn-large back-history"><i class="icon-chevron-left"></i> Takaisin</button>
+	</script>
 
-    <!-- templates end -->
+   	<!-- templates end -->
 
 </head>
 
 <body>
 
     <div class="container">
+		<div class="overlay"></div>
         <div class="modal"><p class="text-center bigger">Sisältöä ladataan...</p></div>
         <div class="info-modal"></div>
 
@@ -620,8 +624,6 @@
 
             <div id="content"></div>
         </div>
-
-
         <div class="clearfix"></div>
 
         <footer>

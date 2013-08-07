@@ -32,8 +32,12 @@ window.Router = Backbone.Router.extend({
 			App.currentGameView.undelegateEvents();
 		}
 
-        var hview = new HeaderView({id:0});
-        hview.render();
+		if(App.headerView === null) {
+			App.headerView = new HeaderView({ id:0 });
+		}else{
+			App.headerView.setId(0);
+		}
+		App.headerView.render();
 	}
 
 });
@@ -41,7 +45,6 @@ window.Router = Backbone.Router.extend({
 var router = new Router();
 
 router.on('route:getGame', function(id) {
-
 	var difficulty = Settings.get('difficulty');
 
 	var selectedGame = games[id-1];
@@ -52,11 +55,17 @@ router.on('route:getGame', function(id) {
 	} else {
 		App.preGameview.setModel(gameObj);
 	}
-
-    var hview = new HeaderView({id:1,gameObj:gameObj});
-    hview.render();
-
 	App.preGameview.render();
+
+	if( App.headerView === null ) {
+		App.headerView = new HeaderView({ id:1, model:gameObj})
+
+	}else if( App.headerView.id !== 1 ) {
+		App.headerView.setId(1);
+		App.headerView.setModel(gameObj)
+
+	}
+	App.headerView.render();
 });
 
 router.on('route:videoView', function(id) {
@@ -66,8 +75,12 @@ router.on('route:videoView', function(id) {
     var view = new VideoView({ model: gameObj });
     view.render();
 
-    var hview = new HeaderView({id:3,gameObj:gameObj});
-    hview.render();
+
+	if(App.headerView.id !== 3) {
+		App.headerView.setId(3);
+		App.headerView.setModel(gameObj)
+	}
+	App.headerView.render();
 
 });
 
@@ -76,7 +89,29 @@ router.on('route:play', function(id) {
     var selectedGame = games[selectedGameIndex];
     var gameObj = new Game(selectedGame);
 
+	var difficulty = Settings.get('difficulty');
+	var difficultyLevel;
+	if ( difficulty === 'easy') {
+		difficultyLevel = 1;
+	}else if( difficulty === 'medium' ) {
+		difficultyLevel = 2;
+	}else{
+		difficultyLevel = 3;
+	}
+
+	var gameData =  {
+		'gameId' : parseInt(id),
+		'gameName' : gameObj.attributes.title,
+		'userId' : Settings.get('currentUserId'),
+		'difficultyLevel' : difficultyLevel,
+		'category' : '',
+		'playerRole' : Settings.get('playerRole')
+	};
+
 	if( parseInt(id) === 1 ){
+
+		gameData['category'] = Settings.get('category');
+
         var view1 = new KuvaEtsinta({ model:gameObj });
 		App.currentGameView = view1;
         view1.render();
@@ -87,6 +122,9 @@ router.on('route:play', function(id) {
         view2.render();
 
     }else if( parseInt(id) === 3){
+
+		gameData['category'] = Settings.get('textCategory');
+
         var view3 = new SanojenTunnistaminen({ model: gameObj });
         App.currentGameView = view3;
         view3.render();
@@ -112,6 +150,9 @@ router.on('route:play', function(id) {
         view7.render();
 
     }else if( parseInt(id) === 8){
+
+		gameData['category'] = Settings.get('sudokuCategory');
+
         var view8 = new Sudoku({ model:gameObj });
         App.currentGameView = view8;
         view8.render();
@@ -129,18 +170,34 @@ router.on('route:play', function(id) {
     }else{
         $('#content').html('Nothing here yet!');
     }
+
+	window.saveGameStart(gameData);
 });
 router.on('route:resultsView', function(id) {
     var selectedGameIndex = parseInt(id-1);
     var selectedGame = games[selectedGameIndex];
     var gameObj = new Game(selectedGame);
 
-    var hview = new HeaderView({id:2,gameObj:gameObj});
-    hview.render();
+
+	if(App.headerView === null ) {
+		App.headerView = new HeaderView({ id:2, model:gameObj})
+
+	}else if(App.headerView.id !== 2) {
+		App.headerView.setId(2);
+		App.headerView.setModel(gameObj)
+	}
+	App.headerView.render();
 
 });
 router.on('route:playedGameView', function(id) {
+	if(App.headerView === null ) {
+		App.headerView = new HeaderView({ id:2, model:gameObj})
 
+	}else if(App.headerView.id !== 2) {
+		App.headerView.setId(2);
+		App.headerView.setModel(gameObj)
+	}
+	App.headerView.render();
 });
 
 Backbone.history.start();
