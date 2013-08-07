@@ -1,7 +1,8 @@
 var App = {
 	preGameview: null,
 	currentGameView: null,
-	headerView: null
+	headerView: null,
+	knobTimer: null
 };
 
 

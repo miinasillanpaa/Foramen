@@ -4,7 +4,6 @@ var KIM = Backbone.View.extend({
 
     initialize: function () {
         $(".container").addClass('loading');
-
     },
 
     render: function () {
@@ -37,9 +36,15 @@ var KIM = Backbone.View.extend({
                 },visible);
         });
 
-        $('.quit').click( function() {
+		$('.finish').click( function () {
+			window.clearInterval(timer);
+			window.clearInterval(App.knobTimer);
+		});
+
+		$('.quit').click( function() {
             window.clearTimeout(timer)
         });
+
         $('.knob').knob({
             change : function (value) {},
             "max": (this.itemsLength()*4.5)-1,
@@ -66,13 +71,13 @@ var KIM = Backbone.View.extend({
 
     knobify: function () {
         $('.timer').show();
-        var knobTimer = setInterval(countdown, 1000);
+        App.knobTimer = setInterval(countdown, 1000);
         var totMin, totSec;
         var timeLeft = (this.itemsLength()*4.5)-1;
         function countdown() {
             if (timeLeft == 0){
                 $(".timer").hide();
-                window.clearInterval(knobTimer);
+                window.clearInterval(App.knobTimer);
             }else{
                 totMin = Math.floor(timeLeft/60);
                 totSec = Math.floor(timeLeft-(totMin*60));
@@ -87,10 +92,10 @@ var KIM = Backbone.View.extend({
                 timeLeft--;
 
                 $('.quit').click( function () {
-                    window.clearInterval(knobTimer);
+                    window.clearInterval(App.knobTimer);
                 });
                 $('.finish').click( function () {
-                    window.clearInterval(knobTimer);
+                    window.clearInterval(App.knobTimer);
                 })
 
             }

@@ -5,8 +5,7 @@ var ResultsView = Backbone.View.extend({
     render: function () {
 
         $('#header').show();
-
-
+		clearInterval(App.knobTimer);
         var myView = this;
         var difficulty;
         if( this.options.results.difficulty == 'easy' ){
@@ -38,11 +37,13 @@ var ResultsView = Backbone.View.extend({
 				var chopd = name.substring(0,name.length-1);
 				score[chopd] = results.data[i].value;
 			}
-
-
 		}
+
 		Settings.set({'score':score});
 		window.saveGameEnd();
+
+		//todo fetch the BEST result of the game and show it to user
+		//todo also compare if just played result was the best
 
         var template = _.template( $(this.template).html(), results  );
         this.$el.html(template);
@@ -51,13 +52,12 @@ var ResultsView = Backbone.View.extend({
 			if ( !this.options.fromPlayedGameView ) {
 				this.showModal();
 			}
-
 		}
 
 		$('.back-root').click( function() {
             myView.undelegateEvents();
-
         });
+
         $('#content').css('padding-bottom','50px');
         $('#content').css('overflow-y','auto');
 
@@ -99,16 +99,6 @@ var ResultsView = Backbone.View.extend({
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId + '/play', {trigger: true});
     },
-
-	/*hideModal: function () {
-		console.log('smiley clickd');
-		$('.overlay').css('display','none');
-		$('.back-root').removeAttr('disabled');
-
-		$('.modal')
-			.css('display','none')
-			.html("");
-	}, */
 
 	showModal: function () {
 
