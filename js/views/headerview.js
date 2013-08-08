@@ -56,8 +56,8 @@ var HeaderView = Backbone.View.extend({
 	togglePlayer: function () {
 		var target = $(event.target);
 		if(target.text() == 'Kuntoutuja') {
-			Settings.set({'playerRole':'Muu'});
-			target.text('Muu')
+			Settings.set({'playerRole':'Läheinen'});
+			target.text('Läheinen')
 		}else{
 			Settings.set({'playerRole':'Kuntoutuja'});
 			target.text('Kuntoutuja');
