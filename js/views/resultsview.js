@@ -105,17 +105,17 @@ var ResultsView = Backbone.View.extend({
 
 	showModal: function () {
 
-
-		var el = '<h3>Mikä on fiiliksesi?</h3>' +
+		var el = '<h2>Mikä on fiiliksesi?</h2>' +
 				'<div class="mood-meter">' +
 				'<button onclick="window.hideFeedbackModal(1);" class="btn btn-success btn-smiley"><img class="smiley" src="img/face_happy.png"/></button>' +
 				'<button onclick="window.hideFeedbackModal(2);" class="btn btn-default btn-smiley"><img class="smiley" src="img/face_neutral.png"/></button>' +
 				'<button onclick="window.hideFeedbackModal(3);" class="btn btn-danger btn-smiley"><img class="smiley" src="./img/face_sad.png"/></button>' +
-				'<p class="checkbox checkbox-moodmeter pull-left"> <input id="checkboxFeedback" type="checkbox" onmousedown="window.toggleFeedbackCheckbox();"> Älä näytä tätä enää</p> ' +
-				'</div>';
+				'</div>' +
+				'<p class="checkbox checkbox-moodmeter pull-left"> <input id="checkboxFeedback" type="checkbox" onclick="window.toggleFeedbackCheckbox();"> &nbsp;&nbsp; Älä näytä tätä enää</p> ';
 
 		$('.overlay').css('display','block');
-		$('.back-root, .btn-feedback').attr('disabled','disabled');
+		$('.back-root').attr('disabled','disabled');
+		$('#content').find('button').attr('disabled','disabled');
 
 		$('.modal')
 			.css('background','#fff').css('display','block')

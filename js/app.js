@@ -246,7 +246,8 @@ function hideFeedbackModal(status) {
 	saveGameFeedback(mood);
 
 	$('.overlay').css('display','none');
-	$('.back-root, .btn-feedback').removeAttr('disabled');
+	$('.back-root').removeAttr('disabled');
+	$('#content').find('button').removeAttr('disabled');
 
 	$('.modal')
 		.css('display','none')
@@ -255,12 +256,11 @@ function hideFeedbackModal(status) {
 
 function toggleFeedbackCheckbox () {
 
-	if( $('#checkboxFeedback').prop('checked') === false) {
-		Settings.set({'showFeedbackModal': false})
-	}else{
+	if( $('#checkboxFeedback').checked) {
 		Settings.set({'showFeedbackModal': true})
+	}else{
+		Settings.set({'showFeedbackModal': false})
 	}
-	console.log(Settings.get('showFeedbackModal'));
 }
 
 var backend = 'http://stage.pienipiiri.fi/frSaveGame'

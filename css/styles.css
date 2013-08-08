@@ -11,7 +11,9 @@ html, body{
 }
 .modal {
     display: none;
-    height: 25%;
+    height: 300px;
+	width: 800px;
+	left: 42%;
     background: rgba( 255, 255, 255, .9 )
     url(../img/ajax-loader.gif)
     50% 60%
@@ -220,7 +222,6 @@ html, body{
     border:5px solid #515151 !important;
     margin:5px;
     padding:0;
-
 }
 
 .align-right{
@@ -229,13 +230,13 @@ html, body{
 .mood-meter{
 	text-align: center;
 }
-.mood-meter button, h3, p{
+.mood-meter button, h2, p{
 	margin:0 10px;
 }
 .smiley {
-	width: 100px;
-	height: 100px;
-	padding:0 20px;
+	width: 170px;
+	height: 170px;
+	padding:0 25px;
 }
 
 .results p{
@@ -244,7 +245,7 @@ html, body{
 }
 .btn-feedback{
 	position: absolute;
-	margin-top: 20px;
+	margin-top: 5px;
 	right: 10.5%;
 }
 
@@ -300,12 +301,14 @@ hr{
 .top-bar-mid{
 	position: absolute;
 	top:1.2%;
-	right: 20%;
+	right: 16%;
 }
 .top-bar-mid h4{
+	position: absolute;
 	display: inline-block;
+	margin: 13px 0 0 -115px;
+	font-size: 1.5em;
 }
-
 
 .center{
     display: block;
@@ -330,15 +333,15 @@ hr{
 
 input[type=checkbox]
 {
-	-ms-transform: scale(6); /* IE */
-	-moz-transform: scale(6); /* FF */
-	-webkit-transform: scale(6); /* Safari and Chrome */
-	-o-transform: scale(6); /* Opera */
+	-ms-transform: scale(4); /* IE */
+	-moz-transform: scale(4); /* FF */
+	-webkit-transform: scale(4); /* Safari and Chrome */
+	-o-transform: scale(4); /* Opera */
 }
 
 .checkbox-moodmeter {
-	font-size: 1.5em;
-	padding: 20px;
+	font-size: 2em;
+	padding: 27px;
 }
 
 .bigger-correct{
