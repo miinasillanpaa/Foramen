@@ -95,8 +95,10 @@ router.on('route:play', function(id) {
 		difficultyLevel = 1;
 	}else if( difficulty === 'medium' ) {
 		difficultyLevel = 2;
-	}else{
+	}else if( difficulty === 'hard' ) {
 		difficultyLevel = 3;
+	}else{
+		difficultyLevel = 4; //joker
 	}
 
 	var gameData =  {
