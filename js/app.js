@@ -269,6 +269,7 @@ function saveGameStart (gameData) {
 	$.ajax({
 		url: backend,
 		type: 'POST',
+		dataType: 'json',
 		data: gameData,
 		success: function(res) {
 			Settings.set({'gameInstanceId': res.id})
@@ -284,6 +285,7 @@ function saveGameEnd () {
 	$.ajax({
 		url: backend,
 		type: 'POST',
+		dataType: 'json',
 		data: data,
 		success: function(res) {
 		}
@@ -297,6 +299,7 @@ function saveGameFeedback (mood) {
 	$.ajax({
 		url: backend,
 		type: 'POST',
+		dataType: 'json',
 		data: data,
 		success: function(res) {
 		}
