@@ -40,7 +40,10 @@ var ResultsView = Backbone.View.extend({
 		}
 
 		Settings.set({'score':score});
-		window.saveGameEnd();
+		if( !this.options.fromPlayedGameView ) {
+			window.saveGameEnd();
+		}
+
 
 		//todo fetch the BEST result of the game and show it to user
 		//todo also compare if just played result was the best
