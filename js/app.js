@@ -305,3 +305,8 @@ function saveGameFeedback (mood) {
 		}
 	})
 }
+
+function preloadMoodmeter () {
+	var moods = ["./img/face_happy.png","./img/face_neutral.png","./img/face_sad.png"];
+	$(moods).preload();
+}

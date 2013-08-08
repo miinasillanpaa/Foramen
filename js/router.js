@@ -88,6 +88,7 @@ router.on('route:play', function(id) {
 	var selectedGameIndex = parseInt(id-1);
     var selectedGame = games[selectedGameIndex];
     var gameObj = new Game(selectedGame);
+	preloadMoodmeter();
 
 	var difficulty = Settings.get('difficulty');
 	var difficultyLevel;
