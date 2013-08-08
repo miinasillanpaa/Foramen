@@ -248,15 +248,14 @@ function hideFeedbackModal(status) {
 	$('.overlay').css('display','none');
 	$('.back-root').removeAttr('disabled');
 	$('#content').find('button').removeAttr('disabled');
-
 	$('.modal')
+		.html("<p class='text-center bigger'>Sisältöä ladataan...</p>")
 		.css('display','none')
-		.html("");
 }
 
 function toggleFeedbackCheckbox () {
 
-	if( $('#checkboxFeedback').checked) {
+	if( $('#checkboxFeedback').checked ) {
 		Settings.set({'showFeedbackModal': true})
 	}else{
 		Settings.set({'showFeedbackModal': false})

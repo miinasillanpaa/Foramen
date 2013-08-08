@@ -118,7 +118,7 @@ var ResultsView = Backbone.View.extend({
 		$('#content').find('button').attr('disabled','disabled');
 
 		$('.modal')
-			.css('background','#fff').css('display','block')
+			.css('display','block')
 			.html(el);
 
 		var checkboxNotChecked = Settings.get('showFeedbackModal');
