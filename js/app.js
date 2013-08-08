@@ -1,8 +1,7 @@
 var App = {
 	preGameview: null,
 	currentGameView: null,
-	headerView: null,
-	knobTimer: null
+	headerView: null
 };
 
 
@@ -261,9 +260,10 @@ function toggleFeedbackCheckbox () {
 	}else{
 		Settings.set({'showFeedbackModal': true})
 	}
+	console.log(Settings.get('showFeedbackModal'));
 }
 
-var backend = 'http://stage.pienipiiri.fi/frSaveGame';
+var backend = 'http://stage.pienipiiri.fi/frSaveGame'
 function saveGameStart (gameData) {
 
 	$.ajax({
