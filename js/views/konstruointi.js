@@ -2,6 +2,10 @@ var Konstruointi = Backbone.View.extend({
    el: $('#content'),
    template: '#konstruointiTemplate',
 
+	initialize: function () {
+		$(".modal").css('display','block');
+	},
+
     render: function () {
         $('#header').empty().hide();
 
@@ -68,6 +72,10 @@ var Konstruointi = Backbone.View.extend({
             $('.construct-answer .secondRow').addClass('bordered-mid');
             $('.construct-answer .thirdRow').addClass('bordered-bottom');
         }
+
+		$('#content').imagesLoaded( function () {
+			$(".modal").css('display','none');
+		});
 
         return this;
 

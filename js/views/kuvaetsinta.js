@@ -3,7 +3,7 @@ var KuvaEtsinta = Backbone.View.extend({
     template: '#kuvaEtsintaTemplate',
 
     initialize: function () {
-        $(".container").addClass('loading');
+        $(".modal").css('display','block');
     },
 
     render: function () {
@@ -31,7 +31,7 @@ var KuvaEtsinta = Backbone.View.extend({
         }
 
         $("#content").imagesLoaded( function ( ){
-           $(".container").removeClass('loading');
+           $(".modal").css('display','none');
             var startTime = new Date().getTime();
             Settings.set({ startTime : startTime });
         });
