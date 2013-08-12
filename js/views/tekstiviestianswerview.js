@@ -17,7 +17,7 @@ var TekstiviestiAnswerView = Backbone.View.extend({
 
 
         //navigational classes to buttons
-        $('button:first').addClass('btn-primary question-sender');
+        $('button:eq(0)').addClass('btn-primary question-sender');
         $('button:eq(1)').addClass('question-receiver');
         $('button:eq(2)').addClass('question-place');
         $('button:eq(3)').addClass('question-time');

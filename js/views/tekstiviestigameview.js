@@ -86,7 +86,6 @@ var TekstiviestiGameView = Backbone.View.extend({
 
                         msgTimer = setTimeout(
                             function () {
-                                console.log('tekstiviesti init');
                                 var view = new TekstiviestiAnswerView({ model: myModel, variables: variables });
                                 view.render();
                             }, txtVisibleTime
