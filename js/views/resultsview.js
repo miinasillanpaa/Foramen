@@ -3,9 +3,10 @@ var ResultsView = Backbone.View.extend({
     template: '#resultsViewTemplate',
 
     render: function () {
-		console.log('results render');
+
         $('#header').show();
 		clearInterval(App.knobTimer);
+
         var myView = this;
         var difficulty;
         if( this.options.results.difficulty == 'easy' ){
@@ -98,7 +99,7 @@ var ResultsView = Backbone.View.extend({
     startNewGame: function () {
 		this.undelegateEvents();
 		App.currentGameView.undelegateEvents();
-		
+
         Settings.set({results:[]});
 
         var gameId = this.model.get('gameId');
