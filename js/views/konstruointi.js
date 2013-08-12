@@ -275,7 +275,7 @@ var Konstruointi = Backbone.View.extend({
 
     continueGame: function () {
 
-            var res = Settings.get('results')
+            var res = Settings.get('results');
             Settings.set({ 'results' : [] });
             var date = getDateTime();
             var pvm = date.pvm;
@@ -298,10 +298,11 @@ var Konstruointi = Backbone.View.extend({
             };
 
             this.undelegateEvents();
-            var view;
-            view = new ResultsView({ model: this.model, results:results });
+
+			router.navigate('game/' + this.model.get('gameId') + '/results', true);
+            var view = new ResultsView({ model: this.model, results:results });
             view.render();
-            router.navigate('game/' + this.model.get('gameId') + '/results', true);
+
         }
 
 });
