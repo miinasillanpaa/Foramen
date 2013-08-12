@@ -278,7 +278,7 @@ function saveGameStart (gameData) {
 
 function saveGameEnd () {
 	var gameInstanceId = Settings.get('gameInstanceId');
-	var scoreObj = Settings.get('score');
+	var scoreObj = JSON.stringify(Settings.get('score'));
 	var data = { 'id': gameInstanceId, 'score': scoreObj };
 
 	$.ajax({
