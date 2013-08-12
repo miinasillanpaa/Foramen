@@ -253,6 +253,7 @@ var KuvaEtsinta = Backbone.View.extend({
     },
 
     gameFinish: function () {
+
         var date = getDateTime();
         var pvm = date.pvm;
         var klo = date.klo;
@@ -317,10 +318,10 @@ var KuvaEtsinta = Backbone.View.extend({
                  }
 
             };
+
         this.undelegateEvents();
 
         router.navigate('game/' + this.model.get('gameId') + '/results', true);
-        var gameId = this.model.get('gameId');
         var view = new ResultsView({ model: this.model, results: results });
 
         view.render();

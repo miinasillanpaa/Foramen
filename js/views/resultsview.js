@@ -3,7 +3,7 @@ var ResultsView = Backbone.View.extend({
     template: '#resultsViewTemplate',
 
     render: function () {
-
+		console.log('results render');
         $('#header').show();
 		clearInterval(App.knobTimer);
         var myView = this;
@@ -96,9 +96,11 @@ var ResultsView = Backbone.View.extend({
     },
 
     startNewGame: function () {
+		this.undelegateEvents();
+		App.currentGameView.undelegateEvents();
+		
         Settings.set({results:[]});
-        this.undelegateEvents();
-        App.currentGameView.undelegateEvents();
+
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId + '/play', {trigger: true});
     },

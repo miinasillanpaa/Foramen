@@ -5,7 +5,7 @@ var PreGameView = Backbone.View.extend({
     initialize: function () {
         var gameId = this.model.get('gameId');
         if(gameId === 1 || gameId === 3 || gameId === 8){
-            $(".container").addClass('loading');
+			$(".modal").css('display','block');
         }
     },
 
@@ -193,7 +193,7 @@ var PreGameView = Backbone.View.extend({
         });
 
         $("#content").imagesLoaded( function (){
-                $(".container").removeClass('loading');
+			$(".modal").css('display','none');
         });
 
 
@@ -353,7 +353,6 @@ var PreGameView = Backbone.View.extend({
         audio.src = uri;
         return audio;
     },
-
 
 	setModel: function(model) {
 		this.model = model;
