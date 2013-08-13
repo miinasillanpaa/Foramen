@@ -21,6 +21,7 @@ html, body{
 }
 
 .info-modal{
+	z-index: 1000;
     display: none;
     position: fixed;
     height: 200px;
@@ -43,6 +44,7 @@ html, body{
 }
 
 .overlay {
+	z-index: 999;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -243,6 +245,11 @@ html, body{
 	position: absolute;
 	margin-top: 10px;
 	right: 10.5%;
+}
+.btn-playerToggle{
+	margin-top: 10px;
+	height: 100px;
+	width: 80%;
 }
 
 .bottom-right{

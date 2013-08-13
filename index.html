@@ -412,12 +412,9 @@
                 <h3>Henkilökohtainen ennätyksesi:</h3>
 
 				<div class="results pull-left">
-
 				</div>
 
-
                 <div class="results align-right">
-
                 </div>
             </div>
 
@@ -586,15 +583,19 @@
 			<h2>MuistiluuriKymppi</h2>
 			<div class="top-bar-mid">
 				<h4>Harjoittelija:</h4>
-				<button class="btn btn-large btn-info" id="toggle-player"></button>
+				<button class="btn btn-large btn-info toggle-player"></button>
 			</div>
-			<button class="btn btn-large backToService" id="back-button">Takaisin</button>
+			<button class="btn btn-large backToService" id="back-button">Palveluun</button>
 
 	</script>
 
 	<script id="backHeaderTmpl" type="text/template">
 			<h2><%= title %></h2>
-			<button class="btn btn-large back-root"><i class="icon-home"></i> Alkuun</button>
+			<div class="top-bar-mid">
+				<h4>Harjoittelija:</h4>
+				<button class="btn btn-large btn-info toggle-player"></button>
+			</div>
+			<button class="btn btn-large back-root"> Alkuun</button>
 	</script>
 
 	<script id="historyBackTmpl" type="text/template">

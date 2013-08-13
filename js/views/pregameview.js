@@ -12,6 +12,7 @@ var PreGameView = Backbone.View.extend({
 	render: function() {
 
         $('#header').show();
+
         var split = [];
         var txtSplit = [];
         var showJoker = false;
@@ -192,8 +193,10 @@ var PreGameView = Backbone.View.extend({
             }
         });
 
+		var self = this;
         $("#content").imagesLoaded( function (){
-			$(".modal").css('display','none');
+			//$(".modal").css('display','none');
+			self.showTogglePlayerModal();
         });
 
 
@@ -356,5 +359,21 @@ var PreGameView = Backbone.View.extend({
 
 	setModel: function(model) {
 		this.model = model;
+	},
+
+	showTogglePlayerModal: function () {
+
+		var el = '<h2>Valitse harjoittelija:</h2>' +
+			'<div class="text-center">' +
+			'<button onclick="window.hideTogglePlayerModal(1);" class="btn btn-info btn-playerToggle">Kuntoutuja</button>' +
+			'<button onclick="window.hideTogglePlayerModal(2);" class="btn btn-info btn-playerToggle">Läheinen</button></div>';
+
+		$('.overlay').css('display','block');
+		$('#content').find('button').attr('disabled','disabled');
+		$('#header').find('button').attr('disabled','disabled');
+		$('.modal')
+			.html(el)
+			.css('display','block');
+
 	}
  });
