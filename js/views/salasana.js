@@ -70,9 +70,10 @@ var Salasana = Backbone.View.extend({
         Settings.set({ 'scrollerChecks' : 0 });
 
         this.undelegateEvents();
+		router.navigate('game/' + this.model.get('gameId') + '/results', true);
         var view = new ResultsView({ model:this.model, results:results });
         view.render();
-        router.navigate('game/' + this.model.get('gameId') + '/results', true);
+
     },
 
     createSerial: function() {

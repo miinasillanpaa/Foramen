@@ -251,10 +251,9 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         }
 
         var gameId = this.model.get('gameId');
+		router.navigate('game/' + gameId + '/results', true);
         var view = new ResultsView({ model: this.model, results: results });
         view.render();
-        router.navigate('game/' + gameId + '/results', true);
-
 
         //back to defaults
         var unsetButton = '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>';

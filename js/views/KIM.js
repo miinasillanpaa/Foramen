@@ -106,7 +106,6 @@ var KIM = Backbone.View.extend({
     selectItem: function () {
         var target = $(event.target);
         if( target.hasClass('selected') ) {
-
             target.toggleClass('selected');
 
         }else{
@@ -364,9 +363,10 @@ var KIM = Backbone.View.extend({
             };
             Settings.set({ 'playThruNum' : 0 });
             this.undelegateEvents();
+			router.navigate('game/' +this.model.get('gameId') + '/results', true)
             var view = new ResultsView({model:this.model, results: results});
             view.render();
-            router.navigate('game/' +this.model.get('gameId') + '/results', true)
+
 
         }else{
 

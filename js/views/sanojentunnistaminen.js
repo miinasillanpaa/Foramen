@@ -76,9 +76,10 @@ var SanojenTunnistaminen = Backbone.View.extend({
                 Settings.set({ scroller: "" });
                 myView.undelegateEvents();
 
+				router.navigate('game/' + gameId + '/results', true);
                 var view = new ResultsView({ model: myView.model, results: results });
                 view.render();
-                router.navigate('game/' + gameId + '/results', true);
+
 
         },exerciseTime );
 

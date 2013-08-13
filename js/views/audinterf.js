@@ -141,27 +141,19 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
               'difficulty' : Settings.get('difficulty'),
               'data' : [
                   {
-                      'name' : "Sarjasta:",
-                      'value' : '&nbsp;'
-                  },
-                  {
-                      'name' : ' - oikein:',
+                      'name' : 'Äänisarja - oikein:',
                       'value' : stringCorrects+" kpl"
                   },
                   {
-                      'name' : ' - väärin:',
+                      'name' : 'Äänisarja  - väärin:',
                       'value' : wrong+" kpl"
                   },
                   {
-                       'name' : 'Häirintätehtävä:',
-                       'value' : '&nbsp;'
-                  },
-                  {
-                      'name' : ' - oikein',
+                      'name' : 'Häirintä - oikein:',
                       'value' : corrects +" / 5 kpl"
                   },
                   {
-                      'name' : ' - väärin',
+                      'name' : 'Häirintä - väärin:',
                       'value' : Settings.get('wrongs') + " kpl"
                   }
 
@@ -172,9 +164,10 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         Settings.set({corrects:0});
         Settings.set({stringCorrects:0});
 
+		router.navigate('game/' +this.model.get('gameId') + '/results', true)
         var view = new ResultsView({ model:this.model, results:results });
         view.render();
-        router.navigate('game/' +this.model.get('gameId') + '/results', true)
+
 
     },
 
