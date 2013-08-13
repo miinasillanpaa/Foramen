@@ -404,28 +404,19 @@
 
         <div class="span6">
 
-            <div class="alert alert-success alert-bigger">
-                Paransit omaa ennätystäsi!
+            <div class="alert alert-bigger record-box">
+
             </div>
 
-            <div class="well">
+            <div class="well record-well">
                 <h3>Henkilökohtainen ennätyksesi:</h3>
-                <div class="results pull-left">
-                    <p>Vaikeustaso: </p>
 
-                    <% _.each(data, function(data) { %>
-                    <p><%= data.name %></p>
-                    <% }); %>
+				<div class="results pull-left">
 
-                </div>
+				</div>
+
 
                 <div class="results align-right">
-                    <p> <%= difficulty %></p>
-
-                    <% _.each(data, function(data) { %>
-                    <p><%= data.value %></p>
-                    <% }); %>
-
 
                 </div>
             </div>

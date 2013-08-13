@@ -8,15 +8,19 @@ var ResultsView = Backbone.View.extend({
 		clearInterval(App.knobTimer);
 
         var myView = this;
-        var difficulty;
+        var difficulty, difficultyLevel;
         if( this.options.results.difficulty == 'easy' ){
             difficulty = 'Taso I';
+			difficultyLevel = 1;
         }else if( this.options.results.difficulty == 'medium' ){
             difficulty = 'Taso II';
+			difficultyLevel = 2;
         }else if( this.options.results.difficulty == 'hard' ){
             difficulty = 'Taso III';
+			difficultyLevel = 3;
         }else if( this.options.results.difficulty == 'joker' ){
             difficulty = 'Jokeri';
+			difficultyLevel = 4;
         }
 
         var  results = {
@@ -28,6 +32,7 @@ var ResultsView = Backbone.View.extend({
                          title : this.model.get('title'),
                          gameId : this.model.get('gameId')
         };
+
 
 		var score = {};
 		for(i=0; i< results.data.length; i++) {
@@ -45,11 +50,60 @@ var ResultsView = Backbone.View.extend({
 			window.saveGameEnd();
 		}
 
+		function keyAt(obj, index) {
+			var i = 0;
+			for (var key in obj) {
+				if ((index || 0) === i++) return key;
+			}
+		}
 
-		//todo fetch the BEST result of the game and show it to user
-		//todo also compare if just played result was the best
+		//console.log(score);
 
-        var template = _.template( $(this.template).html(), results  );
+		var userId = Settings.get('currentUserId');
+		var gameId = this.model.get('gameId');
+
+		$.get( 'http://stage.pienipiiri.fi/frGetScores?userId='+userId+'&difficultyLevel='+difficultyLevel+'&gameId='+gameId,
+			function(data) {
+				console.log(data);
+
+				var i,key,val,len;
+				var elem = $(".record-well");
+
+				//best _score per _game per _difficulty per _user
+				//todo fetch the BEST result of the game and show it to user
+				//todo also compare if just played result was the best
+
+				if ( data.length !== 0 ) {
+					console.log('show record from db');
+					$(".record-box").addClass('alert-info').text("Hyvä suoritus!");
+					len = Object.keys(data).length;
+					for(i=0; i<len; i++) {
+
+						key = keyAt(data, i);
+						val = data[key];
+
+						elem.find(".results.pull-left").append( '<p>'+key+'</p>' );
+						elem.find(".results.align-right").append( '<p>'+val+'</p>' );
+
+					}
+				}else{
+					console.log('show result of just played game, no data from db');
+					$(".record-box").addClass('alert-success').text("Paransit omaa ennätystäsi!");
+					len = Object.keys(score).length;
+					for(i=0; i<len; i++) {
+
+						key = keyAt(score, i);
+						val = score[key];
+
+						elem.find(".results.pull-left").append( '<p>'+key+'</p>' );
+						elem.find(".results.align-right").append( '<p>'+val+'</p>' );
+
+					}
+				}
+			},'json'
+		);
+
+        var template = _.template( $(this.template).html(), results );
         this.$el.html(template);
 
 		if( Settings.get('showFeedbackModal') === true) {
