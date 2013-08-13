@@ -234,6 +234,25 @@ function hideModal() {
     $('#content').find('img').prop('disabled',false);
 }
 
+function hideTogglePlayerModal (player) {
+	var elem = $("#header").find('.toggle-player');
+
+	if(player === 1) {
+		Settings.set({'playerRole': 'Kuntoutuja'});
+		elem.text('Kuntoutuja');
+	}else{
+		Settings.set({'playerRole': 'Läheinen'});
+		elem.text('Läheinen');
+	}
+
+	$('.overlay').css('display','none');
+	$('#content').find('button').removeAttr('disabled');
+	$('#header').find('button').removeAttr('disabled');
+	$('.modal')
+		.html("<p class='text-center bigger'>Sisältöä ladataan...</p>")
+		.css('display','none');
+}
+
 function hideFeedbackModal(status) {
 	var mood;
 	if(status === 1){
@@ -262,9 +281,8 @@ function toggleFeedbackCheckbox () {
 	}
 }
 
-var backend = 'http://stage.pienipiiri.fi/frSaveGame'
+var backend = 'http://stage.pienipiiri.fi/frSaveGame';
 function saveGameStart (gameData) {
-
 	$.ajax({
 		url: backend,
 		type: 'POST',

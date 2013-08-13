@@ -35,7 +35,7 @@ var ResultsView = Backbone.View.extend({
 
 
 		var score = {};
-		for(i=0; i< results.data.length; i++) {
+		for(var i=0; i< results.data.length; i++) {
 			if(results.data[i].name === ""){
 				//strips the show screen thingys
 			}else{
@@ -57,14 +57,12 @@ var ResultsView = Backbone.View.extend({
 			}
 		}
 
-		//console.log(score);
 
 		var userId = Settings.get('currentUserId');
 		var gameId = this.model.get('gameId');
 
 		$.get( 'http://stage.pienipiiri.fi/frGetScores?userId='+userId+'&difficultyLevel='+difficultyLevel+'&gameId='+gameId,
 			function(data) {
-				console.log(data);
 
 				var i,key,val,len;
 				var elem = $(".record-well");
@@ -175,8 +173,8 @@ var ResultsView = Backbone.View.extend({
 		$('#content').find('button').attr('disabled','disabled');
 
 		$('.modal')
-			.css('display','block')
-			.html(el);
+			.html(el)
+			.css('display','block');
 
 		var checkboxNotChecked = Settings.get('showFeedbackModal');
 

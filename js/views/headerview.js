@@ -17,7 +17,7 @@ var HeaderView = Backbone.View.extend({
 			template = _.template( $(this.template0).html() );
 			this.$el.html(template);
 
-			$('#toggle-player').text(Settings.get('playerRole'));
+			$('.toggle-player').text(Settings.get('playerRole'));
 
 		}else if(parseInt(this.model.id) === 3){
 			variables  = { title: this.model.attributes.title };
@@ -28,6 +28,8 @@ var HeaderView = Backbone.View.extend({
 			variables  = { title: this.model.attributes.title };
 			template = _.template( $(this.template1).html(), variables);
 			this.$el.html(template);
+
+			$('.toggle-player').text(Settings.get('playerRole'));
 		}
 
     },
@@ -38,7 +40,7 @@ var HeaderView = Backbone.View.extend({
 		'click #back-button': 'goBackToService',
         'click .back-setup' : 'goToGameSetup',
         'click .back-history' : 'historyBack',
-		'click #toggle-player' : 'togglePlayer'
+		'click .toggle-player' : 'togglePlayer'
     },
 
     goRoot: function() {
