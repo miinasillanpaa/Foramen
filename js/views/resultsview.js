@@ -34,18 +34,14 @@ var ResultsView = Backbone.View.extend({
         };
 
 
-		var score = {};
 		for(var i=0; i< results.data.length; i++) {
+			//removes buttons from results
 			if(results.data[i].name === ""){
-				//strips the show screen thingys
-			}else{
-				var name = results.data[i].name;
-				var chopd = name.substring(0,name.length-1);
-				score[chopd] = results.data[i].value;
+				delete results.data[i];
 			}
 		}
 
-		Settings.set({'score':score});
+		Settings.set({'score':results.data});
 		if( !this.options.fromPlayedGameView ) {
 			window.saveGameEnd();
 		}
@@ -63,14 +59,10 @@ var ResultsView = Backbone.View.extend({
 
 		$.get( 'http://stage.pienipiiri.fi/frGetScores?userId='+userId+'&difficultyLevel='+difficultyLevel+'&gameId='+gameId,
 			function(data) {
-
 				var i,key,val,len;
 				var elem = $(".record-well");
 
-				//best _score per _game per _difficulty per _user
-				//todo fetch the BEST result of the game and show it to user
-				//todo also compare if just played result was the best
-
+				//todo this needs to be changed accordingly since name/value pairs are coming from backend also
 				if ( data.length !== 0 ) {
 					console.log('show record from db');
 					$(".record-box").addClass('alert-info').text("Hyvä suoritus!");
@@ -87,16 +79,13 @@ var ResultsView = Backbone.View.extend({
 				}else{
 					console.log('show result of just played game, no data from db');
 					$(".record-box").addClass('alert-success').text("Paransit omaa ennätystäsi!");
-					len = Object.keys(score).length;
+					len = Object.keys(results.data).length;
 					for(i=0; i<len; i++) {
-
-						key = keyAt(score, i);
-						val = score[key];
-
-						elem.find(".results.pull-left").append( '<p>'+key+'</p>' );
-						elem.find(".results.align-right").append( '<p>'+val+'</p>' );
-
+						elem.find(".results.pull-left").append( '<p>'+ results.data[i].name +'</p>' );
+						elem.find(".results.align-right").append( '<p>'+ results.data[i].value +'</p>' );
 					}
+
+
 				}
 			},'json'
 		);
