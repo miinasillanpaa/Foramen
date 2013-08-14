@@ -4,6 +4,7 @@ var Konstruointi = Backbone.View.extend({
 
 	initialize: function () {
 		$(".modal").css('display','block');
+		$(".overlay").css('display','block');
 	},
 
     render: function () {
@@ -75,6 +76,7 @@ var Konstruointi = Backbone.View.extend({
 
 		$('#content').imagesLoaded( function () {
 			$(".modal").css('display','none');
+			$(".overlay").css('display','none');
 		});
 
         return this;

@@ -5,7 +5,9 @@ var PreGameView = Backbone.View.extend({
     initialize: function () {
         var gameId = this.model.get('gameId');
         if(gameId === 1 || gameId === 3 || gameId === 8){
+			$(".overlay").css('display','block');
 			$(".modal").css('display','block');
+
         }
     },
 
@@ -195,7 +197,6 @@ var PreGameView = Backbone.View.extend({
 
 		var self = this;
         $("#content").imagesLoaded( function (){
-			//$(".modal").css('display','none');
 			self.showTogglePlayerModal();
         });
 

@@ -4,6 +4,7 @@ var TekstiviestiGameView = Backbone.View.extend({
 
     initialize: function () {
         $(".modal").css('display','block');
+		$(".overlay").css("display","block");
     },
 
     render: function () {
@@ -61,6 +62,7 @@ var TekstiviestiGameView = Backbone.View.extend({
         var phoneview = this;
         $("#content").imagesLoaded( function (){
 			$(".modal").css('display','none');
+			$(".overlay").css('display','none');
 
             phoneTimer = setTimeout(
                 function() {

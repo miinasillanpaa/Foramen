@@ -4,6 +4,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
     initialize: function () {
         $(".modal").css('display','block');
+		$(".overlay").css("display","block");
     },
 
     render: function () {
@@ -31,7 +32,8 @@ var KuvaEtsinta = Backbone.View.extend({
         }
 
         $("#content").imagesLoaded( function ( ){
-           $(".modal").css('display','none');
+        	$(".modal").css('display','none');
+			$(".overlay").css('display','none');
             var startTime = new Date().getTime();
             Settings.set({ startTime : startTime });
         });

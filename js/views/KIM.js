@@ -3,6 +3,7 @@ var KIM = Backbone.View.extend({
     template: '#KIMTemplate',
 
     initialize: function () {
+		$(".overlay").css("display","block");
         $(".modal").css('display','block');
     },
 
@@ -28,6 +29,7 @@ var KIM = Backbone.View.extend({
        var self = this;
         $("#content").imagesLoaded( function (){
 			$(".modal").css('display','none');
+			$(".overlay").css('display','none');
             self.knobify();
             timer = setTimeout(
                 function() {
