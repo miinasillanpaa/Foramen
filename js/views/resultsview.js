@@ -61,9 +61,10 @@ var ResultsView = Backbone.View.extend({
 			function(data) {
 				var i,key,val,len;
 				var elem = $(".record-well");
-
+				console.log(data);
 				//todo this needs to be changed accordingly since name/value pairs are coming from backend also
 				if ( data.length !== 0 ) {
+
 					console.log('show record from db');
 					$(".record-box").addClass('alert-info').text("Hyvä suoritus!");
 					len = Object.keys(data).length;
