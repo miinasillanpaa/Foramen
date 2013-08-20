@@ -33,26 +33,16 @@ var ResultsView = Backbone.View.extend({
                          gameId : this.model.get('gameId')
         };
 
-
+		var resultsToDB = [];
 		for(var i=0; i< results.data.length; i++) {
-			//removes buttons from results
-			if(results.data[i].name === ""){
-				delete results.data[i];
+			if(results.data[i].name !== ""){
+				resultsToDB.push(results.data[i]);
 			}
 		}
-
-		Settings.set({'score':results.data});
+		Settings.set({'score':resultsToDB});
 		if( !this.options.fromPlayedGameView ) {
 			window.saveGameEnd();
 		}
-
-		function keyAt(obj, index) {
-			var i = 0;
-			for (var key in obj) {
-				if ((index || 0) === i++) return key;
-			}
-		}
-
 
 		var userId = Settings.get('currentUserId');
 		var gameId = this.model.get('gameId');
@@ -61,14 +51,13 @@ var ResultsView = Backbone.View.extend({
 			function(data) {
 				var len;
 				var elem = $(".record-well");
-				console.log(data);
 
 				if ( data.length !== 0 ) {
 
 					$(".record-box").addClass('alert-info').text("Hyvä suoritus!");
 					len = Object.keys(data).length;
 					for(i=0; i<len; i++) {
-						if( data[i] !== null ){
+						if( data[i] !== null) {
 							elem.find(".results.pull-left").append( '<p>'+ data[i].name +'</p>' );
 							elem.find(".results.align-right").append( '<p>'+ data[i].value +'</p>' );
 						}
@@ -78,8 +67,10 @@ var ResultsView = Backbone.View.extend({
 					$(".record-box").addClass('alert-success').text("Paransit omaa ennätystäsi!");
 					len = Object.keys(results.data).length;
 					for(i=0; i<len; i++) {
-						elem.find(".results.pull-left").append( '<p>'+ results.data[i].name +'</p>' );
-						elem.find(".results.align-right").append( '<p>'+ results.data[i].value +'</p>' );
+						if( results.data[i].name !== "" ) {
+							elem.find(".results.pull-left").append( '<p>'+ results.data[i].name +'</p>' );
+							elem.find(".results.align-right").append( '<p>'+ results.data[i].value +'</p>' );
+						}
 					}
 				}
 			},'json'
