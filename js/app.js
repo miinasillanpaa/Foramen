@@ -289,6 +289,7 @@ function saveGameStart (gameData) {
 		dataType: 'json',
 		data: gameData,
 		success: function(res) {
+			console.log(res);
 			Settings.set({'gameInstanceId': res.id})
 		}
 	})
@@ -298,7 +299,6 @@ function saveGameEnd () {
 	var gameInstanceId = Settings.get('gameInstanceId');
 	var scoreObj = JSON.stringify(Settings.get('score'));
 	var data = { 'id': gameInstanceId, 'score': scoreObj };
-
 	$.ajax({
 		url: backend,
 		type: 'POST',
@@ -312,7 +312,6 @@ function saveGameEnd () {
 function saveGameFeedback (mood) {
 	var gameInstanceId = Settings.get('gameInstanceId');
 	var data = { 'id': gameInstanceId, 'feedback': mood };
-
 	$.ajax({
 		url: backend,
 		type: 'POST',

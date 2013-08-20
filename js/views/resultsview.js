@@ -59,34 +59,28 @@ var ResultsView = Backbone.View.extend({
 
 		$.get( 'http://stage.pienipiiri.fi/frGetScores?userId='+userId+'&difficultyLevel='+difficultyLevel+'&gameId='+gameId,
 			function(data) {
-				var i,key,val,len;
+				var len;
 				var elem = $(".record-well");
 				console.log(data);
-				//todo this needs to be changed accordingly since name/value pairs are coming from backend also
+
 				if ( data.length !== 0 ) {
 
-					console.log('show record from db');
 					$(".record-box").addClass('alert-info').text("Hyvä suoritus!");
 					len = Object.keys(data).length;
 					for(i=0; i<len; i++) {
-
-						key = keyAt(data, i);
-						val = data[key];
-
-						elem.find(".results.pull-left").append( '<p>'+key+'</p>' );
-						elem.find(".results.align-right").append( '<p>'+val+'</p>' );
-
+						if( data[i] !== null ){
+							elem.find(".results.pull-left").append( '<p>'+ data[i].name +'</p>' );
+							elem.find(".results.align-right").append( '<p>'+ data[i].value +'</p>' );
+						}
 					}
 				}else{
-					console.log('show result of just played game, no data from db');
+
 					$(".record-box").addClass('alert-success').text("Paransit omaa ennätystäsi!");
 					len = Object.keys(results.data).length;
 					for(i=0; i<len; i++) {
 						elem.find(".results.pull-left").append( '<p>'+ results.data[i].name +'</p>' );
 						elem.find(".results.align-right").append( '<p>'+ results.data[i].value +'</p>' );
 					}
-
-
 				}
 			},'json'
 		);
