@@ -51,7 +51,6 @@ var ResultsView = Backbone.View.extend({
 			function(data) {
 				var len;
 				var elem = $(".record-well");
-
 				if ( data.length !== 0 ) {
 
 					$(".record-box").addClass('alert-info').text("Hyvä suoritus!");
