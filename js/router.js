@@ -30,6 +30,7 @@ window.Router = Backbone.Router.extend({
 
 		if (App.currentGameView != null) {
 			App.currentGameView.undelegateEvents();
+			App.currentGameView.unbind();
 		}
 
 		if(App.headerView === null) {
