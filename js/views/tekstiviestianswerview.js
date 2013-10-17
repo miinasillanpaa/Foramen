@@ -17,11 +17,11 @@ var TekstiviestiAnswerView = Backbone.View.extend({
 
 
         //navigational classes to buttons
-        $('button:eq(0)').addClass('btn-primary question-sender');
-        $('button:eq(1)').addClass('question-receiver');
-        $('button:eq(2)').addClass('question-place');
-        $('button:eq(3)').addClass('question-time');
-        $('button:eq(4)').addClass('question-item');
+        $('.txt-answer-tmpl button:eq(0)').addClass('btn-primary question-sender');
+        $('.txt-answer-tmpl button:eq(1)').addClass('question-receiver');
+        $('.txt-answer-tmpl button:eq(2)').addClass('question-place');
+        $('.txt-answer-tmpl button:eq(3)').addClass('question-time');
+        $('.txt-answer-tmpl button:eq(4)').addClass('question-item');
 
         //correct anwers
         $('.options-senders button:eq('+ this.options.variables.corrects.sender +')').addClass('correct');
