@@ -85,7 +85,7 @@ var Settings = Backbone.Model.extend({
                                 "KATJA","IRMA","IRMELI","PÄIVI","AIJA","RIITTA","IDA","KATRI"
             ],
             "sisustus" :    [   "TUOLI","RYIJY","PENKKI","SOHVA","PÖYTÄ","HYLLY","ARKKU","KIRSTU","VITRIINI","RAHI","VERHO",
-                                "MATTO","TAULU","JULISTE","TYYNY","LAMPPU","PEILI","RYIJY","SÄRMI","HETEKA","KORISTE"
+                                "MATTO","TAULU","JULISTE","TYYNY","LAMPPU","PEILI","SÄRMI","HETEKA","KORISTE"
             ],
             "soittimet" :   [   "SELLO","PIANO","FLYYGELI","TAMBURIINI","HUILU","TRIANGELI","PICCOLO","HARPPU","VIULU",
                                 "TUUBA","BASSO","TORVI","SITAR","URUT","TRUMPETTI","CEMBALO","SITRA","MANDOLIINI","KSYLOFONI","PILLI"
