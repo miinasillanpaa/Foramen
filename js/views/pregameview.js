@@ -2,16 +2,15 @@ var PreGameView = Backbone.View.extend({
 	el: $( '#content' ),
 	template: '#preGameTemplate',
 
-    initialize: function () {
-        var gameId = this.model.get('gameId');
-        if(gameId === 1 || gameId === 3 || gameId === 8){
-			$(".overlay").css('display','block');
-			$(".modal").css('display','block');
-
-        }
-    },
-
 	render: function() {
+
+
+		var gameId = this.model.get('gameId');
+		$(".overlay").css('display','block');
+		if(gameId === 1 || gameId === 3 || gameId === 8){
+			$(".modal").css('display','block');
+		}
+
 
         $('#header').show();
 
@@ -369,12 +368,14 @@ var PreGameView = Backbone.View.extend({
 			'<button onclick="window.hideTogglePlayerModal(1);" class="btn btn-info btn-playerToggle">Kuntoutuja</button>' +
 			'<button onclick="window.hideTogglePlayerModal(2);" class="btn btn-info btn-playerToggle">Läheinen</button></div>';
 
-		$('.overlay').css('display','block');
+		if( $('.overlay').css('display') == 'none' ){
+			$('.overlay').css('display','block');
+		}
+
 		$('#content').find('button').attr('disabled','disabled');
 		$('#header').find('button').attr('disabled','disabled');
 		$('.modal')
 			.html(el)
 			.css('display','block');
-
 	}
  });
