@@ -7,7 +7,7 @@ var PreGameView = Backbone.View.extend({
 
 		var gameId = this.model.get('gameId');
 		$(".overlay").css('display','block');
-		if(gameId === 1 || gameId === 3 || gameId === 8){
+		if(gameId === 1 || gameId === 3 || gameId === 5 || gameId === 8){
 			$(".modal").css('display','block');
 		}
 
