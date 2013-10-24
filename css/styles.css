@@ -786,7 +786,10 @@ span.bullet{
     line-height: 1.2;
     margin-top: 15px;
     color: #808080;
+}
 
+.sounds-tip{
+	margin-top: 100px;
 }
 
 .below{

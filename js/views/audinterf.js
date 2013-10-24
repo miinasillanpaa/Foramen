@@ -15,7 +15,8 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         var self = this;
 
         function startInterval () {
-            var interval = window.setInterval(
+			$('.sounds-tip').hide();
+			var interval = window.setInterval(
                 function () {
                     self.changeDistract(distractions,changes);
                     changes++;
