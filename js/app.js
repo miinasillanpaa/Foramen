@@ -50,7 +50,7 @@ var games = [
 
                         "<p>Ruudulla näkyy liikkuva kirjainrivi, jonka keskellä on punaisella merkitty alue.</p>" +
                        '<p>Tehtävänä on havaita punaisella alueella perusmuodossa oleva substantiivi (nimisana), esimerkiksi "kissa".</p>'+
-                       "<p>Valinta osoitetaan koskettamalla alueen alapuolella olevaa Löytyi-painiketta.</p>"+
+                       "<p>Valinta osoitetaan koskettamalla alueen alapuolella olevaa Löytyi-painiketta. Kunkin sanan voi valita vain kerran.</p>"+
                        '<p>Tehtävä kestää neljä minuuttia. Voit kuitenkin keskeyttää tehtävän koskettamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/zC7bELbsNiQ",
         'coverImage' : './img/sanat.png'
