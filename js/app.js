@@ -289,7 +289,6 @@ function saveGameStart (gameData) {
 		dataType: 'json',
 		data: gameData,
 		success: function(res) {
-			console.log(res);
 			Settings.set({'gameInstanceId': res.id})
 		}
 	})
