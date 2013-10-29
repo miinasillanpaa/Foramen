@@ -183,13 +183,13 @@ var TekstiviestiGameView = Backbone.View.extend({
 
     message1: function () {
 
-        var receivers    = ["Ida","Ilona","Laura","Mari","Noora","Pauliina","Riia","Sanni","Sini","Sonia"];
-        var senders      = ["Annu","Doris","Hanna","Hilla","Minja","Minna","Nina","Siiri","Sofia","Tea"];
-        var items        = ["kamera","kello","laukku","MP3-soitin","peli","pusero","pyöräilykypärä","sarjakuvalehti","takki","tennismaila"];
+        var receivers    = ["Ida","Ilona","Laura","Mari","Noora","Pauliina","Riia","Sanni"];
+        var senders      = ["Annu","Doris","Hanna","Hilla","Minja","Minna","Nina","Siiri"];
+        var items        = ["kamera","kello","laukku","MP3-soitin","peli","pusero","pyöräilykypärä","sarjakuvalehti"];
         var places       = ["asemalla kioskin edessä","elokuvateatterin edessä","meillä","Mäkelänrinteen uimahallissa","ostarilla McDonald'sin edessä",
-                            "Puijon tornin kahvilassa","Särkänniemessä vuoristoradan luona","teillä kotona","Tilhen leikkipuistossa","Tuomarinkylän ratsastushallilla"];
+                            "Puijon tornin kahvilassa","Särkänniemessä vuoristoradan luona","teillä kotona"];
         var times = [];
-        for(i = 10; i < 20; i++){
+        for(i = 10; i < 18; i++){
            string = "kello "+i;
            times.push(string);
         }
