@@ -287,7 +287,14 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
     getSelectorText: function () {
         var category = Settings.get('textCategory');
+		if(category === 'miesten nimet') {
+			category = 'miesten';
+		}else if(category === 'naisten nimet') {
+			category = 'naisten';
+		}
+
         var items = Settings.get('categories')[category];
+
         var selectorPresses = Settings.get('scrollerResults').selectorPresses;
         selectorPresses++;
 
@@ -298,15 +305,13 @@ var SanojenTunnistaminen = Backbone.View.extend({
         var _categories = _.omit(Settings.get('categories'));
 
         var selector = Settings.get('selector');
-        for( var i = 0; i < items.length; i++ ){
 
+        for( var i = 0; i < items.length; i++ ){
             if( selector.indexOf(items[i]) !== -1 ){
                 corrects++;
                 _results.corrects = corrects;
-
                  delete items[i];
                 _categories.items = items;
-
             }else{
                 wrongs++ ;
                 _results.wrongs = wrongs;
