@@ -193,6 +193,7 @@ var TekstiviestiGameView = Backbone.View.extend({
            string = "kello "+i;
            times.push(string);
         }
+		console.log(times);
 
         var questions = [
             "Kuka on tekstiviestin lähettäjä?",
@@ -417,7 +418,7 @@ var TekstiviestiGameView = Backbone.View.extend({
                             "kalvosarja","kivennäisvettä","sanelukone"];
         var places       = ["ensimmäisen kerroksen kokoushuone","kokoushuone 4","luentosali","pohjakerroksen kokoushuone","ruokasalin viereinen kabinetti",
                             "ryhmähuone 3", "ryhmähuone 7", "takkahuone"];
-        var times = ["kello 8","kello 9","kello 12","kello 13","kello 13.15","kello 14","kello 14.30","kello 15","kello 16"];
+        var times = ["kello 8","kello 9","kello 12","kello 13","kello 13.15","kello 14","kello 14.30","kello 15"];
 
         var questions = [
             "Kuka on tekstiviestin lähettäjä?",
