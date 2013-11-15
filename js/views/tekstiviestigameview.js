@@ -193,7 +193,6 @@ var TekstiviestiGameView = Backbone.View.extend({
            string = "kello "+i;
            times.push(string);
         }
-		console.log(times);
 
         var questions = [
             "Kuka on tekstiviestin lähettäjä?",
