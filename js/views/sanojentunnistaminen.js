@@ -282,7 +282,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
                 }
             }
         }
-        console.log(Settings.get('itemsLenght'));
         Settings.set({ textString:textString });
         return text;
     },
@@ -310,13 +309,11 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         for( var i = 0; i < items.length; i++ ){
             if( selector.indexOf(items[i]) !== -1 ){
-                console.log('correct');
                 corrects++;
                 _results.corrects = corrects;
                  delete items[i];
                 _categories.items = items;
             }else{
-                console.log('wrong');
                 wrongs++;
                 _results.wrongs = wrongs;
             }
