@@ -35,7 +35,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
                 window.clearInterval(mover);
                 var amount = Settings.get('targetAmount');
                 var corrects = Settings.get('scrollerResults').corrects;
-                var wrongs = Settings.get('scrollerResults').wrongs - (Settings.get('scrollerResults').selectorPresses)*19;
+                var wrongs = (Settings.get('scrollerResults').wrongs) - (Settings.get('scrollerResults').selectorPresses)*(Settings.get('itemsLenght')-1);
                 var missing = amount - corrects;
                 var wrongTot = wrongs+missing;
 
@@ -159,8 +159,8 @@ var SanojenTunnistaminen = Backbone.View.extend({
         $('.scroller').transition({ x: '+=50' });
         var selector = text.substr(pos,10);
         Settings.set({ selector:selector });
-
     },
+
     stringMaker: function () {
         var text = "";
         var textString = "";
@@ -240,6 +240,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
         }else if(selectedCat === 'valtiot'){
             items = Settings.get('categories').valtiot
         }
+        Settings.set({ itemsLenght: items.length });
 
         var uniqueItems = [];
         for(var l = 0; l < amount; l++ ){
@@ -281,6 +282,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
                 }
             }
         }
+        console.log(Settings.get('itemsLenght'));
         Settings.set({ textString:textString });
         return text;
     },
@@ -308,12 +310,14 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         for( var i = 0; i < items.length; i++ ){
             if( selector.indexOf(items[i]) !== -1 ){
+                console.log('correct');
                 corrects++;
                 _results.corrects = corrects;
                  delete items[i];
                 _categories.items = items;
             }else{
-                wrongs++ ;
+                console.log('wrong');
+                wrongs++;
                 _results.wrongs = wrongs;
             }
         }
