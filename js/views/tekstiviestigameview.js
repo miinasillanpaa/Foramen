@@ -22,7 +22,7 @@ var TekstiviestiGameView = Backbone.View.extend({
             txtVisibleTime = 999999999;
         }
 
-        var randomMessage = 5;// (Math.floor((Math.random() * 5) + 1));
+        var randomMessage = (Math.floor((Math.random() * 5) + 1));
         var myMsg = "";
 
         if(randomMessage == 1){
