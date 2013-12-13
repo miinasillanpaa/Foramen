@@ -22,7 +22,7 @@ var TekstiviestiGameView = Backbone.View.extend({
             txtVisibleTime = 999999999;
         }
 
-        var randomMessage = (Math.floor((Math.random() * 5) + 1));
+        var randomMessage = 5;// (Math.floor((Math.random() * 5) + 1));
         var myMsg = "";
 
         if(randomMessage == 1){
@@ -246,7 +246,7 @@ var TekstiviestiGameView = Backbone.View.extend({
         var items        = ["Afrikan tähti -peliä","Gameboy-peliä","kannettavaa tietokonetta","matikan kirjaa","melaa","pesäpalloräpylää","Pokémon korttikansiota"];
         var places       = ["bänditreeneissä","kirjastossa","koripallotreeneissä","kuntosalilla","kuoroharjoituksissa","lukusalissa","mikroautoradalla","palloiluhallilla"];
         var times = [];
-        for(i = 11; i < 21; i++){
+        for(i = 13; i < 21; i++){
             string = "kello "+i;
             times.push(string);
         }
@@ -302,7 +302,7 @@ var TekstiviestiGameView = Backbone.View.extend({
         var items        = ["ensiapulaukun","eväskorin","hapanleipäjuuren","kahvinkeittimen","kannettavan tietokoneen","matka-TV:n","neulepuikot","taskulampun"];
         var places       = ["Karjaan","Kouvolan","Lahden","Lappeenrannan","Oulun","Rovaniemen","Seinäjoen","Suonenjoen"];
         var times = [];
-        for(i = 10; i < 20; i++){
+        for(i = 12; i < 20; i++){
             string = "kello "+i;
             times.push(string);
         }
@@ -360,7 +360,7 @@ var TekstiviestiGameView = Backbone.View.extend({
         var places       = ["Tampereen lentokentältä","Joensuun lentokeltältä","Jyväskylän lentokentältä","Mäntyharjun lentokentältä","Mäntyharjun asemalta",
                             "Lohjan linja-autoasemalta","Salon linja-autoasemalta","Korppoon lautaulta","Emsälön sillalta"];
         var times = [];
-        for(i = 9; i < 19; i++){
+        for(i = 11; i < 19; i++){
             string = "kello "+i;
             times.push(string);
         }
@@ -418,7 +418,6 @@ var TekstiviestiGameView = Backbone.View.extend({
         var places       = ["ensimmäisen kerroksen kokoushuone","kokoushuone 4","luentosali","pohjakerroksen kokoushuone","ruokasalin viereinen kabinetti",
                             "ryhmähuone 3", "ryhmähuone 7", "takkahuone"];
         var times = ["kello 8","kello 9","kello 12","kello 13","kello 13.15","kello 14","kello 14.30","kello 15"];
-
         var questions = [
             "Kuka on tekstiviestin lähettäjä?",
             "Kuka on tekstiviestin vastaanottaja?",
