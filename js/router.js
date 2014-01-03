@@ -70,7 +70,6 @@ router.on('route:getGame', function(id) {
 });
 
 router.on('route:videoView', function(id) {
-
     var selectedGame = games[id-1];
     var gameObj = new Game(selectedGame);
     var view = new VideoView({ model: gameObj });

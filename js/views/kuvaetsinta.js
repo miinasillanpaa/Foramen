@@ -250,8 +250,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
     quitGame: function () {
 		this.undelegateEvents();
-        var gameId = this.model.get('gameId');
-        router.navigate('game/' + gameId, true);
+        router.navigate('/', true);
     },
 
     gameFinish: function () {

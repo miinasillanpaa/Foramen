@@ -94,8 +94,7 @@ var Konstruointi = Backbone.View.extend({
     quitGame: function () {
       this.undelegateEvents();
       Settings.set({ results: [] });
-      var gameId = this.model.get('gameId');
-      router.navigate('game/' + gameId, {trigger:true});
+      router.navigate('/', true);
     },
 
     renderAnswerChoices: function () {

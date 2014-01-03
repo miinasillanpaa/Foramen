@@ -67,8 +67,7 @@ var KIM = Backbone.View.extend({
     quitGame: function () {
         this.undelegateEvents();
         Settings.set({'playThruNum' : 0});
-        var gameId = this.model.get('gameId');
-        router.navigate('game/' + gameId, true);
+        router.navigate('/', true);
     },
 
     knobify: function () {

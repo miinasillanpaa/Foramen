@@ -12,14 +12,14 @@ var HeaderView = Backbone.View.extend({
     render: function () {
 		var template;
 		var variables;
-
+		
 		if(parseInt(this.id) === 0){
 			template = _.template( $(this.template0).html() );
 			this.$el.html(template);
 
-			$('.toggle-player').text(Settings.get('playerRole'));
+			//$('.toggle-player').text(Settings.get('playerRole'));
 
-		}else if(parseInt(this.model.id) === 3){
+		}else if(parseInt(this.id) === 3){
 			variables  = { title: this.model.attributes.title };
 			template = _.template( $(this.template2).html(), variables);
 			this.$el.html(template);
@@ -29,7 +29,7 @@ var HeaderView = Backbone.View.extend({
 			template = _.template( $(this.template1).html(), variables);
 			this.$el.html(template);
 
-			$('.toggle-player').text(Settings.get('playerRole'));
+			//$('.toggle-player').text(Settings.get('playerRole'));
 		}
 
     },
@@ -39,8 +39,8 @@ var HeaderView = Backbone.View.extend({
         'click .back-root' : 'goRoot',
 		'click #back-button': 'goBackToService',
         'click .back-setup' : 'goToGameSetup',
-        'click .back-history' : 'historyBack',
-		'click .toggle-player' : 'togglePlayer'
+        'click .back-history' : 'historyBack'
+		//'click .toggle-player' : 'togglePlayer'
     },
 
     goRoot: function() {
@@ -55,7 +55,7 @@ var HeaderView = Backbone.View.extend({
       window.history.back();
     },
 
-	togglePlayer: function () {
+	/*togglePlayer: function () {
 		var target = $(event.target);
 		if(target.text() == 'Kuntoutuja') {
 			Settings.set({'playerRole':'Läheinen'});
@@ -64,7 +64,7 @@ var HeaderView = Backbone.View.extend({
 			Settings.set({'playerRole':'Kuntoutuja'});
 			target.text('Kuntoutuja');
 		}
-	},
+	}, */
 
 	goBackToService: function() {
 		var userId = Settings.get('currentUserId');

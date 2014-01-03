@@ -12,7 +12,7 @@ var PreGameView = Backbone.View.extend({
 		}
 
 
-        $('#header').show();
+        //$('#header').show();
 
         var split = [];
         var txtSplit = [];

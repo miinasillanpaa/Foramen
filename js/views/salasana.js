@@ -31,8 +31,7 @@ var Salasana = Backbone.View.extend({
         this.undelegateEvents();
         Settings.set({ 'checks' : 0 });
         Settings.set({ 'scrollerChecks': 0 });
-        var gameId = this.model.get('gameId');
-        router.navigate('game/' + gameId, {trigger:true});
+        router.navigate('/', true);
     },
 
     goToResults: function () {

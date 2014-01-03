@@ -8,6 +8,9 @@ var GameView = Backbone.View.extend({
 	},
 
     render: function() {
+
+        $('#header').show();
+
 		var variables = {
                         title: this.model.get('title'),
                         coverImage: this.model.get('coverImage'),

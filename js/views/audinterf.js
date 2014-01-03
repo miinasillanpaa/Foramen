@@ -289,8 +289,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
     quitGame: function () {
         Settings.set({corrects:0});
         this.undelegateEvents();
-        var gameId = this.model.get('gameId');
-        router.navigate('game/' + gameId, {trigger:true});
+        router.navigate('/', true);
     },
 
     playSounds: function () {

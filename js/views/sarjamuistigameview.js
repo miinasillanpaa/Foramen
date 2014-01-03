@@ -63,8 +63,7 @@ var Sarjamuisti = Backbone.View.extend({
         Settings.set({ 'correctSeries'  : 0  });
         Settings.set({ 'wrongSeries'    : 0  });
         Settings.set({ 'results'        : [] });
-        var gameId = this.model.get('gameId');
-        router.navigate('game/' + gameId, true);
+        router.navigate('/', true);
 
     },
 

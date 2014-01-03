@@ -291,9 +291,7 @@ var Sudoku = Backbone.View.extend({
   quitGame: function() {
     
     this.undelegateEvents();
-    
-    var gameId = this.model.get( "gameId" );
-    router.navigate( "game/" + gameId, { trigger : true } );
+    router.navigate("/", true);
     
   },
   

@@ -70,9 +70,13 @@ var SanojenTunnistaminen = Backbone.View.extend({
                         }
                     ]
                 };
-                Settings.set({ scrollerResults: {   corrects:0,
-                                                    wrongs:0,
-                                                    selectorPresses:0} });
+                Settings.set({ 
+                    scrollerResults: {  
+                        corrects:0,
+                        wrongs:0,
+                        selectorPresses:0
+                    } 
+                });
                 Settings.set({ scroller: "" });
                 myView.undelegateEvents();
 
@@ -81,7 +85,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
                 view.render();
 
 
-        },exerciseTime );
+        }, exerciseTime );
 
 
         var variables = {
@@ -97,6 +101,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
            window.clearTimeout(timer);
            window.clearInterval(mover);
         });
+
         $('.knob').knob({
             change : function (value) {},
             "max": 240,
@@ -104,6 +109,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
             "readOnly": true
 
         });
+
         return this;
 
     },
@@ -115,9 +121,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
     quitGame: function () {
         this.undelegateEvents();
-
-        var gameId = this.model.get('gameId');
-        router.navigate('game/' + gameId, {trigger:true});
+        router.navigate('/', true);
     },
 
     knobify: function () {
@@ -165,9 +169,9 @@ var SanojenTunnistaminen = Backbone.View.extend({
         var text = "";
         var textString = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ";
-        var amount;
-        var chars;
-        var firstRandPos;
+        var amount, 
+            chars, 
+            firstRandPos;
         var randomDistance = [];
 
         if( Settings.get('difficulty') === 'easy'){
@@ -175,9 +179,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
             chars = 150;
             firstRandPos = Math.floor(Math.random()*(127-137+1)+127);
 
-            var to;
-            var from;
-            var randomDist;
+            var to, from, randomDist;
 
             for( var i = 0; i < amount; i++ ){
                 to = 5;
@@ -320,6 +322,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
         }
         _results.selectorPresses = selectorPresses;
         Settings.set({ scrollerResults: _results });
-        Settings.set({ categories:_categories });
+        Settings.set({ categories: _categories });
     }
 });

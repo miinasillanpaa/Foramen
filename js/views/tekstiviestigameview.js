@@ -177,8 +177,7 @@ var TekstiviestiGameView = Backbone.View.extend({
     quitGame: function () {
         this.undelegateEvents();
         Settings.set({ 'playThruNum' : 0 });
-        var gameId = this.model.get('gameId');
-        router.navigate('game/' + gameId, {trigger:true});
+        router.navigate('/', true);
     },
 
     message1: function () {
