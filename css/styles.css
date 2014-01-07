@@ -20,6 +20,16 @@ html, body{
     no-repeat;
 }
 
+.icon-bigger{
+    margin-top: 9px !important;
+}
+
+.game-time{
+    position: absolute;
+    top: 7px;
+    left: 550px;
+}
+
 .info-modal{
 	z-index: 1000;
     display: none;

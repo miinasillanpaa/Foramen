@@ -14,7 +14,16 @@ var HeaderView = Backbone.View.extend({
 		var variables;
 		
 		if(parseInt(this.id) === 0){
-			template = _.template( $(this.template0).html() );
+			var started = Settings.get('startedPlaying');
+			var now = new Date();
+
+			//render played time from startedPlaying date object
+			var diff = ( now.getTime() - started.getTime() )/1000;
+			var hours = Math.floor(diff / 3600) % 24;
+			var minutes = Math.floor(diff / 60) % 60;
+
+			variables = { playedTime: hours + " h " + minutes +" min"}; 
+			template = _.template( $(this.template0).html(), variables);
 			this.$el.html(template);
 
 			//$('.toggle-player').text(Settings.get('playerRole'));

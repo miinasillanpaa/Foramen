@@ -9,16 +9,16 @@ var GameListView = Backbone.View.extend({
         this.games = new Games(initGames);
 		this.$el.html('');
 
-		_.bindAll(this, 'render', 'afterRender');
+		_.bindAll(this, 'render');
 		var _this = this;
 
 		this.render = _.wrap(this.render, function(render) {
 				render();
-				_this.afterRender();
 				return _this;
 		});
 
         //new HeaderView({id:0});
+        this.startedPlaying();
         this.render();
     },
 
@@ -37,8 +37,20 @@ var GameListView = Backbone.View.extend({
         this.$el.append( gameView.render().el );
     },
 
-	afterRender: function() {
+    startedPlaying: function() {
 
-	}
+    	var today = new Date();
+    	var started = Settings.get('startedPlaying'); //this should come from backend
+    	if(started === null){
+    		//no start time found, reset time played
+    		Settings.set({'startedPlaying': today});
+    	}else if(today.getDate() !== started.getDate()) {
+    		//date is different, reset time played
+    		Settings.set({'startedPlaying': today});
+    	}else{
+    		//started time found (from backend) 
+     		Settings.set({'startedPlaying': started});
+    	}
+    }
 
 });

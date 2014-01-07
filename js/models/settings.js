@@ -12,6 +12,9 @@ var Settings = Backbone.Model.extend({
 		gameInstanceId: null,
 		showFeedbackModal: true,
 
+        startedPlaying: null,
+        playedTime: null,
+
         //Tekstiviesti exercise specific
         txtSenderDom: '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>',
         txtItemDom: '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>',
