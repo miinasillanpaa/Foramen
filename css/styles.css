@@ -21,7 +21,10 @@ html, body{
 }
 
 .icon-bigger{
-    margin-top: 9px !important;
+    margin-top: -4px !important;
+    zoom: 1.5;
+    -moz-transform: scale(1.5);
+    vertical-align: middle;
 }
 
 .game-time{
