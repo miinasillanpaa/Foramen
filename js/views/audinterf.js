@@ -3,7 +3,6 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
     template: "#audInterTemplate",
 
     render: function () {
-
         $('#header').empty().hide();
 
         var template = _.template($(this.template).html() );
@@ -31,6 +30,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
             });
         }
 
+        var timer;
         var soundElem;
         var inputElem;
         for(var i=0; i<sounds.length; i++){
@@ -46,7 +46,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
 
         }
 
-        var timer;
+        
         if( sounds.length === 2 ){
 
             document.getElementById("audio_0").addEventListener('ended', function(){
@@ -102,6 +102,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
             }, false);
 
         }
+        
 
         $('.quit').click( function () {
             window.clearTimeout(timer);
@@ -376,6 +377,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         }
 
     var shuffled = shuffleArray(distractionArr);
+    $(shuffled).preload();
     return shuffled;
     },
 
