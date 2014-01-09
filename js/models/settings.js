@@ -295,10 +295,11 @@ var Settings = Backbone.Model.extend({
     },
     
     
-    fiarNumberOfGamesBeforeResults: 3,
+    fiarNumberOfGamesBeforeResults: 1,
     
     fiarNumberOfGridRows: 15,
-    fiarNumberOfGridCols: 15
+    fiarNumberOfGridCols: 15,
+    computerMoving: false
     
   }
   

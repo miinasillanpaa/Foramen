@@ -10,7 +10,7 @@ var PlayedGameView = Backbone.View.extend({
         $('.quit').hide();
         $('.finish').hide();
 
-        $('#content').append("<button class='btn btn-large bigger bottom-left toResults'><i class='icon-chevron-left'></i> Takaisin</button>")
+        $('#content').append("<button class='btn btn-large bigger bottom-left toResults'><i class='icon-chevron-left icon-bigger'></i> Takaisin</button>")
 
     },
     events: {

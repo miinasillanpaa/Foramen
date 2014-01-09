@@ -261,7 +261,7 @@ var Ristinolla = Backbone.View.extend({
         },
         {
           "name" : "",
-          "value" : "<button class=\"btn btn-primary btn-block btn-bolder screen\">Näytä parhaan pelin kuvaruutu</button>"
+          "value" : "<button class=\"btn btn-primary btn-block btn-bolder screen\">Näytä pelin kuvaruutu</button>"
         }
       ],
       "hiddenData": {
@@ -279,25 +279,31 @@ var Ristinolla = Backbone.View.extend({
   },
   
   humanSelectCell: function( event ) {
-    
-    var uiCell = $( event.target );
-    var gridCell = this.getGridCellWithUICell( uiCell );
-    
-    this.setCell( gridCell, uiCell, this.CONST_HUMAN );
-    
-    if( this.checkWinner( gridCell ) ) {
-      this.showGameOverOnUI();
-    } else {
-      this.computerMakeAMove();
+    if(Settings.get('computerMoving') === false){
+      var uiCell = $( event.target );
+      var gridCell = this.getGridCellWithUICell( uiCell );
+      
+      this.setCell( gridCell, uiCell, this.CONST_HUMAN );
+      
+      if( this.checkWinner( gridCell ) ) {
+        this.showGameOverOnUI();
+      } else {
+        this.computerMakeAMove();
+      }
+    }else{
+      console.log('computers turn');
     }
     
   },
   
   computerMakeAMove: function() {
-    
+    Settings.set({'computerMoving': true});
     var moves = [];
     var self = this;
+
     var wait = setTimeout(function(){
+      Settings.set({'computerMoving': false});
+
       if( this.movesUsedHuman == 0 && this.movesUsedComputer == 0 ) {
         
         var move = {};
