@@ -296,60 +296,62 @@ var Ristinolla = Backbone.View.extend({
   computerMakeAMove: function() {
     
     var moves = [];
-    
-    if( this.movesUsedHuman == 0 && this.movesUsedComputer == 0 ) {
-      
-      var move = {};
-      move.weight = 1;
-      move.gridCell = this.getGridCellWithRowAndCol( this.grid.numberOfRows / 2, this.grid.numberOfCols / 2 );
-      
-      moves.push( move );
-      
-    } else {
-      
-			for( var i = 0; i < this.grid.numberOfRows; i++ ) {
-				
-        for( var j = 0; j < this.grid.numberOfCols; j++ ) {
-					
-          var gridCell = this.getGridCellWithRowAndCol( i, j );
-          
-          if( gridCell != null ) {
+    var self = this;
+    var wait = setTimeout(function(){
+      if( this.movesUsedHuman == 0 && this.movesUsedComputer == 0 ) {
+        
+        var move = {};
+        move.weight = 1;
+        move.gridCell = self.getGridCellWithRowAndCol( self.grid.numberOfRows / 2, self.grid.numberOfCols / 2 );
+        
+        moves.push( move );
+        
+      } else {
+        
+  			for( var i = 0; i < self.grid.numberOfRows; i++ ) {
+  				
+          for( var j = 0; j < self.grid.numberOfCols; j++ ) {
+  					
+            var gridCell = self.getGridCellWithRowAndCol( i, j );
             
-            if( gridCell.value == this.CONST_EMPTY ) {
+            if( gridCell != null ) {
               
-              var weight = this.getCellWeight( gridCell );
-              
-              var move = {};
-              move.weight = weight;
-              move.gridCell = gridCell;
-              
-              moves.push( move );
+              if( gridCell.value == self.CONST_EMPTY ) {
+                
+                var weight = self.getCellWeight( gridCell );
+                
+                var move = {};
+                move.weight = weight;
+                move.gridCell = gridCell;
+                
+                moves.push( move );
+                
+              }
               
             }
-            
-          }
-					
-				}
+  					
+  				}
+          
+  			}
         
-			}
+      }
+
+      moves.sort( function( a, b ) {
+        return ( b.weight - a.weight );
+      } );
       
-    }
-    
-    moves.sort( function( a, b ) {
-      return ( b.weight - a.weight );
-    } );
-    
-    var selectedMoveIndex = this.getComputerAIWeightedRandomMoveSelectionIndex( moves.length - 1 );
-    
-    var gridCell = moves[selectedMoveIndex].gridCell;
-    var uiCell = this.getUICellWithGridCell( gridCell );
-    
-    this.setCell( gridCell, uiCell, this.CONST_COMPUTER );
-    
-    if( this.checkWinner( gridCell ) ) {
-      this.showGameOverOnUI();
-    }
-    
+      var selectedMoveIndex = self.getComputerAIWeightedRandomMoveSelectionIndex( moves.length - 1 );
+      
+      var gridCell = moves[selectedMoveIndex].gridCell;
+      var uiCell = self.getUICellWithGridCell( gridCell );
+      
+      self.setCell( gridCell, uiCell, self.CONST_COMPUTER );
+      
+      if( self.checkWinner( gridCell ) ) {
+        self.showGameOverOnUI();
+      }
+
+    },1500);
   },
   
   getComputerAIWeights: function() {
