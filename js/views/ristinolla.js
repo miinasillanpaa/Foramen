@@ -244,21 +244,21 @@ var Ristinolla = Backbone.View.extend({
           "value" : timeSpent
         },
         {
-          "name" : "Siirtoja per peli:",
+          "name" : "Siirtoja yhteensä:",
           "value" : movesUsedAverage
         },
         {
           "name" : "Voittoja:",
-          "value" : wins
+          "value" : wins +"/1"
         },
-        {
+        /*{
           "name" : "Häviöitä:",
           "value" : losses
         },
         {
           "name" : "Tasapelejä:",
           "value" : ties
-        },
+        }, */
         {
           "name" : "",
           "value" : "<button class=\"btn btn-primary btn-block btn-bolder screen\">Näytä pelin kuvaruutu</button>"
