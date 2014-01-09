@@ -985,8 +985,8 @@ a:hover{
 }
 
 .sudoku-grid-cell-selected {
-  border: 1px solid #0000ff;
-  box-shadow: 0px 0px 15px #0000ff inset;
+  border: 1px solid #ff0000; /* blue #0000ff - red used instead because narrations speak of red */
+  box-shadow: 0px 0px 15px #ff0000 inset; /* blue #0000ff */
 }
 
 .sudoku-grid-cell-image {
