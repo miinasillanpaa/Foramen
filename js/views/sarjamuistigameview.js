@@ -29,12 +29,17 @@ var Sarjamuisti = Backbone.View.extend({
 
         var timer = setTimeout(
             function () {
-                $('.numOptions').removeClass('hidden');
+                
                 $('.box').addClass('black');
-                $('.next').removeAttr("disabled");
-                $('.ser-check').removeAttr("disabled");
+                
                 var rand = Math.floor(Math.random() * arrLength);
-                $('.box:eq(' + rand + ')').addClass('actived').removeClass('available');
+                var wait = setTimeout(
+                    function() {
+                        $('.numOptions').removeClass('hidden');
+                        $('.box:eq(' + rand + ')').addClass('actived').removeClass('available');
+                        $('.next').removeAttr("disabled");
+                        $('.ser-check').removeAttr("disabled");
+                }, 1600)
             },time);
 
         var variables = { numArray : numArray, choices : choices };
@@ -69,9 +74,9 @@ var Sarjamuisti = Backbone.View.extend({
 
     numberPicked: function () {
         var target = event.target.innerHTML;
-        $('.actived').html(target);
+        $('.actived').html('<p>'+target+'</p>');
         $('.actived').addClass('answered');
-        $('.actived').removeClass('black');
+        $('.actived').removeClass('black').addClass('dummy-white');
         $('.box').removeClass('actived');
         this.nextRandom();
     },
@@ -128,7 +133,7 @@ var Sarjamuisti = Backbone.View.extend({
 
     showCorrects: function () {
         $('.answers').removeClass('hidden');
-        $('.choices').hide();
+        $('.numOptions').hide();
     },
 
     finish: function () {
