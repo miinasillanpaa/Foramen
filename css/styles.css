@@ -481,7 +481,7 @@ img.phone{
     font-size: 8.8em;
     letter-spacing: 0.2em;
     margin-top: 100px;
-    margin-bottom: -100px; 
+    margin-bottom: -130px; 
 }
 
 .box{
@@ -492,9 +492,9 @@ img.phone{
     width: 150px;
     max-height: 0;
 
-    -webkit-transition: max-height .5s ease;
-    -moz-transition: max-height .5s ease;
-    transition: max-height .5s ease;
+    -webkit-transition: max-height 1s ease;
+    -moz-transition: max-height 1s ease;
+    transition: max-height 1s ease;
 }
 
 .box p{
@@ -524,7 +524,7 @@ img.phone{
 }
 
 .numOptions{
-    margin-top: -200px;
+    margin-top: -170px;
     font-size: 6em;
     letter-spacing: 0.3em;
     cursor: pointer;
