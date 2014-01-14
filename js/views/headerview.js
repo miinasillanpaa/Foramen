@@ -12,19 +12,33 @@ var HeaderView = Backbone.View.extend({
     render: function () {
 		var template;
 		var variables;
-		
+		var self = this;
 		if(parseInt(this.id) === 0){
+
+			//local session lenght
 			var started = Settings.get('startedPlaying');
 			var now = new Date();
+			var sessionTime = ( now.getTime() - started.getTime() )/1000;
+			Settings.set({'sessionTime': sessionTime})
 
-			//render played time from startedPlaying date object
-			var diff = ( now.getTime() - started.getTime() )/1000;
-			var hours = Math.floor(diff / 3600) % 24;
-			var minutes = Math.floor(diff / 60) % 60;
+			//getting played time from backend
+			window.getPlayedTime();
 
-			variables = { playedTime: hours + " h " + minutes +" min"}; 
-			template = _.template( $(this.template0).html(), variables);
-			this.$el.html(template);
+			setTimeout(function(){
+				if(Settings.get('playedTimeMS') !== null){
+					var totalTime = Settings.get('playedTimeMS') + sessionTime;
+					var hours = Math.floor(totalTime / 3600) % 24;
+					var minutes = Math.floor(totalTime / 60) % 60;
+
+					variables = { playedTime: hours + "h " + minutes +"min"}; 
+					template = _.template( $(self.template0).html(), variables);
+					self.$el.html(template);
+				}else{
+					variables = { playedTime: "Ei tiedossa"}; 
+					template = _.template( $(self.template0).html(), variables);
+					self.$el.html(template);
+				}
+			},500)
 
 			//$('.toggle-player').text(Settings.get('playerRole'));
 
@@ -76,10 +90,8 @@ var HeaderView = Backbone.View.extend({
 	}, */
 
 	goBackToService: function() {
-		var userId = Settings.get('currentUserId');
-		var returnUrl = Settings.get('returnUrl');
-
-		window.location = returnUrl + userId;
+		//navigating back to mobile-site is handled in callback
+		window.savePlayedTime();	
 	},
 	setModel: function(model) {
 		this.model = model;

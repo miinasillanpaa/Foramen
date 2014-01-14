@@ -65,6 +65,7 @@ var KIM = Backbone.View.extend({
     },
 
     quitGame: function () {
+        window.saveInterruptedGame(Settings.get('gameInstanceId'));
         this.undelegateEvents();
         Settings.set({'playThruNum' : 0});
         router.navigate('/', true);

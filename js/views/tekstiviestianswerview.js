@@ -58,6 +58,7 @@ var TekstiviestiAnswerView = Backbone.View.extend({
     quitGame: function () {
         this.undelegateEvents();
         Settings.set({ 'playThruNum' : 0 });
+        window.saveInterruptedGame(Settings.get('gameInstanceId'));
         router.navigate('/', true);
     },
 

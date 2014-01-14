@@ -1,17 +1,15 @@
 var PreGameView = Backbone.View.extend({
+
 	el: $( '#content' ),
 	template: '#preGameTemplate',
 
 	render: function() {
-
 
 		var gameId = this.model.get('gameId');
 		$(".overlay").css('display','block');
 		if(gameId === 1 || gameId === 3 || gameId === 5 || gameId === 8){
 			$(".modal").css('display','block');
 		}
-
-
         //$('#header').show();
 
         var split = [];

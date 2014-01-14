@@ -299,7 +299,7 @@ function saveGameEnd () {
 	var scoreObj = JSON.stringify(Settings.get('score'));
 	var data = { 'id': gameInstanceId, 'score': scoreObj };
 	$.ajax({
-		url: backend,
+		url: 'http://stage.pienipiiri.fi/frSaveGame',
 		type: 'POST',
 		dataType: 'json',
 		data: data,
@@ -326,7 +326,45 @@ function preloadMoodmeter () {
 	$(moods).preload();
 }
 
-function gameNotFinished (gameInstanceId) {
-  var data = { 'id': gameInstanceId }
-  console.log('game with id: ' + gameInstanceId + ' exited before finishing');
+function saveInterruptedGame (gameInstanceId) {
+  var data = {'id': gameInstanceId };
+  $.ajax({
+    url: 'http://stage.pienipiiri.fi/frSaveInterruptedGame',
+    type: 'POST',
+    dataType: 'json',
+    data: data,
+    success: function(res){
+      console.log(res);
+    }
+  });
+}
+
+function savePlayedTime (){
+  
+  var started = Settings.get('startedPlaying');
+  var now = new Date();
+  var sessionTime = ( now.getTime() - started.getTime() )/1000;
+  var data = {userId: Settings.get('currentUserId'), duration: sessionTime};
+
+  $.ajax({
+    url: 'http://stage.pienipiiri.fi/frSaveTotalPlayingTime',
+    type: 'POST',
+    dataType: 'json',
+    data: sessionTime,
+    success: function(res){
+      var userId = Settings.get('currentUserId');
+      var returnUrl = Settings.get('returnUrl');
+      window.location = returnUrl+userId;
+    }
+  })
+}
+
+function getPlayedTime (){
+  $.ajax({
+    url: 'http://stage.pienipiiri.fi/frGetTotalPlayingTime?userId='+Settings.get('currentUserId'),
+    type: 'GET'
+  }).done(function(data){
+    var obj = $.parseJSON(data);
+    Settings.set({ 'playedTimeMS': obj.duration })
+  })
 }

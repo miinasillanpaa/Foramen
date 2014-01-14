@@ -92,9 +92,10 @@ var Konstruointi = Backbone.View.extend({
     },
 
     quitGame: function () {
-      this.undelegateEvents();
-      Settings.set({ results: [] });
-      router.navigate('/', true);
+        window.saveInterruptedGame(Settings.get('gameInstanceId'));
+        this.undelegateEvents();
+        Settings.set({ results: [] });
+        router.navigate('/', true);
     },
 
     renderAnswerChoices: function () {

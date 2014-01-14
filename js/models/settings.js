@@ -12,8 +12,9 @@ var Settings = Backbone.Model.extend({
 		gameInstanceId: null,
 		showFeedbackModal: true,
 
-        startedPlaying: null,
-        playedTime: null,
+        startedPlaying: null, //on going session started time (date obj)
+        playedTimeMS: null, //previous session(s) time from backend
+        playedTime: null, //string e.g. "1h 33min"
 
         //Tekstiviesti exercise specific
         txtSenderDom: '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>',

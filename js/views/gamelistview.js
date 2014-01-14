@@ -40,7 +40,7 @@ var GameListView = Backbone.View.extend({
     startedPlaying: function() {
 
     	var today = new Date();
-    	var started = Settings.get('startedPlaying'); //this should come from backend
+    	var started = Settings.get('startedPlaying');
     	if(started === null){
     		//no start time found, reset time played
     		Settings.set({'startedPlaying': today});
@@ -48,8 +48,7 @@ var GameListView = Backbone.View.extend({
     		//date is different, reset time played
     		Settings.set({'startedPlaying': today});
     	}else{
-    		//started time found (from backend) 
-     		Settings.set({'startedPlaying': started});
+    		
     	}
     }
 

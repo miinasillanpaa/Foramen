@@ -289,10 +289,9 @@ var Sudoku = Backbone.View.extend({
   },
   
   quitGame: function() {
-    
+    window.saveInterruptedGame(Settings.get('gameInstanceId'));
     this.undelegateEvents();
     router.navigate("/", true);
-    
   },
   
   resetGame: function() {
