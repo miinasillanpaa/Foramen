@@ -54,6 +54,11 @@
             <% }); %>
         </div>
 
+        <div class="kim-color-hint hidden">
+            <span class="text-center bigger success">Vihreällä värillä näkyvät oikeat valinnat</span><br/><br/>
+            <span class="text-center bigger warning">Oranssilla värillä näkyvät puuttuneet esineet</span>
+        </div>
+
         <div class="items allItems hidden text-center">
             <% _.each(bluffs, function(bluffs) { %>
                 <img class="kim-item selectable" src="./pics/KIM/<%=bluffs%>.png">
@@ -67,13 +72,13 @@
         <div class="span5 guesses"></div>
 
 
-        <div class="span6 myForm">
+        <div class="span5 myForm">
 
                 <p class="dot-hint"><span class="bullet"> &bull; </span>= oikea kirjain, oikealla paikalla</p>
                 <p class="dot-hint"><span class="bullet"> &#9702; </span>= oikea kirjain, väärällä paikalla</p>
 
                 <p class="pw-hint">
-                    <span>Kirjoita päättelemäsi salasana</span>
+                    <span><%= hint %></span>
                 </p>
 
                 <input class="serial-input input-large" type="text" placeholder="Paina tähän" />
@@ -150,6 +155,7 @@
         <h2 class="hint">Etsit ryhmän: <span class="text-success"> <%= textCategory %> </span> sanoja</h2>
         <div class="selector"> </div>
         <div class="scroller"> <%= text %> </div>
+        <div class="onTarget-pressed-info"></div>
 
         <button class="btn btn-primary bigger onTarget">Löytyi!</button>
         <button class="btn btn-large bottom-left bigger quit">Lopeta</button>

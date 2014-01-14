@@ -23,7 +23,7 @@ var HeaderView = Backbone.View.extend({
 
 			//getting played time from backend
 			window.getPlayedTime();
-
+			$('#header').html('<h1 class="text-center">Ladataan...</h1>');
 			setTimeout(function(){
 				if(Settings.get('playedTimeMS') !== null){
 					var totalTime = Settings.get('playedTimeMS') + sessionTime;

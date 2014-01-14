@@ -311,17 +311,33 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         var selector = Settings.get('selector');
 
+        var a = 0;
+        var b = 0;
+
         for( var i = 0; i < items.length; i++ ){
             if( selector.indexOf(items[i]) !== -1 ){
                 corrects++;
+                a++;
                 _results.corrects = corrects;
                  delete items[i];
                 _categories.items = items;
             }else{
+                b++; 
                 wrongs++;
                 _results.wrongs = wrongs;
             }
         }
+        
+        var buttonClickedInfoElem = this.$('.onTarget-pressed-info')
+        if(a === 1){
+            buttonClickedInfoElem.show().html('Oikein!').removeClass('danger').addClass('success');
+        }else{
+            buttonClickedInfoElem.show().html('Väärin meni').removeClass('success').addClass('danger');
+        }
+        
+
+        buttonClickedInfoElem.fadeOut( 4000, function(){});
+
         _results.selectorPresses = selectorPresses;
         Settings.set({ scrollerResults: _results });
         Settings.set({ categories: _categories });

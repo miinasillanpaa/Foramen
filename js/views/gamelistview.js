@@ -22,7 +22,7 @@ var GameListView = Backbone.View.extend({
         this.render();
     },
 
-    render: function() {
+    render: function() {        
 		var self = this;
 		this.games.forEach(function(item, key) {
 			self.renderGame(item);
@@ -47,8 +47,6 @@ var GameListView = Backbone.View.extend({
     	}else if(today.getDate() !== started.getDate()) {
     		//date is different, reset time played
     		Settings.set({'startedPlaying': today});
-    	}else{
-    		
     	}
     }
 

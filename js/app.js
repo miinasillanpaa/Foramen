@@ -350,8 +350,9 @@ function savePlayedTime (){
     url: 'http://stage.pienipiiri.fi/frSaveTotalPlayingTime',
     type: 'POST',
     dataType: 'json',
-    data: sessionTime,
+    data: data,
     success: function(res){
+      console.log(res);
       var userId = Settings.get('currentUserId');
       var returnUrl = Settings.get('returnUrl');
       window.location = returnUrl+userId;
@@ -360,11 +361,11 @@ function savePlayedTime (){
 }
 
 function getPlayedTime (){
-  $.ajax({
-    url: 'http://stage.pienipiiri.fi/frGetTotalPlayingTime?userId='+Settings.get('currentUserId'),
-    type: 'GET'
-  }).done(function(data){
-    var obj = $.parseJSON(data);
-    Settings.set({ 'playedTimeMS': obj.duration })
-  })
-}
+    $.ajax({
+      url: 'http://stage.pienipiiri.fi/frGetTotalPlayingTime?userId='+Settings.get('currentUserId'),
+      type: 'GET'
+    }).done(function(data){
+      var obj = $.parseJSON(data);
+      Settings.set({ 'playedTimeMS': obj.duration })
+  });
+};

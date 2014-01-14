@@ -16,9 +16,13 @@ var KIM = Backbone.View.extend({
         var allItems = this.addBluffs(targets);
 
         var knobMax;
-        if(Settings.get('difficulty')       == 'easy') { knobMax = '0:36' }
-        else if(Settings.get('difficulty')  == 'medium') {knobMax = '1:03' }
-        else { knobMax = '1:30' }
+        if(Settings.get('difficulty') == 'easy') { 
+            knobMax = (this.itemsLength()*4500).toString();
+        }else if(Settings.get('difficulty')  == 'medium'){
+            knobMax = (this.itemsLength()*4500).toString();
+        }else{ 
+            knobMax = (this.itemsLength()*4500).toString();
+        }
 
         var variables = {targets:targets,bluffs:allItems,knobMax:knobMax};
         var template = _.template( $(this.template).html(), variables ) ;
@@ -77,7 +81,7 @@ var KIM = Backbone.View.extend({
         var totMin, totSec;
         var timeLeft = (this.itemsLength()*4.5)-1;
         function countdown() {
-            if (timeLeft == 0){
+            if (timeLeft <= 0){
                 $(".timer").hide();
                 window.clearInterval(App.knobTimer);
             }else{
@@ -98,11 +102,9 @@ var KIM = Backbone.View.extend({
                 });
                 $('.finish').click( function () {
                     window.clearInterval(App.knobTimer);
-                })
-
+                });
             }
-        }
-
+        }   
     },
 
     selectItem: function () {
@@ -134,11 +136,14 @@ var KIM = Backbone.View.extend({
         var diff = Settings.get('difficulty');
         var itemsLength;
         if(diff === 'easy'){
-            itemsLength = 8;
+            itemsLength = 5;
+            this.$('.items').addClass('kim-easy');
         }else if(diff === 'medium'){
-            itemsLength = 14;
+            itemsLength = 8;
+            this.$('.items').addClass('kim-medium');
         }else{
-            itemsLength = 20;
+            itemsLength = 14;
+            this.$('.items').addClass('kim-hard');
         }
         return itemsLength;
     },
@@ -249,6 +254,7 @@ var KIM = Backbone.View.extend({
                 wrong++;
             }
         }
+        this.$('.kim-color-hint').removeClass('hidden');
         $('img.selected').removeClass('selected');
 
         var arr = Settings.get('results');
@@ -261,6 +267,7 @@ var KIM = Backbone.View.extend({
                 $(".allItems img[src="+'"'+targetImg[k]+'"'+"]").addClass('warning-border');
             }
         }
+
 
         var that = this;
         if ((correct === targets.length && wrong === 0) || (playthruNum === 10)) {
@@ -382,6 +389,7 @@ var KIM = Backbone.View.extend({
                         var img = '<img class="kim-item selectable" src="./pics/KIM/'+bluffs[i]+'.png"/>';
                         $('.allItems img:nth('+i+')').replaceWith(img)
                     }
+                    $('.kim-color-hint').addClass('hidden');
                     $('.selectable').show().removeClass('warning-border success-border danger-border selected');
             },visible);
 

@@ -9,6 +9,17 @@ html, body{
     width:100%;
     display: block;
 }
+
+.danger{
+    color: #da4f49;
+}
+.success{
+    color: #468847;
+}
+.warning{
+    color: #faa732;
+}
+
 .modal {
     display: none;
     height: 300px;
@@ -106,6 +117,12 @@ html, body{
     text-shadow: 1px 1px 1px black;
     font-size: 2.5em;
 
+}
+
+#header h1{
+    margin:0;
+    padding-top: 0.9%;
+    font-size: 2.5em;
 }
 
 .rounded{
@@ -566,6 +583,7 @@ img.phone{
 }
 
 
+
 .scroller{
     white-space: nowrap;
     font-family: courier-new;
@@ -593,6 +611,15 @@ img.phone{
     top: 220px;
     left: 420px;
 }
+
+.onTarget-pressed-info{
+    position: absolute;
+    top: 325px;
+    left: 570px;
+    font-size: 2.2em; 
+}
+
+
 
 .onTarget{
     position: absolute;
@@ -677,23 +704,26 @@ img.phone{
  .serial-input{
     width: 225px;
     line-height: 2em;
-    margin-top: 10px;
+    margin-top: 50px;
     text-transform: uppercase;
-     height: 52px !important; /* overriding bootstraps stuff with !important */
-     font-size: 2em !important;
+    height: 52px !important; /* overriding bootstraps stuff with !important */
+    font-size: 2em !important;
     line-height: 1 !important;
 }
 
+.serial-input::-webkit-input-placeholder{
+    color: green;
+}
+
 .submit{
-     margin-left:20px;
+    margin-top: 37px;
+    margin-left: 20px;
  }
 
 .text-danger{
     font-size: 1.5em;
     color:red;
 }
-
-
 
 .guesses{
     padding-top: 5px;
@@ -743,10 +773,32 @@ span.bullet{
 .kim-item{
     padding:5px;
 }
-.items img{
+
+.kim-color-hint{
+    position: absolute;
+    left: 50%;
+    margin-left: -295.5px;
+    bottom: 250px;
+}
+
+.kim-easy img{
+    width: 180px;
+    height: 180px;
+}
+
+.kim-medium img{
+    width: 150px;
+    height: 150px;
+}
+
+.kim-hard img{
     width: 100px;
     height: 100px;
 }
+
+
+
+
 .success-border{
     border: 5px solid green;
 }
@@ -1216,7 +1268,6 @@ a:hover{
 
 .well-info{
     background-color: #379DBB;
-
 }
 .well-info p{
     color: #fff;

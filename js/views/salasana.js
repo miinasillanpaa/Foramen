@@ -12,7 +12,16 @@ var Salasana = Backbone.View.extend({
         var serial = this.createSerial();
         Settings.set({ serial:serial });
 
-        var template = _.template( $(this.template).html() ) ;
+        var textnum;
+            if(serial.length === 3){
+                textnum = 'kolmen';
+            }else if(serial.length === 4){
+                textnum = 'neljän';
+            }else{
+                textnum = 'viiden';
+            }
+        var variables = {hint: 'Kirjoita päättelemäsi '+textnum+' kirjaimen pituinen salasana'}
+        var template = _.template( $(this.template).html(), variables ) ;
         this.$el.html(template);
 
         //hack but does the trick
@@ -123,10 +132,21 @@ var Salasana = Backbone.View.extend({
             serialArr.push(serialChar);
         }
 
-        if(guess.length !== serial.length){
-            $('.pw-hint span').text('Tarkista arvauksen pituus: oikea pituus '+serial.length );
+        var textnum;
+        if(serial.length === 3){
+            textnum = 'kolmen';
+        }else if(serial.length === 4){
+            textnum = 'neljän';
         }else{
-            $('.pw-hint span').text('Kirjoita päättelemäsi salasana');
+            textnum = 'viiden';
+        }
+
+        if(guess.length !== serial.length){
+            $('.pw-hint span').addClass('danger').text('Tarkista arvauksen pituus! Salasana on '+textnum+' kirjaimen pituinen');
+            console.log(textnum);
+        }else{
+            
+            $('.pw-hint span').removeClass('danger').text('Kirjoita päättelemäsi '+textnum+ ' kirjaimen pituinen salasana');
             var checks = Settings.get('checks');
             checks++;
             Settings.set({checks:checks});
@@ -135,7 +155,7 @@ var Salasana = Backbone.View.extend({
 
             scrollerChecks++;
             Settings.set({scrollerChecks:scrollerChecks});
-            if(scrollerChecks > 5){
+            if(scrollerChecks > 6){
                 $('.guesses').transition({ y: '-=44' });
             }
 
