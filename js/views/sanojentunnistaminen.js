@@ -8,8 +8,8 @@ var SanojenTunnistaminen = Backbone.View.extend({
         var myView = this;
         var gameId = this.model.get('gameId');
         var exerciseTime = 1000*60*4+2000;
-        var moveTime;
 
+        var moveTime;
         var diff = Settings.get('difficulty');
         if( diff === 'easy' ){
             moveTime = 1500;
@@ -32,6 +32,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         var timer = setTimeout(
             function () {
+                window.clearTimeout(timer);
                 window.clearInterval(mover);
                 var amount = Settings.get('targetAmount');
                 var corrects = Settings.get('scrollerResults').corrects;
@@ -78,12 +79,12 @@ var SanojenTunnistaminen = Backbone.View.extend({
                     } 
                 });
                 Settings.set({ scroller: "" });
+                myView.unbind();
                 myView.undelegateEvents();
 
 				router.navigate('game/' + gameId + '/results', true);
                 var view = new ResultsView({ model: myView.model, results: results });
                 view.render();
-
 
         }, exerciseTime );
 
@@ -173,13 +174,12 @@ var SanojenTunnistaminen = Backbone.View.extend({
             chars, 
             firstRandPos;
         var randomDistance = [];
+        var to, from, randomDist;
 
         if( Settings.get('difficulty') === 'easy'){
             amount = 10;
             chars = 150;
             firstRandPos = Math.floor(Math.random()*(127-137+1)+127);
-
-            var to, from, randomDist;
 
             for( var i = 0; i < amount; i++ ){
                 to = 5;
@@ -194,7 +194,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
             chars = 195;
             firstRandPos = Math.floor(Math.random()*(172-182+1)+172);
 
-            for( var j = 0; j < amount; j++ ){
+            for( var i = 0; i < amount; i++ ){
                 to = 5;
                 from = 15;
                 randomDist = Math.floor(Math.random()*(to-from+1)+from);
@@ -207,40 +207,41 @@ var SanojenTunnistaminen = Backbone.View.extend({
             chars = 400;
             firstRandPos = Math.floor(Math.random()*(370-380+1)+370);
 
-            for( var k = 0; k < amount; k++ ){
+            for( var i = 0; i < amount; i++ ){
                  to = 13;
                  from = 23;
                  randomDist = Math.floor(Math.random()*(to-from+1)+from);
 
                  randomDistance.push(randomDist);
             }
-        }
+        };
+
         Settings.set({targetAmount:amount});
 
         var selectedCat = Settings.get('textCategory');
         var items;
         if(selectedCat === 'eläimet'){
-            items = Settings.get('categories').eläimet
+            items = Settings.get('categories').eläimet;
         }else if(selectedCat === 'ammatit'){
-            items = Settings.get('categories').ammatit
+            items = Settings.get('categories').ammatit;
         }else if(selectedCat === 'kasvit'){
-            items = Settings.get('categories').kasvit
+            items = Settings.get('categories').kasvit;
         }else if(selectedCat === 'kaupungit'){
-            items = Settings.get('categories').kaupungit
+            items = Settings.get('categories').kaupungit;
         }else if(selectedCat === 'miesten nimet'){
-            items = Settings.get('categories').miesten
+            items = Settings.get('categories').miesten;
         }else if(selectedCat === 'naisten nimet'){
-            items = Settings.get('categories').naisten
+            items = Settings.get('categories').naisten;
         }else if(selectedCat === 'sisustus'){
-            items = Settings.get('categories').sisustus
+            items = Settings.get('categories').sisustus;
         }else if(selectedCat === 'soittimet'){
-            items = Settings.get('categories').soittimet
+            items = Settings.get('categories').soittimet;
         }else if(selectedCat === 'työkalut'){
-            items = Settings.get('categories').työkalut
+            items = Settings.get('categories').työkalut;
         }else if(selectedCat === 'urheilu'){
-            items = Settings.get('categories').urheilu
+            items = Settings.get('categories').urheilu;
         }else if(selectedCat === 'valtiot'){
-            items = Settings.get('categories').valtiot
+            items = Settings.get('categories').valtiot;
         }
         Settings.set({ itemsLenght: items.length });
 

@@ -481,7 +481,7 @@ img.phone{
     font-size: 8.8em;
     letter-spacing: 0.2em;
     margin-top: 100px;
-    margin-bottom: -100px;
+    margin-bottom: -100px; 
 }
 
 .box{
@@ -492,9 +492,9 @@ img.phone{
     width: 150px;
     max-height: 0;
 
-    -webkit-transition: max-height 1.5s linear;
-    -moz-transition: max-height 1.5s linear;
-    transition: max-height 1.5s linear;
+    -webkit-transition: max-height .5s ease;
+    -moz-transition: max-height .5s ease;
+    transition: max-height .5s ease;
 }
 
 .box p{
@@ -533,8 +533,10 @@ img.phone{
 .answers{
     display: inline-block;
     color: darkgreen;
-    padding: 0 32px 0 35px;
+    padding: 0 25px;
     margin: 0;
+    margin-left: 17px;
+    
 }
 
 .choices{
