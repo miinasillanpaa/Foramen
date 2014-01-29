@@ -508,6 +508,15 @@ var Sudoku = Backbone.View.extend({
   startGame: function() {
     
     if( this.generatePuzzle( 0 ) ) {
+
+      if( this.eraserAvailable ) {
+          // eraser text init
+          var eraserElem = $('.sudoku-toolbar-cell').last();
+          console.log(eraserElem)
+          eraserElem.append('<span class="eraser-text">Pyyhi vastaus</span');
+    
+        
+      }
       
       if( this.fillingMethod == this.CONST_FILLING_METHOD_RESTRICTED || this.fillingMethod == this.CONST_FILLING_METHOD_FREE ) {
         $( ".sudoku-grid-cell" ).addClass( "sudoku-grid-cell-selectable" );
@@ -1149,7 +1158,6 @@ var Sudoku = Backbone.View.extend({
       symbols.gridSymbols = gridSymbols;
       
       if( this.eraserAvailable ) {
-        
         var eraserSymbol = {};
         
         eraserSymbol.index = numberOfSymbols;

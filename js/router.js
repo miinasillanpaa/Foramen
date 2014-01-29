@@ -33,8 +33,7 @@ window.Router = Backbone.Router.extend({
 			App.currentGameView.unbind();
 		}
 
-        //getting played time from backend
-        window.getPlayedTime();
+        
 
 		if(App.headerView === null) {
 			App.headerView = new HeaderView({ id:0 });

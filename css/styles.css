@@ -509,9 +509,9 @@ img.phone{
     width: 150px;
     max-height: 0;
 
-    -webkit-transition: max-height 1s ease;
-    -moz-transition: max-height 1s ease;
-    transition: max-height 1s ease;
+    -webkit-transition: max-height 1.5s ease;
+    -moz-transition: max-height 5.4s ease;
+    transition: max-height 1.5s ease;
 }
 
 .box p{
@@ -989,6 +989,14 @@ a:hover{
 
 /* Sudoku */
 
+.eraser-text{
+    margin-top: 5px;
+    font-size: 50%;
+    text-align: left;
+    line-height: 0.9;
+    display: inline-block;
+}
+
 .sudoku-wrapper {
   margin: 0px auto;
   padding: 20px 150px;
@@ -1186,6 +1194,9 @@ a:hover{
   font-size: 45px;
   font-weight: bold;
   line-height: 50px;
+}
+.sudoku-toolbar-cell-hint:after{
+    content: 'pyyhi vastaus';
 }
 
 .sudoku-toolbar-cell-selectable {

@@ -39,7 +39,7 @@ var Sarjamuisti = Backbone.View.extend({
                         $('.box:eq(' + rand + ')').addClass('actived').removeClass('available');
                         $('.next').removeAttr("disabled");
                         $('.ser-check').removeAttr("disabled");
-                }, 1100)
+                }, 1600)
             },time);
 
         var variables = { numArray : numArray, choices : choices };
