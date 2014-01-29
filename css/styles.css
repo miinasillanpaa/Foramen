@@ -1195,9 +1195,6 @@ a:hover{
   font-weight: bold;
   line-height: 50px;
 }
-.sudoku-toolbar-cell-hint:after{
-    content: 'pyyhi vastaus';
-}
 
 .sudoku-toolbar-cell-selectable {
   cursor: pointer;
