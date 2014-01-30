@@ -32,9 +32,7 @@ var games = [
                        '<p class="lvl-box lvl-hard hidden">Taso III: Viesti näkyy haluamasi ajan.</p></div>' +
 
                        "<p>Ruudulla näkyy matkapuhelimen kuva. Merkkiäänen jälkeen ilmestyy tekstiviesti. Tehtävänä on painaa tekstiviesti mieleen.</p>" +
-                       "<p>Mieleenpainamisen jälkeen näytetään joukko kysymyksiä ja niiden vastausvaihtoehtoja.</p>" +
-                       '<p>Vastausvaihtoehdot tulevat näkyviin, kun kosketat kysymystä.</p>'+
-                       '<p>Vastaa kysymykseen koskettamalla vastausta.</p>'+
+                       "<p>Mieleenpainamisen jälkeen näytetään joukko kysymyksiä ja niiden vastausvaihtoehtoja. Vastaa kysymykseen koskettamalla mielestäsi oikeaa vastausta.</p>" +
                        '<p>Kosketa "Tarkista", jolloin oikeat vastaukset näytetään vihreällä ja väärät punaisella.</p>'+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"     :  "http://www.youtube.com/embed/uiNBcLuSUpY",
@@ -48,10 +46,9 @@ var games = [
                         '<p class="lvl-box lvl-med hidden">Taso II: Kirjaimet siirtyvät 1 sekunnin välein.</p>' +
                         '<p class="lvl-box lvl-hard hidden">Taso III: Kirjaimet siirtyvät 0,5 sekunnin välein.</p></div>' +
 
-                        "<p>Ruudulla näkyy liikkuva kirjainrivi, jonka keskellä on punaisella merkitty alue.</p>" +
-                       '<p>Tehtävänä on havaita punaisella alueella perusmuodossa oleva substantiivi (nimisana), esimerkiksi "kissa".</p>'+
-                       "<p>Valinta osoitetaan koskettamalla alueen alapuolella olevaa Löytyi-painiketta. Kunkin sanan voi valita vain kerran.</p>"+
-                       '<p>Tehtävä kestää neljä minuuttia. Voit kuitenkin keskeyttää tehtävän koskettamalla "Lopeta".</p>',
+                       "<p>Ruudulla näkyy liikkuva kirjainrivi. Keskellä on punaisella merkitty alue.</p>" +
+                       '<p>Tehtävänä on havaita perusmuodossa oleva sana. Valinta osoitetaan koskettamalla Löytyi  -painiketta. Sanan on oltava kokonaan punaisella alueella.</p>'+
+                       '<p>Tehtävä kestää neljä minuuttia. Voit keskeyttää tehtävän koskettamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/zC7bELbsNiQ",
         'coverImage' : './img/sanat.png'
     },
@@ -64,9 +61,9 @@ var games = [
                        '<p class="lvl-box lvl-hard hidden">Taso III: Sarjan pituus 5 numeroa.</p></div>' +
 
                        "<p>Ruudulla näkyy numerosarja. Tehtävänä on painaa se mieleen.</p>"+
-                       "<p>Kun sarja on esitetty, numerot peitetään mustilla neliöillä. Kulloinkin mieleenpalautettavan numeron paikka on merkitty punaisella kehyksellä. Alarivillä näkyvät numero 0-9. Vastaa koskettamalla alarivin kyseistä numeroa. Sama toistetaan jokaisen mustan neliön kohdalla.</p>"+
+                       "<p>Kun sarja on esitetty, numerot peitetään. Kone kysyy numeroita. Kulloinkin kysytyn numeron paikka on merkitty punaisella kehyksellä. Valitse oikea numero koskettamalla sitä alarivistä.</p>"+
                        '<p>Kosketa "Tarkista", jolloin näet oikeat vastaukset.</p>'+
-                       '<p>Muistettavia numerosarjoja tulee viisi peräkkäin. Voit kuitenkin keskeyttää tehtävän koskettamalla "Lopeta".</p>',
+                       '<p>Muistettavia numerosarjoja tulee viisi peräkkäin. Voit keskeyttää tehtävän koskettamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/u5Fl1HO1YMU",
         "coverImage" : "./img/vis.png"
     },
@@ -79,10 +76,10 @@ var games = [
                        '<p class="lvl-box lvl-hard hidden">Taso III: Sarjan pituus 4 sanaa.</p></div>' +
 
                        "<p>Kuulet sarjan sanoja. Tehtävänä on painaa sarja mieleen.</p>"+
-                       "<p>Tämän jälkeen ruudulle ilmestyy häirintätehtävä. Tehtävänä on koskettaa Löytyi-näppäintä, kun ruudulle ilmestyy eläin.</p>"+
-                       "<p>Häirintätehtävän jälkeen mieleenpainettu sarja kirjoitetaan ruudukkoon vapaassa järjestyksessä.</p>"+
-                       '<p>Kun koko sarja on kirjoitettu kosketa "Valmis"-painiketta, jolloin näkyviin tulee oikeiden vastauksien määrä.</p>'+
-                       '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
+                       "<p>Tämän jälkeen ruudulle ilmestyy häirintätehtävä. Tehtävänä on koskettaa Löytyi-näppäintä aina, kun ruudulle ilmestyy mikä tahansa eläin.</p>"+
+                       "<p>Häirintätehtävän jälkeen kirjoita alussa kuulemasi sanat tekstikenttään vapaassa järjestyksessä.</p>"+
+                       '<p>Kun kaikki sanat on kirjoitettu, kosketa Valmis -painiketta. Näkyvin tulee oikeiden vastausten määrä.</p>'+
+                       '<p>Voit keskeyttää tehtävän koskettamalla ”Lopeta”.</p>',
         "video"      : "http://www.youtube.com/embed/tIflUnbM5-c",
         'coverImage' : './img/aud.png'
     },
@@ -94,9 +91,9 @@ var games = [
                        '<p class="lvl-box lvl-med hidden">Taso II: 14 etsittävää esinettä.</p>' +
                        '<p class="lvl-box lvl-hard hidden">Taso III: 20 etsittävää esinettä.</p></div>' +
 
-                       "<p>Ruudulla näkyy esineiden kuvia. Tehtävänä on oppia tunnistamaan nämä muiden joukosta.</p>"+
-                       "<p>Mieleenpainamisen jälkeen ruudulle ilmestyy aiemmin esitetyt kuvat ja joukko muita kuvia. Tehtävänä on tunnistaa aiemmin esitetyt kuvat. Tunnistaminen osoitetaan koskettamalla kuvaa</p>"+
-                       '<p>Kosketa “Valmis”, jonka jälkeen kone näyttää oikeat vastaukset vihreällä ja puuttuvat oranssilla. Jos muistit kaikki kuvat tehtävä loppuu. Mikäli et muistanut kaikkia, tehtävä jatkuu kunnes muistat kaikki, kuitenkin korkeintaan kymmenen kierrosta.</p>',
+                       "<p>Ruudulla näkyy esineiden kuvia. Paina esineet mieleesi. Tehtävänä on oppia tunnistamaan nämä muiden joukosta.</p>"+
+                       "<p>Mieleenpainamisen jälkeen ruudulle ilmestyy aiemmin esitetyt kuvat ja lisäksi muita kuvia. Merkitse kuvia koskettamalla kaikki tehtävän alussa esitetyt esineet.</p>"+
+                       '<p>Kun kosketat ”Valmis”, kone näyttää oikeat vastaukset vihreällä ja puuttuvat esineet oranssilla. Tehtävä jatkuu, kunnes muistat kaikki alussa näytetyt esineet.</p>',
         "video"      : "http://www.youtube.com/embed/vtMItgiYbfs",
         "coverImage" : "./img/kim.png"
     },
@@ -108,10 +105,10 @@ var games = [
                        '<p class="lvl-box lvl-med hidden">Taso II: Sanan pituus 4 kirjainta.</p>' +
                        '<p class="lvl-box lvl-hard hidden">Taso III: Sanan pituus 5 kirjainta.</p></div>' +
 
-                       "<p>Kuvaruudulla näkyy tyhjä tekstikenttä. Tehtävänä on päätellä koneen valitsema salasana, joka on perusmuodossa oleva substantiivi eli nimisana.</p>"+
-                       '<p>Aloita tehtävä koskettamalla sormella tekstikenttään, jolloin näppäimistö tulee näkyviin. Kenttään kirjoitetaan mikä tahansa määritellyn pituinen sana ja painetaan "Valmis".</p>'+
-                       "<p>Kone kirjoittaa sanan ruudulle ja ilmoittaa kuinka monta sanan kirjaimista on oikeita ja oikealla paikalla (musta ympyrä) ja kuinka monta sanan kirjaimista on oikeita, mutta väärällä paikalla (valkoinen ympyrä).</p>"+
-                       "<p>Yritä päätellä salasana koneen antamien vihjeiden avulla.</p>"+
+                       "<p>Yritä päätellä koneen valitsema salasana.</p>" +
+                       "<p>Aloita tehtävä koskettamalla tekstikenttää. Kirjoita siihen mikä tahansa määritellyn pituinen sana ja paina ”Valmis”.</p>"+
+                       '<p>Kone ilmoittaa, kuinka monta kirjoittamasi sanan kirjaimista on oikeita ja oikealla paikalla (musta ympyrä) ja kuinka monta on oikeita, mutta väärällä paikalla (valkoinen ympyrä).</p>'+
+                       "<p>Jatka salasanan päättelyä koneen antamien vihjeiden avulla. Salasana säilyy samana kunnes keksit sen.</p>"+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/CaLt6nolbZc",
         "coverImage" : "./img/password.png"
@@ -146,8 +143,8 @@ var games = [
 
                        "<p>Ruudulla näkyy kaksi neliön muotoista aluetta. Vasemmanpuoleinen neliö on mallikuvio, joka on koottu alareunassa olevista pienistä neliöistä.</p>"+
                        "<p>Tehtävänä on koota oikeanpuolimmainen neliö mallikuvion mukaiseksi.</p>"+
-                       "<p>Kokoaminen tapahtuu koskettamalla ensin ruudun alareunassa näkyvää pientä neliötä ja sen jälkeen vastaavaa kohtaa koottavassa ruudukossa</p>"+
-                       '<p>Kosketa “Valmis”. Mikäli kuviossa on virheellisiä tai puuttuvia osia näkyvät ne punaisella X:lla. merkittynä.</p>'+
+                       "<p>Kokoaminen tapahtuu koskettamalla ensin ruudun alareunassa näkyvää pientä neliötä ja sen jälkeen vastaavaa kohtaa koottavassa ruudukossa.</p>"+
+                       '<p>Kosketa “Valmis”. Mikäli kuviossa on virheellisiä tai puuttuvia osia, näkyvät ne punaisella X:lla merkittynä.</p>'+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"      : "http://www.youtube.com/embed/Rfn_88d_HJc",
         "coverImage" : "./img/konstruointi.png"
