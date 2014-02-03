@@ -19,7 +19,7 @@ var games = [
                        "<p>Väärän valinnan voit poistaa koskettamalla kuvaa uudestaan.</p>" +
                        '<p>Näet tuloksesi koskettamalla "Valmis".</p>' +
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
-        "video"      : "http://www.youtube.com/embed/LD0-dkNqlG4",
+        "video"      : "//www.youtube.com/embed/lvhjID3nVbM",
         "coverImage" : "./img/fish.png"
     },
 	{
@@ -35,7 +35,7 @@ var games = [
                        "<p>Mieleenpainamisen jälkeen näytetään joukko kysymyksiä ja niiden vastausvaihtoehtoja. Vastaa kysymykseen koskettamalla mielestäsi oikeaa vastausta.</p>" +
                        '<p>Kosketa "Tarkista", jolloin oikeat vastaukset näytetään vihreällä ja väärät punaisella.</p>'+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
-        "video"     :  "http://www.youtube.com/embed/uiNBcLuSUpY",
+        "video"      : "//www.youtube.com/embed/Tb58VLIdkPQ",
         "coverImage" : "./img/txt.png"
     },
 	{
@@ -43,13 +43,13 @@ var games = [
         "title"      : "Tunnista sanat",
         "guide"      : '<div class="well well-info">'+
                        '<p class="lvl-box lvl-easy hidden">Taso I: Kirjaimet siirtyvät 1,5 sekunnin välein.</p>' +
-                        '<p class="lvl-box lvl-med hidden">Taso II: Kirjaimet siirtyvät 1 sekunnin välein.</p>' +
-                        '<p class="lvl-box lvl-hard hidden">Taso III: Kirjaimet siirtyvät 0,5 sekunnin välein.</p></div>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: Kirjaimet siirtyvät 1 sekunnin välein.</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: Kirjaimet siirtyvät 0,5 sekunnin välein.</p></div>' +
 
                        "<p>Ruudulla näkyy liikkuva kirjainrivi. Keskellä on punaisella merkitty alue.</p>" +
                        '<p>Tehtävänä on havaita perusmuodossa oleva sana. Valinta osoitetaan koskettamalla Löytyi  -painiketta. Sanan on oltava kokonaan punaisella alueella.</p>'+
                        '<p>Tehtävä kestää neljä minuuttia. Voit keskeyttää tehtävän koskettamalla "Lopeta".</p>',
-        "video"      : "http://www.youtube.com/embed/zC7bELbsNiQ",
+        "video"      : "//www.youtube.com/embed/oqHWiE8KCEE",
         'coverImage' : './img/sanat.png'
     },
 	{
@@ -64,7 +64,7 @@ var games = [
                        "<p>Kun sarja on esitetty, numerot peitetään. Kone kysyy numeroita. Kulloinkin kysytyn numeron paikka on merkitty punaisella kehyksellä. Valitse oikea numero koskettamalla sitä alarivistä.</p>"+
                        '<p>Kosketa "Tarkista", jolloin näet oikeat vastaukset.</p>'+
                        '<p>Muistettavia numerosarjoja tulee viisi peräkkäin. Voit keskeyttää tehtävän koskettamalla "Lopeta".</p>',
-        "video"      : "http://www.youtube.com/embed/u5Fl1HO1YMU",
+        "video"      : "//www.youtube.com/embed/XQd-neae2Io",
         "coverImage" : "./img/vis.png"
     },
 	{
@@ -80,7 +80,7 @@ var games = [
                        "<p>Häirintätehtävän jälkeen kirjoita alussa kuulemasi sanat tekstikenttään vapaassa järjestyksessä.</p>"+
                        '<p>Kun kaikki sanat on kirjoitettu, kosketa Valmis -painiketta. Näkyvin tulee oikeiden vastausten määrä.</p>'+
                        '<p>Voit keskeyttää tehtävän koskettamalla ”Lopeta”.</p>',
-        "video"      : "http://www.youtube.com/embed/tIflUnbM5-c",
+        "video"      : "//www.youtube.com/embed/RvY3qzzyHp0",
         'coverImage' : './img/aud.png'
     },
 	{
@@ -94,14 +94,14 @@ var games = [
                        "<p>Ruudulla näkyy esineiden kuvia. Paina esineet mieleesi. Tehtävänä on oppia tunnistamaan nämä muiden joukosta.</p>"+
                        "<p>Mieleenpainamisen jälkeen ruudulle ilmestyy aiemmin esitetyt kuvat ja lisäksi muita kuvia. Merkitse kuvia koskettamalla kaikki tehtävän alussa esitetyt esineet.</p>"+
                        '<p>Kun kosketat ”Valmis”, kone näyttää oikeat vastaukset vihreällä ja puuttuvat esineet oranssilla. Tehtävä jatkuu, kunnes muistat kaikki alussa näytetyt esineet.</p>',
-        "video"      : "http://www.youtube.com/embed/vtMItgiYbfs",
+        "video"      : "//www.youtube.com/embed/1iJVzK4PA74",
         "coverImage" : "./img/kim.png"
     },
 	{
         "gameId"     : 7,
         "title"      : "Päättele salasana",
-        "guide"      :  '<div class="well well-info">'+
-                        '<p class="lvl-box lvl-easy hidden">Taso I: Sanan pituus 3 kirjainta.</p>' +
+        "guide"      : '<div class="well well-info">'+
+                       '<p class="lvl-box lvl-easy hidden">Taso I: Sanan pituus 3 kirjainta.</p>' +
                        '<p class="lvl-box lvl-med hidden">Taso II: Sanan pituus 4 kirjainta.</p>' +
                        '<p class="lvl-box lvl-hard hidden">Taso III: Sanan pituus 5 kirjainta.</p></div>' +
 
@@ -110,7 +110,7 @@ var games = [
                        '<p>Kone ilmoittaa, kuinka monta kirjoittamasi sanan kirjaimista on oikeita ja oikealla paikalla (musta ympyrä) ja kuinka monta on oikeita, mutta väärällä paikalla (valkoinen ympyrä).</p>'+
                        "<p>Jatka salasanan päättelyä koneen antamien vihjeiden avulla. Salasana säilyy samana kunnes keksit sen.</p>"+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
-        "video"      : "http://www.youtube.com/embed/CaLt6nolbZc",
+        "video"      : "//www.youtube.com/embed/CaLt6nolbZc",
         "coverImage" : "./img/password.png"
     },
 	{
@@ -130,7 +130,7 @@ var games = [
                        '<p>Tehtävänä on täyttää ruudukon vapaat paikat hedelmillä tai numeroilla 1-6 siten, että kukin hedelmä tai numero voi esiintyä vain kerran jokaisen pääruudukon pysty- tai vaakarivissä sekä jokaisessa pienruudukossa. Osa ruuduista on valmiiksi täytetty, ne on merkitty harmaalla pohjavärillä.</p>' +
                        '<p>Ruudukon täyttäminen tapahtuu koskettamalla haluttua tyhjää ruutua, jolloin sen ympärille muodostuu sininen kehä. Sivulla olevasta valikosta valitaan koskettamalla haluttu numero/hedelmä.</p>' +
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
-		"video"		: "http://www.youtube.com/embed/-guymczoXGc",
+		    "video"		   : "//www.youtube.com/embed/pAEv88Pkzqw",
         'coverImage' : "./img/sudoku.png"
     },
 	{
@@ -146,7 +146,7 @@ var games = [
                        "<p>Kokoaminen tapahtuu koskettamalla ensin ruudun alareunassa näkyvää pientä neliötä ja sen jälkeen vastaavaa kohtaa koottavassa ruudukossa.</p>"+
                        '<p>Kosketa “Valmis”. Mikäli kuviossa on virheellisiä tai puuttuvia osia, näkyvät ne punaisella X:lla merkittynä.</p>'+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
-        "video"      : "http://www.youtube.com/embed/Rfn_88d_HJc",
+        "video"      : "//www.youtube.com/embed/KhAety3hbk4",
         "coverImage" : "./img/konstruointi.png"
     },
 	{
@@ -156,11 +156,12 @@ var games = [
                        '<p class="lvl-box lvl-easy hidden">Taso I: Helppo vastustaja.</p>' +
                        '<p class="lvl-box lvl-med hidden">Taso II: Keskinkertainen vastustaja.</p>' +
                        '<p class="lvl-box lvl-hard hidden">Taso III: Taitava vastustaja.</p></div>' +
+                       
                        "<p>Kuvaruudulla näkyy tyhjä ruudukko.<br/>Tehtävässä kone pelaa ihmistä vastaan.</p>"+
                        '<p>Ruudukkoon asetetaan vuorotellen "risti" ja "nolla" (kone asettaa nollan, ihminen ristin). Tavoitteena on saada viisi peräkkäistä ristiä tai nollaa pysty-, vaaka- tai vinoruudukkoon.</p>'+
                        "<p>Valinta osoitetaan koskettamalla haluttua ruutua.</p>"+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta"</p>',
-		"video"		: "http://www.youtube.com/embed/NMbq0-Abvdo",
+		    "video"		   : "//www.youtube.com/embed/zuK3eFV0rbA",
         "coverImage" : "./img/ristinolla.png"
     }
 ];
