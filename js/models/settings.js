@@ -7,11 +7,10 @@ var Settings = Backbone.Model.extend({
 		playerRole: 'Kuntoutuja',
         category: 'kalat',
         textCategory: 'eläimet',
-		backendUrl: 'https://pienipiiri.fi',
+		//backendUrl: 'https://pienipiiri.fi',
 		score: {},
 		gameInstanceId: null,
 		showFeedbackModal: true,
-
         startedPlaying: null, //on going session started time (date obj)
         playedTimeMS: null, //previous session(s) time from backend
         playedTime: null, //string e.g. "1h 33min"
@@ -103,8 +102,8 @@ var Settings = Backbone.Model.extend({
             "valtiot" :     [   "SUOMI","RUOTSI","VIETNAM","TANSKA","VIRO","LATVIA","SAKSA","ZAIRE","RANSKA","BELGIA",
                                 "KOLUMBIA","EGYPTI","BOLIVIA","VENÄJÄ","SUDAN","LIBANON","INTIA","MEKSIKO","JAPANI","KROATIA"
             ]
-
         },
+
         constructions: {
                  "2x2" : [{ 0:  [[1,2],[1,2]] },
                           { 1:  [[2,1],[2,1]] },
@@ -128,9 +127,6 @@ var Settings = Backbone.Model.extend({
                           { 19: [[5,5],[9,8]] },
                           { 20: [[6,6],[7,0]] }
              ],
-
-
-
              "3x3" :   [ { 0:  [ [6,6,6],
                                  [5,4,5],
                                  [6,6,6] ] },
@@ -194,7 +190,6 @@ var Settings = Backbone.Model.extend({
                          { 20: [ [4,2,3],
                                  [1,1,0],
                                  [7,0,2] ] }
-
              ]
         },
 

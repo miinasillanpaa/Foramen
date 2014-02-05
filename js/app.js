@@ -359,11 +359,13 @@ function savePlayedTime (){
 }
 
 function getPlayedTime (){
+
     $.ajax({
       url: 'http://stage.pienipiiri.fi/frGetTotalPlayingTime?userId='+Settings.get('currentUserId'),
       type: 'GET'
     }).done(function(data){
       var obj = $.parseJSON(data);
       Settings.set({ 'playedTimeMS': obj.duration })
+      console.log(obj);
   });
 };

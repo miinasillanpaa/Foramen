@@ -52,7 +52,7 @@ var ResultsView = Backbone.View.extend({
 				var len;
 				var elem = $(".record-well");
 				if ( data.length !== 0 ) {
-
+					//todo compare results from backend and new result to actully show new records.
 					$(".record-box").addClass('alert-info').text("Hyvä suoritus!");
 					len = Object.keys(data).length;
 					for(i=0; i<len; i++) {

@@ -14,7 +14,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
         if( diff === 'easy' ){
             moveTime = 1500;
         }else if( diff === 'medium' ){
-            moveTime = 1001;
+            moveTime = 1000;
         }else{
             moveTime = 500;
         }
@@ -22,9 +22,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
         var mover = setInterval(this.scrollText, moveTime);
 
         this.knobify();
-
         var text = this.stringMaker();
-
         var textString = Settings.get('textString');
 
         var startPos = textString.length - 17;
@@ -71,8 +69,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
                         }
                     ]
                 };
-                Settings.set({ 
-                    scrollerResults: {  
+                Settings.set({ scrollerResults: {  
                         corrects:0,
                         wrongs:0,
                         selectorPresses:0
@@ -88,7 +85,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         }, exerciseTime );
 
-
         var variables = {
             text : text,
             textCategory : Settings.get('textCategory')
@@ -96,7 +92,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         var template = _.template( $(this.template).html(), variables );
         this.$el.html(template);
-
 
         $('.quit').click(function() {
            window.clearTimeout(timer);
@@ -108,7 +103,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
             "max": 240,
             "min": 0,
             "readOnly": true
-
         });
 
         return this;
@@ -123,13 +117,14 @@ var SanojenTunnistaminen = Backbone.View.extend({
     quitGame: function () {
         window.saveInterruptedGame(Settings.get('gameInstanceId'));
         this.undelegateEvents();
+        this.unbind();
         router.navigate('/', true);
     },
 
     knobify: function () {
-
         var knobTimer = setInterval(countdown, 1000);
-        var totMin, totSec;
+        var totMin;
+        var totSec;
         var timeLeft = 240;
         function countdown() {
             if (timeLeft == 0){
@@ -150,15 +145,14 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
                 $('.quit').click( function () {
                     window.clearInterval(knobTimer);
-                })
+                });
             }
-        }
+        };
     },
 
     scrollText: function () {
         var text = Settings.get('textString');
         var pos = Settings.get('startPos');
-
         pos--;
         Settings.set({ startPos : pos });
 
@@ -171,11 +165,13 @@ var SanojenTunnistaminen = Backbone.View.extend({
         var text = "";
         var textString = "";
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ";
-        var amount, 
-            chars, 
-            firstRandPos;
+        var amount; 
+        var chars;
+        var firstRandPos;
         var randomDistance = [];
-        var to, from, randomDist;
+        var to;
+        var from;
+        var randomDist;
 
         if( Settings.get('difficulty') === 'easy'){
             amount = 10;
@@ -186,7 +182,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
                 to = 5;
                 from = 15;
                 randomDist = Math.floor(Math.random()*(to-from+1)+from);
-
                 randomDistance.push(randomDist);
             }
 
@@ -199,7 +194,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
                 to = 5;
                 from = 15;
                 randomDist = Math.floor(Math.random()*(to-from+1)+from);
-
                 randomDistance.push(randomDist);
             }
 
@@ -212,7 +206,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
                  to = 13;
                  from = 23;
                  randomDist = Math.floor(Math.random()*(to-from+1)+from);
-
                  randomDistance.push(randomDist);
             }
         };
@@ -335,7 +328,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
             buttonClickedInfoElem.show().html('Väärin meni').removeClass('success').addClass('danger');
         }
         
-
         buttonClickedInfoElem.fadeOut( 4000, function(){});
 
         _results.selectorPresses = selectorPresses;
