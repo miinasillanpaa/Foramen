@@ -19,7 +19,7 @@ var games = [
                        "<p>Väärän valinnan voit poistaa koskettamalla kuvaa uudestaan.</p>" +
                        '<p>Näet tuloksesi koskettamalla "Valmis".</p>' +
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
-        "video"      : "//www.youtube.com/embed/lvhjID3nVbM",
+        "video"      : "//www.youtube.com/embed/Vxcs2E_B4fc",
         "coverImage" : "./img/fish.png"
     },
 	{
