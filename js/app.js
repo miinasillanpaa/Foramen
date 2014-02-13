@@ -87,9 +87,9 @@ var games = [
         "gameId"     : 6,
         "title"      : "Muista näkemäsi esineet",
         "guide"      : '<div class="well well-info">'+
-                       '<p class="lvl-box lvl-easy hidden">Taso I: 8 etsittävää esinettä.</p>' +
-                       '<p class="lvl-box lvl-med hidden">Taso II: 14 etsittävää esinettä.</p>' +
-                       '<p class="lvl-box lvl-hard hidden">Taso III: 20 etsittävää esinettä.</p></div>' +
+                       '<p class="lvl-box lvl-easy hidden">Taso I: 5 etsittävää esinettä.</p>' +
+                       '<p class="lvl-box lvl-med hidden">Taso II: 8 etsittävää esinettä.</p>' +
+                       '<p class="lvl-box lvl-hard hidden">Taso III: 14 etsittävää esinettä.</p></div>' +
 
                        "<p>Ruudulla näkyy esineiden kuvia. Paina esineet mieleesi. Tehtävänä on oppia tunnistamaan nämä muiden joukosta.</p>"+
                        "<p>Mieleenpainamisen jälkeen ruudulle ilmestyy aiemmin esitetyt kuvat ja lisäksi muita kuvia. Merkitse kuvia koskettamalla kaikki tehtävän alussa esitetyt esineet.</p>"+
