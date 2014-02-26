@@ -43,34 +43,145 @@ var ResultsView = Backbone.View.extend({
 		if( !this.options.fromPlayedGameView ) {
 			window.saveGameEnd();
 		}
-
+		var self = this;
 		var userId = Settings.get('currentUserId');
 		var gameId = this.model.get('gameId');
 
 		$.get( 'http://stage.pienipiiri.fi/frGetScores?userId='+userId+'&difficultyLevel='+difficultyLevel+'&gameId='+gameId,
 			function(data) {
+				console.log(data);
+				console.log(results.data);
 				var len;
 				var elem = $(".record-well");
-				if ( data.length !== 0 ) {
-					//todo compare results from backend and new result to actully show new records.
-					$(".record-box").addClass('alert-info').text("Hyvä suoritus!");
-					len = Object.keys(data).length;
-					for(i=0; i<len; i++) {
-						if( data[i] !== null) {
-							elem.find(".results.pull-left").append( '<p>'+ data[i].name +'</p>' );
-							elem.find(".results.align-right").append( '<p>'+ data[i].value +'</p>' );
-						}
-					}
-				}else{
+				var record = false;
+				//override record-box classes if record was made
+				$(".record-box").addClass('alert-info').text("Hyvä suoritus!");
+				if ( data.length !== 0 ) { //something was gotten from backend
+					//actually compare results from backend and new result to actully show new records.
+					
+					var currGameCorrects;
+					var currGameTime;
+					var oldRecordCorrects;
+					var oldRecordTime;
 
-					$(".record-box").addClass('alert-success').text("Paransit omaa ennätystäsi!");
-					len = Object.keys(results.data).length;
-					for(i=0; i<len; i++) {
-						if( results.data[i].name !== "" ) {
-							elem.find(".results.pull-left").append( '<p>'+ results.data[i].name +'</p>' );
-							elem.find(".results.align-right").append( '<p>'+ results.data[i].value +'</p>' );
+					//etsi kuvat
+					if(gameId === 1){
+
+						currGameCorrects = parseInt(results.data[2].value.replace(/\D/g,''));
+						currGameTime = parseInt(results.data[0].value.replace(/\D/g,''));
+						oldRecordCorrects = parseInt(data[2].value.replace(/\D/g,''));
+						oldRecordTime = parseInt(data[0].value.replace(/\D/g,''));
+
+						if( currGameCorrects >= oldRecordCorrects && currGameTime <= oldRecordTime ){
+							record = true;
+							self.displayRecord(results, true);
 						}
+					
+					//muista viesti
+					}else if(gameId === 2){
+
+						currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
+						oldRecordCorrects = parseInt(data[0].value.replace(/\D/g,''));
+
+						if(currGameCorrects >= oldRecordTime ){	
+							if(Settings.get('difficulty') === "hard"){
+
+								currGameTime = parseInt(results.data[2].value.replace(/\D/g,''));
+								oldRecordTime = parseInt(data[2].value.replace(/\D/g,''));
+
+								if(currGameTime >= oldRecordTime){
+									record = true;
+									self.displayRecord(results, true);	
+								}
+
+							}else{
+								record = true;
+								self.displayRecord(results, true);	
+							}
+						}
+
+					//tunnista sanat	
+					}else if(gameId === 3){
+
+						currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
+						oldRecordCorrects = parseInt(data[0].value.replace(/\D/g,''));
+
+						if(currGameCorrects >= oldRecordCorrects){
+							record = true;
+							self.displayRecord(results, true);
+						}
+
+					//muista näkemäsi numerosarja
+					}else if(gameId === 4){
+
+						currGameCorrects = parseInt(results.data[2].value);
+						oldRecordCorrects = parseInt(data[2].value);
+						console.log(currGameCorrects +" "+ oldRecordCorrects);
+						if(currGameCorrects >= oldRecordCorrects){
+							record = true;
+							self.displayRecord(results, true);
+						}
+
+					//muista kuulemasi sanat
+					}else if(gameId === 5){
+						//äänet
+						currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
+						oldRecordCorrects = parseInt(data[0].value.replace(/\D/g,''));
+						console.log('sounds: '+currGameCorrects +" vs "+oldRecordCorrects);
+						//häirintä
+						var currGameDistractions = parseInt(results.data[2].value.substr(0,1));
+						var oldRecordDistractions = parseInt(data[2].value.substr(0,1));
+						console.log('distracts: '+ currGameDistractions + " vs " + oldRecordDistractions);
+
+						//should sounds be weighted when deciding highest score?
+						if(currGameCorrects >= oldRecordCorrects && currGameDistractions >= oldRecordDistractions){
+							record = true;
+							self.displayRecord(results, true);
+						}
+
+					//muista näkemäsi esineet
+					}else if(gameId === 6){
+						//nothing is saved to backend as a highscore (?)
+						//compare rounds if something
+
+					//päättele salasana	
+					}else if(gameId === 7){
+						//nothing is saved to backedn but this is easy to implement
+						//compare "yritteitä"
+
+					//rakenna kuvio mallista
+					}else if(gameId === 9){
+						var newDoneCorrectly = results.data[0].value;
+						var oldRecordDoneCorrectly = data[0].value;
+
+						currGameTime = parseInt(results.data[1].value.replace(/\D/g,''));
+						oldRecordTime = parseInt(data[1].value.replace(/\D/g,''));
+
+						console.log('time: '+currGameTime+" "+oldRecordTime);
+
+						if(oldRecordDoneCorrectly === "Oikein" && newDoneCorrectly === "Oikein"){
+							if(currGameTime <= oldRecordTime){
+								record = true;
+								self.displayRecord(results, true);
+							}
+						
+						}
+
+
+					//jätkänshakki
+					}else if(gameId === 10){
+						//old stuff at backend, should compare first win and then used moves
 					}
+
+					//not a new record
+					if(!record){
+						self.displayRecord(data, false)
+					}
+					
+				}else{
+					//nothing yet in backend, display as a record - not sure if this thing ever goes here
+					console.log('nothing yet in backend');
+					self.displayRecord(results, true);	
 				}
 			},'json'
 		);
@@ -98,6 +209,33 @@ var ResultsView = Backbone.View.extend({
         'click .screen' : 'viewSnapshot',
         'click .new-game' : 'startNewGame',
 		'click .btn-feedback' : 'showModal'
+    },
+
+    displayRecord: function (results, newRecord) {
+    	console.log(results);
+    	var len;
+    	var obj;
+    	console.log(newRecord);
+    	if(newRecord){
+    		$(".record-box").removeClass('alert-info').addClass('alert-success').text("Paransit omaa ennätystäsi!");
+    		obj = results.data;
+    		len = Object.keys(results.data).length;
+
+    	}else{
+    		obj = results;
+    		len = Object.keys(results).length;
+    	}
+    	console.log(obj);
+    	
+    	console.log(len);
+		var elem = $(".record-well");
+
+		for(var i=0; i<len; i++) {
+			if( obj[i].name !== "" ) {
+				elem.find(".results.pull-left").append( '<p>'+ obj[i].name +'</p>' );
+				elem.find(".results.align-right").append( '<p>'+ obj[i].value +'</p>' );
+			}
+		}	
     },
 
     viewSnapshot: function () {
