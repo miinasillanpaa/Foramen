@@ -48,6 +48,10 @@ var SanojenTunnistaminen = Backbone.View.extend({
                     'difficulty' : Settings.get('difficulty'),
                     'data' : [
                         {
+                            'name' : 'Kuva-aihe',
+                            'value' : Settings.get('textCategory').charAt(0).toUpperCase() + Settings.get('textCategory').slice(1).toLowerCase()
+                        },
+                        {
                             'name' : 'Kohteet:',
                             'value' : amount + " kpl"
                         },

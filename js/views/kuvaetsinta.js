@@ -290,6 +290,10 @@ var KuvaEtsinta = Backbone.View.extend({
                     'value' : timeSpent
                  },
                  {
+                    'name' : 'Kuva-aihe:',
+                    'value' : Settings.get('category').charAt(0).toUpperCase() + Settings.get('category').slice(1).toLowerCase()
+                 },
+                 {
                      'name' : 'Kohteiden määrä:',
                      'value' : allCorrects+' kpl'
                  },
