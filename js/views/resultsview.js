@@ -128,26 +128,26 @@ var ResultsView = Backbone.View.extend({
 						currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
 						oldRecordCorrects = parseInt(data[0].value.replace(/\D/g,''));
 						console.log('sounds: '+currGameCorrects +" vs "+oldRecordCorrects);
-						//häirintä
-						var currGameDistractions = parseInt(results.data[2].value.substr(0,1));
-						var oldRecordDistractions = parseInt(data[2].value.substr(0,1));
-						console.log('distracts: '+ currGameDistractions + " vs " + oldRecordDistractions);
-
-						//should sounds be weighted when deciding highest score?
-						if(currGameCorrects >= oldRecordCorrects && currGameDistractions >= oldRecordDistractions){
+						
+						if(currGameCorrects >= oldRecordCorrects){
 							record = true;
 							self.displayRecord(results, true);
 						}
 
 					//muista näkemäsi esineet
 					}else if(gameId === 6){
-						//nothing is saved to backend as a highscore (?)
-						//compare rounds if something
+					//nothing is saved to backend as a highscore (?)
+					//compare rounds if something
 
 					//päättele salasana	
 					}else if(gameId === 7){
-						//nothing is saved to backedn but this is easy to implement
-						//compare "yritteitä"
+					//nothing is saved to backedn but this is easy to implement
+					//compare "yritteitä"
+
+					//sudoku
+					}else if(gameId === 8){
+					//compare time
+
 
 					//rakenna kuvio mallista
 					}else if(gameId === 9){
@@ -170,7 +170,7 @@ var ResultsView = Backbone.View.extend({
 
 					//jätkänshakki
 					}else if(gameId === 10){
-						//old stuff at backend, should compare first win and then used moves
+						//old stuff at backend, should compare first win and then used moves and then time
 					}
 
 					//not a new record
@@ -263,8 +263,8 @@ var ResultsView = Backbone.View.extend({
     startNewGame: function () {
 		this.undelegateEvents();
 		App.currentGameView.undelegateEvents();
-
-        Settings.set({results:[]});
+		var results = new Array();
+        Settings.set({ results:results });
 
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId + '/play', {trigger: true});
