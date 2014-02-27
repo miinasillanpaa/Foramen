@@ -54,10 +54,10 @@ var ResultsView = Backbone.View.extend({
 				var len;
 				var elem = $(".record-well");
 				var record = false;
+
 				//override record-box classes if record was made
 				$(".record-box").addClass('alert-info').text("Hyvä suoritus!");
 				if ( data.length !== 0 ) { //something was gotten from backend
-					//actually compare results from backend and new result to actully show new records.
 					
 					var currGameCorrects;
 					var currGameTime;
@@ -83,7 +83,7 @@ var ResultsView = Backbone.View.extend({
 						currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
 						oldRecordCorrects = parseInt(data[0].value.replace(/\D/g,''));
 
-						if(currGameCorrects >= oldRecordTime ){	
+						if(currGameCorrects >= oldRecordCorrects ){	
 							if(Settings.get('difficulty') === "hard"){
 
 								currGameTime = parseInt(results.data[2].value.replace(/\D/g,''));
@@ -136,18 +136,30 @@ var ResultsView = Backbone.View.extend({
 
 					//muista näkemäsi esineet
 					}else if(gameId === 6){
-					//nothing is saved to backend as a highscore (?)
-					//compare rounds if something
+						//nothing is saved to backend as a highscore (?)
+						//comapre rounds
+						var curGame = results.data;
+						console.log(curGame);
+
+						var resultGame = data;
+						console.log(resultGame);
 
 					//päättele salasana	
 					}else if(gameId === 7){
-					//nothing is saved to backedn but this is easy to implement
-					//compare "yritteitä"
+
+						//nothing is saved to backedn but this is easy to implement
+						//compare "yritteitä"
 
 					//sudoku
 					}else if(gameId === 8){
-					//compare time
+						//nothing from backend
+						currGameTime = parseInt(results.data[0].value.replace(/\D/g,''));
+						oldRecordTime = parseInt(data[0].value.replace(/\D/g,''));
 
+						if(currGameTime >= oldRecordTime){
+							record = true;
+							self.displayRecord(results, true);
+						}
 
 					//rakenna kuvio mallista
 					}else if(gameId === 9){
@@ -157,8 +169,6 @@ var ResultsView = Backbone.View.extend({
 						currGameTime = parseInt(results.data[1].value.replace(/\D/g,''));
 						oldRecordTime = parseInt(data[1].value.replace(/\D/g,''));
 
-						console.log('time: '+currGameTime+" "+oldRecordTime);
-
 						if(oldRecordDoneCorrectly === "Oikein" && newDoneCorrectly === "Oikein"){
 							if(currGameTime <= oldRecordTime){
 								record = true;
@@ -167,10 +177,29 @@ var ResultsView = Backbone.View.extend({
 						
 						}
 
-
 					//jätkänshakki
 					}else if(gameId === 10){
-						//old stuff at backend, should compare first win and then used moves and then time
+						currGameTime = parseInt(results.data[0].value.replace(/\D/g,''));
+						var curMoves = parseInt(results.data[1].value);
+						var curWins = parseInt(results.data[2].value.substr(0,1));
+
+						oldRecordTime = parseInt(data[0].value.replace(/\D/g,''));
+						var recordMoves = parseInt(data[1].value);
+						var recordWins = parseInt(data[2].value.substr(0,1));
+
+						if(curWins === 1){
+							if(curMoves <= recordMoves){
+								if(currGameTime >= oldRecordTime){
+									console.log('record with victory & less or equal moves & less or equal time spent');
+									record = true;
+									self.displayRecord(results, true);
+								}else{
+									console.log('record with victory & less or equal moves');
+									record = true;
+									self.displayRecord(results, true);
+								}
+							}	
+						}
 					}
 
 					//not a new record
@@ -180,7 +209,7 @@ var ResultsView = Backbone.View.extend({
 					
 				}else{
 					//nothing yet in backend, display as a record - not sure if this thing ever goes here
-					console.log('nothing yet in backend');
+					console.log('nothing yet in backend, display previous game as record');
 					self.displayRecord(results, true);	
 				}
 			},'json'
@@ -212,22 +241,18 @@ var ResultsView = Backbone.View.extend({
     },
 
     displayRecord: function (results, newRecord) {
-    	console.log(results);
     	var len;
     	var obj;
-    	console.log(newRecord);
+
     	if(newRecord){
     		$(".record-box").removeClass('alert-info').addClass('alert-success').text("Paransit omaa ennätystäsi!");
     		obj = results.data;
     		len = Object.keys(results.data).length;
-
     	}else{
     		obj = results;
     		len = Object.keys(results).length;
     	}
-    	console.log(obj);
-    	
-    	console.log(len);
+
 		var elem = $(".record-well");
 
 		for(var i=0; i<len; i++) {
