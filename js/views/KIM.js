@@ -37,8 +37,7 @@ var KIM = Backbone.View.extend({
             self.knobify();
             timer = setTimeout(
                 function() {
-                    if( $('.targets') ){
-                        console.log('removing');
+                    if( $('.targets').length > 0 ){
                         $('.targets').remove();
                     }
                     //$('.targets').addClass('hidden');
