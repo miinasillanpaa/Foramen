@@ -355,6 +355,10 @@ var Sudoku = Backbone.View.extend({
           "value" : timeSpent
         },
         {
+          "name" : "Täyttö:",
+          "value" : Settings.get("sudokuCategory").charAt(0).toUpperCase() + Settings.get("sudokuCategory").slice(1).toLowerCase()
+        },
+        {
           "name" : "",
           "value" : "<button class=\"btn btn-primary btn-block btn-bolder screen\">Näytä kuvaruutu</button>"
         }
