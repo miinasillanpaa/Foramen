@@ -185,7 +185,7 @@ var ResultsView = Backbone.View.extend({
 
 						oldRecordTime = parseInt(data[0].value.replace(/\D/g,''));
 						var recordMoves = parseInt(data[1].value);
-						var recordWins = parseInt(data[2].value.substr(0,1));
+						//var recordWins = parseInt(data[2].value.substr(0,1));
 
 						if(curWins === 1){
 							if(curMoves <= recordMoves){

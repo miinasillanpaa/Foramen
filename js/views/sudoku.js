@@ -344,7 +344,9 @@ var Sudoku = Backbone.View.extend({
     var time = endTime - startTime;
     
     var timeSpent = msToStr( time );
+      
     
+
     var results = {
       "pvm" : pvm,
       "klo" : klo,
@@ -368,6 +370,10 @@ var Sudoku = Backbone.View.extend({
       }
     };
     
+    if(Settings.get('difficulty') === 'joker' && this.numberOfHintsUsed){
+      results.data.splice(2,0, { "name": "Käytetyt vihjeet:", "value": this.numberOfHintsUsed });
+    }
+
     var gameId = this.model.get( "gameId" );
     var view = new ResultsView( { model: this.model, results: results } );
     
