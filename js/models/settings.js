@@ -10,7 +10,7 @@ var Settings = Backbone.Model.extend({
 		//backendUrl: 'https://pienipiiri.fi',
 		score: {},
 		gameInstanceId: null,
-		showFeedbackModal: true,
+		showFeedbackModal: false,
         startedPlaying: null, //on going session started time (date obj)
         playedTimeMS: null, //previous session(s) time from backend
         playedTime: null, //string e.g. "1h 33min"
