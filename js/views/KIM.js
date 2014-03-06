@@ -331,6 +331,10 @@ var KIM = Backbone.View.extend({
                 'difficulty': Settings.get('difficulty'),
                 'data' : [
                     {
+                        'name' : 'Kierrosten määrä:',
+                        'value' : Settings.get('playThruNum')
+                    },
+                    {
                         'name' : 'Kierros 1:',
                         'value' : round1.correct +" / "+round1.tot
                     },

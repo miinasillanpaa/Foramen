@@ -147,12 +147,14 @@ var ResultsView = Backbone.View.extend({
 					//muista näkemäsi esineet
 					}else if(gameId === 6){
 						//nothing is saved to backend as a highscore (?)
-						//comapre rounds
-						var curGame = results.data;
-						console.log(curGame);
+						//comapares rounds
+						currGameCorrects = parseInt(results.data[0].value);
+						oldRecordCorrects = parseInt(data[0].value);
 
-						var resultGame = data;
-						console.log(resultGame);
+						if(currGameCorrects >= oldRecordCorrects){
+							record = true;
+							self.displayRecord(results, true);
+						}
 
 					//päättele salasana	
 					}else if(gameId === 7){
