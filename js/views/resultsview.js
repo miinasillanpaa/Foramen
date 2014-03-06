@@ -67,14 +67,24 @@ var ResultsView = Backbone.View.extend({
 					//etsi kuvat
 					if(gameId === 1){
 
-						currGameCorrects = parseInt(results.data[2].value.replace(/\D/g,''));
+						currGameCorrects = parseInt(results.data[3].value.replace(/\D/g,''));
 						currGameTime = parseInt(results.data[0].value.replace(/\D/g,''));
-						oldRecordCorrects = parseInt(data[2].value.replace(/\D/g,''));
+						oldRecordCorrects = parseInt(data[3].value.replace(/\D/g,''));
 						oldRecordTime = parseInt(data[0].value.replace(/\D/g,''));
 
-						if( currGameCorrects >= oldRecordCorrects && currGameTime <= oldRecordTime ){
+						console.log(currGameCorrects +" vs "+ oldRecordCorrects);
+
+						if( currGameCorrects > oldRecordCorrects ){
+							console.log('record with more corrects');
 							record = true;
 							self.displayRecord(results, true);
+							
+						}else if(currGameCorrects = oldRecordCorrects){
+							if(oldRecordTime < currGameTime){
+								console.log('record with same amout of corrects but better time');
+								record = true;
+								self.displayRecord(results, true);
+							}
 						}
 					
 					//muista viesti
@@ -103,8 +113,8 @@ var ResultsView = Backbone.View.extend({
 					//tunnista sanat	
 					}else if(gameId === 3){
 
-						currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
-						oldRecordCorrects = parseInt(data[0].value.replace(/\D/g,''));
+						currGameCorrects = parseInt(results.data[1].value.replace(/\D/g,''));
+						oldRecordCorrects = parseInt(data[1].value.replace(/\D/g,''));
 
 						if(currGameCorrects >= oldRecordCorrects){
 							record = true;
@@ -185,7 +195,7 @@ var ResultsView = Backbone.View.extend({
 
 						oldRecordTime = parseInt(data[0].value.replace(/\D/g,''));
 						var recordMoves = parseInt(data[1].value);
-						//var recordWins = parseInt(data[2].value.substr(0,1));
+						var recordWins = parseInt(data[2].value.substr(0,1));
 
 						if(curWins === 1){
 							if(curMoves <= recordMoves){
@@ -204,6 +214,7 @@ var ResultsView = Backbone.View.extend({
 
 					//not a new record
 					if(!record){
+						console.log('not a record')
 						self.displayRecord(data, false)
 					}
 					
