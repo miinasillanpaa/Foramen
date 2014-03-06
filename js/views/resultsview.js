@@ -147,7 +147,7 @@ var ResultsView = Backbone.View.extend({
 					//muista näkemäsi esineet
 					}else if(gameId === 6){
 						//nothing is saved to backend as a highscore (?)
-						//comapares rounds
+						//compares rounds
 						currGameCorrects = parseInt(results.data[0].value);
 						oldRecordCorrects = parseInt(data[0].value);
 
@@ -160,7 +160,14 @@ var ResultsView = Backbone.View.extend({
 					}else if(gameId === 7){
 
 						//nothing is saved to backedn but this is easy to implement
-						//compare "yritteitä"
+						//compares "yritteitä"
+						currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
+						oldRecordCorrects = parseInt(data[0].value.replace.replace(/\D/g,''));
+
+						if(currGameCorrects >= oldRecordCorrects){
+							record = true;
+							self.displayRecord(results, true);
+						}
 
 					//sudoku
 					}else if(gameId === 8){
