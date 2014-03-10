@@ -67,20 +67,23 @@ var ResultsView = Backbone.View.extend({
 					//etsi kuvat
 					if(gameId === 1){
 
+						//bäkendiin tuntuu tallentuvan ennätykseksi kunhan yhtäpaljon oikeita, ei huomioi aikaa
+
 						currGameCorrects = parseInt(results.data[3].value.replace(/\D/g,''));
 						currGameTime = parseInt(results.data[0].value.replace(/\D/g,''));
 						oldRecordCorrects = parseInt(data[3].value.replace(/\D/g,''));
 						oldRecordTime = parseInt(data[0].value.replace(/\D/g,''));
 
-						console.log(currGameCorrects +" vs "+ oldRecordCorrects);
+						console.log('corrs: '+ currGameCorrects +" vs "+ oldRecordCorrects);
+						console.log('time: '+ currGameTime + " vs "+oldRecordTime);
 
 						if( currGameCorrects > oldRecordCorrects ){
 							console.log('record with more corrects');
 							record = true;
 							self.displayRecord(results, true);
 							
-						}else if(currGameCorrects = oldRecordCorrects){
-							if(oldRecordTime < currGameTime){
+						}else if(currGameCorrects === oldRecordCorrects){
+							if(oldRecordTime > currGameTime){
 								console.log('record with same amout of corrects but better time');
 								record = true;
 								self.displayRecord(results, true);
