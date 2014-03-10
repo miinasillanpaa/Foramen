@@ -21,10 +21,17 @@ var HeaderView = Backbone.View.extend({
 			var sessionTime = ( now.getTime() - started.getTime() )/1000;
 			Settings.set({'sessionTime': sessionTime})
 
-			//getting played time from backend
+			template = _.template( $(self.template0).html(), variables);
+			this.$el.html(template);
+
+			//getting played time from backend and showing it in header
 			window.getPlayedTime();
-			$('#header').html('<h1 class="text-center">Ladataan...</h1>');
-			setTimeout(function(){
+
+			
+			//$('#header').html('<h1 class="text-center">Ladataan...</h1>');
+
+
+			/*setTimeout(function(){
 				if(Settings.get('playedTimeMS') !== null){
 					var totalTime = Settings.get('playedTimeMS') + sessionTime;
 					var hours = Math.floor(totalTime / 3600) % 24;
@@ -38,7 +45,7 @@ var HeaderView = Backbone.View.extend({
 					template = _.template( $(self.template0).html(), variables);
 					self.$el.html(template);
 				}
-			},500)
+			},500) */
 
 			//$('.toggle-player').text(Settings.get('playerRole'));
 

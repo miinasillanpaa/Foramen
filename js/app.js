@@ -350,7 +350,6 @@ function savePlayedTime (){
     dataType: 'json',
     data: data,
     success: function(res){
-      console.log(res);
       var userId = Settings.get('currentUserId');
       var returnUrl = Settings.get('returnUrl');
       window.location = returnUrl+userId;
@@ -366,6 +365,12 @@ function getPlayedTime (){
     }).done(function(data){
       var obj = $.parseJSON(data);
       Settings.set({ 'playedTimeMS': obj.duration })
-      console.log(obj);
+      var sessionTime = Settings.get('sessionTime');
+
+      var totalTime = obj.duration + sessionTime;
+      var hours = Math.floor(totalTime / 3600) % 24;
+      var minutes = Math.floor(totalTime / 60) % 60;
+
+      $('#header h3').text('Olet tänään harjoitellut: '+ hours + "h " + minutes +"min");
   });
 };
