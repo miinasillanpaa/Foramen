@@ -8,19 +8,20 @@ var ResultsView = Backbone.View.extend({
 		clearInterval(App.knobTimer);
 
         var myView = this;
-        var difficulty, difficultyLevel;
+        var difficulty;
+        window.difficultyLevel;
         if( this.options.results.difficulty == 'easy' ){
             difficulty = 'Taso I';
-			difficultyLevel = 1;
+			window.difficultyLevel = 1;
         }else if( this.options.results.difficulty == 'medium' ){
             difficulty = 'Taso II';
-			difficultyLevel = 2;
+			window.difficultyLevel = 2;
         }else if( this.options.results.difficulty == 'hard' ){
             difficulty = 'Taso III';
-			difficultyLevel = 3;
+			window.difficultyLevel = 3;
         }else if( this.options.results.difficulty == 'joker' ){
             difficulty = 'Jokeri';
-			difficultyLevel = 4;
+			window.difficultyLevel = 4;
         }
 
         var  results = {
@@ -47,186 +48,191 @@ var ResultsView = Backbone.View.extend({
 		var userId = Settings.get('currentUserId');
 		var gameId = this.model.get('gameId');
 
-		$.get( 'http://stage.pienipiiri.fi/frGetScores?userId='+userId+'&difficultyLevel='+difficultyLevel+'&gameId='+gameId,
+		$.get( 'http://stage.pienipiiri.fi/frGetHighscore?&gameId='+gameId+'&userId='+userId+'&difficultyLevel='+difficultyLevel,
 			function(data) {
-				console.log(data);
-				console.log(results.data);
-				var len;
-				var elem = $(".record-well");
-				var record = false;
+							
+				if ( data.length !== 0  ) { //something was gotten from backend
+					var data = JSON.parse(data.score);
 
-				//override record-box classes if record was made
-				$(".record-box").addClass('alert-info').text("Hyvä suoritus!");
-				if ( data.length !== 0 ) { //something was gotten from backend
-					
+
+					console.warn('record from db', data);
+					console.warn('previous gamescore',results.data);
+
+					var len;
+					var elem = $(".record-well");
+					var record = false;
+
 					var currGameCorrects;
 					var currGameTime;
 					var oldRecordCorrects;
 					var oldRecordTime;
 
-					//etsi kuvat
-					if(gameId === 1){
+					
+					switch(gameId){
+						//etsi kuvat
+						case 1:
+							currGameCorrects = parseInt(results.data[3].value.replace(/\D/g,''));
+							currGameTime = parseInt(results.data[0].value.replace(/\D/g,''));
+							oldRecordCorrects = parseInt(data[3].value.replace(/\D/g,''));
+							oldRecordTime = parseInt(data[0].value.replace(/\D/g,''));
 
-						//bäkendiin tuntuu tallentuvan ennätykseksi kunhan yhtäpaljon oikeita, ei huomioi aikaa
+							console.log('corrs: '+ currGameCorrects +" vs "+ oldRecordCorrects);
+							console.log('time: '+ currGameTime + " vs "+oldRecordTime);
 
-						currGameCorrects = parseInt(results.data[3].value.replace(/\D/g,''));
-						currGameTime = parseInt(results.data[0].value.replace(/\D/g,''));
-						oldRecordCorrects = parseInt(data[3].value.replace(/\D/g,''));
-						oldRecordTime = parseInt(data[0].value.replace(/\D/g,''));
-
-						console.log('corrs: '+ currGameCorrects +" vs "+ oldRecordCorrects);
-						console.log('time: '+ currGameTime + " vs "+oldRecordTime);
-
-						if( currGameCorrects > oldRecordCorrects ){
-							console.log('record with more corrects');
-							record = true;
-							self.displayRecord(results, true);
-							
-						}else if(currGameCorrects === oldRecordCorrects){
-							if(oldRecordTime > currGameTime){
-								console.log('record with same amout of corrects but better time');
+							if( currGameCorrects > oldRecordCorrects ){
+								console.log('record with more corrects');
 								record = true;
 								self.displayRecord(results, true);
+								
+							}else if(currGameCorrects === oldRecordCorrects){
+								if(oldRecordTime > currGameTime){
+									console.log('record with same amout of corrects but better time');
+									record = true;
+									self.displayRecord(results, true);
+								}
 							}
-						}
-					
-					//muista viesti
-					}else if(gameId === 2){
+							break;
 
-						currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
-						oldRecordCorrects = parseInt(data[0].value.replace(/\D/g,''));
+						//muista viesti	
+						case 2:
+							currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
+							oldRecordCorrects = parseInt(data[0].value.replace(/\D/g,''));
 
-						if(currGameCorrects >= oldRecordCorrects ){	
-							if(Settings.get('difficulty') === "hard"){
+							if(currGameCorrects >= oldRecordCorrects ){	
+								if(Settings.get('difficulty') === "hard"){
 
-								currGameTime = parseInt(results.data[2].value.replace(/\D/g,''));
-								oldRecordTime = parseInt(data[2].value.replace(/\D/g,''));
+									currGameTime = parseInt(results.data[2].value.replace(/\D/g,''));
+									oldRecordTime = parseInt(data[2].value.replace(/\D/g,''));
 
-								if(currGameTime >= oldRecordTime){
+									if(currGameTime >= oldRecordTime){
+										record = true;
+										self.displayRecord(results, true);	
+									}
+
+								}else{
 									record = true;
 									self.displayRecord(results, true);	
 								}
-
-							}else{
-								record = true;
-								self.displayRecord(results, true);	
 							}
-						}
+							break;
 
-					//tunnista sanat	
-					}else if(gameId === 3){
+						//tunnista sanat
+						case 3:
+							currGameCorrects = parseInt(results.data[1].value.replace(/\D/g,''));
+							oldRecordCorrects = parseInt(data[1].value.replace(/\D/g,''));
 
-						currGameCorrects = parseInt(results.data[1].value.replace(/\D/g,''));
-						oldRecordCorrects = parseInt(data[1].value.replace(/\D/g,''));
-
-						if(currGameCorrects >= oldRecordCorrects){
-							record = true;
-							self.displayRecord(results, true);
-						}
-
-					//muista näkemäsi numerosarja
-					}else if(gameId === 4){
-
-						currGameCorrects = parseInt(results.data[2].value);
-						oldRecordCorrects = parseInt(data[2].value);
-						console.log(currGameCorrects +" "+ oldRecordCorrects);
-						if(currGameCorrects >= oldRecordCorrects){
-							record = true;
-							self.displayRecord(results, true);
-						}
-
-					//muista kuulemasi sanat
-					}else if(gameId === 5){
-						//äänet
-						currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
-						oldRecordCorrects = parseInt(data[0].value.replace(/\D/g,''));
-						console.log('sounds: '+currGameCorrects +" vs "+oldRecordCorrects);
-						
-						if(currGameCorrects >= oldRecordCorrects){
-							record = true;
-							self.displayRecord(results, true);
-						}
-
-					//muista näkemäsi esineet
-					}else if(gameId === 6){
-						//nothing is saved to backend as a highscore (?)
-						//compares rounds
-						currGameCorrects = parseInt(results.data[0].value);
-						oldRecordCorrects = parseInt(data[0].value);
-
-						if(currGameCorrects >= oldRecordCorrects){
-							record = true;
-							self.displayRecord(results, true);
-						}
-
-					//päättele salasana	
-					}else if(gameId === 7){
-
-						//nothing is saved to backedn but this is easy to implement
-						//compares "yritteitä"
-						currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
-						oldRecordCorrects = parseInt(data[0].value.replace.replace(/\D/g,''));
-
-						if(currGameCorrects >= oldRecordCorrects){
-							record = true;
-							self.displayRecord(results, true);
-						}
-
-					//sudoku
-					}else if(gameId === 8){
-						//nothing from backend
-						currGameTime = parseInt(results.data[0].value.replace(/\D/g,''));
-						oldRecordTime = parseInt(data[0].value.replace(/\D/g,''));
-
-						if(currGameTime >= oldRecordTime){
-							record = true;
-							self.displayRecord(results, true);
-						}
-
-					//rakenna kuvio mallista
-					}else if(gameId === 9){
-						var newDoneCorrectly = results.data[0].value;
-						var oldRecordDoneCorrectly = data[0].value;
-
-						currGameTime = parseInt(results.data[1].value.replace(/\D/g,''));
-						oldRecordTime = parseInt(data[1].value.replace(/\D/g,''));
-
-						if(oldRecordDoneCorrectly === "Oikein" && newDoneCorrectly === "Oikein"){
-							if(currGameTime <= oldRecordTime){
+							if(currGameCorrects >= oldRecordCorrects){
 								record = true;
 								self.displayRecord(results, true);
 							}
-						
-						}
+							break;
 
-					//jätkänshakki
-					}else if(gameId === 10){
-						currGameTime = parseInt(results.data[0].value.replace(/\D/g,''));
-						var curMoves = parseInt(results.data[1].value);
-						var curWins = parseInt(results.data[2].value.substr(0,1));
+						//muista näkemäsi numerosarja
+						case 4:
+							currGameCorrects = parseInt(results.data[2].value);
+							oldRecordCorrects = parseInt(data[2].value);
+							console.log(currGameCorrects +" "+ oldRecordCorrects);
+							if(currGameCorrects >= oldRecordCorrects){
+								record = true;
+								self.displayRecord(results, true);
+							}
+							break;
 
-						oldRecordTime = parseInt(data[0].value.replace(/\D/g,''));
-						var recordMoves = parseInt(data[1].value);
-						var recordWins = parseInt(data[2].value.substr(0,1));
+						//muista kuulemasi sanat
+						case 5:
+							//äänet
+							currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
+							oldRecordCorrects = parseInt(data[0].value.replace(/\D/g,''));
+							console.log('sounds: '+currGameCorrects +" vs "+oldRecordCorrects);
+							
+							if(currGameCorrects >= oldRecordCorrects){
+								record = true;
+								self.displayRecord(results, true);
+							}
+							break;
 
-						if(curWins === 1){
-							if(curMoves <= recordMoves){
-								if(currGameTime >= oldRecordTime){
-									console.log('record with victory & less or equal moves & less or equal time spent');
-									record = true;
-									self.displayRecord(results, true);
-								}else{
-									console.log('record with victory & less or equal moves');
+						//muita näkemäsi esineet
+						case 6:
+							//nothing is saved to backend as a highscore (?)
+							//compares rounds
+							currGameCorrects = parseInt(results.data[0].value);
+							oldRecordCorrects = parseInt(data[0].value);
+
+							if(currGameCorrects >= oldRecordCorrects){
+								record = true;
+								self.displayRecord(results, true);
+							}
+							break;
+
+						//päättele salasana
+						case 7:
+							//nothing is saved to backedn but this is easy to implement
+							//compares "yritteitä"
+							currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
+							oldRecordCorrects = parseInt(data[0].value.replace.replace(/\D/g,''));
+
+							if(currGameCorrects >= oldRecordCorrects){
+								record = true;
+								self.displayRecord(results, true);
+							}
+							break;
+
+						case 8:
+							//nothing from backend
+							currGameTime = parseInt(results.data[0].value.replace(/\D/g,''));
+							oldRecordTime = parseInt(data[0].value.replace(/\D/g,''));
+
+							if(currGameTime >= oldRecordTime){
+								record = true;
+								self.displayRecord(results, true);
+							}
+							break;
+
+						case 9:
+							var newDoneCorrectly = results.data[0].value;
+							var oldRecordDoneCorrectly = data[0].value;
+
+							currGameTime = parseInt(results.data[1].value.replace(/\D/g,''));
+							oldRecordTime = parseInt(data[1].value.replace(/\D/g,''));
+
+							if(oldRecordDoneCorrectly === "Oikein" && newDoneCorrectly === "Oikein"){
+								if(currGameTime <= oldRecordTime){
 									record = true;
 									self.displayRecord(results, true);
 								}
-							}	
-						}
+							}
+							break;
+
+						case 10:
+							currGameTime = parseInt(results.data[0].value.replace(/\D/g,''));
+							var curMoves = parseInt(results.data[1].value);
+							var curWins = parseInt(results.data[2].value.substr(0,1));
+
+							oldRecordTime = parseInt(data[0].value.replace(/\D/g,''));
+							var recordMoves = parseInt(data[1].value);
+							var recordWins = parseInt(data[2].value.substr(0,1));
+
+							if(curWins === 1){
+								if(curMoves <= recordMoves){
+									if(currGameTime >= oldRecordTime){
+										console.log('record with victory & less or equal moves & less or equal time spent');
+										record = true;
+										self.displayRecord(results, true);
+									}else{
+										console.log('record with victory & less or equal moves');
+										record = true;
+										self.displayRecord(results, true);
+									}
+								}	
+							}
+							break;
+
 					}
 
 					//not a new record
 					if(!record){
-						console.log('not a record')
+						console.log('not a record');
+						$(".record-box").addClass('alert-info').text("Hyvä suoritus!");
 						self.displayRecord(data, false)
 					}
 					
@@ -271,6 +277,11 @@ var ResultsView = Backbone.View.extend({
     		$(".record-box").removeClass('alert-info').addClass('alert-success').text("Paransit omaa ennätystäsi!");
     		obj = results.data;
     		len = Object.keys(results.data).length;
+
+    		//save new record to backend
+    		//parameters gameId & difficultyLevel & scoreObj
+    		window.saveHighScore(this.model.get('gameId'), window.difficultyLevel, results.data);
+
     	}else{
     		obj = results;
     		len = Object.keys(results).length;

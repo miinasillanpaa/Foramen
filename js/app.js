@@ -306,6 +306,26 @@ function saveGameEnd () {
 	})
 }
 
+function saveHighScore (gameId, difficulty, scoreObj) {
+
+  var data = {
+    'gameId': gameId, 
+    'userId': Settings.get('currentUserId'),
+    'difficultyLevel': difficulty,
+    'score': JSON.stringify(scoreObj)
+  }
+
+  $.ajax({
+    url: 'http://stage.pienipiiri.fi/frSaveHighscore',
+    type: 'POST',
+    dataType: 'json',
+    data: data,
+    success: function(res) {
+      console.log(res);
+    }
+  });
+}
+
 function saveGameFeedback (mood) {
 	var gameInstanceId = Settings.get('gameInstanceId');
 	var data = { 'id': gameInstanceId, 'feedback': mood };
