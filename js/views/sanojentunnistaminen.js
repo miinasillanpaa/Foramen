@@ -19,7 +19,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
             moveTime = 500;
         }
 
-        var mover = setInterval(this.scrollText, moveTime);
+        window.mover = setInterval(this.scrollText, moveTime);
 
         this.knobify();
         var text = this.stringMaker();
@@ -28,7 +28,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
         var startPos = textString.length - 17;
         Settings.set({ startPos : startPos });
 
-        var timer = setTimeout(
+        window.timer = setTimeout(
             function () {
                 window.clearTimeout(timer);
                 window.clearInterval(mover);
@@ -131,7 +131,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
         var totSec;
         var timeLeft = 240;
         function countdown() {
-            if (timeLeft == 0){
+            if (timeLeft === 0){
                 $(".timer").hide();
                 window.clearInterval(knobTimer);
             }else{
@@ -332,7 +332,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
             buttonClickedInfoElem.show().html('Väärin meni').removeClass('success').addClass('danger');
         }
         
-        buttonClickedInfoElem.fadeOut( 4000, function(){});
+        buttonClickedInfoElem.fadeOut(4000);
 
         _results.selectorPresses = selectorPresses;
         Settings.set({ scrollerResults: _results });

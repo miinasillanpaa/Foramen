@@ -314,7 +314,7 @@ function saveHighScore (gameId, difficulty, scoreObj) {
     'difficultyLevel': difficulty,
     'score': JSON.stringify(scoreObj)
   }
-
+  console.log(data);
   $.ajax({
     url: 'http://stage.pienipiiri.fi/frSaveHighscore',
     type: 'POST',

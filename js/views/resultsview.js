@@ -98,28 +98,40 @@ var ResultsView = Backbone.View.extend({
 							currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
 							oldRecordCorrects = parseInt(data[0].value.replace(/\D/g,''));
 
-							if(currGameCorrects >= oldRecordCorrects ){	
-								if(Settings.get('difficulty') === "hard"){
-
-									currGameTime = parseInt(results.data[2].value.replace(/\D/g,''));
-									oldRecordTime = parseInt(data[2].value.replace(/\D/g,''));
-
-									if(currGameTime >= oldRecordTime){
-										record = true;
-										self.displayRecord(results, true);	
-									}
-
-								}else{
+							if(Settings.get('difficulty') !== "hard" ){
+								console.log('easy & medium, compare corrects');
+								if(currGameCorrects > oldRecordCorrects){
 									record = true;
-									self.displayRecord(results, true);	
+									self.displayRecord(results, true);
+								}
+
+							}else{
+								console.log('hard, compare corrects and if equal amount compare time');
+								currGameTime = parseInt(results.data[2].value.replace(/\D/g,''));
+								oldRecordTime = parseInt(data[2].value.replace(/\D/g,''));
+								
+								console.warn('times cur vs old', currGameTime, oldRecordTime);
+								console.warn('corrects cur vs old', currGameCorrects, oldRecordCorrects);
+
+								if(currGameCorrects > oldRecordCorrects){
+									console.log('record with more corrects');
+									record = true;
+									self.displayRecord(results, true);
+								}else if(currGameCorrects === oldRecordCorrects){
+									if(currGameTime < oldRecordTime){
+										console.log('record with equal corrects but better time');
+										record = true;
+										self.displayRecord(results, true);
+									}
 								}
 							}
 							break;
 
 						//tunnista sanat
 						case 3:
-							currGameCorrects = parseInt(results.data[1].value.replace(/\D/g,''));
-							oldRecordCorrects = parseInt(data[1].value.replace(/\D/g,''));
+							currGameCorrects = parseInt(results.data[2].value.replace(/\D/g,''));
+							oldRecordCorrects = parseInt(data[2].value.replace(/\D/g,''));
+							console.warn('corrects cur vs old', currGameCorrects, oldRecordCorrects);
 
 							if(currGameCorrects >= oldRecordCorrects){
 								record = true;
@@ -131,7 +143,8 @@ var ResultsView = Backbone.View.extend({
 						case 4:
 							currGameCorrects = parseInt(results.data[2].value);
 							oldRecordCorrects = parseInt(data[2].value);
-							console.log(currGameCorrects +" "+ oldRecordCorrects);
+							console.warn('corrects cur vs old', currGameCorrects, oldRecordCorrects);
+
 							if(currGameCorrects >= oldRecordCorrects){
 								record = true;
 								self.displayRecord(results, true);
@@ -140,10 +153,9 @@ var ResultsView = Backbone.View.extend({
 
 						//muista kuulemasi sanat
 						case 5:
-							//äänet
 							currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
 							oldRecordCorrects = parseInt(data[0].value.replace(/\D/g,''));
-							console.log('sounds: '+currGameCorrects +" vs "+oldRecordCorrects);
+							console.warn('correct sounds cur vs old', currGameCorrects, oldRecordCorrects);
 							
 							if(currGameCorrects >= oldRecordCorrects){
 								record = true;
@@ -153,12 +165,12 @@ var ResultsView = Backbone.View.extend({
 
 						//muita näkemäsi esineet
 						case 6:
-							//nothing is saved to backend as a highscore (?)
 							//compares rounds
 							currGameCorrects = parseInt(results.data[0].value);
 							oldRecordCorrects = parseInt(data[0].value);
+							console.warn('played rounds cur vs old', currGameCorrects, oldRecordCorrects);
 
-							if(currGameCorrects >= oldRecordCorrects){
+							if(currGameCorrects <= oldRecordCorrects){
 								record = true;
 								self.displayRecord(results, true);
 							}
@@ -166,28 +178,29 @@ var ResultsView = Backbone.View.extend({
 
 						//päättele salasana
 						case 7:
-							//nothing is saved to backedn but this is easy to implement
-							//compares "yritteitä"
-							currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
-							oldRecordCorrects = parseInt(data[0].value.replace.replace(/\D/g,''));
+							currGameCorrects = parseInt(results.data[1].value.replace(/\D/g,''));
+							oldRecordCorrects = parseInt(data[1].value.replace(/\D/g,''));
+							console.warn('password guesses cur vs old', currGameCorrects, oldRecordCorrects);
 
-							if(currGameCorrects >= oldRecordCorrects){
+							if(currGameCorrects <= oldRecordCorrects){
 								record = true;
 								self.displayRecord(results, true);
 							}
 							break;
 
+						//sudoku
 						case 8:
-							//nothing from backend
 							currGameTime = parseInt(results.data[0].value.replace(/\D/g,''));
 							oldRecordTime = parseInt(data[0].value.replace(/\D/g,''));
+							console.warn('sudoku time cur vs old', currGameTime, oldRecordTime);
 
-							if(currGameTime >= oldRecordTime){
+							if(currGameTime <= oldRecordTime){
 								record = true;
 								self.displayRecord(results, true);
 							}
 							break;
 
+						//rakenna kuvio mallista
 						case 9:
 							var newDoneCorrectly = results.data[0].value;
 							var oldRecordDoneCorrectly = data[0].value;
@@ -196,13 +209,18 @@ var ResultsView = Backbone.View.extend({
 							oldRecordTime = parseInt(data[1].value.replace(/\D/g,''));
 
 							if(oldRecordDoneCorrectly === "Oikein" && newDoneCorrectly === "Oikein"){
+								console.warn('corrected in time cur vs old', currGameTime, oldRecordTime);
 								if(currGameTime <= oldRecordTime){
 									record = true;
 									self.displayRecord(results, true);
 								}
+							}else if(newDoneCorrectly === "Oikein" && oldRecordDoneCorrectly !== "Oikein"){
+								record = true;
+								self.displayRecord(results, true);
 							}
 							break;
 
+						//jätkänshakki
 						case 10:
 							currGameTime = parseInt(results.data[0].value.replace(/\D/g,''));
 							var curMoves = parseInt(results.data[1].value);
@@ -212,9 +230,13 @@ var ResultsView = Backbone.View.extend({
 							var recordMoves = parseInt(data[1].value);
 							var recordWins = parseInt(data[2].value.substr(0,1));
 
-							if(curWins === 1){
+							console.warn('wins over computer cur vs old', curWins, recordWins);
+							console.warn('moves made cur vs old', curMoves, recordMoves);
+							console.warn('time spent cur vs old', currGameTime, oldRecordTime);
+
+							if(curWins === 1 && recordWins === 1){
 								if(curMoves <= recordMoves){
-									if(currGameTime >= oldRecordTime){
+									if(currGameTime <= oldRecordTime){
 										console.log('record with victory & less or equal moves & less or equal time spent');
 										record = true;
 										self.displayRecord(results, true);
@@ -224,6 +246,10 @@ var ResultsView = Backbone.View.extend({
 										self.displayRecord(results, true);
 									}
 								}	
+							}else if(curWins === 1 && recordWins < 1){
+								console.log('record with first victory over computer');
+								record = true;
+								self.displayRecord(results, true);
 							}
 							break;
 
