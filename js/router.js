@@ -28,12 +28,10 @@ window.Router = Backbone.Router.extend({
 
 		new GameListView(games);
 
-		if (App.currentGameView != null) {
+		if (App.currentGameView !== null) {
 			App.currentGameView.undelegateEvents();
 			App.currentGameView.unbind();
 		}
-
-        
 
 		if(App.headerView === null) {
 			App.headerView = new HeaderView({ id:0 });
@@ -61,11 +59,11 @@ router.on('route:getGame', function(id) {
 	App.preGameview.render();
 
 	if( App.headerView === null ) {
-		App.headerView = new HeaderView({ id:1, model:gameObj})
+		App.headerView = new HeaderView({ id:1, model:gameObj});
 
 	}else if( App.headerView.id !== 1 ) {
 		App.headerView.setId(1);
-		App.headerView.setModel(gameObj)
+		App.headerView.setModel(gameObj);
 
 	}
 	App.headerView.render();
@@ -80,7 +78,7 @@ router.on('route:videoView', function(id) {
 
 	if(App.headerView.id !== 3) {
 		App.headerView.setId(3);
-		App.headerView.setModel(gameObj)
+		App.headerView.setModel(gameObj);
 	}
 	App.headerView.render();
 
@@ -129,7 +127,6 @@ router.on('route:play', function(id) {
     }else if( parseInt(id) === 3){
 
 		gameData['category'] = Settings.get('textCategory');
-
         var view3 = new SanojenTunnistaminen({ model: gameObj });
         App.currentGameView = view3;
         view3.render();
@@ -145,9 +142,9 @@ router.on('route:play', function(id) {
         view5.render();
 
     }else if( parseInt(id) === 6){
-        var view8 = new KIM({ model:gameObj });
-        App.currentGameView = view8;
-        view8.render();
+        var view6 = new KIM({ model:gameObj });
+        App.currentGameView = view6;
+        view6.render();
 
     }else if( parseInt(id) === 7){
         var view7 = new Salasana({ model:gameObj });
@@ -185,22 +182,22 @@ router.on('route:resultsView', function(id) {
 
 
 	if(App.headerView === null ) {
-		App.headerView = new HeaderView({ id:2, model:gameObj})
+		App.headerView = new HeaderView({ id:2, model:gameObj});
 
 	}else if(App.headerView.id !== 2) {
 		App.headerView.setId(2);
-		App.headerView.setModel(gameObj)
+		App.headerView.setModel(gameObj);
 	}
 	App.headerView.render();
 
 });
 router.on('route:playedGameView', function(id) {
 	if(App.headerView === null ) {
-		App.headerView = new HeaderView({ id:2, model:gameObj})
+		App.headerView = new HeaderView({ id:2, model:gameObj});
 
 	}else if(App.headerView.id !== 2) {
 		App.headerView.setId(2);
-		App.headerView.setModel(gameObj)
+		App.headerView.setModel(gameObj);
 	}
 	App.headerView.render();
 });

@@ -3,13 +3,12 @@ var ResultsView = Backbone.View.extend({
     template: '#resultsViewTemplate',
 
     render: function () {
-
         $('#header').show();
-		clearInterval(App.knobTimer);
+		
 
         var myView = this;
         var difficulty;
-        window.difficultyLevel;
+        
         if( this.options.results.difficulty == 'easy' ){
             difficulty = 'Taso I';
 			window.difficultyLevel = 1;
@@ -24,14 +23,14 @@ var ResultsView = Backbone.View.extend({
 			window.difficultyLevel = 4;
         }
 
-        var  results = {
-                         pvm : this.options.results.pvm,
-                         klo : this.options.results.klo,
-                         difficulty : difficulty,
-                         data : this.options.results.data,
-                         hiddenData : this.options.results.hiddenData,
-                         title : this.model.get('title'),
-                         gameId : this.model.get('gameId')
+        var results = {
+	    	pvm : this.options.results.pvm,
+	    	klo : this.options.results.klo,
+	    	difficulty : difficulty,
+	    	data : this.options.results.data,
+	    	hiddenData : this.options.results.hiddenData,
+	    	title : this.model.get('title'),
+	    	gameId : this.model.get('gameId')
         };
 
 		var resultsToDB = [];
@@ -52,22 +51,16 @@ var ResultsView = Backbone.View.extend({
 			function(data) {
 							
 				if ( data.length !== 0  ) { //something was gotten from backend
-					var data = JSON.parse(data.score);
+					data = JSON.parse(data.score);
 
 
 					console.warn('record from db', data);
 					console.warn('previous gamescore',results.data);
 
-					var len;
-					var elem = $(".record-well");
-					var record = false;
+					var len, elem, record, currGameCorrects, currGameTime, oldRecordCorrects, oldRecordTime;
+					elem = $(".record-well");
+					record = false;
 
-					var currGameCorrects;
-					var currGameTime;
-					var oldRecordCorrects;
-					var oldRecordTime;
-
-					
 					switch(gameId){
 						//etsi kuvat
 						case 1:
@@ -259,7 +252,7 @@ var ResultsView = Backbone.View.extend({
 					if(!record){
 						console.log('not a record');
 						$(".record-box").addClass('alert-info').text("Hyvä suoritus!");
-						self.displayRecord(data, false)
+						self.displayRecord(data, false);
 					}
 					
 				}else{
@@ -327,7 +320,7 @@ var ResultsView = Backbone.View.extend({
 
         this.undelegateEvents();
 
-        var  results = {
+        var results = {
             pvm : this.options.results.pvm,
             klo : this.options.results.klo,
             difficulty : this.options.results.difficulty,
@@ -346,10 +339,10 @@ var ResultsView = Backbone.View.extend({
     },
 
     startNewGame: function () {
+
 		this.undelegateEvents();
 		App.currentGameView.undelegateEvents();
-		var results = new Array();
-        Settings.set({ results:results });
+        Settings.set({ results: [] });
 
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId + '/play', {trigger: true});
@@ -375,8 +368,8 @@ var ResultsView = Backbone.View.extend({
 
 		var checkboxNotChecked = Settings.get('showFeedbackModal');
 
-		if(checkboxNotChecked == false) {
-			$('#checkboxFeedback').attr('checked',true)
+		if(checkboxNotChecked === false) {
+			$('#checkboxFeedback').attr('checked',true);
 		}
 	}
 
