@@ -3,46 +3,53 @@ var SanojenTunnistaminen = Backbone.View.extend({
     template: '#sanojenTunnistaminenTemplate',
 
     render: function () {
+
         $('#header').empty().hide();
 
-        var myView = this;
-        var gameId = this.model.get('gameId');
-        var exerciseTime = 1000*60*4+2000;
+        var myView, gameId, exerciseTime, moveTime, diff, text, textString, startPos, variables, template;
 
-        var moveTime;
-        var diff = Settings.get('difficulty');
-        if( diff === 'easy' ){
+        Settings.set({itemsArray: []});
+        myView = this;
+        gameId = this.model.get('gameId');
+        exerciseTime = 1000 * 60 * 4 + 2000; //4min+2sec
+        diff = Settings.get('difficulty');
+
+        if (diff === 'easy') {
             moveTime = 1500;
-        }else if( diff === 'medium' ){
+        } else if (diff === 'medium') {
             moveTime = 1000;
-        }else{
+        } else {
             moveTime = 500;
         }
-
         window.mover = setInterval(this.scrollText, moveTime);
 
         this.knobify();
-        var text = this.stringMaker();
-        var textString = Settings.get('textString');
+        text = this.stringMaker();
+        textString = Settings.get('textString');
 
-        var startPos = textString.length - 17;
+        startPos = textString.length - 17;
         Settings.set({ startPos : startPos });
-
+        
         window.timer = setTimeout(
             function () {
                 window.clearTimeout(timer);
                 window.clearInterval(mover);
-                var amount = Settings.get('targetAmount');
-                var corrects = Settings.get('scrollerResults').corrects;
-                var wrongs = (Settings.get('scrollerResults').wrongs) - (Settings.get('scrollerResults').selectorPresses)*(Settings.get('itemsLenght')-1);
-                var missing = amount - corrects;
-                var wrongTot = wrongs+missing;
+                window.clearInterval(knobTimer);
 
-                var date = getDateTime();
-                var pvm = date.pvm;
-                var klo = date.klo;
+                var amount, corrects, wrongs, missing, wrongTot, date, pvm, klo, results, view, category;
 
-                var results = {
+                amount = Settings.get('targetAmount');
+                corrects = Settings.get('scrollerResults').corrects;
+                wrongs = Settings.get('scrollerResults').wrongs;
+
+                missing = amount - corrects;
+                wrongTot = wrongs + missing;
+
+                date = window.getDateTime();
+                pvm = date.pvm;
+                klo = date.klo;
+
+                results = {
                     'pvm' : pvm,
                     'klo' : klo,
                     'difficulty' : Settings.get('difficulty'),
@@ -57,7 +64,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
                         },
                         {
                             'name' : 'Oikein:',
-                            'value' : Settings.get('scrollerResults').corrects + " kpl"
+                            'value' : corrects + " kpl"
                         },
                         {
                             'name' : 'Väärin:',
@@ -73,33 +80,37 @@ var SanojenTunnistaminen = Backbone.View.extend({
                         }
                     ]
                 };
-                Settings.set({ scrollerResults: {  
-                        corrects:0,
-                        wrongs:0,
-                        selectorPresses:0
+
+                Settings.set({ 
+                    scrollerResults: {  
+                        corrects: 0,
+                        wrongs: 0,
+                        selectorPresses: 0
                     } 
                 });
+
                 Settings.set({ scroller: "" });
                 myView.unbind();
                 myView.undelegateEvents();
 
 				router.navigate('game/' + gameId + '/results', true);
-                var view = new ResultsView({ model: myView.model, results: results });
+                view = new ResultsView({ model: myView.model, results: results });
                 view.render();
 
         }, exerciseTime );
 
-        var variables = {
-            text : text,
-            textCategory : Settings.get('textCategory')
+        variables = {
+            text: text,
+            textCategory: Settings.get('textCategory')
         };
 
-        var template = _.template( $(this.template).html(), variables );
+        template = _.template($(this.template).html(), variables);
         this.$el.html(template);
 
         $('.quit').click(function() {
            window.clearTimeout(timer);
            window.clearInterval(mover);
+           window.clearInterval(knobTimer);
         });
 
         $('.knob').knob({
@@ -108,7 +119,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
             "min": 0,
             "readOnly": true
         });
-
         return this;
 
     },
@@ -126,63 +136,54 @@ var SanojenTunnistaminen = Backbone.View.extend({
     },
 
     knobify: function () {
-        var knobTimer = setInterval(countdown, 1000);
-        var totMin;
-        var totSec;
-        var timeLeft = 240;
+        var totMin, totSec, timeLeft;
+        timeLeft = 240;
+
+        function pad2(number){
+            return (number < 10 ? '0' : '') + number;
+        }
         function countdown() {
-            if (timeLeft === 0){
+            if (timeLeft === 0) {
                 $(".timer").hide();
-                window.clearInterval(knobTimer);
-            }else{
-                totMin = Math.floor(timeLeft/60);
-                totSec = Math.floor(timeLeft-(totMin*60));
-
-                function pad2(number){
-                    return (number < 10 ? '0' : '') + number
-                }
-
+            } else {
+                totMin = Math.floor(timeLeft / 60);
+                totSec = Math.floor(timeLeft - (totMin * 60));
                 totSec = pad2(totSec);
                 $('.knob').val(timeLeft).trigger("change");
                 $('.knob').val(totMin+":"+totSec);
                 timeLeft--;
-
-                $('.quit').click( function () {
-                    window.clearInterval(knobTimer);
-                });
             }
-        };
+        }
+
+        window.knobTimer = setInterval(countdown, 1000);
+
     },
 
     scrollText: function () {
-        var text = Settings.get('textString');
-        var pos = Settings.get('startPos');
-        pos--;
+        var text, pos, selector;
+        text = Settings.get('textString');
+        pos = Settings.get('startPos') - 1;
+        
         Settings.set({ startPos : pos });
 
         $('.scroller').transition({ x: '+=50' });
-        var selector = text.substr(pos,10);
-        Settings.set({ selector:selector });
+        selector = text.substr(pos,10);
+        Settings.set({ selector: selector });
     },
 
     stringMaker: function () {
-        var text = "";
-        var textString = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ";
-        var amount; 
-        var chars;
-        var firstRandPos;
-        var randomDistance = [];
-        var to;
-        var from;
-        var randomDist;
+        var text, textString, possible, amount, chars, firstRandPos, randomDistance, to, from, randomDist, items, selectedCat, uniqueItems, i;
+        text = "";
+        textString = "";
+        possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZÅÄÖ";
+        randomDistance = [];
 
         if( Settings.get('difficulty') === 'easy'){
             amount = 10;
             chars = 150;
             firstRandPos = Math.floor(Math.random()*(127-137+1)+127);
 
-            for( var i = 0; i < amount; i++ ){
+            for( i = 0; i < amount; i++ ){
                 to = 5;
                 from = 15;
                 randomDist = Math.floor(Math.random()*(to-from+1)+from);
@@ -194,7 +195,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
             chars = 195;
             firstRandPos = Math.floor(Math.random()*(172-182+1)+172);
 
-            for( var i = 0; i < amount; i++ ){
+            for( i = 0; i < amount; i++ ){
                 to = 5;
                 from = 15;
                 randomDist = Math.floor(Math.random()*(to-from+1)+from);
@@ -206,18 +207,17 @@ var SanojenTunnistaminen = Backbone.View.extend({
             chars = 400;
             firstRandPos = Math.floor(Math.random()*(370-380+1)+370);
 
-            for( var i = 0; i < amount; i++ ){
-                 to = 13;
-                 from = 23;
-                 randomDist = Math.floor(Math.random()*(to-from+1)+from);
-                 randomDistance.push(randomDist);
+            for( i = 0; i < amount; i++ ){
+                to = 13;
+                from = 23;
+                randomDist = Math.floor(Math.random()*(to-from+1)+from);
+                randomDistance.push(randomDist);
             }
-        };
+        }
 
         Settings.set({targetAmount:amount});
 
-        var selectedCat = Settings.get('textCategory');
-        var items;
+        selectedCat = Settings.get('textCategory');
         if(selectedCat === 'eläimet'){
             items = Settings.get('categories').eläimet;
         }else if(selectedCat === 'ammatit'){
@@ -243,7 +243,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
         }
         Settings.set({ itemsLenght: items.length });
 
-        var uniqueItems = [];
+        uniqueItems = [];
         for(var l = 0; l < amount; l++ ){
             var unique = true;
             var randomItem = items[Math.floor(Math.random() * items.length )];
@@ -261,13 +261,13 @@ var SanojenTunnistaminen = Backbone.View.extend({
             }
         }
 
-        for( var n=0; n < chars; n++ ){
+        for( var n = 0; n < chars; n++ ){
             var posChar = possible.charAt( Math.floor( Math.random() * possible.length ));
             text += '<span>'+ posChar +'</span>';
             textString += posChar;
 
-        var arr = [];
-        arr.push(firstRandPos);
+            var arr = [];
+            arr.push(firstRandPos);
 
             for(var o = 0; o < amount; o++){
                 var spot = arr[o]-randomDistance[o];
@@ -283,59 +283,62 @@ var SanojenTunnistaminen = Backbone.View.extend({
                 }
             }
         }
-        Settings.set({ textString:textString });
+
+        Settings.set({ textString: textString });
         return text;
     },
 
     getSelectorText: function () {
-        var category = Settings.get('textCategory');
+        var category, items, storeItems, selectorPresses, corrects, wrongs, _results, _categories, selector, correctAnswer, buttonClickedInfoElem;
+
+        category = Settings.get('textCategory');
 		if(category === 'miesten nimet') {
 			category = 'miesten';
 		}else if(category === 'naisten nimet') {
 			category = 'naisten';
 		}
 
-        var items = Settings.get('categories')[category];
+        if (Settings.get('itemsArray').length > 0) {
+            console.log('itemsArray not empty');
+            items = Settings.get('itemsArray');
+        } else {
+            console.log('itemsArray was empty');
+            items = Settings.get('categories')[category].slice(0);  
+        }
+        
 
-        var selectorPresses = Settings.get('scrollerResults').selectorPresses;
-        selectorPresses++;
+        selectorPresses = Settings.get('scrollerResults').selectorPresses+1;
 
-        var corrects = Settings.get('scrollerResults').corrects;
-        var wrongs = Settings.get('scrollerResults').wrongs;
-
-        var _results = _.omit(Settings.get('scrollerResults'));
-        var _categories = _.omit(Settings.get('categories'));
-
-        var selector = Settings.get('selector');
-
-        var a = 0;
-        var b = 0;
+        corrects = Settings.get('scrollerResults').corrects;
+        wrongs = Settings.get('scrollerResults').wrongs;
+        _results = Settings.get('scrollerResults');
+        selector = Settings.get('selector');
+        console.warn('selector', selector);
+        correctAnswer = false;
 
         for( var i = 0; i < items.length; i++ ){
             if( selector.indexOf(items[i]) !== -1 ){
-                corrects++;
-                a++;
-                _results.corrects = corrects;
-                 delete items[i];
-                _categories.items = items;
-            }else{
-                b++; 
-                wrongs++;
-                _results.wrongs = wrongs;
+                correctAnswer = true;
+                _results.corrects++;
+
+                console.warn('item found', items[i]);
+                items.splice(i, 1);
+                Settings.set({itemsArray: items});
+                console.log(items);
             }
         }
         
-        var buttonClickedInfoElem = this.$('.onTarget-pressed-info')
-        if(a === 1){
+        buttonClickedInfoElem = this.$('.onTarget-pressed-info');
+        if(correctAnswer){
             buttonClickedInfoElem.show().html('Oikein!').removeClass('danger').addClass('success');
         }else{
+            _results.wrongs++;
             buttonClickedInfoElem.show().html('Väärin meni').removeClass('success').addClass('danger');
         }
         
         buttonClickedInfoElem.fadeOut(4000);
-
         _results.selectorPresses = selectorPresses;
         Settings.set({ scrollerResults: _results });
-        Settings.set({ categories: _categories });
+        console.log(_results);
     }
 });
