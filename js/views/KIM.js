@@ -16,12 +16,12 @@ var KIM = Backbone.View.extend({
         var allItems = this.addBluffs(targets);
 
         var knobMax;
-        if(Settings.get('difficulty') == 'easy') { 
-            knobMax = (this.itemsLength()*4500).toString();
-        }else if(Settings.get('difficulty')  == 'medium'){
-            knobMax = (this.itemsLength()*4500).toString();
-        }else{ 
-            knobMax = (this.itemsLength()*4500).toString();
+        if (Settings.get('difficulty') === 'easy') {
+            knobMax = (visible*4500).toString();
+        }else if(Settings.get('difficulty')  === 'medium'){
+            knobMax = (visible*4500).toString();
+        }else{
+            knobMax = (visible*4500).toString();
         }
 
         var variables = {targets:targets,bluffs:allItems,knobMax:knobMax};
@@ -51,7 +51,7 @@ var KIM = Backbone.View.extend({
 		});
 
 		$('.quit').click( function() {
-            window.clearTimeout(timer)
+            window.clearTimeout(timer);
         });
 
         $('.knob').knob({
@@ -83,6 +83,11 @@ var KIM = Backbone.View.extend({
         App.knobTimer = setInterval(countdown, 1000);
         var totMin, totSec;
         var timeLeft = (this.itemsLength()*4.5)-1;
+
+        function pad2(number){
+            return (number < 10 ? '0' : '') + number;
+        }
+
         function countdown() {
             if (timeLeft <= 0){
                 $(".timer").hide();
@@ -90,16 +95,11 @@ var KIM = Backbone.View.extend({
             }else{
                 totMin = Math.floor(timeLeft/60);
                 totSec = Math.floor(timeLeft-(totMin*60));
-
-                function pad2(number){
-                    return (number < 10 ? '0' : '') + number
-                }
-
                 totSec = pad2(totSec);
                 $('.knob').val(timeLeft).trigger("change");
                 $('.knob').val(totMin+":"+totSec);
                 timeLeft--;
-
+                
                 $('.quit').click( function () {
                     window.clearInterval(App.knobTimer);
                 });
@@ -107,7 +107,7 @@ var KIM = Backbone.View.extend({
                     window.clearInterval(App.knobTimer);
                 });
             }
-        }   
+        }
     },
 
     selectItem: function () {
@@ -177,7 +177,7 @@ var KIM = Backbone.View.extend({
 
     addBluffs: function (targets) {
         $('.finish').removeClass('hidden');
-        var targets = targets;
+        
         var itemsLength = this.itemsLength();
 
         var bluffsArr = [];
@@ -226,7 +226,7 @@ var KIM = Backbone.View.extend({
         $('.finish').addClass('hidden');
         var targets = Settings.get('targets');
         var visible = targets.length*4500;
-        this.knobify();
+        
         var playthruNum = Settings.get('playThruNum');
 
         playthruNum++;
@@ -257,6 +257,7 @@ var KIM = Backbone.View.extend({
                 wrong++;
             }
         }
+
         this.$('.kim-color-hint').removeClass('hidden');
         $('img.selected').removeClass('selected');
 
@@ -270,7 +271,6 @@ var KIM = Backbone.View.extend({
                 $(".allItems img[src="+'"'+targetImg[k]+'"'+"]").addClass('warning-border');
             }
         }
-
 
         var that = this;
         if ((correct === targets.length && wrong === 0) || (playthruNum === 10)) {
@@ -374,34 +374,33 @@ var KIM = Backbone.View.extend({
                         'name' : 'Kierros 10:',
                         'value' : round10.correct +" / "+round10.tot
                     }
-
                 ]
             };
+
             Settings.set({ 'playThruNum' : 0 });
             this.undelegateEvents();
-			router.navigate('game/' +this.model.get('gameId') + '/results', true)
+			router.navigate('game/' +this.model.get('gameId') + '/results', true);
             var view = new ResultsView({model:this.model, results: results});
             view.render();
 
-
         }else{
 
+            this.knobify();
             $('.selectable').hide();
             $('.warning-border').show();
             $('.success-border').show();
             var timer = setTimeout(function() {
-
                     var bluffs = that.addBluffs(targets);
                     for(var i=0; i < $('.allItems img').length; i++){
                         var img = '<img class="kim-item selectable" src="./pics/KIM/'+bluffs[i]+'.png"/>';
-                        $('.allItems img:nth('+i+')').replaceWith(img)
+                        $('.allItems img:nth('+i+')').replaceWith(img);
                     }
                     $('.kim-color-hint').addClass('hidden');
                     $('.selectable').show().removeClass('warning-border success-border danger-border selected');
-            },visible);
+            }, visible);
 
             $('.quit').click( function() {
-                clearTimeout(timer)
+                clearTimeout(timer);
             });
         }
     }
