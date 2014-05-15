@@ -17,11 +17,11 @@ var KIM = Backbone.View.extend({
 
         var knobMax;
         if (Settings.get('difficulty') === 'easy') {
-            knobMax = (visible*4500).toString();
+            knobMax = visible.toString();
         }else if(Settings.get('difficulty')  === 'medium'){
-            knobMax = (visible*4500).toString();
+            knobMax = visible.toString();
         }else{
-            knobMax = (visible*4500).toString();
+            knobMax = visible.toString();
         }
 
         var variables = {targets:targets,bluffs:allItems,knobMax:knobMax};
@@ -40,7 +40,6 @@ var KIM = Backbone.View.extend({
                     if( $('.targets').length > 0 ){
                         $('.targets').remove();
                     }
-                    //$('.targets').addClass('hidden');
                     $('.allItems').removeClass('hidden');
                 },visible);
         });
@@ -56,7 +55,7 @@ var KIM = Backbone.View.extend({
 
         $('.knob').knob({
             change : function (value) {},
-            "max": (this.itemsLength()*4.5)-1,
+            "max": (knobMax/1000)-1,
             "min": 0,
             "readOnly": true
         });
@@ -89,10 +88,10 @@ var KIM = Backbone.View.extend({
         }
 
         function countdown() {
-            if (timeLeft <= 0){
+            if (timeLeft <= 0) {
                 $(".timer").hide();
                 window.clearInterval(App.knobTimer);
-            }else{
+            } else {
                 totMin = Math.floor(timeLeft/60);
                 totSec = Math.floor(timeLeft-(totMin*60));
                 totSec = pad2(totSec);
@@ -112,39 +111,36 @@ var KIM = Backbone.View.extend({
 
     selectItem: function () {
         var target = $(event.target);
-        if( target.hasClass('selected') ) {
+        if (target.hasClass('selected')) {
             target.toggleClass('selected');
+        } else {
 
-        }else{
-
-            if( $('.selected').length === Settings.get('targets').length ){
+            if ($('.selected').length === Settings.get('targets').length) {
 
                 $('#content').find('button').attr('disabled','disabled');
                 $('#content').find('img').prop('disabled',true);
-
 				$('.overlay').css('display','block');
                 $('.info-modal').show().html(
                     'Olet jo valinnut kaikki '+ $('.selected').length + ' esinettä. <br/><br/>' +
                     'Voit poistaa valinnan koskettamalla. <button onclick="window.hideModal();" class="btn btn-block btn-primary hide-modal"> Ok </button>'
                 );
 
-            }else{
+            } else {
                 target.toggleClass('selected');
             }
         }
     },
 
-
     itemsLength: function () {
         var diff = Settings.get('difficulty');
         var itemsLength;
-        if(diff === 'easy'){
+        if (diff === 'easy') {
             itemsLength = 5;
             this.$('.items').addClass('kim-easy');
-        }else if(diff === 'medium'){
+        } else if(diff === 'medium') {
             itemsLength = 8;
             this.$('.items').addClass('kim-medium');
-        }else{
+        } else {
             itemsLength = 14;
             this.$('.items').addClass('kim-hard');
         }
