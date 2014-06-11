@@ -72,7 +72,7 @@ var Settings = Backbone.Model.extend({
                                 "SAMMAKKO","ILVES","KORPPI","KIRVA","KARHU","AHMA","KYY","ROTTA","SUSI","MÄYRÄ"
             ],
             'ammatit' :     [   "LÄÄKÄRI","MYYJÄ","PARTURI","OPETTAJA","HOITAJA","VARTIJA","KAPTEENI","LENTÄJÄ","SEPPÄ",
-                                "KOKKI","NÄYTTELIJÄ","POSTELJOONI","METSURI","KÄTILÖ","VALMENTAJA","TERAPEUTTI",
+                                "KOKKI","NÄYTTELIJÄ","METSURI","KÄTILÖ","VALMENTAJA","TERAPEUTTI",
                                 "TARJOILIJA","KEITTÄJÄ","OHJAAJA","OMPELIJA","YRITTÄJÄ","KYLVETTÄJÄ","OPTIKKO"
             ],
             'kasvit' :      [   "OMENA","BANAANI","PÄÄRYNÄ","NEKTARIINI","SIPULI","TOMAATTI","LILJA","RUUSU","KOIVU",
