@@ -196,6 +196,10 @@ function removeA(arr) {
     return arr;
 }
 
+function pad2(number){
+    return (number < 10 ? '0' : '') + number;
+}
+
 function getDateTime() {
     var today = new Date();
     var dd = today.getDate();
@@ -206,14 +210,10 @@ function getDateTime() {
     var hours = today.getHours();
     var minutes = today.getMinutes();
 
-    function pad2(number){
-        return (number < 10 ? '0' : '') + number
-    }
-
     var h = pad2(hours);
     var m = pad2(minutes);
 
-    return {'pvm': dd+'/'+mm+'/'+yyyy, 'klo': h+':'+m}
+    return {'pvm': dd+'/'+mm+'/'+yyyy, 'klo': h+':'+m};
 }
 
 Array.prototype.chunk = function(chunkSize) {
@@ -267,15 +267,15 @@ function hideFeedbackModal(status) {
 	$('#content').find('button').removeAttr('disabled');
 	$('.modal')
 		.html("<p class='text-center bigger'>Sisältöä ladataan...</p>")
-		.css('display','none')
+		.css('display','none');
 }
 
 function toggleFeedbackCheckbox () {
 
 	if( $('#checkboxFeedback').checked ) {
-		Settings.set({'showFeedbackModal': true})
+		Settings.set({'showFeedbackModal': true});
 	}else{
-		Settings.set({'showFeedbackModal': false})
+		Settings.set({'showFeedbackModal': false});
 	}
 }
 
@@ -287,9 +287,9 @@ function saveGameStart (gameData) {
 		dataType: 'json',
 		data: gameData,
 		success: function(res) {
-			Settings.set({'gameInstanceId': res.id})
+			Settings.set({'gameInstanceId': res.id});
 		}
-	})
+	});
 }
 
 function saveGameEnd () {
@@ -303,17 +303,17 @@ function saveGameEnd () {
 		data: data,
 		success: function(res) {
 		}
-	})
+	});
 }
 
 function saveHighScore (gameId, difficulty, scoreObj) {
 
   var data = {
-    'gameId': gameId, 
+    'gameId': gameId,
     'userId': Settings.get('currentUserId'),
     'difficultyLevel': difficulty,
     'score': JSON.stringify(scoreObj)
-  }
+  };
   console.log(data);
   $.ajax({
     url: 'http://stage.pienipiiri.fi/frSaveHighscore',
@@ -336,7 +336,7 @@ function saveGameFeedback (mood) {
 		data: data,
 		success: function(res) {
 		}
-	})
+	});
 }
 
 function preloadMoodmeter () {
@@ -374,7 +374,7 @@ function savePlayedTime (){
       var returnUrl = Settings.get('returnUrl');
       window.location = returnUrl+userId;
     }
-  })
+  });
 }
 
 function getPlayedTime (){
@@ -384,7 +384,7 @@ function getPlayedTime (){
       type: 'GET'
     }).done(function(data){
       var obj = $.parseJSON(data);
-      Settings.set({ 'playedTimeMS': obj.duration })
+      Settings.set({ 'playedTimeMS': obj.duration });
       var sessionTime = Settings.get('sessionTime');
 
       var totalTime = obj.duration + sessionTime;
@@ -393,4 +393,4 @@ function getPlayedTime (){
 
       $('#header h3').text('Olet tänään harjoitellut: '+ hours + "h " + minutes +"min");
   });
-};
+}
