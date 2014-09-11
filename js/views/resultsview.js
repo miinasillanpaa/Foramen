@@ -54,8 +54,8 @@ var ResultsView = Backbone.View.extend({
 					data = JSON.parse(data.score);
 
 
-					console.warn('record from db', data);
-					console.warn('previous gamescore',results.data);
+					//console.warn('record from db', data);
+					//console.warn('previous gamescore',results.data);
 
 					var len, elem, record, currGameCorrects, currGameTime, oldRecordCorrects, oldRecordTime;
 					elem = $(".record-well");
@@ -69,17 +69,17 @@ var ResultsView = Backbone.View.extend({
 							oldRecordCorrects = parseInt(data[3].value.replace(/\D/g,''));
 							oldRecordTime = parseInt(data[0].value.replace(/\D/g,''));
 
-							console.log('corrs: '+ currGameCorrects +" vs "+ oldRecordCorrects);
-							console.log('time: '+ currGameTime + " vs "+oldRecordTime);
+							//console.log('corrs: '+ currGameCorrects +" vs "+ oldRecordCorrects);
+							//console.log('time: '+ currGameTime + " vs "+oldRecordTime);
 
 							if( currGameCorrects > oldRecordCorrects ){
-								console.log('record with more corrects');
+								//console.log('record with more corrects');
 								record = true;
 								self.displayRecord(results, true);
 								
 							}else if(currGameCorrects === oldRecordCorrects){
 								if(oldRecordTime > currGameTime){
-									console.log('record with same amout of corrects but better time');
+									//console.log('record with same amout of corrects but better time');
 									record = true;
 									self.displayRecord(results, true);
 								}
@@ -92,19 +92,19 @@ var ResultsView = Backbone.View.extend({
 							oldRecordCorrects = parseInt(data[0].value.replace(/\D/g,''));
 
 							if(Settings.get('difficulty') !== "hard" ){
-								console.log('easy & medium, compare corrects');
+								//console.log('easy & medium, compare corrects');
 								if(currGameCorrects > oldRecordCorrects){
 									record = true;
 									self.displayRecord(results, true);
 								}
 
 							}else{
-								console.log('hard, compare corrects and if equal amount compare time');
+								//console.log('hard, compare corrects and if equal amount compare time');
 								currGameTime = parseInt(results.data[2].value.replace(/\D/g,''));
 								oldRecordTime = parseInt(data[2].value.replace(/\D/g,''));
 								
-								console.warn('times cur vs old', currGameTime, oldRecordTime);
-								console.warn('corrects cur vs old', currGameCorrects, oldRecordCorrects);
+								//console.warn('times cur vs old', currGameTime, oldRecordTime);
+								//console.warn('corrects cur vs old', currGameCorrects, oldRecordCorrects);
 
 								if(currGameCorrects > oldRecordCorrects){
 									console.log('record with more corrects');
@@ -112,7 +112,7 @@ var ResultsView = Backbone.View.extend({
 									self.displayRecord(results, true);
 								}else if(currGameCorrects === oldRecordCorrects){
 									if(currGameTime < oldRecordTime){
-										console.log('record with equal corrects but better time');
+										//console.log('record with equal corrects but better time');
 										record = true;
 										self.displayRecord(results, true);
 									}
@@ -124,7 +124,7 @@ var ResultsView = Backbone.View.extend({
 						case 3:
 							currGameCorrects = parseInt(results.data[2].value.replace(/\D/g,''));
 							oldRecordCorrects = parseInt(data[2].value.replace(/\D/g,''));
-							console.warn('corrects cur vs old', currGameCorrects, oldRecordCorrects);
+							//console.warn('corrects cur vs old', currGameCorrects, oldRecordCorrects);
 
 							if(currGameCorrects >= oldRecordCorrects){
 								record = true;
@@ -136,7 +136,7 @@ var ResultsView = Backbone.View.extend({
 						case 4:
 							currGameCorrects = parseInt(results.data[2].value);
 							oldRecordCorrects = parseInt(data[2].value);
-							console.warn('corrects cur vs old', currGameCorrects, oldRecordCorrects);
+							//console.warn('corrects cur vs old', currGameCorrects, oldRecordCorrects);
 
 							if(currGameCorrects >= oldRecordCorrects){
 								record = true;
@@ -148,7 +148,7 @@ var ResultsView = Backbone.View.extend({
 						case 5:
 							currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
 							oldRecordCorrects = parseInt(data[0].value.replace(/\D/g,''));
-							console.warn('correct sounds cur vs old', currGameCorrects, oldRecordCorrects);
+							//console.warn('correct sounds cur vs old', currGameCorrects, oldRecordCorrects);
 							
 							if(currGameCorrects >= oldRecordCorrects){
 								record = true;
@@ -161,7 +161,7 @@ var ResultsView = Backbone.View.extend({
 							//compares rounds
 							currGameCorrects = parseInt(results.data[0].value);
 							oldRecordCorrects = parseInt(data[0].value);
-							console.warn('played rounds cur vs old', currGameCorrects, oldRecordCorrects);
+							//console.warn('played rounds cur vs old', currGameCorrects, oldRecordCorrects);
 
 							if(currGameCorrects <= oldRecordCorrects){
 								record = true;
@@ -173,7 +173,7 @@ var ResultsView = Backbone.View.extend({
 						case 7:
 							currGameCorrects = parseInt(results.data[1].value.replace(/\D/g,''));
 							oldRecordCorrects = parseInt(data[1].value.replace(/\D/g,''));
-							console.warn('password guesses cur vs old', currGameCorrects, oldRecordCorrects);
+							//console.warn('password guesses cur vs old', currGameCorrects, oldRecordCorrects);
 
 							if(currGameCorrects <= oldRecordCorrects){
 								record = true;
@@ -185,7 +185,7 @@ var ResultsView = Backbone.View.extend({
 						case 8:
 							currGameTime = parseInt(results.data[0].value.replace(/\D/g,''));
 							oldRecordTime = parseInt(data[0].value.replace(/\D/g,''));
-							console.warn('sudoku time cur vs old', currGameTime, oldRecordTime);
+							//console.warn('sudoku time cur vs old', currGameTime, oldRecordTime);
 
 							if(currGameTime <= oldRecordTime){
 								record = true;
@@ -202,7 +202,7 @@ var ResultsView = Backbone.View.extend({
 							oldRecordTime = parseInt(data[1].value.replace(/\D/g,''));
 
 							if(oldRecordDoneCorrectly === "Oikein" && newDoneCorrectly === "Oikein"){
-								console.warn('corrected in time cur vs old', currGameTime, oldRecordTime);
+								//console.warn('corrected in time cur vs old', currGameTime, oldRecordTime);
 								if(currGameTime <= oldRecordTime){
 									record = true;
 									self.displayRecord(results, true);
@@ -223,24 +223,24 @@ var ResultsView = Backbone.View.extend({
 							var recordMoves = parseInt(data[1].value);
 							var recordWins = parseInt(data[2].value.substr(0,1));
 
-							console.warn('wins over computer cur vs old', curWins, recordWins);
-							console.warn('moves made cur vs old', curMoves, recordMoves);
-							console.warn('time spent cur vs old', currGameTime, oldRecordTime);
+							//console.warn('wins over computer cur vs old', curWins, recordWins);
+							//console.warn('moves made cur vs old', curMoves, recordMoves);
+							//console.warn('time spent cur vs old', currGameTime, oldRecordTime);
 
 							if(curWins === 1 && recordWins === 1){
 								if(curMoves <= recordMoves){
 									if(currGameTime <= oldRecordTime){
-										console.log('record with victory & less or equal moves & less or equal time spent');
+										//console.log('record with victory & less or equal moves & less or equal time spent');
 										record = true;
 										self.displayRecord(results, true);
 									}else{
-										console.log('record with victory & less or equal moves');
+										//console.log('record with victory & less or equal moves');
 										record = true;
 										self.displayRecord(results, true);
 									}
 								}	
 							}else if(curWins === 1 && recordWins < 1){
-								console.log('record with first victory over computer');
+								//console.log('record with first victory over computer');
 								record = true;
 								self.displayRecord(results, true);
 							}
@@ -250,14 +250,14 @@ var ResultsView = Backbone.View.extend({
 
 					//not a new record
 					if(!record){
-						console.log('not a record');
+						//console.log('not a record');
 						$(".record-box").addClass('alert-info').text("Hyvä suoritus!");
 						self.displayRecord(data, false);
 					}
 					
 				}else{
 					//nothing yet in backend, display as a record - not sure if this thing ever goes here
-					console.log('nothing yet in backend, display previous game as record');
+					//console.log('nothing yet in backend, display previous game as record');
 					self.displayRecord(results, true);	
 				}
 			},'json'

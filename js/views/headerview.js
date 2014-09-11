@@ -18,7 +18,9 @@ var HeaderView = Backbone.View.extend({
 			//local session lenght
 			var started = Settings.get('startedPlaying');
 			var now = new Date();
+
 			var sessionTime = ( now.getTime() - started.getTime() )/1000;
+			//console.log('sessiontime: '+sessionTime+' secs');
 			Settings.set({'sessionTime': sessionTime});
 
 			template = _.template( $(self.template0).html(), variables);
@@ -99,6 +101,9 @@ var HeaderView = Backbone.View.extend({
 	goBackToService: function() {
 		//navigating back to mobile-site is handled in callback
 		window.savePlayedTime();
+		var userId = Settings.get('currentUserId');
+		var returnUrl = Settings.get('returnUrl');
+		window.location = returnUrl+userId;
 	},
 	setModel: function(model) {
 		this.model = model;

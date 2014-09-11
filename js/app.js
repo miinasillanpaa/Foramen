@@ -370,9 +370,10 @@ function savePlayedTime (){
     dataType: 'json',
     data: data,
     success: function(res){
-      var userId = Settings.get('currentUserId');
-      var returnUrl = Settings.get('returnUrl');
-      window.location = returnUrl+userId;
+
+      //var userId = Settings.get('currentUserId');
+      //var returnUrl = Settings.get('returnUrl');
+      //window.location = returnUrl+userId;
     }
   });
 }
@@ -383,14 +384,17 @@ function getPlayedTime (){
       url: 'http://stage.pienipiiri.fi/frGetTotalPlayingTime?userId='+Settings.get('currentUserId'),
       type: 'GET'
     }).done(function(data){
+      
       var obj = $.parseJSON(data);
       Settings.set({ 'playedTimeMS': obj.duration });
       var sessionTime = Settings.get('sessionTime');
-
+      //console.log('time from backend '+ obj.duration +' secs');
       var totalTime = obj.duration + sessionTime;
+      
       var hours = Math.floor(totalTime / 3600) % 24;
       var minutes = Math.floor(totalTime / 60) % 60;
 
+      //console.log('totalTime '+ totalTime +' secs is '+ minutes+ 'mins');
       $('#header h3').text('Olet tänään harjoitellut: '+ hours + "h " + minutes +"min");
   });
 }
