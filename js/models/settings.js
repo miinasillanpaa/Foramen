@@ -195,17 +195,17 @@ var Settings = Backbone.Model.extend({
 
         salasanat: {
             "easy" : [
-                "ABI","AHO","AIE","AJO","ANE","APE","APU","ARA","ARO","ASE","ASU","AVU","BOA","DUO","EGO","ELO","EMI",
-                "EMO","EMU","EMÄ","ENO","ERÄ","EVÄ","HAI","IEN","IES","IHO","IKÄ","ILO","IMU","ISI","ITU","ITÄ","ÄES",
-                "IVA","JAE","KOE","KUU","KYY","KÖÖ","LUU","MAA","OKA","OLO","ORA","ORI","OSA","OTE","PAI","YTY","ÄLY",
-                "PUU","PÄÄ","RAE","SEI","SUO","SUU","SÄE","SÄÄ","TAE","TIE","TII","TIU","TYÖ","TÄI","UFO","UHO",
+                "AHO","AIE","AJO","ANE","APE","APU","ARA","ARO","ASE","ASU","AVU","ALA","BOA","DUO","EGO","ELO","EMI",
+                "EMO","EMU","EMÄ","ENO","ERÄ","EVÄ","HAI","IEN","IES","IHO","IKÄ","ILO","IMU","ISÄ","ITU","ITÄ","ÄES",
+                "IVA","JAE","KOE","KOI","KUU","KYY","KÖÖ","LUU","MAA","OKA","OLO","ORA","ORI","OSA","OTE","YTY","ÄLY",
+                "PUU","PII","PÄÄ","RAE","SEI","SUO","SUU","SYY","SÄE","SÄÄ","TAE","TIE","TII","TIU","TYÖ","TÄI","UFO","UHO",
                 "URA","UTU"
             ],
             "medium" : [
                 "AAMU","AUTO","AASI","ASKI","ASTE","ALKU","ALMU","AARI","ARKI","AKKU","ARPI","APPI","ARVO","AIKA","AATE",
                 "AAVE","AHJO","AHMA","AIHE","AINE","AIRO","AITA","AIVO","AKKA","AHTI","ALHO","ALMU","ANSA","ANTI","ARMO",
                 "ARPA","ASIA","ASTE","AULA","AUMA","AURA","EVÄS","ESTE","ENNE","ELIÖ","ELIN","EHTO","EMÄS","ERHE","ESSU",
-                "ESTO","EURO","EHTO","HAJU","HOME","HELA","HAME","HIUS","HIKI","HALU","HYVE","HAKA","HAKE","HANA","HARA",
+                "ESTO","EURO","EHTO","HAJU","HOME","HAME","HIUS","HIKI","HALU","HYVE","HAKA","HAKE","HANA","HARA",
                 "HAVU","HEDE","HELA","HELY","HERA","HIHA","HITU","HOVI","HUHU","HUPI","HUVI","HYMY","HÄKÄ","HÄLY","HÄMY",
                 "HÄTÄ","HÄÄT","IDEA","IHME","IHRA","ILMA","ILME","ILTA","ILVE","INHO","IONI","ITIÖ","ISKU","ITKU","JADE",
                 "JAKO","JANA","JANO","JAOS","JODI","JOKI","JONO","JUNA","JYVÄ","JÄTE","KALA","KANI","KARE","KARI","KATE",
