@@ -4,11 +4,11 @@ var ResultsView = Backbone.View.extend({
 
     render: function () {
         $('#header').show();
-		
+
 
         var myView = this;
         var difficulty;
-        
+
         if( this.options.results.difficulty == 'easy' ){
             difficulty = 'Taso I';
 			window.difficultyLevel = 1;
@@ -49,7 +49,7 @@ var ResultsView = Backbone.View.extend({
 
 		$.get( 'http://stage.pienipiiri.fi/frGetHighscore?&gameId='+gameId+'&userId='+userId+'&difficultyLevel='+difficultyLevel,
 			function(data) {
-							
+
 				if ( data.length !== 0  ) { //something was gotten from backend
 					data = JSON.parse(data.score);
 
@@ -76,7 +76,7 @@ var ResultsView = Backbone.View.extend({
 								//console.log('record with more corrects');
 								record = true;
 								self.displayRecord(results, true);
-								
+
 							}else if(currGameCorrects === oldRecordCorrects){
 								if(oldRecordTime > currGameTime){
 									//console.log('record with same amout of corrects but better time');
@@ -86,7 +86,7 @@ var ResultsView = Backbone.View.extend({
 							}
 							break;
 
-						//muista viesti	
+						//muista viesti
 						case 2:
 							currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
 							oldRecordCorrects = parseInt(data[0].value.replace(/\D/g,''));
@@ -102,7 +102,7 @@ var ResultsView = Backbone.View.extend({
 								//console.log('hard, compare corrects and if equal amount compare time');
 								currGameTime = parseInt(results.data[2].value.replace(/\D/g,''));
 								oldRecordTime = parseInt(data[2].value.replace(/\D/g,''));
-								
+
 								//console.warn('times cur vs old', currGameTime, oldRecordTime);
 								//console.warn('corrects cur vs old', currGameCorrects, oldRecordCorrects);
 
@@ -149,7 +149,7 @@ var ResultsView = Backbone.View.extend({
 							currGameCorrects = parseInt(results.data[0].value.replace(/\D/g,''));
 							oldRecordCorrects = parseInt(data[0].value.replace(/\D/g,''));
 							//console.warn('correct sounds cur vs old', currGameCorrects, oldRecordCorrects);
-							
+
 							if(currGameCorrects >= oldRecordCorrects){
 								record = true;
 								self.displayRecord(results, true);
@@ -238,7 +238,7 @@ var ResultsView = Backbone.View.extend({
 										record = true;
 										self.displayRecord(results, true);
 									}
-								}	
+								}
 							}else if(curWins === 1 && recordWins < 1){
 								//console.log('record with first victory over computer');
 								record = true;
@@ -254,11 +254,11 @@ var ResultsView = Backbone.View.extend({
 						$(".record-box").addClass('alert-info').text("Hyvä suoritus!");
 						self.displayRecord(data, false);
 					}
-					
+
 				}else{
 					//nothing yet in backend, display as a record - not sure if this thing ever goes here
 					//console.log('nothing yet in backend, display previous game as record');
-					self.displayRecord(results, true);	
+					self.displayRecord(results, true);
 				}
 			},'json'
 		);
@@ -285,7 +285,8 @@ var ResultsView = Backbone.View.extend({
     events:{
         'click .screen' : 'viewSnapshot',
         'click .new-game' : 'startNewGame',
-		'click .btn-feedback' : 'showModal'
+		    'click .btn-feedback' : 'showModal',
+        'click .more-challenging' : 'startChallengingGame'
     },
 
     displayRecord: function (results, newRecord) {
@@ -313,7 +314,7 @@ var ResultsView = Backbone.View.extend({
 				elem.find(".results.pull-left").append( '<p>'+ obj[i].name +'</p>' );
 				elem.find(".results.align-right").append( '<p>'+ obj[i].value +'</p>' );
 			}
-		}	
+		}
     },
 
     viewSnapshot: function () {
@@ -346,6 +347,15 @@ var ResultsView = Backbone.View.extend({
 
         var gameId = this.model.get('gameId');
         router.navigate('game/' + gameId + '/play', {trigger: true});
+    },
+
+    startChallengingGame: function(){
+      this.undelegateEvents();
+      App.currentGameView.undelegateEvents();
+      Settings.set({results: []});
+      Settings.set({difficulty: 'medium'});
+      router.navigate('game/'+ this.model.get('gameId') +'/play', {trigger: true});
+
     },
 
 	showModal: function () {

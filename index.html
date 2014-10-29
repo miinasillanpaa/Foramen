@@ -265,9 +265,9 @@
 
 
     <script id="sudokuTemplate" type="text/template">
-        
+
         <audio id="sudokuInvalidMoveSoundFX" src="sounds/block.mp3" type="audio/mpeg"></audio>
-        
+
         <div class="sudoku-wrapper sudoku-wrapper-symbol-type-<%= symbols.type %>">
             <div class="sudoku-grid">
                 <div class="sudoku-grid-content">
@@ -348,14 +348,14 @@
                 <button class="btn btn-large sudoku-action-continue hidden">Jatka</button>
             </div>
         </div>
-        
+
         <button class="btn btn-large bottom-right bigger finish hidden">Tuloksiin</button>
         <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
-        
+
     </script>
 
     <script id="ristinollaTemplate" type="text/template">
-        
+
         <div class="fiar-grid">
             <% _.each(rows, function(row) { %>
                 <div class="fiar-grid-row">
@@ -365,11 +365,11 @@
                 </div>
             <% }); %>
         </div>
-        
+
         <button class="btn btn-large bottom-right bigger finish hidden">Tuloksiin</button>
         <button class="btn btn-large bottom-right bigger reset hidden">Jatka</button>
         <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
-        
+
     </script>
 
 
@@ -400,7 +400,10 @@
 
                 </div>
             </div>
-            <button class="btn btn-success btn-block bigger new-game">Pelaa uudestaan</button>
+            <button class="btn btn-success btn-block bigger new-game">Harjoittele uudestaan</button>
+            <% if(difficulty === "Taso I") { %>
+              <button class="btn btn-warning btn-block bigger more-challenging">Kokeile haastavampaa tasoa</button>
+            <% } %>
         </div>
 
 
@@ -408,7 +411,7 @@
         <div class="span6">
 
             <div class="alert alert-bigger record-box">
-                Ennätystä ladataan...   
+                Ennätystä ladataan...
             </div>
 
             <div class="well record-well">
@@ -584,7 +587,7 @@
 
 	 <script id="mainHeaderTmpl" type="text/template">
 			<h2>FORAMEN-harjoitteet</h2>
-           
+
             <h3 class="game-time"></h3>
 			<button class="btn btn-large backToService" id="back-button">Alkuun</button>
 	</script>
