@@ -75,7 +75,7 @@ var TekstiviestiGameView = Backbone.View.extend({
                         if( Settings.get('difficulty') == 'hard' ){
 
                             $('.timer').addClass('hidden');
-                            $('.phone-container').append('<button class="btn btn-large bigger bottom-right toGame">Vastaa</button>');
+                            $('.phone-container').append('<button class="btn btn-large bigger bottom-right toGame btn-success">Vastaa</button>');
 
                             var startTime = new Date().getTime();
                             Settings.set({ startTime : startTime });

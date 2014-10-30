@@ -37,10 +37,10 @@
         <div class="text-center input-container hidden span12">
             <div class="span2 aud-hint">Kirjoita alussa kuulemasi sanat tekstiruutuihin</div>
             <div class="inputs span5"></div>
-            <button class="btn span2 below bigger finish">Valmis</button>
+            <button class="btn span2 below bigger finish btn-success">Valmis</button>
         </div>
 
-        <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
+        <button class="btn btn-large bottom-left bigger quit btn-danger">Keskeytä</button>
     </script>
 
     <script id="KIMTemplate" type="text/template">
@@ -63,9 +63,9 @@
             <% _.each(bluffs, function(bluffs) { %>
                 <img class="kim-item selectable" src="./pics/KIM/<%=bluffs%>.png">
             <% }); %>
-            <button class="btn bigger bottom-right finish">Valmis</button>
+            <button class="btn bigger bottom-right finish btn-success">Valmis</button>
         </div>
-        <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
+        <button class="btn btn-large bottom-left bigger quit btn-danger">Keskeytä</button>
     </script>
 
     <script id="salasanaTemplate" type="text/template">
@@ -82,10 +82,10 @@
                 </p>
 
                 <input class="serial-input input-large" type="text" placeholder="Paina tähän" />
-                <button class="btn bigger submit">Valmis</button>
+                <button class="btn bigger submit btn-success">Valmis</button>
 
         </div>
-        <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
+        <button class="btn btn-large bottom-left bigger quit btn-danger">Keskeytä</button>
     </script>
 
     <script id="konstruointiTemplate" type="text/template">
@@ -143,8 +143,8 @@
             <% }) %>
         </div>
 
-        <button class="btn btn-large bottom-right bigger finish">Valmis</button>
-        <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
+        <button class="btn btn-large bottom-right bigger finish btn-success">Valmis</button>
+        <button class="btn btn-large bottom-left bigger quit btn-danger">Keskeytä</button>
 
     </script>
 
@@ -158,7 +158,7 @@
         <div class="onTarget-pressed-info"></div>
 
         <button class="btn btn-primary bigger onTarget">Löytyi!</button>
-        <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
+        <button class="btn btn-large bottom-left bigger quit btn-danger">Keskeytä</button>
     </script>
 
     <script id="sarjamuistiTemplate" type="text/template">
@@ -178,9 +178,9 @@
                     <div class="choices"><%= choices %></div>
                 <% }) %>
             </div>
-        <button class="btn btn-large bottom-right bigger next" disabled="disabled" >Valmis</button>
+        <button class="btn btn-large bottom-right bigger next btn-success" disabled="disabled" >Valmis</button>
         <button class="btn btn-large bottom-center-right bigger ser-check" disabled="disabled" >Tarkista</button>
-        <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
+        <button class="btn btn-large bottom-left bigger quit btn-danger">Keskeytä</button>
     </script>
 
     <script id="tekstiviestiAnswerTemplate" type="text/template">
@@ -222,10 +222,10 @@
             <div class="span3 txt-answers"></div>
 
         </div>
-        <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
-        <button class="btn btn-large bottom-right bigger txt-check">Tarkista</button>
+        <button class="btn btn-large bottom-left bigger quit btn-danger">Keskeytä</button>
+        <button class="btn btn-large bottom-right bigger txt-check btn-success">Tarkista</button>
         <button class="btn btn-large bottom-center-right bigger hidden correct-answers">Näytä oikeat</button>
-        <button class="btn btn-large bottom-right bigger hidden continue">Jatka</button>
+        <button class="btn btn-large bottom-right bigger hidden continue btn-success">Jatka</button>
     </script>
 
     <script id="tekstiviestiGameTemplate" type="text/template">
@@ -241,7 +241,7 @@
             <%= message %>
         </div>
     </div>
-     <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
+     <button class="btn btn-large bottom-left bigger quit btn-danger">Keskeytä</button>
     </script>
 
 
@@ -257,8 +257,8 @@
             <% _.each(targetPic, function(targetPic) { %>
                 <img class="target" src="<%= targetPic.targetPic %>" />
             <% }); %>
-            <button class="btn btn-large bottom-right bigger finish">Valmis</button>
-            <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
+            <button class="btn btn-large bottom-right bigger finish btn-success">Valmis</button>
+            <button class="btn btn-large bottom-left bigger quit btn-danger">Keskeytä</button>
         </div>
 
     </script>
@@ -349,8 +349,8 @@
             </div>
         </div>
 
-        <button class="btn btn-large bottom-right bigger finish hidden">Tuloksiin</button>
-        <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
+        <button class="btn btn-large bottom-right bigger finish hidden btn-success">Tuloksiin</button>
+        <button class="btn btn-large bottom-left bigger quit btn-danger">Keskeytä</button>
 
     </script>
 
@@ -366,9 +366,9 @@
             <% }); %>
         </div>
 
-        <button class="btn btn-large bottom-right bigger finish hidden">Tuloksiin</button>
+        <button class="btn btn-large bottom-right bigger finish hidden btn-success">Tuloksiin</button>
         <button class="btn btn-large bottom-right bigger reset hidden">Jatka</button>
-        <button class="btn btn-large bottom-left bigger quit">Lopeta</button>
+        <button class="btn btn-large bottom-left bigger quit btn-danger">Keskeytä</button>
 
     </script>
 
