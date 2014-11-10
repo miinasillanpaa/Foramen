@@ -394,7 +394,13 @@
                     <p> <%= difficulty %></p>
 
                     <% _.each(data, function(data) { %>
+
+                      <% if( data.name.length > 0){ %>
                         <p><%= data.value %></p>
+                      <% }else{ %>                        
+                        <%= data.value %>
+                      <% } %>
+
                      <% }); %>
 
 

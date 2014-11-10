@@ -272,10 +272,18 @@ html, body{
 }
 
 .results p{
-    font-size: 1.9em;
-    line-height: 1.2em;
+  font-size: 1.9em;
+  line-height: 1.2em;
 	padding-bottom: 5px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: nowrap;
 }
+.results button{
+  font-size: 1.9em;
+}
+
 .btn-feedback{
 	position: absolute;
 	margin-top: 10px;
@@ -498,7 +506,7 @@ img.phone{
     font-size: 8.8em;
     letter-spacing: 0.2em;
     margin-top: 100px;
-    margin-bottom: -130px; 
+    margin-bottom: -130px;
 }
 
 .box{
@@ -553,7 +561,7 @@ img.phone{
     padding: 0 25px;
     margin: 0;
     margin-left: 17px;
-    
+
 }
 
 .choices{
@@ -616,7 +624,7 @@ img.phone{
     position: absolute;
     top: 325px;
     left: 570px;
-    font-size: 2.2em; 
+    font-size: 2.2em;
 }
 
 
