@@ -16,12 +16,12 @@ var HeaderView = Backbone.View.extend({
 		if(parseInt(this.id) === 0){
 
 			//local session lenght
-			var started = Settings.get('startedPlaying');
-			var now = new Date();
-
-			var sessionTime = ( now.getTime() - started.getTime() )/1000;
-			//console.log('sessiontime: '+sessionTime+' secs');
-			Settings.set({'sessionTime': sessionTime});
+			// var started = Settings.get('startedPlaying');
+			// var now = new Date();
+      //
+			// var sessionTime = ( now.getTime() - started.getTime() )/1000;
+			// //console.log('sessiontime: '+sessionTime+' secs');
+			// Settings.set({'sessionTime': sessionTime});
 
 			template = _.template( $(self.template0).html(), variables);
 			this.$el.html(template);
@@ -29,7 +29,6 @@ var HeaderView = Backbone.View.extend({
 			//getting played time from backend and showing it in header
 			window.getPlayedTime();
 
-			
 			//$('#header').html('<h1 class="text-center">Ladataan...</h1>');
 
 
@@ -39,11 +38,11 @@ var HeaderView = Backbone.View.extend({
 					var hours = Math.floor(totalTime / 3600) % 24;
 					var minutes = Math.floor(totalTime / 60) % 60;
 
-					variables = { playedTime: hours + "h " + minutes +"min"}; 
+					variables = { playedTime: hours + "h " + minutes +"min"};
 					template = _.template( $(self.template0).html(), variables);
 					self.$el.html(template);
 				}else{
-					variables = { playedTime: "Ei tiedossa"}; 
+					variables = { playedTime: "Ei tiedossa"};
 					template = _.template( $(self.template0).html(), variables);
 					self.$el.html(template);
 				}

@@ -156,7 +156,7 @@ var games = [
                        '<p class="lvl-box lvl-easy hidden">Taso I: Helppo vastustaja.</p>' +
                        '<p class="lvl-box lvl-med hidden">Taso II: Keskinkertainen vastustaja.</p>' +
                        '<p class="lvl-box lvl-hard hidden">Taso III: Taitava vastustaja.</p></div>' +
-                       
+
                        "<p>Kuvaruudulla näkyy tyhjä ruudukko.<br/>Tehtävässä kone pelaa ihmistä vastaan.</p>"+
                        '<p>Ruudukkoon asetetaan vuorotellen "risti" ja "nolla" (kone asettaa nollan, ihminen ristin). Tavoitteena on saada viisi peräkkäistä ristiä tai nollaa pysty-, vaaka- tai vinoruudukkoon.</p>'+
                        "<p>Valinta osoitetaan koskettamalla haluttua ruutua.</p>"+
@@ -358,24 +358,30 @@ function saveInterruptedGame (gameInstanceId) {
 }
 
 function savePlayedTime (){
-  
+
   var started = Settings.get('startedPlaying');
   var now = new Date();
   var sessionTime = ( now.getTime() - started.getTime() )/1000;
-  var data = {userId: Settings.get('currentUserId'), duration: sessionTime};
+	Settings.set({'sessionTime': sessionTime});
+	Settings.set({'startedPlaying': now});
 
-  $.ajax({
-    url: 'http://stage.pienipiiri.fi/frSaveTotalPlayingTime',
-    type: 'POST',
-    dataType: 'json',
-    data: data,
-    success: function(res){
+	if(sessionTime > 1){
+	var data = {userId: Settings.get('currentUserId'), duration: sessionTime};
+		console.log('save session time to db', sessionTime);
+		$.ajax({
+			url: 'http://stage.pienipiiri.fi/frSaveTotalPlayingTime',
+			type: 'POST',
+			dataType: 'json',
+			data: data,
+			success: function(res){
 
-      //var userId = Settings.get('currentUserId');
-      //var returnUrl = Settings.get('returnUrl');
-      //window.location = returnUrl+userId;
-    }
-  });
+				//var userId = Settings.get('currentUserId');
+				//var returnUrl = Settings.get('returnUrl');
+				//window.location = returnUrl+userId;
+			}
+		});
+	}
+
 }
 
 function getPlayedTime (){
@@ -384,17 +390,21 @@ function getPlayedTime (){
       url: 'http://stage.pienipiiri.fi/frGetTotalPlayingTime?userId='+Settings.get('currentUserId'),
       type: 'GET'
     }).done(function(data){
-      
+
       var obj = $.parseJSON(data);
+			var totalTime;
+
       Settings.set({ 'playedTimeMS': obj.duration });
-      var sessionTime = Settings.get('sessionTime');
-      //console.log('time from backend '+ obj.duration +' secs');
-      var totalTime = obj.duration + sessionTime;
-      
-      var hours = Math.floor(totalTime / 3600) % 24;
+
+			if(Settings.get('sessionTime') && Settings.get('sessionTime') > 1){
+				var sessionTime = Settings.get('sessionTime');
+				totalTime = obj.duration + sessionTime;
+			}else{
+				totalTime = obj.duration;
+			}
+    	var hours = Math.floor(totalTime / 3600) % 24;
       var minutes = Math.floor(totalTime / 60) % 60;
 
-      //console.log('totalTime '+ totalTime +' secs is '+ minutes+ 'mins');
       $('#header h3').text('Olet tänään harjoitellut: '+ hours + "h " + minutes +"min");
   });
 }
