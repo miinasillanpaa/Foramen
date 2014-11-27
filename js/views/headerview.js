@@ -23,6 +23,9 @@ var HeaderView = Backbone.View.extend({
 			// //console.log('sessiontime: '+sessionTime+' secs');
 			// Settings.set({'sessionTime': sessionTime});
 
+      var android = window.getAndroidVersion();
+      variables = {'android':android};
+
 			template = _.template( $(self.template0).html(), variables);
 			this.$el.html(template);
 

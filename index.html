@@ -397,7 +397,7 @@
 
                       <% if( data.name.length > 0){ %>
                         <p><%= data.value %></p>
-                      <% }else{ %>                        
+                      <% }else{ %>
                         <%= data.value %>
                       <% } %>
 
@@ -595,7 +595,10 @@
 			<h2>FORAMEN-harjoitteet</h2>
 
             <h3 class="game-time"></h3>
-			<button class="btn btn-large backToService" id="back-button">Alkuun</button>
+
+      <% if(android && android < 4.2){ %>
+			     <button class="btn btn-large backToService" id="back-button">Alkuun</button>
+      <% } %>
 	</script>
 
 	<script id="backHeaderTmpl" type="text/template">

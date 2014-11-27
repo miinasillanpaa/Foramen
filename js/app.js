@@ -408,3 +408,21 @@ function getPlayedTime (){
       $('#header h3').text('Olet tänään harjoitellut: '+ hours + "h " + minutes +"min");
   });
 }
+
+function getAndroidVersion (){
+
+		var ua = navigator.userAgent;
+		
+		if (ua.indexOf('Android') > -1){
+			var match = ua.match(/Android\s([0-9\.]*)/);
+			if( match[1] ){
+				return parseFloat(match[1]);
+			}else{
+				return parseFloat(match);
+			}
+
+		}else{
+			return false;
+		}
+
+}
