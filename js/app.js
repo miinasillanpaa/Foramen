@@ -279,9 +279,10 @@ function toggleFeedbackCheckbox () {
 	}
 }
 
-var backend = Settings.get('backendUrl');
+
 
 function saveGame(gameData){
+	var backend = Settings.get('backendUrl');
 	console.log('gamedata', gameData);
 	var userId = Settings.get('currentUserId');
 
@@ -323,6 +324,7 @@ function saveGameEnd (gameId) {
 }
 
 function saveHighScore (gameId, difficulty, scoreObj) {
+	var backend = Settings.get('backendUrl');
 	var userId = Settings.get('currentUserId');
   var data = {
     'gameId': gameId,
@@ -343,6 +345,7 @@ function saveHighScore (gameId, difficulty, scoreObj) {
 }
 
 function saveGameFeedback (mood) {
+	var backend = Settings.get('backendUrl');
 	var gameInstanceId = Settings.get('gameInstanceId');
 	var userId = Settings.get('currentUserId');
 	var data = { 'id': gameInstanceId, 'feedback': mood };
@@ -365,6 +368,7 @@ function preloadMoodmeter () {
 function saveInterruptedGame (gameId, gameInstanceId) {
 	var userId = Settings.get('currentUserId');
   var data = {'gameInstanceId': gameInstanceId };
+	var backend = Settings.get('backendUrl');
   $.ajax({
 		url: backend+'/foramen/game/saveInterrupted/'+userId+'/'+gameId,
     type: 'POST',
@@ -377,6 +381,7 @@ function saveInterruptedGame (gameId, gameInstanceId) {
 }
 
 function savePlayedTime (){
+	var backend = Settings.get('backendUrl');
 	var userId = Settings.get('currentUserId');
   var started = Settings.get('startedPlaying');
   var now = new Date();
@@ -401,6 +406,7 @@ function savePlayedTime (){
 }
 
 function getPlayedTime (){
+	var backend = Settings.get('backendUrl');
 		var userId = Settings.get('currentUserId');
     $.ajax({
 			url: backend+'/foramen/playtime/'+userId,
