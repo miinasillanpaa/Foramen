@@ -46,19 +46,13 @@ var ResultsView = Backbone.View.extend({
 		if( !this.options.fromPlayedGameView ) {
 			window.saveGameEnd(gameId);
 		}
+    var backend = Settings.get('backendUrl');
 
-
-		//$.get( 'http://stage.pienipiiri.fi/frGetHighscore?&gameId='+gameId+'&userId='+userId+'&difficultyLevel='+difficultyLevel,
-    //$.get( 'http://192.168.43.212:3000/foramen/highscore/'+gameId+'/'+userId+'/'+difficultyLevel,
-    $.get( 'https://api-stage.pienipiiri.fi/foramen/highscore/'+gameId+'/'+userId+'/'+difficultyLevel,
+    $.get( backend+'/foramen/highscore/'+gameId+'/'+userId+'/'+difficultyLevel,
       function(data) {
-        console.log('highscore', data);
-        console.log('isempty', $.isEmptyObject(data));
 				if ( data.length !== 0 && $.isEmptyObject(data) === false ) { //something was gotten from backend
           data = JSON.parse(data.score);
-          //console.log('got not empty data obj', data);
-					//console.warn('record from db', data);
-					//console.warn('previous gamescore',results.data);
+          console.log('got results', data);
 
 					var len, elem, record, currGameCorrects, currGameTime, oldRecordCorrects, oldRecordTime;
 					elem = $(".record-well");

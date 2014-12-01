@@ -173,7 +173,7 @@ router.on('route:play', function(id) {
         $('#content').html('Nothing here yet!');
     }
 
-	window.saveGameStart(gameData);
+	window.saveGame(gameData);
 });
 router.on('route:resultsView', function(id) {
     var selectedGameIndex = parseInt(id-1);

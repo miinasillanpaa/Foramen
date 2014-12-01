@@ -7,7 +7,7 @@ var Settings = Backbone.Model.extend({
 		playerRole: 'Kuntoutuja',
         category: 'kalat',
         textCategory: 'eläimet',
-		//backendUrl: 'https://pienipiiri.fi',
+		backendUrl: 'https://api-stage.pienipiiri.fi',
 		score: {},
 		gameInstanceId: null,
 		showFeedbackModal: false,
@@ -281,23 +281,22 @@ var Settings = Backbone.Model.extend({
                 "YKSIÖ","YNINÄ","YRTTI","ÄÄNNE"
             ]
         },
-    
-    
+
+
     sudokuCategory: "numerot",
-    
+
     sudokuCategories: {
       "titles": [ "NUMEROT", "HEDELMÄT" ],
       "titleImg": [ "./pics/numbers.png", "./pics/hedelmat/1.png" ]
     },
-    
-    
+
+
     fiarNumberOfGamesBeforeResults: 1,
-    
+
     fiarNumberOfGridRows: 15,
     fiarNumberOfGridCols: 15,
     computerMoving: false
-    
-  }
-  
-});
 
+  }
+
+});
