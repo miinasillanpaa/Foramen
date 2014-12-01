@@ -279,62 +279,114 @@ function toggleFeedbackCheckbox () {
 	}
 }
 
-var backend = 'http://stage.pienipiiri.fi/frSaveGame';
-function saveGameStart (gameData) {
-	$.ajax({
-		url: backend,
-		type: 'POST',
-		dataType: 'json',
-		data: gameData,
-		success: function(res) {
-			Settings.set({'gameInstanceId': res.id});
-		}
-	});
+
+function saveGame(gameData){
+	console.log('gamedata', gameData);
+	var userId = Settings.get('currentUserId');
+
+	if(!gameData.hasOwnProperty("_id")){
+		$.ajax({
+			url: 'https://api-stage.pienipiiri.fi/foramen/game/save/'+userId,
+			//url: 'http://192.168.43.212:3000/foramen/game/save/'+userId,
+			type: 'POST',
+			dataType: 'json',
+			data: gameData,
+			success: function(res){
+				console.log('saveGAem without id res', res);
+				Settings.set({'gameInstanceId': res._id});
+			}
+		});
+
+	}else{
+
+		$.ajax({
+			url: 'https://api-stage.pienipiiri.fi/foramen/game/save/'+userId,
+			//url: 'http://192.168.43.212:3000/foramen/game/save/'+userId,
+			type: 'POST',
+			dataType: 'json',
+			data: gameData,
+			success: function(res){
+				console.log('saveGame with id res', res);
+				//Settings.set({'gameInstanceId': res.id});
+			}
+		});
+	}
+
+
 }
 
-function saveGameEnd () {
+function saveGameStart (gameData) {
+	saveGame(gameData);
+
+	// var userId = Settings.get('currentUserId');
+	//
+	// $.ajax({
+	// 	//url: 'http://stage.pienipiiri.fi/frSaveGame',
+	// 	url: 'https://api-stage.pienipiiri.fi/foramen/game/save/'+
+	// 	type: 'POST',
+	// 	dataType: 'json',
+	// 	data: gameData,
+	// 	success: function(res) {
+	// 		Settings.set({'gameInstanceId': res.id});
+	// 	}
+	// });
+}
+
+function saveGameEnd (gameId) {
 	var gameInstanceId = Settings.get('gameInstanceId');
 	var scoreObj = JSON.stringify(Settings.get('score'));
-	var data = { 'id': gameInstanceId, 'score': scoreObj };
-	$.ajax({
-		url: 'http://stage.pienipiiri.fi/frSaveGame',
-		type: 'POST',
-		dataType: 'json',
-		data: data,
-		success: function(res) {
-		}
-	});
+	var gameData = {
+		'_id': gameInstanceId,
+		'gameId': gameId,
+		'score': scoreObj
+	};
+	saveGame(gameData);
+
+	// var data = { 'id': gameInstanceId, 'score': scoreObj };
+	// $.ajax({
+	// 	//url: 'http://stage.pienipiiri.fi/frSaveGame',
+	// 	type: 'POST',
+	// 	dataType: 'json',
+	// 	data: data,
+	// 	success: function(res) {
+	// 	}
+	// });
 }
 
 function saveHighScore (gameId, difficulty, scoreObj) {
-
+	var userId = Settings.get('currentUserId');
   var data = {
     'gameId': gameId,
-    'userId': Settings.get('currentUserId'),
+    'userId': userId,
     'difficultyLevel': difficulty,
     'score': JSON.stringify(scoreObj)
   };
   console.log(data);
   $.ajax({
-    url: 'http://stage.pienipiiri.fi/frSaveHighscore',
+    //url: 'http://stage.pienipiiri.fi/frSaveHighscore',
+		url: 'https://api-stage.pienipiiri.fi/foramen/highscore/'+gameId+'/'+userId,
+		//url: 'http://192.168.43.212:3000/foramen/highscore/'+gameId+'/'+userId,
     type: 'POST',
     dataType: 'json',
     data: data,
     success: function(res) {
-      console.log(res);
+      console.log('saved highscore', res);
     }
   });
 }
 
 function saveGameFeedback (mood) {
 	var gameInstanceId = Settings.get('gameInstanceId');
+	var userId = Settings.get('currentUserId');
 	var data = { 'id': gameInstanceId, 'feedback': mood };
 	$.ajax({
-		url: backend,
+		url: "https://api-stage.pienipiiri.fi/foramen/feedback/"+userId,
+		//url: "http://192.168.43.212:3000/foramen/feedback/"+userId,
 		type: 'POST',
 		dataType: 'json',
 		data: data,
 		success: function(res) {
+			console.log(res);
 		}
 	});
 }
@@ -344,10 +396,13 @@ function preloadMoodmeter () {
 	$(moods).preload();
 }
 
-function saveInterruptedGame (gameInstanceId) {
-  var data = {'id': gameInstanceId };
+function saveInterruptedGame (gameId, gameInstanceId) {
+	var userId = Settings.get('currentUserId');
+  var data = {'gameInstanceId': gameInstanceId };
   $.ajax({
-    url: 'http://stage.pienipiiri.fi/frSaveInterruptedGame',
+    //url: 'http://stage.pienipiiri.fi/frSaveInterruptedGame',
+		url: 'https://api-stage.pienipiiri.fi/foramen/game/saveInterrupted/'+userId+'/'+gameId,
+		//url: 'http://192.168.43.212:3000/foramen/game/saveInterrupted/'+userId+'/'+gameId,
     type: 'POST',
     dataType: 'json',
     data: data,
@@ -358,7 +413,7 @@ function saveInterruptedGame (gameInstanceId) {
 }
 
 function savePlayedTime (){
-
+	var userId = Settings.get('currentUserId');
   var started = Settings.get('startedPlaying');
   var now = new Date();
   var sessionTime = ( now.getTime() - started.getTime() )/1000;
@@ -366,15 +421,17 @@ function savePlayedTime (){
 	Settings.set({'startedPlaying': now});
 
 	if(sessionTime > 1){
-	var data = {userId: Settings.get('currentUserId'), duration: sessionTime};
+	var data = {userId: userId, duration: sessionTime};
 		console.log('save session time to db', sessionTime);
 		$.ajax({
-			url: 'http://stage.pienipiiri.fi/frSaveTotalPlayingTime',
+			//url: 'http://stage.pienipiiri.fi/frSaveTotalPlayingTime',
+			url: 'https://api-stage.pienipiiri.fi/foramen/playtime/'+userId,
+			//url: 'http://192.168.43.212:3000/foramen/playtime/'+userId,
 			type: 'POST',
 			dataType: 'json',
 			data: data,
 			success: function(res){
-
+				console.log('saved playtime', res);
 				//var userId = Settings.get('currentUserId');
 				//var returnUrl = Settings.get('returnUrl');
 				//window.location = returnUrl+userId;
@@ -385,14 +442,20 @@ function savePlayedTime (){
 }
 
 function getPlayedTime (){
-
+		var userId = Settings.get('currentUserId');
     $.ajax({
-      url: 'http://stage.pienipiiri.fi/frGetTotalPlayingTime?userId='+Settings.get('currentUserId'),
+      //url: 'http://stage.pienipiiri.fi/frGetTotalPlayingTime?userId='+Settings.get('currentUserId'),
+			url: 'https://api-stage.pienipiiri.fi/foramen/playtime/'+userId,
+			//url: 'http://192.168.43.212:3000/foramen/playtime/'+userId,
       type: 'GET'
     }).done(function(data){
-
-      var obj = $.parseJSON(data);
+      //var obj = $.parseJSON(data);
+			var obj = data;
 			var totalTime;
+
+			if(!obj.hasOwnProperty("duration")){
+				obj.duration = 0;
+			}
 
       Settings.set({ 'playedTimeMS': obj.duration });
 
@@ -412,7 +475,7 @@ function getPlayedTime (){
 function getAndroidVersion (){
 
 		var ua = navigator.userAgent;
-		
+
 		if (ua.indexOf('Android') > -1){
 			var match = ua.match(/Android\s([0-9\.]*)/);
 			if( match[1] ){

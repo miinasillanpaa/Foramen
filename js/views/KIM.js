@@ -71,7 +71,8 @@ var KIM = Backbone.View.extend({
     },
 
     quitGame: function () {
-        window.saveInterruptedGame(Settings.get('gameInstanceId'));
+      var gameId = this.model.get('gameId');
+      window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         this.undelegateEvents();
         Settings.set({'playThruNum' : 0});
         router.navigate('/', true);
@@ -98,7 +99,7 @@ var KIM = Backbone.View.extend({
                 $('.knob').val(timeLeft).trigger("change");
                 $('.knob').val(totMin+":"+totSec);
                 timeLeft--;
-                
+
                 $('.quit').click( function () {
                     window.clearInterval(App.knobTimer);
                 });
@@ -173,7 +174,7 @@ var KIM = Backbone.View.extend({
 
     addBluffs: function (targets) {
         $('.finish').removeClass('hidden');
-        
+
         var itemsLength = this.itemsLength();
 
         var bluffsArr = [];
@@ -222,7 +223,7 @@ var KIM = Backbone.View.extend({
         $('.finish').addClass('hidden');
         var targets = Settings.get('targets');
         var visible = targets.length*4500;
-        
+
         var playthruNum = Settings.get('playThruNum');
 
         playthruNum++;

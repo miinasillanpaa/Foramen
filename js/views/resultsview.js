@@ -40,20 +40,23 @@ var ResultsView = Backbone.View.extend({
 			}
 		}
 		Settings.set({'score':resultsToDB});
+    var self = this;
+    var userId = Settings.get('currentUserId');
+    var gameId = this.model.get('gameId');
 		if( !this.options.fromPlayedGameView ) {
-			window.saveGameEnd();
+			window.saveGameEnd(gameId);
 		}
-		var self = this;
-		var userId = Settings.get('currentUserId');
-		var gameId = this.model.get('gameId');
-
-		$.get( 'http://stage.pienipiiri.fi/frGetHighscore?&gameId='+gameId+'&userId='+userId+'&difficultyLevel='+difficultyLevel,
-			function(data) {
-
-				if ( data.length !== 0  ) { //something was gotten from backend
-					data = JSON.parse(data.score);
 
 
+		//$.get( 'http://stage.pienipiiri.fi/frGetHighscore?&gameId='+gameId+'&userId='+userId+'&difficultyLevel='+difficultyLevel,
+    //$.get( 'http://192.168.43.212:3000/foramen/highscore/'+gameId+'/'+userId+'/'+difficultyLevel,
+    $.get( 'https://api-stage.pienipiiri.fi/foramen/highscore/'+gameId+'/'+userId+'/'+difficultyLevel,
+      function(data) {
+        console.log('highscore', data);
+        console.log('isempty', $.isEmptyObject(data));
+				if ( data.length !== 0 && $.isEmptyObject(data) === false ) { //something was gotten from backend
+          data = JSON.parse(data.score);
+          //console.log('got not empty data obj', data);
 					//console.warn('record from db', data);
 					//console.warn('previous gamescore',results.data);
 

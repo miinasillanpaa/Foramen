@@ -249,7 +249,8 @@ var KuvaEtsinta = Backbone.View.extend({
     },
 
     quitGame: function () {
-        window.saveInterruptedGame(Settings.get('gameInstanceId'));
+      var gameId = this.model.get('gameId');
+      window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
 		this.undelegateEvents();
         router.navigate('/', true);
     },

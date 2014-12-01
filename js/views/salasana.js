@@ -37,7 +37,8 @@ var Salasana = Backbone.View.extend({
     },
 
     quitGame : function () {
-        window.saveInterruptedGame(Settings.get('gameInstanceId'));
+      var gameId = this.model.get('gameId');
+      window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         this.undelegateEvents();
         Settings.set({ 'checks' : 0 });
         Settings.set({ 'scrollerChecks': 0 });
@@ -145,7 +146,7 @@ var Salasana = Backbone.View.extend({
             $('.pw-hint span').addClass('danger').text('Tarkista arvauksen pituus! Salasana on '+textnum+' kirjaimen pituinen');
             console.log(textnum);
         }else{
-            
+
             $('.pw-hint span').removeClass('danger').text('Kirjoita päättelemäsi '+textnum+ ' kirjaimen pituinen salasana');
             var checks = Settings.get('checks');
             checks++;

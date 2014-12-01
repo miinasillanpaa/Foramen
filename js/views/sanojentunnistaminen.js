@@ -29,7 +29,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         startPos = textString.length - 17;
         Settings.set({ startPos : startPos });
-        
+
         window.timer = setTimeout(
             function () {
                 window.clearTimeout(timer);
@@ -81,12 +81,12 @@ var SanojenTunnistaminen = Backbone.View.extend({
                     ]
                 };
 
-                Settings.set({ 
-                    scrollerResults: {  
+                Settings.set({
+                    scrollerResults: {
                         corrects: 0,
                         wrongs: 0,
                         selectorPresses: 0
-                    } 
+                    }
                 });
 
                 Settings.set({ scroller: "" });
@@ -129,7 +129,8 @@ var SanojenTunnistaminen = Backbone.View.extend({
     },
 
     quitGame: function () {
-        window.saveInterruptedGame(Settings.get('gameInstanceId'));
+      var gameId = this.model.get('gameId');
+      window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         this.undelegateEvents();
         this.unbind();
         router.navigate('/', true);
@@ -163,7 +164,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
         var text, pos, selector;
         text = Settings.get('textString');
         pos = Settings.get('startPos') - 1;
-        
+
         Settings.set({ startPos : pos });
 
         $('.scroller').transition({ x: '+=50' });
@@ -303,9 +304,9 @@ var SanojenTunnistaminen = Backbone.View.extend({
             items = Settings.get('itemsArray');
         } else {
             console.log('itemsArray was empty');
-            items = Settings.get('categories')[category].slice(0);  
+            items = Settings.get('categories')[category].slice(0);
         }
-        
+
 
         selectorPresses = Settings.get('scrollerResults').selectorPresses+1;
 
@@ -327,7 +328,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
                 console.log(items);
             }
         }
-        
+
         buttonClickedInfoElem = this.$('.onTarget-pressed-info');
         if(correctAnswer){
             buttonClickedInfoElem.show().html('Oikein!').removeClass('danger').addClass('success');
@@ -335,7 +336,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
             _results.wrongs++;
             buttonClickedInfoElem.show().html('Väärin meni').removeClass('success').addClass('danger');
         }
-        
+
         buttonClickedInfoElem.fadeOut(4000);
         _results.selectorPresses = selectorPresses;
         Settings.set({ scrollerResults: _results });

@@ -46,7 +46,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
 
         }
 
-        
+
         if( sounds.length === 2 ){
 
             document.getElementById("audio_0").addEventListener('ended', function(){
@@ -102,7 +102,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
             }, false);
 
         }
-        
+
 
         $('.quit').click( function () {
             window.clearTimeout(timer);
@@ -288,7 +288,8 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
     },
 
     quitGame: function () {
-        window.saveInterruptedGame(Settings.get('gameInstanceId'));
+        var gameId = this.model.get('gameId');
+        window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         Settings.set({corrects:0});
         this.undelegateEvents();
         router.navigate('/', true);

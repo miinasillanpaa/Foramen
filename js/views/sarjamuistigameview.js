@@ -29,9 +29,9 @@ var Sarjamuisti = Backbone.View.extend({
 
         var timer = setTimeout(
             function () {
-                
+
                 $('.box').addClass('black');
-                
+
                 var rand = Math.floor(Math.random() * arrLength);
                 var wait = setTimeout(
                     function() {
@@ -63,7 +63,8 @@ var Sarjamuisti = Backbone.View.extend({
     },
 
     quitGame: function () {
-        window.saveInterruptedGame(Settings.get('gameInstanceId'));
+      var gameId = this.model.get('gameId');
+      window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         this.undelegateEvents();
         Settings.set({ 'playThruNum'    : 0  });
         Settings.set({ 'correctSeries'  : 0  });
