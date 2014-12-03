@@ -7,7 +7,7 @@ var Settings = Backbone.Model.extend({
 		playerRole: 'Kuntoutuja',
         category: 'kalat',
         textCategory: 'eläimet',
-		backendUrl: 'https://api-stage.pienipiiri.fi',
+		backendUrl: 'https://api.pienipiiri.fi',
 		score: {},
 		gameInstanceId: null,
 		showFeedbackModal: false,
