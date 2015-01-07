@@ -29,77 +29,147 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
                 window.clearInterval(interval);
             });
         }
-
+        var audio;
         var timer;
         var soundElem;
+        var soundElems = [];
         var inputElem;
         for(var i=0; i<sounds.length; i++){
            if( i=== 0){
                 soundElem = '<audio id="audio_'+i+'" autoplay="autoplay" src='+sounds[i]+' type="audio/mpeg" ></audio>';
                 inputElem = '<input class="input input_'+i+'" type="text" placeholder="Kosketa tähän" />';
             }else{
-                soundElem = '<audio id="audio_'+i+'" src='+sounds[i]+' type="audio/mpeg" ></audio>';
+                soundElem = '<audio id="audio_'+i+'" autoplay="autoplay"  src='+sounds[i]+' type="audio/mpeg" ></audio>';
                 inputElem = '<input class="input input_'+i+'" type="text" />';
             }
-            $('.sounds').append(soundElem);
+            soundElems.push(soundElem);
+
+            //$('.sounds').append(soundElem);
             $('.inputs').append(inputElem);
 
         }
 
+        console.log('sounds', soundElems);
 
         if( sounds.length === 2 ){
 
-            document.getElementById("audio_0").addEventListener('ended', function(){
-                this.pause();
-                timer = window.setTimeout( function(){ document.getElementById("audio_1").play() }, 750 );
-            }, false);
-            document.getElementById("audio_1").addEventListener('ended', function () {
-                this.pause();
-                timer = window.setTimeout( function() {
-                    timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
-                    startInterval();
-                },1000);
-            }, false);
+          $('.sounds').append(soundElems[0]);
+
+          document.getElementById('audio_0').addEventListener('ended', function(){
+              this.pause();
+
+              timer = window.setTimeout( function(){
+                //document.getElementsByTagName('audio')[1].play();
+                //document.getElementById("audio_1").play();
+                  $('.sounds').append(soundElems[1]);
+
+                  document.getElementById('audio_1').addEventListener('ended', function () {
+                    this.pause();
+                    timer = window.setTimeout( function() {
+                      timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
+                      startInterval();
+                    },1000);
+                  }, false);
+
+
+                }, 750 );
+
+          }, false);
 
         }else if( sounds.length === 3 ){
 
-            document.getElementById("audio_0").addEventListener('ended', function(){
-                this.pause();
-                timer = window.setTimeout( function(){ document.getElementById("audio_1").play() }, 750 );
-            }, false);
-            document.getElementById("audio_1").addEventListener('ended', function(){
-                this.pause();
-                timer = window.setTimeout( function(){ document.getElementById("audio_2").play() }, 750 );
-            }, false);
-            document.getElementById("audio_2").addEventListener('ended', function () {
-                this.pause();
-                timer = window.setTimeout( function() {
-                    timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
-                    startInterval();
-                },1000);
-            }, false);
+          $('.sounds').append(soundElems[0]);
 
-        }else if( sounds.length===4 ){
+          document.getElementById('audio_0').addEventListener('ended', function(){
+            this.pause();
+            timer = window.setTimeout( function(){
+              $('.sounds').append(soundElems[1]);
 
-            document.getElementById("audio_0").addEventListener('ended', function(){
+              document.getElementById('audio_1').addEventListener('ended', function(){
                 this.pause();
-                timer = window.setTimeout( function(){ document.getElementById("audio_1").play() }, 750 );
-            }, false);
-            document.getElementById("audio_1").addEventListener('ended', function(){
+                timer = window.setTimeout( function(){
+                  $('.sounds').append(soundElems[2]);
+
+                  document.getElementById('audio_2').addEventListener('ended', function(){
+                    this.pause();
+                    timer = window.setTimeout( function() {
+                      timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
+                      startInterval();
+                    },1000);
+                  });
+                  }, 750 );
+              }, false);
+            }, 750 );
+        }, false);
+
+
+
+          // document.getElementById("audio_1").addEventListener('ended', function(){
+          //     this.pause();
+          //     timer = window.setTimeout( function(){ document.getElementById("audio_2").play() }, 750 );
+          // }, false);
+          // document.getElementById("audio_2").addEventListener('ended', function () {
+          //     this.pause();
+          //     timer = window.setTimeout( function() {
+          //         timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
+          //         startInterval();
+          //     },1000);
+          // }, false);
+
+        }else if( sounds.length === 4 ){
+
+          $('.sounds').append(soundElems[0]);
+
+          document.getElementById('audio_0').addEventListener('ended', function(){
+            this.pause();
+            timer = window.setTimeout( function(){
+              $('.sounds').append(soundElems[1]);
+
+              document.getElementById('audio_1').addEventListener('ended', function(){
                 this.pause();
-                timer = window.setTimeout( function(){ document.getElementById("audio_2").play() }, 750 );
-            }, false);
-            document.getElementById("audio_2").addEventListener('ended', function(){
-                this.pause();
-                timer = window.setTimeout( function(){ document.getElementById("audio_3").play() }, 750 );
-            }, false);
-            document.getElementById("audio_3").addEventListener('ended', function () {
-                this.pause();
-                timer = window.setTimeout( function() {
-                    timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
-                    startInterval();
-                },1000);
-            }, false);
+                timer = window.setTimeout( function(){
+                  $('.sounds').append(soundElems[2]);
+
+                  document.getElementById('audio_2').addEventListener('ended', function(){
+                    this.pause();
+
+                    timer = window.setTimeout( function(){
+                      $('.sounds').append(soundElems[3]);
+
+                      document.getElementById('audio_3').addEventListener('ended', function(){
+                        this.pause();
+
+                        timer = window.setTimeout( function() {
+                          timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
+                          startInterval();
+                        },1000);
+                      });
+                    }, 750 );
+                  }, false);
+                }, 750 );
+              }, false);
+            }, 750 );
+          }, false);
+
+            // document.getElementById("audio_0").addEventListener('ended', function(){
+            //     this.pause();
+            //     timer = window.setTimeout( function(){ document.getElementById("audio_1").play() }, 750 );
+            // }, false);
+            // document.getElementById("audio_1").addEventListener('ended', function(){
+            //     this.pause();
+            //     timer = window.setTimeout( function(){ document.getElementById("audio_2").play() }, 750 );
+            // }, false);
+            // document.getElementById("audio_2").addEventListener('ended', function(){
+            //     this.pause();
+            //     timer = window.setTimeout( function(){ document.getElementById("audio_3").play() }, 750 );
+            // }, false);
+            // document.getElementById("audio_3").addEventListener('ended', function () {
+            //     this.pause();
+            //     timer = window.setTimeout( function() {
+            //         timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
+            //         startInterval();
+            //     },1000);
+            // }, false);
 
         }
 
