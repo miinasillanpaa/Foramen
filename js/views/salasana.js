@@ -160,134 +160,37 @@ var Salasana = Backbone.View.extend({
                 $('.guesses').transition({ y: '-=44' });
             }
 
-            if(difficulty === 'easy'){
+            var k, l;
+            if(guess === serial) {
+                console.log('strings equal', guess, serial);
+                this.goToResults();
 
-                if(guess === serial){
-                    this.goToResults();
+            }else{
 
-                }else{
+                $('.guesses').append('<p>'+guess+'</p>');
+                $('.serial-input').val('');
 
-                    $('.guesses').append('<p>'+guess+'</p>');
-                    $('.serial-input').val('');
-
-                    if(guessArr[0] === serialArr[0]){
+                for(k = 0; k < serialArr.length; k++){
+                    if(guessArr[k] === serialArr[k]){
                         $('.guesses p:last-child').append('&bull;');
-                        delete serialArr[0];
-                        delete guessArr[0];
-                    }
+                        delete serialArr[k];
+                        delete guessArr[k];
 
-                    if(guessArr[1] === serialArr[1]){
-                        $('.guesses p:last-child').append('&bull;');
-                        delete serialArr[1];
-                        delete guessArr[1];
-                    }
-
-                    if(guessArr[2] === serialArr[2]){
-                        $('.guesses p:last-child').append('&bull;');
-                        delete serialArr[2];
-                        delete guessArr[2];
-                    }
-
-                    for(var k=0; k<guessArr.length; k++){
-                        if(( $.inArray(guessArr[k], serialArr.filter(function(e){return e}) ) )  !== -1 ){
-
-                            removeA(serialArr,guessArr[k]);
-                            $('.guesses p:last-child').append('&#9702;');
-
-                        }
                     }
                 }
-            }else if(difficulty === 'medium'){
 
-                if(guess === serial) {
-                    this.goToResults();
-
-                }else{
-
-                    $('.guesses').append('<p>'+guess+'</p>');
-                    $('.serial-input').val('');
-
-                    if(guessArr[0] === serialArr[0]){
-                        $('.guesses p:last-child').append('&bull;');
-                        delete serialArr[0];
-                        delete guessArr[0];
-                    }
-
-                    if(guessArr[1] === serialArr[1]){
-                        $('.guesses p:last-child').append('&bull;');
-                        delete serialArr[1];
-                        delete guessArr[1];
-                    }
-
-                    if(guessArr[2] === serialArr[2]){
-                        $('.guesses p:last-child').append('&bull;');
-                        delete serialArr[2];
-                        delete guessArr[2];
-                    }
-
-                    if(guessArr[3] === serialArr[3]){
-                        $('.guesses p:last-child').append('&bull;');
-                        delete serialArr[3];
-                        delete guessArr[3];
-                    }
-
-                    for(var k=0; k<guessArr.length; k++){
-                        if(( $.inArray(guessArr[k], serialArr.filter(function(e){return e}) ) )  !== -1 ){
-
-                            removeA(serialArr,guessArr[k]);
-                            $('.guesses p:last-child').append('&#9702;');
-
-                        }
+                var t = [];
+                for(l = 0; l < guessArr.length; l++){
+                    if( ($.inArray(guessArr[l], serialArr ) > -1)){
+                        var index = serialArr.indexOf(guessArr[l]);
+                        delete serialArr[index];
+                        t.push(index);
                     }
                 }
-        }else{ //hard
 
-                if(guess === serial){
-                    this.goToResults();
-
-                }else{
-
-                    $('.guesses').append('<p>'+guess+'</p>');
-                    $('.serial-input').val('');
-
-                    if(guessArr[0] === serialArr[0]){
-                        $('.guesses p:last-child').append('&bull;');
-                        delete serialArr[0];
-                        delete guessArr[0];
-                    }
-
-                    if(guessArr[1] === serialArr[1]){
-                        $('.guesses p:last-child').append('&bull;');
-                        delete serialArr[1];
-                        delete guessArr[1];
-                    }
-
-                    if(guessArr[2] === serialArr[2]){
-                        $('.guesses p:last-child').append('&bull;');
-                        delete serialArr[2];
-                        delete guessArr[2];
-                    }
-
-                    if(guessArr[3] === serialArr[3]){
-                        $('.guesses p:last-child').append('&bull;');
-                        delete serialArr[3];
-                        delete guessArr[3];
-                    }
-
-                    if(guessArr[4] === serialArr[4]){
-                        $('.guesses p:last-child').append('&bull;');
-                        delete serialArr[4];
-                        delete guessArr[4];
-                    }
-
-                    for(var k=0; k<guessArr.length; k++){
-                        if(( $.inArray(guessArr[k], serialArr.filter(function(e){return e}) ) )  !== -1 ){
-
-                            removeA(serialArr,guessArr[k]);
-                            $('.guesses p:last-child').append('&#9702;');
-
-                        }
-                    }
+                var tUniq = _.uniq(t);
+                for(k = 0; k < tUniq.length; k++){
+                    $('.guesses p:last-child').append('&#9702;');
                 }
             }
         }
