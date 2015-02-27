@@ -272,7 +272,7 @@ function toggleFeedbackCheckbox () {
 
 function saveGame(gameData){
 	var backend = Settings.get('backendUrl');
-	console.log('gamedata', gameData);
+	//console.log('gamedata', gameData);
 	var userId = Settings.get('currentUserId');
 
 	if(!gameData.hasOwnProperty("_id")){
@@ -282,7 +282,7 @@ function saveGame(gameData){
 			dataType: 'json',
 			data: gameData,
 			success: function(res){
-				console.log('saveGAem without id res', res);
+				//console.log('saveGAem without id res', res);
 				Settings.set({'gameInstanceId': res._id});
 			}
 		});
@@ -295,7 +295,7 @@ function saveGame(gameData){
 			dataType: 'json',
 			data: gameData,
 			success: function(res){
-				console.log('saveGame with id res', res);
+				//console.log('saveGame with id res', res);
 			}
 		});
 	}
@@ -321,14 +321,14 @@ function saveHighScore (gameId, difficulty, scoreObj) {
     'difficultyLevel': difficulty,
     'score': JSON.stringify(scoreObj)
   };
-  console.log(data);
+  //console.log(data);
   $.ajax({
 		url: backend+'/foramen/highscore/'+gameId+'/'+userId,
     type: 'POST',
     dataType: 'json',
     data: data,
     success: function(res) {
-      console.log('saved highscore', res);
+      //console.log('saved highscore', res);
     }
   });
 }
@@ -344,7 +344,7 @@ function saveGameFeedback (mood) {
 		dataType: 'json',
 		data: data,
 		success: function(res) {
-			console.log(res);
+			//console.log(res);
 		}
 	});
 }
@@ -364,7 +364,7 @@ function saveInterruptedGame (gameId, gameInstanceId) {
     dataType: 'json',
     data: data,
     success: function(res){
-      console.log('save interrupted game', res);
+      //console.log('save interrupted game', res);
     }
   });
 }
@@ -380,14 +380,14 @@ function savePlayedTime (){
 
 	if(sessionTime > 1){
 	var data = {userId: userId, duration: sessionTime};
-		console.log('save session time to db', sessionTime);
+		//console.log('save session time to db', sessionTime);
 		$.ajax({
 			url: backend+'/foramen/playtime/'+userId,
 			type: 'POST',
 			dataType: 'json',
 			data: data,
 			success: function(res){
-				console.log('saved playtime', res);
+				//console.log('saved playtime', res);
 			}
 		});
 	}

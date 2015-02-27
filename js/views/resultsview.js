@@ -52,7 +52,7 @@ var ResultsView = Backbone.View.extend({
       function(data) {
 				if ( data.length !== 0 && $.isEmptyObject(data) === false ) { //something was gotten from backend
           data = JSON.parse(data.score);
-          console.log('got results', data);
+        //   console.log('got results', data);
 
 					var len, elem, record, currGameCorrects, currGameTime, oldRecordCorrects, oldRecordTime;
 					elem = $(".record-well");
