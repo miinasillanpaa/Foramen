@@ -76,133 +76,6 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
           timeouts.push( setTimeout(startImages, 14000) );
         }
 
-
-
-
-        // if( sounds.length === 2 ){
-        //
-        //   $('.sounds').append(soundElems[0]);
-        //   document.getElementById('audio_0').addEventListener('ended', function(){
-        //       this.pause();
-        //       timer = window.setTimeout( function(){
-        //         //document.getElementsByTagName('audio')[1].play();
-        //         //document.getElementById("audio_1").play();
-        //           $('.sounds').append(soundElems[1]);
-        //
-        //           document.getElementById('audio_1').addEventListener('ended', function () {
-        //             this.pause();
-        //             timer = window.setTimeout( function() {
-        //               timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
-        //               startInterval();
-        //             },1000);
-        //           }, false);
-        //
-        //
-        //         }, 750 );
-        //
-        //   }, false);
-        //
-        //
-        //
-        // }else if( sounds.length === 3 ){
-        //
-        //   $('.sounds').append(soundElems[0]);
-        //
-        //   document.getElementById('audio_0').addEventListener('ended', function(){
-        //     this.pause();
-        //     timer = window.setTimeout( function(){
-        //       $('.sounds').append(soundElems[1]);
-        //
-        //       document.getElementById('audio_1').addEventListener('ended', function(){
-        //         this.pause();
-        //         timer = window.setTimeout( function(){
-        //           $('.sounds').append(soundElems[2]);
-        //
-        //           document.getElementById('audio_2').addEventListener('ended', function(){
-        //             this.pause();
-        //             timer = window.setTimeout( function() {
-        //               timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
-        //               startInterval();
-        //             },1000);
-        //           });
-        //           }, 750 );
-        //       }, false);
-        //     }, 750 );
-        // }, false);
-        //
-        //
-        //
-        //   // document.getElementById("audio_1").addEventListener('ended', function(){
-        //   //     this.pause();
-        //   //     timer = window.setTimeout( function(){ document.getElementById("audio_2").play() }, 750 );
-        //   // }, false);
-        //   // document.getElementById("audio_2").addEventListener('ended', function () {
-        //   //     this.pause();
-        //   //     timer = window.setTimeout( function() {
-        //   //         timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
-        //   //         startInterval();
-        //   //     },1000);
-        //   // }, false);
-        //
-        // }else if( sounds.length === 4 ){
-        //
-        //   $('.sounds').append(soundElems[0]);
-        //
-        //   document.getElementById('audio_0').addEventListener('ended', function(){
-        //     this.pause();
-        //     timer = window.setTimeout( function(){
-        //       $('.sounds').append(soundElems[1]);
-        //
-        //       document.getElementById('audio_1').addEventListener('ended', function(){
-        //         this.pause();
-        //         timer = window.setTimeout( function(){
-        //           $('.sounds').append(soundElems[2]);
-        //
-        //           document.getElementById('audio_2').addEventListener('ended', function(){
-        //             this.pause();
-        //
-        //             timer = window.setTimeout( function(){
-        //               $('.sounds').append(soundElems[3]);
-        //
-        //               document.getElementById('audio_3').addEventListener('ended', function(){
-        //                 this.pause();
-        //
-        //                 timer = window.setTimeout( function() {
-        //                   timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
-        //                   startInterval();
-        //                 },1000);
-        //               });
-        //
-        //             }, 750 );
-        //           }, false);
-        //         }, 750 );
-        //       }, false);
-        //     }, 750 );
-        //   }, false);
-        //
-        //     // document.getElementById("audio_0").addEventListener('ended', function(){
-        //     //     this.pause();
-        //     //     timer = window.setTimeout( function(){ document.getElementById("audio_1").play() }, 750 );
-        //     // }, false);
-        //     // document.getElementById("audio_1").addEventListener('ended', function(){
-        //     //     this.pause();
-        //     //     timer = window.setTimeout( function(){ document.getElementById("audio_2").play() }, 750 );
-        //     // }, false);
-        //     // document.getElementById("audio_2").addEventListener('ended', function(){
-        //     //     this.pause();
-        //     //     timer = window.setTimeout( function(){ document.getElementById("audio_3").play() }, 750 );
-        //     // }, false);
-        //     // document.getElementById("audio_3").addEventListener('ended', function () {
-        //     //     this.pause();
-        //     //     timer = window.setTimeout( function() {
-        //     //         timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
-        //     //         startInterval();
-        //     //     },1000);
-        //     // }, false);
-
-        //}
-
-
         $('.quit').click( function () {
           for(i = 0; i < timeouts.length; i++){
             clearTimeout(timeouts[i]);
@@ -390,7 +263,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
 
     quitGame: function () {
         var gameId = this.model.get('gameId');
-        window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
+        //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         Settings.set({corrects:0});
         this.undelegateEvents();
         router.navigate('/', true);

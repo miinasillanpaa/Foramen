@@ -86,10 +86,11 @@ html, body{
     width: 100%;
 }
 #content{
-    /*overflow: hidden;*/
+    overflow-x: scroll;
+    display: block;
     height: 100%;
-    width: 90%;
-    padding:0 50px 0 50px;
+    width: 95%;
+    min-width: 1160px;
     margin: 0 auto;
 }
 .row-fluid{
@@ -107,13 +108,16 @@ html, body{
     padding:0;
     z-index: 10;
     background: -webkit-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(140,140,140,1) 96%,rgba(51,56,58,1) 100%);
+    background: -o-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(140,140,140,1) 96%,rgba(51,56,58,1) 100%);
+    background: -moz-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(140,140,140,1) 96%,rgba(51,56,58,1) 100%);
+    background: linear-gradient(top, rgba(204,204,204,1) 0%,rgba(140,140,140,1) 96%,rgba(51,56,58,1) 100%);
 }
 
 #header h2{
     color: #5c5c5c;
     margin:0;
     padding:0.9% 0 0 6%;
-    margin-left:100px;
+    /*margin-left:100px;*/
     text-transform: uppercase;
     text-shadow: 1px 1px 1px black;
     font-size: 2.5em;
@@ -234,7 +238,8 @@ html, body{
     width: 100px;
     height: 150px;
     background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
-
+    background: -moz-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0)));
+    background: gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0)));
 }
 .fade-right{
     position: fixed;
@@ -243,6 +248,8 @@ html, body{
     width: 100px;
     height: 150px;
     background: -webkit-gradient(linear, right top, left top, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+    background: -moz-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0)));
+    background: gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0)));
 }
 
 
@@ -344,7 +351,7 @@ hr{
 
 .backToService, .back-root, .back-history{
     position: absolute;
-    top:1.2%;
+    top:.8%;
     right:6%;
 }
 .top-bar-mid{
@@ -606,7 +613,7 @@ img.phone{
 }
 
 .scroller span{
-    float: left;
+    display: inline-block;
     padding-top:60px;
     width: 50px;
     height:100px;
@@ -614,18 +621,23 @@ img.phone{
 
 .selector{
     position: absolute;
+    left: 50%;
+    margin-left: -250px;
     background-color: #ff0000;
     opacity: 0.5;
     width: 500px;
     height: 80px;
     top: 220px;
-    left: 420px;
 }
 
 .onTarget-pressed-info{
+
     position: absolute;
-    top: 325px;
-    left: 570px;
+    left: 50%;
+    margin-left: -250px;
+    top: 335px;
+    width: 500px;
+    text-align: center;
     font-size: 2.2em;
 }
 
@@ -633,15 +645,21 @@ img.phone{
 
 .onTarget{
     position: absolute;
-    bottom: 200px;
-    left: 420px;
+    left: 50%;
+    margin-left: -250px;
+    top: 400px;
+    display: block;
     width: 500px;
     height: 150px;
 }
 
 .hint{
-    margin-left:31%;
-    margin-top:100px;
+    position: absolute;
+    text-align: center;
+    width: 500px;
+    left: 50%;
+    margin-left: -250px;
+    top: 100px;
 }
 
 /* KONSTRUOINTI */
@@ -920,14 +938,16 @@ span.bullet{
     background-color: #aeaeae;
 }
 
-a:hover{
+#categoryCarousel a:hover, a:active, a:focus{
     text-decoration:none;
     color: #fff;
 }
 
+
 .right{
     position: absolute;
-    left:91.80035650623886%; /* 515 / 561 */
+    left: 100%;
+    margin-left: -44px;
     border-bottom-right-radius: 30px;
     border-top-right-radius: 30px;
 

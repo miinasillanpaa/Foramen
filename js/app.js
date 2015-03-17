@@ -235,9 +235,9 @@ function hideTogglePlayerModal (player) {
 	$('.overlay').css('display','none');
 	$('#content').find('button').removeAttr('disabled');
 	$('#header').find('button').removeAttr('disabled');
-	$('.modal')
-		.html("<p class='text-center bigger'>Sisältöä ladataan...</p>")
-		.css('display','none');
+	$('.modal').css('display','none');
+	//.html("<p class='text-center bigger'>Sisältöä ladataan...</p>")
+
 }
 
 function hideFeedbackModal(status) {
@@ -270,158 +270,158 @@ function toggleFeedbackCheckbox () {
 
 
 
-function saveGame(gameData){
-	var backend = Settings.get('backendUrl');
-	//console.log('gamedata', gameData);
-	var userId = Settings.get('currentUserId');
+// function saveGame(gameData){
+// 	var backend = Settings.get('backendUrl');
+// 	//console.log('gamedata', gameData);
+// 	var userId = Settings.get('currentUserId');
+//
+// 	if(!gameData.hasOwnProperty("_id")){
+// 		$.ajax({
+// 			url: backend+'/foramen/game/save/'+userId,
+// 			type: 'POST',
+// 			dataType: 'json',
+// 			data: gameData,
+// 			success: function(res){
+// 				//console.log('saveGAem without id res', res);
+// 				Settings.set({'gameInstanceId': res._id});
+// 			}
+// 		});
+//
+// 	}else{
+//
+// 		$.ajax({
+// 			url: backend+'/foramen/game/save/'+userId,
+// 			type: 'POST',
+// 			dataType: 'json',
+// 			data: gameData,
+// 			success: function(res){
+// 				//console.log('saveGame with id res', res);
+// 			}
+// 		});
+// 	}
+// }
+//
+// function saveGameEnd (gameId) {
+// 	var gameInstanceId = Settings.get('gameInstanceId');
+// 	var scoreObj = JSON.stringify(Settings.get('score'));
+// 	var gameData = {
+// 		'_id': gameInstanceId,
+// 		'gameId': gameId,
+// 		'score': scoreObj
+// 	};
+// 	saveGame(gameData);
+// }
 
-	if(!gameData.hasOwnProperty("_id")){
-		$.ajax({
-			url: backend+'/foramen/game/save/'+userId,
-			type: 'POST',
-			dataType: 'json',
-			data: gameData,
-			success: function(res){
-				//console.log('saveGAem without id res', res);
-				Settings.set({'gameInstanceId': res._id});
-			}
-		});
+// function saveHighScore (gameId, difficulty, scoreObj) {
+// 	var backend = Settings.get('backendUrl');
+// 	var userId = Settings.get('currentUserId');
+//   var data = {
+//     'gameId': gameId,
+//     'userId': userId,
+//     'difficultyLevel': difficulty,
+//     'score': JSON.stringify(scoreObj)
+//   };
+//   //console.log(data);
+//   $.ajax({
+// 		url: backend+'/foramen/highscore/'+gameId+'/'+userId,
+//     type: 'POST',
+//     dataType: 'json',
+//     data: data,
+//     success: function(res) {
+//       //console.log('saved highscore', res);
+//     }
+//   });
+// }
+//
+// function saveGameFeedback (mood) {
+// 	var backend = Settings.get('backendUrl');
+// 	var gameInstanceId = Settings.get('gameInstanceId');
+// 	var userId = Settings.get('currentUserId');
+// 	var data = { 'id': gameInstanceId, 'feedback': mood };
+// 	$.ajax({
+// 		url: backend+'/foramen/feedback/'+userId,
+// 		type: 'POST',
+// 		dataType: 'json',
+// 		data: data,
+// 		success: function(res) {
+// 			//console.log(res);
+// 		}
+// 	});
+// }
 
-	}else{
-
-		$.ajax({
-			url: backend+'/foramen/game/save/'+userId,
-			type: 'POST',
-			dataType: 'json',
-			data: gameData,
-			success: function(res){
-				//console.log('saveGame with id res', res);
-			}
-		});
-	}
-}
-
-function saveGameEnd (gameId) {
-	var gameInstanceId = Settings.get('gameInstanceId');
-	var scoreObj = JSON.stringify(Settings.get('score'));
-	var gameData = {
-		'_id': gameInstanceId,
-		'gameId': gameId,
-		'score': scoreObj
-	};
-	saveGame(gameData);
-}
-
-function saveHighScore (gameId, difficulty, scoreObj) {
-	var backend = Settings.get('backendUrl');
-	var userId = Settings.get('currentUserId');
-  var data = {
-    'gameId': gameId,
-    'userId': userId,
-    'difficultyLevel': difficulty,
-    'score': JSON.stringify(scoreObj)
-  };
-  //console.log(data);
-  $.ajax({
-		url: backend+'/foramen/highscore/'+gameId+'/'+userId,
-    type: 'POST',
-    dataType: 'json',
-    data: data,
-    success: function(res) {
-      //console.log('saved highscore', res);
-    }
-  });
-}
-
-function saveGameFeedback (mood) {
-	var backend = Settings.get('backendUrl');
-	var gameInstanceId = Settings.get('gameInstanceId');
-	var userId = Settings.get('currentUserId');
-	var data = { 'id': gameInstanceId, 'feedback': mood };
-	$.ajax({
-		url: backend+'/foramen/feedback/'+userId,
-		type: 'POST',
-		dataType: 'json',
-		data: data,
-		success: function(res) {
-			//console.log(res);
-		}
-	});
-}
-
-function preloadMoodmeter () {
-	var moods = ["./img/face_happy.png","./img/face_neutral.png","./img/face_sad.png"];
-	$(moods).preload();
-}
-
-function saveInterruptedGame (gameId, gameInstanceId) {
-	var userId = Settings.get('currentUserId');
-  var data = {'gameInstanceId': gameInstanceId };
-	var backend = Settings.get('backendUrl');
-  $.ajax({
-		url: backend+'/foramen/game/saveInterrupted/'+userId+'/'+gameId,
-    type: 'POST',
-    dataType: 'json',
-    data: data,
-    success: function(res){
-      //console.log('save interrupted game', res);
-    }
-  });
-}
-
-function savePlayedTime (){
-	var backend = Settings.get('backendUrl');
-	var userId = Settings.get('currentUserId');
-  var started = Settings.get('startedPlaying');
-  var now = new Date();
-  var sessionTime = ( now.getTime() - started.getTime() )/1000;
-	Settings.set({'sessionTime': sessionTime});
-	Settings.set({'startedPlaying': now});
-
-	if(sessionTime > 1){
-	var data = {userId: userId, duration: sessionTime};
-		//console.log('save session time to db', sessionTime);
-		$.ajax({
-			url: backend+'/foramen/playtime/'+userId,
-			type: 'POST',
-			dataType: 'json',
-			data: data,
-			success: function(res){
-				//console.log('saved playtime', res);
-			}
-		});
-	}
-
-}
-
-function getPlayedTime (){
-	var backend = Settings.get('backendUrl');
-		var userId = Settings.get('currentUserId');
-    $.ajax({
-			url: backend+'/foramen/playtime/'+userId,
-      type: 'GET'
-    }).done(function(data){
-			var obj = data;
-			var totalTime;
-
-			if(!obj.hasOwnProperty("duration")){
-				obj.duration = 0;
-			}
-
-      Settings.set({ 'playedTimeMS': obj.duration });
-
-			if(Settings.get('sessionTime') && Settings.get('sessionTime') > 1){
-				var sessionTime = Settings.get('sessionTime');
-				totalTime = obj.duration + sessionTime;
-			}else{
-				totalTime = obj.duration;
-			}
-    	var hours = Math.floor(totalTime / 3600) % 24;
-      var minutes = Math.floor(totalTime / 60) % 60;
-
-      $('#header h3').text('Olet tänään harjoitellut: '+ hours + "h " + minutes +"min");
-  });
-}
+// function preloadMoodmeter () {
+// 	var moods = ["./img/face_happy.png","./img/face_neutral.png","./img/face_sad.png"];
+// 	$(moods).preload();
+// }
+//
+// function saveInterruptedGame (gameId, gameInstanceId) {
+// 	var userId = Settings.get('currentUserId');
+//   var data = {'gameInstanceId': gameInstanceId };
+// 	var backend = Settings.get('backendUrl');
+//   $.ajax({
+// 		url: backend+'/foramen/game/saveInterrupted/'+userId+'/'+gameId,
+//     type: 'POST',
+//     dataType: 'json',
+//     data: data,
+//     success: function(res){
+//       //console.log('save interrupted game', res);
+//     }
+//   });
+// }
+//
+// function savePlayedTime (){
+// 	var backend = Settings.get('backendUrl');
+// 	var userId = Settings.get('currentUserId');
+//   var started = Settings.get('startedPlaying');
+//   var now = new Date();
+//   var sessionTime = ( now.getTime() - started.getTime() )/1000;
+// 	Settings.set({'sessionTime': sessionTime});
+// 	Settings.set({'startedPlaying': now});
+//
+// 	if(sessionTime > 1){
+// 	var data = {userId: userId, duration: sessionTime};
+// 		//console.log('save session time to db', sessionTime);
+// 		$.ajax({
+// 			url: backend+'/foramen/playtime/'+userId,
+// 			type: 'POST',
+// 			dataType: 'json',
+// 			data: data,
+// 			success: function(res){
+// 				//console.log('saved playtime', res);
+// 			}
+// 		});
+// 	}
+//
+// }
+//
+// function getPlayedTime (){
+// 	var backend = Settings.get('backendUrl');
+// 		var userId = Settings.get('currentUserId');
+//     $.ajax({
+// 			url: backend+'/foramen/playtime/'+userId,
+//       type: 'GET'
+//     }).done(function(data){
+// 			var obj = data;
+// 			var totalTime;
+//
+// 			if(!obj.hasOwnProperty("duration")){
+// 				obj.duration = 0;
+// 			}
+//
+//       Settings.set({ 'playedTimeMS': obj.duration });
+//
+// 			if(Settings.get('sessionTime') && Settings.get('sessionTime') > 1){
+// 				var sessionTime = Settings.get('sessionTime');
+// 				totalTime = obj.duration + sessionTime;
+// 			}else{
+// 				totalTime = obj.duration;
+// 			}
+//     	var hours = Math.floor(totalTime / 3600) % 24;
+//       var minutes = Math.floor(totalTime / 60) % 60;
+//
+//       $('#header h3').text('Olet tänään harjoitellut: '+ hours + "h " + minutes +"min");
+//   });
+// }
 
 function getAndroidVersion (){
 

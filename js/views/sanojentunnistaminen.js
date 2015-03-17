@@ -27,7 +27,10 @@ var SanojenTunnistaminen = Backbone.View.extend({
         text = this.stringMaker();
         textString = Settings.get('textString');
 
-        startPos = textString.length - 17;
+
+        //if user rezises window during the game -> doom
+        var textRightOut = this.getWidth();
+        startPos = textString.length - textRightOut;
         Settings.set({ startPos : startPos });
 
         window.timer = setTimeout(
@@ -129,11 +132,56 @@ var SanojenTunnistaminen = Backbone.View.extend({
     },
 
     quitGame: function () {
-      var gameId = this.model.get('gameId');
-      window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
-        this.undelegateEvents();
-        this.unbind();
-        router.navigate('/', true);
+      //var gameId = this.model.get('gameId');
+      //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
+      //$(window).off("resize",this.getWidth);
+      this.undelegateEvents();
+      this.unbind();
+      router.navigate('/', true);
+    },
+
+    getWidth: function(){
+        'use strict';
+
+        var textRightOut;
+        if(window.innerWidth >= 1800){
+            textRightOut = 23;
+        }else if(window.innerWidth <= 1800 && window.innerWidth > 1700){
+            textRightOut = 22;
+        }else if(window.innerWidth <= 1700 && window.innerWidth > 1600){
+            textRightOut = 21;
+        }else if(window.innerWidth <= 1600 && window.innerWidth > 1500){
+            textRightOut = 20;
+        }else if(window.innerWidth <= 1500 && window.innerWidth > 1400){
+            textRightOut = 19;
+        }else if(window.innerWidth <= 1400 && window.innerWidth > 1300){
+            textRightOut = 18;
+        }else if(window.innerWidth <= 1300 && window.innerWidth > 1200){
+            textRightOut = 17;
+        }else if(window.innerWidth <= 1200 && window.innerWidth > 1150){
+            textRightOut = 16;
+        }else if(window.innerWidth <= 1150 && window.innerWidth > 1100){
+            textRightOut = 16;
+        }else if(window.innerWidth <= 1100 && window.innerWidth > 1050){
+            textRightOut = 15;
+        }else if(window.innerWidth <= 1050 && window.innerWidth > 1000){
+            textRightOut = 15;
+
+        }else if(window.innerWidth <= 1000 && window.innerWidth > 950){
+            textRightOut = 15;
+        }else if(window.innerWidth <= 950 && window.innerWidth > 900){
+            textRightOut = 14;
+        }else if(window.innerWidth <= 900 && window.innerWidth > 800){
+            textRightOut = 13;
+        }else if(window.innerWidth <= 800 && window.innerWidth > 700){
+            textRightOut = 12;
+        }else if(window.innerWidth <=700 && window.innerWidth > 600){
+            textRightOut = 11;
+        }else{
+            textRightOut = 10;
+        }
+
+        return textRightOut;
     },
 
     knobify: function () {
@@ -166,9 +214,10 @@ var SanojenTunnistaminen = Backbone.View.extend({
         pos = Settings.get('startPos') - 1;
 
         Settings.set({ startPos : pos });
-
+        console.log(Settings.get('startPos'));
         $('.scroller').transition({ x: '+=50' });
         selector = text.substr(pos,10);
+        console.log(selector);
         Settings.set({ selector: selector });
     },
 

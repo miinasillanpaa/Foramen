@@ -88,7 +88,7 @@ router.on('route:play', function(id) {
 	var selectedGameIndex = parseInt(id-1);
     var selectedGame = games[selectedGameIndex];
     var gameObj = new Game(selectedGame);
-	preloadMoodmeter();
+	//preloadMoodmeter();
 
 	var difficulty = Settings.get('difficulty');
 	var difficultyLevel;
@@ -173,7 +173,7 @@ router.on('route:play', function(id) {
         $('#content').html('Nothing here yet!');
     }
 
-	window.saveGame(gameData);
+	//window.saveGame(gameData);
 });
 router.on('route:resultsView', function(id) {
     var selectedGameIndex = parseInt(id-1);

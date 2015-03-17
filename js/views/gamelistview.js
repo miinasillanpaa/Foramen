@@ -21,7 +21,7 @@ var GameListView = Backbone.View.extend({
         this.startedPlaying();
         this.render();
 
-        window.savePlayedTime();
+        //window.savePlayedTime();
     },
 
     render: function() {

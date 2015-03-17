@@ -192,9 +192,10 @@ var PreGameView = Backbone.View.extend({
             }
         });
 
-		var self = this;
         $("#content").imagesLoaded( function (){
-			self.showTogglePlayerModal();
+			console.log('images loaded');
+			$('.overlay').css('display', 'none');
+			$('.modal').css('display', 'none');
         });
 
 
@@ -290,7 +291,7 @@ var PreGameView = Backbone.View.extend({
         $('.joker').removeClass('btn-info');
         Settings.set({difficulty: 'hard'});
     },
-    
+
     jokerSelected: function() {
         $('.lvl-box').addClass('hidden');
         $('.lvl-joker').removeClass('hidden');
@@ -337,14 +338,12 @@ var PreGameView = Backbone.View.extend({
     },
 
     preloadAud: function (category) {
-        var category = category;
-        var audio;
         var elaimet = ['ahma','ahven','hevonen','hilleri','ilves','kaarme','karhu','kirva','kissa','korppi','kyy',
                        'lammas','lehma','mato','mayra','rotta','sammakko','sarki','susi','tiikeri'];
 
         for (var i=0; i<elaimet.length; i++){
-            audio = './sounds/audio/' + category + '/' + elaimet[i] + '.mp3';
-            this.loadAudio(audio)
+            var audio = './sounds/audio/' + category + '/' + elaimet[i] + '.mp3';
+            this.loadAudio(audio);
         }
     },
 
@@ -359,21 +358,21 @@ var PreGameView = Backbone.View.extend({
 		this.model = model;
 	},
 
-	showTogglePlayerModal: function () {
-
-		var el = '<h2>Valitse harjoittelija:</h2>' +
-			'<div class="text-center">' +
-			'<button onclick="window.hideTogglePlayerModal(1);" class="btn btn-info btn-playerToggle">Kuntoutuja</button>' +
-			'<button onclick="window.hideTogglePlayerModal(2);" class="btn btn-info btn-playerToggle">Läheinen</button></div>';
-
-		if( $('.overlay').css('display') == 'none' ){
-			$('.overlay').css('display','block');
-		}
-
-		$('#content').find('button').attr('disabled','disabled');
-		$('#header').find('button').attr('disabled','disabled');
-		$('.modal')
-			.html(el)
-			.css('display','block');
-	}
+	// showTogglePlayerModal: function () {
+	//
+	// 	var el = '<h2>Valitse harjoittelija:</h2>' +
+	// 		'<div class="text-center">' +
+	// 		'<button onclick="window.hideTogglePlayerModal(1);" class="btn btn-info btn-playerToggle">Kuntoutuja</button>' +
+	// 		'<button onclick="window.hideTogglePlayerModal(2);" class="btn btn-info btn-playerToggle">Läheinen</button></div>';
+	//
+	// 	if( $('.overlay').css('display') == 'none' ){
+	// 		$('.overlay').css('display','block');
+	// 	}
+	//
+	// 	$('#content').find('button').attr('disabled','disabled');
+	// 	$('#header').find('button').attr('disabled','disabled');
+	// 	$('.modal')
+	// 		.html(el)
+	// 		.css('display','block');
+	// }
  });

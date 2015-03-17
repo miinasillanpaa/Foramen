@@ -63,8 +63,8 @@ var Sarjamuisti = Backbone.View.extend({
     },
 
     quitGame: function () {
-      var gameId = this.model.get('gameId');
-      window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
+        //var gameId = this.model.get('gameId');
+        //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         this.undelegateEvents();
         Settings.set({ 'playThruNum'    : 0  });
         Settings.set({ 'correctSeries'  : 0  });
@@ -73,7 +73,7 @@ var Sarjamuisti = Backbone.View.extend({
         router.navigate('/', true);
     },
 
-    numberPicked: function () {
+    numberPicked: function (event) {
         var target = event.target.innerHTML;
         $('.actived').html('<p>'+target+'</p>');
         $('.actived').addClass('answered');

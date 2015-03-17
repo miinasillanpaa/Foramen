@@ -243,14 +243,14 @@ var KuvaEtsinta = Backbone.View.extend({
         'click .quit': 'quitGame'
     },
 
-    selectItem: function () {
+    selectItem: function ( event ) {
         var target = $(event.target);
         target.toggleClass('selected');
     },
 
     quitGame: function () {
       var gameId = this.model.get('gameId');
-      window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
+      //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
 		this.undelegateEvents();
         router.navigate('/', true);
     },

@@ -92,8 +92,8 @@ var Konstruointi = Backbone.View.extend({
     },
 
     quitGame: function () {
-      var gameId = this.model.get('gameId');
-      window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
+      //var gameId = this.model.get('gameId');
+      //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         this.undelegateEvents();
         Settings.set({ results: [] });
         router.navigate('/', true);
@@ -154,13 +154,13 @@ var Konstruointi = Backbone.View.extend({
         return { answerFirstRow: construct[0], answerSecondRow: construct[1], answerThirdRow: answerThirdRow };
     },
 
-    selectBlock: function () {
+    selectBlock: function (event) {
         $('.answerblocks img').removeClass('selected');
         var target = $(event.target);
         target.addClass('selected');
     },
 
-    placeBlock: function () {
+    placeBlock: function (event) {
         var target = $(event.target);
         var selected =  $('img.selected').attr('src');
         target.attr('src',selected);
@@ -175,7 +175,7 @@ var Konstruointi = Backbone.View.extend({
         return true;
     },
 
-    getResults: function () {
+    getResults: function (event) {
 
         var difficulty = Settings.get('difficulty');
         var firstRow = [];

@@ -30,7 +30,7 @@ var HeaderView = Backbone.View.extend({
 			this.$el.html(template);
 
 			//getting played time from backend and showing it in header
-			window.getPlayedTime();
+			//window.getPlayedTime();
 
 			//$('#header').html('<h1 class="text-center">Ladataan...</h1>');
 
@@ -71,7 +71,7 @@ var HeaderView = Backbone.View.extend({
 
     events: {
         'click .back-root' : 'goRoot',
-		'click #back-button': 'goBackToService',
+		//'click #back-button': 'goBackToService',
         'click .back-setup' : 'goToGameSetup',
         'click .back-history' : 'historyBack'
 		//'click .toggle-player' : 'togglePlayer'
@@ -100,13 +100,14 @@ var HeaderView = Backbone.View.extend({
 		}
 	}, */
 
-	goBackToService: function() {
-		//navigating back to mobile-site is handled in callback
-		window.savePlayedTime();
-		var userId = Settings.get('currentUserId');
-		var returnUrl = Settings.get('returnUrl');
-		window.location = returnUrl+userId;
-	},
+	// goBackToService: function() {
+	// 	//navigating back to mobile-site is handled in callback
+	// 	window.savePlayedTime();
+	// 	var userId = Settings.get('currentUserId');
+	// 	var returnUrl = Settings.get('returnUrl');
+	// 	window.location = returnUrl+userId;
+	// },
+
 	setModel: function(model) {
 		this.model = model;
 	},

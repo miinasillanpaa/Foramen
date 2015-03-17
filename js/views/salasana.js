@@ -37,8 +37,8 @@ var Salasana = Backbone.View.extend({
     },
 
     quitGame : function () {
-      var gameId = this.model.get('gameId');
-      window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
+        //var gameId = this.model.get('gameId');
+        //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         this.undelegateEvents();
         Settings.set({ 'checks' : 0 });
         Settings.set({ 'scrollerChecks': 0 });

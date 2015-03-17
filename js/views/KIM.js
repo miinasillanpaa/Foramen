@@ -72,7 +72,7 @@ var KIM = Backbone.View.extend({
 
     quitGame: function () {
       var gameId = this.model.get('gameId');
-      window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
+      //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         this.undelegateEvents();
         Settings.set({'playThruNum' : 0});
         router.navigate('/', true);
@@ -110,7 +110,7 @@ var KIM = Backbone.View.extend({
         }
     },
 
-    selectItem: function () {
+    selectItem: function (event) {
         var target = $(event.target);
         if (target.hasClass('selected')) {
             target.toggleClass('selected');
