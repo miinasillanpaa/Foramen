@@ -26,9 +26,9 @@ html, body{
 	width: 800px;
 	left: 42%;
     background: rgba( 255, 255, 255, .9 )
-    url(../img/ajax-loader.gif)
-    50% 60%
-    no-repeat;
+        url(../img/ajax-loader.gif)
+        50% 60%
+        no-repeat;
 }
 
 .icon-bigger{
@@ -48,7 +48,7 @@ html, body{
 	z-index: 1000;
     display: none;
     position: fixed;
-    height: 200px;
+    height: 210px;
     width: 350px;
     background: rgba( 255, 255, 255, 1);
     top: 30%;
@@ -116,7 +116,7 @@ html, body{
 #header h2{
     color: #5c5c5c;
     margin:0;
-    padding:0.9% 0 0 6%;
+    padding: 10px 0 0 50px;
     /*margin-left:100px;*/
     text-transform: uppercase;
     text-shadow: 1px 1px 1px black;
@@ -1318,16 +1318,33 @@ span.bullet{
 #sudokuSelector{
 
 }
-.sudoku-img{
+.sudoku-images{
     display: inline-block;
+
+}
+.sudoku-img{
+    z-index: 9999;
     padding:0 15px;
     height: 110px !important;
     width: 110px !important;
-
+    cursor: pointer;
 }
 
 .sudoku-title{
     position: absolute;
+
+    width: 119px;
+    background-color: #515151;
+    color: #fff;
+    opacity: 0.7;
+    margin-left: 5px;
+    margin-top: 50px;
+    font-size: 1.3em;
+    text-transform: uppercase;
+
+    padding: 5px 0;
+
+    /*position: absolute;
     background-color: #515151;
     opacity: 0.7;
     height: auto;
@@ -1336,14 +1353,10 @@ span.bullet{
     width: 90px;
     color: #fff;
     margin-left: 164px;
-    margin-top: -50px;
-}
-.sudoku-title:last-child{
-    margin-left: 307px;
-
+    margin-top: -50px;*/
 }
 
-.sudoku-clicker{
+/*.sudoku-clicker{
     display: inline-block;
     position: absolute;
     z-index:999;
@@ -1353,11 +1366,11 @@ span.bullet{
     opacity: 0;
     margin-top:5px;
     margin-left:20px;
-}
+}*/
 
-.sudoku-clicker:first-child{ /*stupid tablet hack */
+/*.sudoku-clicker:first-child{
     margin-left: 160px;
-}
+}*/
 .sudokuCategoryTitle{
     margin-bottom: 5px;
 }

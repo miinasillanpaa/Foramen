@@ -221,7 +221,7 @@ var PreGameView = Backbone.View.extend({
         'click #play-game' : 'play',
         'click .category' : 'selectCategory',
         'click .clicker' : 'selectTextCategory',
-        'click .sudoku-clicker' : 'selectTextCategory'
+        'click .sudoku-img' : 'selectTextCategory'
     },
 
     selectCategory: function( event ) {
@@ -237,6 +237,9 @@ var PreGameView = Backbone.View.extend({
     selectTextCategory: function( event ) {
 
         var index = $(event.target).index();
+
+
+
         if(index > 0){
             index = index/2;
         }
@@ -246,10 +249,13 @@ var PreGameView = Backbone.View.extend({
 
         if( gameId === 8 ) {
 
-          $('.sudoku-img img').removeClass('selected');
-          $('.sudoku-img img:nth('+index+')').addClass('selected');
-          cat = $('#sudokuSelector h4:nth('+index+')').text().toLowerCase();
-          Settings.set({sudokuCategory:cat});
+			var par = $(event.target).parent();
+			$('.sudoku-img img').removeClass('selected');
+
+			var catClass = par.attr('class');
+			var cat = par.text().toLowerCase().trim();
+			par.find('img').addClass('selected');
+			Settings.set({ sudokuCategory: cat });
 
         } else {
 

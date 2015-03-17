@@ -418,20 +418,6 @@
 
             Tähän ehkä Rayn logoa? yms. crediitit
 
-            <!-- <div class="alert alert-bigger record-box">
-                Ennätystä ladataan...
-            </div>
-
-            <div class="well record-well">
-                <h3>Henkilökohtainen ennätyksesi:</h3>
-
-				<div class="results pull-left">
-				</div>
-
-                <div class="results align-right">
-                </div>
-            </div> -->
-
         </div>
         <div class="clearfix"></div>
 
@@ -486,14 +472,24 @@
             <div id="sudokuSelector" class="text-center hidden">
 
                 <% _.each(sudokuImg, function(sudokuImg) { %>
-                        <div class="sudoku-clicker">&nbsp;</div>  <div class="sudoku-img"><img class="selectable" src="<%= sudokuImg%>" /></div>
+                        <!-- <div class="sudoku-clicker">&nbsp;</div>   -->
+                        <div class="sudoku-images">
+
+                            <% if(sudokuImg === "./pics/numbers.png") { %>
+                                <div class="sudoku-img numbers">
+                                    <div class="sudoku-title title-background">Numerot</div>
+                                    <img class="selectable" src="<%= sudokuImg %>" />
+                                </div>
+                            <% }else{ %>
+                                <div class="sudoku-img fruits">
+                                    <div class="sudoku-title title-background">Hedelmät</div>
+                                    <img class="selectable" src="<%= sudokuImg %>" />
+                                </div>
+                            <% } %>
+
+                        </div>
+
                 <% }); %>
-
-                <% _.each(sudokuCat, function(sudokuCat) { %>
-                    <div class="sudoku-title title-background"><h4><%= sudokuCat %></h4></div>
-                <% }); %>
-
-
 
             </div>
 
@@ -595,12 +591,6 @@
 
 	 <script id="mainHeaderTmpl" type="text/template">
 			<h2>FORAMEN-harjoitteet</h2>
-
-            <!-- <h3 class="game-time"></h3> -->
-
-      <!-- <% if(android && android < 4.2){ %>
-			     <button class="btn btn-large backToService" id="back-button">Alkuun</button>
-      <% } %> -->
 	</script>
 
 	<script id="backHeaderTmpl" type="text/template">
@@ -642,10 +632,6 @@
             <div id="content"></div>
         </div>
         <div class="clearfix"></div>
-
-        <footer>
-         <!--   <p class="navbar-fixed-bottom muted">&copy Pieni piiri 2013</p> -->
-        </footer>
 
     </div>
 
