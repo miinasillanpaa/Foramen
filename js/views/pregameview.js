@@ -229,7 +229,7 @@ var PreGameView = Backbone.View.extend({
         var target = $(event.target);
         target.toggleClass('selected');
         var src = target.attr('src');
-        var c = src.substring(7,src.length-6);
+        var c = src.substring(14,src.length-6);
         Settings.set({category:c});
     },
 
