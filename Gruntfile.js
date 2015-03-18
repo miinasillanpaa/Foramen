@@ -45,6 +45,43 @@ module.exports = function(grunt) {
             html: '<%= distDir %>/index.html'
         },
 
+        manifest: {
+            generate: {
+                options: {
+                    basePath : "<%= distDir %>",
+                    network: ["http://*", "https://*"],
+                    preferOnline: true,
+                    timestamp: true
+                },
+                src: [
+                    "index.html",
+                    "js/app.js",
+                    "css/styles.css",
+                    "assets/img/*.png",
+                    "assets/img/*.gif",
+                    "assets/pics/**/*.png",
+                    "assets/pics/*.png",
+                    "assets/sounds/audio/elaimet/*.mp3",
+                    "assets/sounds/*.mp3"
+                ],
+                dest: "<%= distDir %>/manifest.appcache"
+            }
+        },
+
+        'string-replace': {
+            inline: {
+                files : {
+                    '<%= distDir %>/index.html': '<%= distDir %>/index.html',
+                },
+                options: {
+                    replacements: [{
+                        pattern: '<html>',
+                        replacement: '<html manifest="manifest.appcache">'
+                    }]
+                }
+            }
+        },
+
         htmlmin: {
             dist: {
                 options: {
@@ -70,6 +107,8 @@ module.exports = function(grunt) {
         'cssmin:generated',
         'uglify:generated',
         'usemin',
+        'manifest',
+        'string-replace',
         'htmlmin'
     ]);
 
