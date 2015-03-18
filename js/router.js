@@ -11,20 +11,6 @@ window.Router = Backbone.Router.extend({
 	},
 
 	gameIndex: function() {
-		var currentUserId = getURLParameter('userId');
-		if (currentUserId && currentUserId !== 'null' && !isNaN(parseInt(currentUserId))) {
-			Settings.set({currentUserId: currentUserId});
-		}
-
-		var returnUrl = getURLParameter('returnUrl');
-		if (returnUrl && returnUrl !== 'null' && returnUrl.length > 0) {
-			Settings.set({returnUrl: returnUrl});
-		}
-
-		var authToken = getURLParameter('token');
-		if (authToken && authToken !== 'null' && authToken.length > 0) {
-			Settings.set({authToken: authToken});
-		}
 
 		new GameListView(games);
 

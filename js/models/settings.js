@@ -4,16 +4,16 @@ var Settings = Backbone.Model.extend({
 		authToken: null,
 		//returnUrl: 'https://pienipiiri.fi/mobile/?userId=',
 		difficulty: 'easy',
-		playerRole: 'Kuntoutuja',
+		//playerRole: 'Kuntoutuja',
         category: 'kalat',
         textCategory: 'eläimet',
 		//backendUrl: 'https://api.pienipiiri.fi',
 		score: {},
 		gameInstanceId: null,
 		showFeedbackModal: false,
-        startedPlaying: null, //on going session started time (date obj)
-        playedTimeMS: null, //previous session(s) time from backend
-        playedTime: null, //string e.g. "1h 33min"
+        // startedPlaying: null, //on going session started time (date obj)
+        // playedTimeMS: null, //previous session(s) time from backend
+        // playedTime: null, //string e.g. "1h 33min"
 
         //Tekstiviesti exercise specific
         txtSenderDom: '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>',

@@ -1,6 +1,6 @@
 var Sudoku = Backbone.View.extend({
 
-  CONST_SYMBOL_IMAGE_URL_PROTOTYPE: "./pics/${imageCategory}/${imageName}.png",
+  CONST_SYMBOL_IMAGE_URL_PROTOTYPE: "./assets/pics/${imageCategory}/${imageName}.png",
 
   CONST_FILLING_METHOD_GUIDED: 0,
   CONST_FILLING_METHOD_RESTRICTED: 1,

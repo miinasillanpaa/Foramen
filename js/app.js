@@ -268,175 +268,20 @@ function toggleFeedbackCheckbox () {
 	}
 }
 
-
-
-// function saveGame(gameData){
-// 	var backend = Settings.get('backendUrl');
-// 	//console.log('gamedata', gameData);
-// 	var userId = Settings.get('currentUserId');
+// function getAndroidVersion (){
 //
-// 	if(!gameData.hasOwnProperty("_id")){
-// 		$.ajax({
-// 			url: backend+'/foramen/game/save/'+userId,
-// 			type: 'POST',
-// 			dataType: 'json',
-// 			data: gameData,
-// 			success: function(res){
-// 				//console.log('saveGAem without id res', res);
-// 				Settings.set({'gameInstanceId': res._id});
-// 			}
-// 		});
+// 		var ua = navigator.userAgent;
 //
-// 	}else{
-//
-// 		$.ajax({
-// 			url: backend+'/foramen/game/save/'+userId,
-// 			type: 'POST',
-// 			dataType: 'json',
-// 			data: gameData,
-// 			success: function(res){
-// 				//console.log('saveGame with id res', res);
-// 			}
-// 		});
-// 	}
-// }
-//
-// function saveGameEnd (gameId) {
-// 	var gameInstanceId = Settings.get('gameInstanceId');
-// 	var scoreObj = JSON.stringify(Settings.get('score'));
-// 	var gameData = {
-// 		'_id': gameInstanceId,
-// 		'gameId': gameId,
-// 		'score': scoreObj
-// 	};
-// 	saveGame(gameData);
-// }
-
-// function saveHighScore (gameId, difficulty, scoreObj) {
-// 	var backend = Settings.get('backendUrl');
-// 	var userId = Settings.get('currentUserId');
-//   var data = {
-//     'gameId': gameId,
-//     'userId': userId,
-//     'difficultyLevel': difficulty,
-//     'score': JSON.stringify(scoreObj)
-//   };
-//   //console.log(data);
-//   $.ajax({
-// 		url: backend+'/foramen/highscore/'+gameId+'/'+userId,
-//     type: 'POST',
-//     dataType: 'json',
-//     data: data,
-//     success: function(res) {
-//       //console.log('saved highscore', res);
-//     }
-//   });
-// }
-//
-// function saveGameFeedback (mood) {
-// 	var backend = Settings.get('backendUrl');
-// 	var gameInstanceId = Settings.get('gameInstanceId');
-// 	var userId = Settings.get('currentUserId');
-// 	var data = { 'id': gameInstanceId, 'feedback': mood };
-// 	$.ajax({
-// 		url: backend+'/foramen/feedback/'+userId,
-// 		type: 'POST',
-// 		dataType: 'json',
-// 		data: data,
-// 		success: function(res) {
-// 			//console.log(res);
-// 		}
-// 	});
-// }
-
-// function preloadMoodmeter () {
-// 	var moods = ["./img/face_happy.png","./img/face_neutral.png","./img/face_sad.png"];
-// 	$(moods).preload();
-// }
-//
-// function saveInterruptedGame (gameId, gameInstanceId) {
-// 	var userId = Settings.get('currentUserId');
-//   var data = {'gameInstanceId': gameInstanceId };
-// 	var backend = Settings.get('backendUrl');
-//   $.ajax({
-// 		url: backend+'/foramen/game/saveInterrupted/'+userId+'/'+gameId,
-//     type: 'POST',
-//     dataType: 'json',
-//     data: data,
-//     success: function(res){
-//       //console.log('save interrupted game', res);
-//     }
-//   });
-// }
-//
-// function savePlayedTime (){
-// 	var backend = Settings.get('backendUrl');
-// 	var userId = Settings.get('currentUserId');
-//   var started = Settings.get('startedPlaying');
-//   var now = new Date();
-//   var sessionTime = ( now.getTime() - started.getTime() )/1000;
-// 	Settings.set({'sessionTime': sessionTime});
-// 	Settings.set({'startedPlaying': now});
-//
-// 	if(sessionTime > 1){
-// 	var data = {userId: userId, duration: sessionTime};
-// 		//console.log('save session time to db', sessionTime);
-// 		$.ajax({
-// 			url: backend+'/foramen/playtime/'+userId,
-// 			type: 'POST',
-// 			dataType: 'json',
-// 			data: data,
-// 			success: function(res){
-// 				//console.log('saved playtime', res);
-// 			}
-// 		});
-// 	}
-//
-// }
-//
-// function getPlayedTime (){
-// 	var backend = Settings.get('backendUrl');
-// 		var userId = Settings.get('currentUserId');
-//     $.ajax({
-// 			url: backend+'/foramen/playtime/'+userId,
-//       type: 'GET'
-//     }).done(function(data){
-// 			var obj = data;
-// 			var totalTime;
-//
-// 			if(!obj.hasOwnProperty("duration")){
-// 				obj.duration = 0;
-// 			}
-//
-//       Settings.set({ 'playedTimeMS': obj.duration });
-//
-// 			if(Settings.get('sessionTime') && Settings.get('sessionTime') > 1){
-// 				var sessionTime = Settings.get('sessionTime');
-// 				totalTime = obj.duration + sessionTime;
+// 		if (ua.indexOf('Android') > -1){
+// 			var match = ua.match(/Android\s([0-9\.]*)/);
+// 			if( match[1] ){
+// 				return parseFloat(match[1]);
 // 			}else{
-// 				totalTime = obj.duration;
+// 				return parseFloat(match);
 // 			}
-//     	var hours = Math.floor(totalTime / 3600) % 24;
-//       var minutes = Math.floor(totalTime / 60) % 60;
 //
-//       $('#header h3').text('Olet tänään harjoitellut: '+ hours + "h " + minutes +"min");
-//   });
+// 		}else{
+// 			return false;
+// 		}
+//
 // }
-
-function getAndroidVersion (){
-
-		var ua = navigator.userAgent;
-
-		if (ua.indexOf('Android') > -1){
-			var match = ua.match(/Android\s([0-9\.]*)/);
-			if( match[1] ){
-				return parseFloat(match[1]);
-			}else{
-				return parseFloat(match);
-			}
-
-		}else{
-			return false;
-		}
-
-}

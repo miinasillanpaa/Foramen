@@ -16,12 +16,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- styles -->
+    <!-- build:css css/styles.css -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-
-    <!-- templates start -->
+    <!-- endbuild -->
 
     <script id="audInterTemplate" type="text/template">
 
@@ -61,7 +60,7 @@
 
         <div class="items allItems hidden text-center">
             <% _.each(bluffs, function(bluffs) { %>
-                <img class="kim-item selectable" src="./pics/KIM/<%=bluffs%>.png">
+                <img class="kim-item selectable" src="./assets/pics/KIM/<%=bluffs%>.png">
             <% }); %>
             <button class="btn bigger bottom-right finish btn-success">Valmis</button>
         </div>
@@ -266,7 +265,7 @@
 
     <script id="sudokuTemplate" type="text/template">
 
-        <audio id="sudokuInvalidMoveSoundFX" src="sounds/block.mp3" type="audio/mpeg"></audio>
+        <audio id="sudokuInvalidMoveSoundFX" src="assets/sounds/block.mp3" type="audio/mpeg"></audio>
 
         <div class="sudoku-wrapper sudoku-wrapper-symbol-type-<%= symbols.type %>">
             <div class="sudoku-grid">
@@ -472,7 +471,6 @@
             <div id="sudokuSelector" class="text-center hidden">
 
                 <% _.each(sudokuImg, function(sudokuImg) { %>
-                        <!-- <div class="sudoku-clicker">&nbsp;</div>   -->
                         <div class="sudoku-images">
 
                             <% if(sudokuImg === "./assets/pics/numbers.png") { %>
@@ -603,20 +601,6 @@
 			<button class="btn btn-large back-history"><i class="icon-chevron-left"></i> Takaisin</button>
 	</script>
 
-   	<!-- templates end -->
-
-    <!-- Google Analytics -->
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-36097348-8', 'pienipiiri.fi');
-        ga('send', 'pageview');
-
-    </script>
-
 </head>
 
 <body>
@@ -635,7 +619,7 @@
 
     </div>
 
-    <!-- javascript -->
+    <!-- build:js js/app.js -->
     <script src="js/lib/jquery-1.9.1.min.js"></script>
     <script src="js/lib/underscore-min.js"></script>
     <script src="js/lib/backbone.min.js"></script>
@@ -646,10 +630,8 @@
     <script src="js/lib/jquery.touchSwipe.min.js"></script>
     <script src="js/lib/jquery.knob.js"></script>
 
-    <script src="js/helpers/helpers.js"></script>
     <script src="js/models/settings.js"></script>
     <script src="js/models/game.js"></script>
-    <script src="js/models/session.js"></script>
     <script src="js/collections/games.js"></script>
 
     <script src="js/views/gameview.js"></script>
@@ -674,6 +656,8 @@
 
     <script src="js/app.js"></script>
     <script src="js/router.js"></script>
+    <!-- endbuild -->
+
 
     <!-- fastclick -->
     <script type="text/javascript">
