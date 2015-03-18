@@ -13,10 +13,14 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         var changes = 0;
         var self = this;
 
-        function startInterval () {
+        var startInterval = function() {
 			$('.sounds-tip').hide();
 			var interval = window.setInterval(
                 function () {
+                    if( $('.image').hasClass('hidden') ) {
+                        $('.image').removeClass('hidden');
+                    }
+
                     self.changeDistract(distractions,changes);
                     changes++;
                     if(changes === 18){
@@ -47,11 +51,6 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
 
         }
 
-        var startImages = function(){
-          $('.image').removeClass('hidden');
-          startInterval();
-        };
-
         var appendSound = function(item){
           $('.sounds').append(soundElems[item]);
         };
@@ -60,20 +59,20 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         if(sounds.length === 2){
           appendSound(0);
           timeouts.push( setTimeout( function(){ appendSound(1); }, 3500) );
-          timeouts.push( setTimeout(startImages, 7000) );
+          timeouts.push( setTimeout(startInterval, 7000) );
 
         }else if(sounds.length === 3){
           appendSound(0);
           timeouts.push( setTimeout( function(){ appendSound(1); }, 3500) );
           timeouts.push( setTimeout( function(){ appendSound(2); }, 7000) );
-          timeouts.push( setTimeout(startImages, 10500) );
+          timeouts.push( setTimeout(startInterval, 10500) );
 
         }else{
           appendSound(0);
           timeouts.push( setTimeout( function(){ appendSound(1); }, 3500) );
           timeouts.push( setTimeout( function(){ appendSound(2); }, 7000) );
           timeouts.push( setTimeout( function(){ appendSound(3); }, 10500) );
-          timeouts.push( setTimeout(startImages, 14000) );
+          timeouts.push( setTimeout(startInterval, 14000) );
         }
 
         $('.quit').click( function () {

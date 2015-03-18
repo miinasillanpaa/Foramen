@@ -1,6 +1,5 @@
 var GameListView = Backbone.View.extend({
     el: $( '#content' ),
-
 	defaults: {
 		games: null
 	},
@@ -18,7 +17,7 @@ var GameListView = Backbone.View.extend({
 		});
 
         //new HeaderView({id:0});
-        this.startedPlaying();
+        //this.startedPlaying();
         this.render();
 
         //window.savePlayedTime();
@@ -37,18 +36,18 @@ var GameListView = Backbone.View.extend({
         });
 
         this.$el.append( gameView.render().el );
-    },
-
-    startedPlaying: function() {
-        var today = new Date();
-        var started = Settings.get('startedPlaying');
-        if(started === null){
-            //no start time found, reset time played
-            Settings.set({'startedPlaying': today});
-        }else if(today.getDate() !== started.getDate()) {
-            //date is different, reset time played
-            Settings.set({'startedPlaying': today});
-        }
     }
+
+    // startedPlaying: function() {
+    //     var today = new Date();
+    //     var started = Settings.get('startedPlaying');
+    //     if(started === null){
+    //         //no start time found, reset time played
+    //         Settings.set({'startedPlaying': today});
+    //     }else if(today.getDate() !== started.getDate()) {
+    //         //date is different, reset time played
+    //         Settings.set({'startedPlaying': today});
+    //     }
+    // }
 
 });

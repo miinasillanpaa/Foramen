@@ -355,7 +355,7 @@ var PreGameView = Backbone.View.extend({
 
     loadAudio: function (uri) {
         var audio = new Audio();
-        audio.addEventListener('canplaythrough', false);
+		audio.preload = "auto";
         audio.src = uri;
         return audio;
     },

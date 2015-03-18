@@ -90,7 +90,7 @@ html, body{
     display: block;
     height: 100%;
     width: 95%;
-    min-width: 1160px;
+    /*min-width: 1160px;*/
     margin: 0 auto;
 }
 .row-fluid{
@@ -141,7 +141,7 @@ html, body{
 }
 
 .game-item{
-    width: 18.25%;
+    width: 18%;
     display: inline-block;
     cursor: pointer;
     background: rgb(238,238,238); /* Old browsers */
@@ -198,6 +198,7 @@ html, body{
     height: 624px;
     margin:0;
     padding:0;
+    text-align:left;
 }
 
 .guide p {
@@ -343,6 +344,7 @@ ul{
 .title{
     margin-left:35px;
 	padding: 5px 0;
+    text-align: left;
 }
 
 hr{

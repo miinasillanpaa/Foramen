@@ -65,7 +65,7 @@ var Sarjamuisti = Backbone.View.extend({
     quitGame: function () {
         //var gameId = this.model.get('gameId');
         //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
-        this.undelegates();
+        this.undelegateEvents();
         Settings.set({ 'playThruNum'    : 0  });
         Settings.set({ 'correctSeries'  : 0  });
         Settings.set({ 'wrongSeries'    : 0  });
