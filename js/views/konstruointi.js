@@ -102,11 +102,11 @@ var Konstruointi = Backbone.View.extend({
     renderAnswerChoices: function () {
       var blocks = [];
       for(var i=1; i<10; i++){
-          var block = './pics/konstruktio/'+i+'.png';
+          var block = './assets/pics/konstruktio/'+i+'.png';
           blocks.push(block);
       }
      //to make this last in row
-     var last = "./pics/konstruktio/0.png";
+     var last = "./assets/pics/konstruktio/0.png";
      blocks.push(last);
      return blocks;
     },
@@ -223,7 +223,7 @@ var Konstruointi = Backbone.View.extend({
         var timeSpent = msToStr(time);
 
 
-        var wrong = './pics/konstruktio/11.png';
+        var wrong = './assets/pics/konstruktio/11.png';
 
         for( var j = 0; j < firstRow.length+1; j++ ){
             if( correctConstruct.firstRow[j] !== firstRow[j] ){

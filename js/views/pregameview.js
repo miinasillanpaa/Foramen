@@ -326,17 +326,17 @@ var PreGameView = Backbone.View.extend({
         var img;
         if(category === 'konstruktio'){
             for(var j=0;j<12;j++){
-                img = './pics/' + category + '/' + j + '.png';
+                img = './assets/pics/' + category + '/' + j + '.png';
                 preload.push(img);
             }
         }else if(category === 'KIM'){
             for(var k=0;k<68;k++){
-                img = './pics/' + category + '/' + k + '.png';
+                img = './assets/pics/' + category + '/' + k + '.png';
                 preload.push(img);
             }
         }else{
             for(var i=1;i<21;i++){
-                img = './pics/' + category + '/' + i + '.png';
+                img = './assets/pics/' + category + '/' + i + '.png';
                 preload.push(img);
             }
         }
@@ -348,7 +348,7 @@ var PreGameView = Backbone.View.extend({
                        'lammas','lehma','mato','mayra','rotta','sammakko','sarki','susi','tiikeri'];
 
         for (var i=0; i<elaimet.length; i++){
-            var audio = './sounds/audio/' + category + '/' + elaimet[i] + '.mp3';
+            var audio = './assets/sounds/audio/' + category + '/' + elaimet[i] + '.mp3';
             this.loadAudio(audio);
         }
     },

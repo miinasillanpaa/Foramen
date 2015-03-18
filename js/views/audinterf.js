@@ -289,7 +289,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
             var random = Math.floor(Math.random() * animals.length);
             var str = animals[random].toLowerCase();
             var randomItem = str.replace(/ä/g,'a').replace(/ö/g,'o');
-            var randomSound = "./sounds/audio/"+category+"/"+randomItem+".mp3";
+            var randomSound = "./assets/sounds/audio/"+category+"/"+randomItem+".mp3";
 
             for( var j=0; j<amount; j++ ){
                 if(randomSounds[j] === randomSound){
@@ -316,7 +316,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
             var corrRandCat = correctCat[Math.floor(Math.random() * correctCat.length)];
             var unique = true;
             var randCorrect = Math.floor((Math.random() * 20) +1);
-            var img = "./pics/"+corrRandCat+"/"+randCorrect+".png";
+            var img = "./assets/pics/"+corrRandCat+"/"+randCorrect+".png";
 
             for( var j=0; j<5; j++){
                 if(distractionArr[j] === img){
@@ -337,7 +337,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         for ( var i=0; i<12; i++){
             var randCat = categories[Math.floor(Math.random() * categories.length)];
             var randIndex = Math.floor((Math.random()*20)+1);
-            var randImg = "./pics/"+randCat+"/"+randIndex+".png";
+            var randImg = "./assets/pics/"+randCat+"/"+randIndex+".png";
             distractionArr.push(randImg);
         }
 

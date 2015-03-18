@@ -50,7 +50,7 @@
 
         <div class="items targets text-center">
             <% _.each(targets, function(targets) { %>
-                <img class="item" src="./pics/KIM/<%=targets%>.png">
+                <img class="item" src="./assets/pics/KIM/<%=targets%>.png">
             <% }); %>
         </div>
 
@@ -96,19 +96,19 @@
 
                 <div class="firstRow">
                     <% _.each(firstRow, function(firstRow) { %>
-                    <img class="firstRow" src="./pics/konstruktio/<%= firstRow %>.png">
+                    <img class="firstRow" src="./assets/pics/konstruktio/<%= firstRow %>.png">
                     <% }) %>
                 </div>
 
                 <div class="secondRow">
                     <% _.each(secondRow, function(secondRow) { %>
-                    <img class="secondRow" src="./pics/konstruktio/<%= secondRow %>.png">
+                    <img class="secondRow" src="./assets/pics/konstruktio/<%= secondRow %>.png">
                     <% }) %>
                 </div>
 
                 <div class="thirdRow">
                     <% _.each(thirdRow, function(thirdRow) { %>
-                    <img class="thirdRow" src="./pics/konstruktio/<%= thirdRow %>.png">
+                    <img class="thirdRow" src="./assets/pics/konstruktio/<%= thirdRow %>.png">
                 <% }) %>
                 </div>
 
@@ -118,17 +118,17 @@
             <div class="span6 construct-answer">
                 <div class="firstRow">
                     <% _.each(answerFirstRow, function(answerFirstRow) { %>
-                        <img class="firstRow answerBlock" src="./pics/konstruktio/<%= answerFirstRow %>.png">
+                        <img class="firstRow answerBlock" src="./assets/pics/konstruktio/<%= answerFirstRow %>.png">
                     <% }) %>
                 </div>
                 <div class="secondRow">
                     <% _.each(answerSecondRow, function(answerSecondRow) { %>
-                        <img class="secondRow answerBlock" src="./pics/konstruktio/<%= answerSecondRow %>.png">
+                        <img class="secondRow answerBlock" src="./assets/pics/konstruktio/<%= answerSecondRow %>.png">
                     <% }) %>
                 </div>
                 <div class="thirdRow">
                     <% _.each(answerThirdRow, function(answerThirdRow) { %>
-                        <img class="thirdRow answerBlock" src="./pics/konstruktio/<%= answerThirdRow %>.png">
+                        <img class="thirdRow answerBlock" src="./assets/pics/konstruktio/<%= answerThirdRow %>.png">
                     <% }) %>
                 </div>
             </div>
@@ -235,8 +235,8 @@
     </div>
 
     <div class="phone-container">
-        <audio id="audio" autoplay="autoplay" src="sounds/iphone-sms.mp3" type="audio/mpeg" ></audio>
-        <img class="phone center" src="img/device-iphone5.png" />
+        <audio id="audio" autoplay="autoplay" src="assets/sounds/iphone-sms.mp3" type="audio/mpeg" ></audio>
+        <img class="phone center" src="assets/img/device-iphone5.png" />
         <div class="textmessage txt-left">
             <%= message %>
         </div>
@@ -331,7 +331,7 @@
                                 <div class="sudoku-toolbar-cell-content"><%= symbol.number %></div>
                             <% } else if( symbols.type == "image" ) { %>
                                 <div class="sudoku-toolbar-cell-content">
-                                    <img src="./pics/<%= symbols.imageCategory %>/<%= symbol.number %>.png" class="sudoku-toolbar-cell-image" alt="" />
+                                    <img src="./assets/pics/<%= symbols.imageCategory %>/<%= symbol.number %>.png" class="sudoku-toolbar-cell-image" alt="" />
                                 </div>
                             <% } %>
                         </div>
@@ -475,7 +475,7 @@
                         <!-- <div class="sudoku-clicker">&nbsp;</div>   -->
                         <div class="sudoku-images">
 
-                            <% if(sudokuImg === "./pics/numbers.png") { %>
+                            <% if(sudokuImg === "./assets/pics/numbers.png") { %>
                                 <div class="sudoku-img numbers">
                                     <div class="sudoku-title title-background">Numerot</div>
                                     <img class="selectable" src="<%= sudokuImg %>" />

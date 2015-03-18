@@ -231,7 +231,7 @@ var KIM = Backbone.View.extend({
 
         var targetImg = [];
         for( var i=0; i<targets.length; i++ ) {
-            var img = './pics/KIM/'+targets[i]+'.png';
+            var img = './assets/pics/KIM/'+targets[i]+'.png';
             targetImg.push(img);
         }
 
@@ -389,7 +389,7 @@ var KIM = Backbone.View.extend({
             var timer = setTimeout(function() {
                     var bluffs = that.addBluffs(targets);
                     for(var i=0; i < $('.allItems img').length; i++){
-                        var img = '<img class="kim-item selectable" src="./pics/KIM/'+bluffs[i]+'.png"/>';
+                        var img = '<img class="kim-item selectable" src="./assets/pics/KIM/'+bluffs[i]+'.png"/>';
                         $('.allItems img:nth('+i+')').replaceWith(img);
                     }
                     $('.kim-color-hint').addClass('hidden');

@@ -48,7 +48,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
         //creating target picture
         var targetRandom = Math.floor((Math.random() * 20) + 1);
-        var targetPic = './pics/' + category + '/' + targetRandom + '.png';
+        var targetPic = './assets/pics/' + category + '/' + targetRandom + '.png';
 
         //creating random items
         var arr = [];
@@ -59,7 +59,7 @@ var KuvaEtsinta = Backbone.View.extend({
                 random = Math.floor((Math.random() * 20) + 1);
             }
 
-            var itemPic = './pics/' + category + '/' + random + '.png';
+            var itemPic = './assets/pics/' + category + '/' + random + '.png';
             var obj = {itemPic: itemPic};
             arr.push(obj);
 
@@ -112,8 +112,8 @@ var KuvaEtsinta = Backbone.View.extend({
             }
         }
 
-        var targetPicOne = './pics/' + category + '/' + targets[0] + '.png';
-        var targetPicTwo = './pics/' + category + '/' + targets[1] + '.png';
+        var targetPicOne = './assets/pics/' + category + '/' + targets[0] + '.png';
+        var targetPicTwo = './assets/pics/' + category + '/' + targets[1] + '.png';
 
         //creating random items
         var arr = [];
@@ -124,7 +124,7 @@ var KuvaEtsinta = Backbone.View.extend({
                 random = Math.floor((Math.random() * 20) + 1);
             }
 
-            var itemPic = './pics/' + category + '/' + random + '.png';
+            var itemPic = './assets/pics/' + category + '/' + random + '.png';
             var obj = {itemPic: itemPic};
             arr.push(obj);
 
@@ -186,9 +186,9 @@ var KuvaEtsinta = Backbone.View.extend({
         }
 
 
-        var targetPicOne = './pics/' + category + '/' + targets[0] + '.png';
-        var targetPicTwo = './pics/' + category + '/' + targets[1] + '.png';
-        var targetPicThree = './pics/' + category + '/' + targets[2] + '.png';
+        var targetPicOne = './assets/pics/' + category + '/' + targets[0] + '.png';
+        var targetPicTwo = './assets/pics/' + category + '/' + targets[1] + '.png';
+        var targetPicThree = './assets/pics/' + category + '/' + targets[2] + '.png';
 
         //creating random items
         var arr = [];
@@ -199,7 +199,7 @@ var KuvaEtsinta = Backbone.View.extend({
                 random = Math.floor((Math.random() * 20) + 1);
             }
 
-            var itemPic = './pics/' + category + '/' + random + '.png';
+            var itemPic = './assets/pics/' + category + '/' + random + '.png';
             var obj = {itemPic: itemPic};
             arr.push(obj);
 

@@ -20,7 +20,7 @@ var games = [
                        '<p>Näet tuloksesi koskettamalla "Valmis".</p>' +
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"      : "//www.youtube.com/embed/Vxcs2E_B4fc",
-        "coverImage" : "./img/fish.png"
+        "coverImage" : "./assets/img/fish.png"
     },
 	{
 
@@ -36,7 +36,7 @@ var games = [
                        '<p>Kosketa "Tarkista", jolloin oikeat vastaukset näytetään vihreällä ja väärät punaisella.</p>'+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"      : "//www.youtube.com/embed/Tb58VLIdkPQ",
-        "coverImage" : "./img/txt.png"
+        "coverImage" : "./assets/img/txt.png"
     },
 	{
         "gameId"     : 3,
@@ -50,7 +50,7 @@ var games = [
                        '<p>Tehtävänä on havaita perusmuodossa oleva sana. Valinta osoitetaan koskettamalla Löytyi  -painiketta. Sanan on oltava kokonaan punaisella alueella.</p>'+
                        '<p>Tehtävä kestää neljä minuuttia. Voit keskeyttää tehtävän koskettamalla "Lopeta".</p>',
         "video"      : "//www.youtube.com/embed/oqHWiE8KCEE",
-        'coverImage' : './img/sanat.png'
+        'coverImage' : './assets/img/sanat.png'
     },
 	{
         "gameId"     : 4,
@@ -65,7 +65,7 @@ var games = [
                        '<p>Kosketa "Tarkista", jolloin näet oikeat vastaukset.</p>'+
                        '<p>Muistettavia numerosarjoja tulee viisi peräkkäin. Voit keskeyttää tehtävän koskettamalla "Lopeta".</p>',
         "video"      : "//www.youtube.com/embed/XQd-neae2Io",
-        "coverImage" : "./img/vis.png"
+        "coverImage" : "./assets/img/vis.png"
     },
 	{
         "gameId"     : 5,
@@ -81,7 +81,7 @@ var games = [
                        '<p>Kun kaikki sanat on kirjoitettu, kosketa Valmis -painiketta. Näkyvin tulee oikeiden vastausten määrä.</p>'+
                        '<p>Voit keskeyttää tehtävän koskettamalla ”Lopeta”.</p>',
         "video"      : "//www.youtube.com/embed/RvY3qzzyHp0",
-        'coverImage' : './img/aud.png'
+        'coverImage' : './assets/img/aud.png'
     },
 	{
         "gameId"     : 6,
@@ -95,7 +95,7 @@ var games = [
                        "<p>Mieleenpainamisen jälkeen ruudulle ilmestyy aiemmin esitetyt kuvat ja lisäksi muita kuvia. Merkitse kuvia koskettamalla kaikki tehtävän alussa esitetyt esineet.</p>"+
                        '<p>Kun kosketat ”Valmis”, kone näyttää oikeat vastaukset vihreällä ja puuttuvat esineet oranssilla. Tehtävä jatkuu, kunnes muistat kaikki alussa näytetyt esineet.</p>',
         "video"      : "//www.youtube.com/embed/1iJVzK4PA74",
-        "coverImage" : "./img/kim.png"
+        "coverImage" : "./assets/img/kim.png"
     },
 	{
         "gameId"     : 7,
@@ -111,7 +111,7 @@ var games = [
                        "<p>Jatka salasanan päättelyä koneen antamien vihjeiden avulla. Salasana säilyy samana kunnes keksit sen.</p>"+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"      : "//www.youtube.com/embed/CaLt6nolbZc",
-        "coverImage" : "./img/password.png"
+        "coverImage" : "./assets/img/password.png"
     },
 	{
         "gameId"     : 8,
@@ -131,7 +131,7 @@ var games = [
                        '<p>Ruudukon täyttäminen tapahtuu koskettamalla haluttua tyhjää ruutua, jolloin sen ympärille muodostuu sininen kehä. Sivulla olevasta valikosta valitaan koskettamalla haluttu numero/hedelmä.</p>' +
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
 		    "video"		   : "//www.youtube.com/embed/pAEv88Pkzqw",
-        'coverImage' : "./img/sudoku.png"
+        'coverImage' : "./assets/img/sudoku.png"
     },
 	{
         "gameId"     : 9,
@@ -147,7 +147,7 @@ var games = [
                        '<p>Kosketa “Valmis”. Mikäli kuviossa on virheellisiä tai puuttuvia osia, näkyvät ne punaisella X:lla merkittynä.</p>'+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"      : "//www.youtube.com/embed/KhAety3hbk4",
-        "coverImage" : "./img/konstruointi.png"
+        "coverImage" : "./assets/img/konstruointi.png"
     },
 	{
         "gameId"     : 10,
@@ -162,7 +162,7 @@ var games = [
                        "<p>Valinta osoitetaan koskettamalla haluttua ruutua.</p>"+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta"</p>',
 		    "video"		   : "//www.youtube.com/embed/zuK3eFV0rbA",
-        "coverImage" : "./img/ristinolla.png"
+        "coverImage" : "./assets/img/ristinolla.png"
     }
 ];
 
