@@ -25,7 +25,7 @@
         <div class="distractions">
             <div class="text-center horizontal-center image hidden">
                 <h3>Paina Löytyi! kun näet minkä tahansa eläimen.</h3>
-                <img src="" />
+                <img draggable="false" src="" />
                 <button class="btn btn-primary bigger check">Löytyi!</button>
             </div>
         </div>
@@ -47,7 +47,7 @@
 
         <div class="items targets text-center">
             <% _.each(targets, function(targets) { %>
-                <img class="item" src="./assets/pics/KIM/<%=targets%>.png">
+                <img draggable="false" class="item" src="./assets/pics/KIM/<%=targets%>.png">
             <% }); %>
         </div>
 
@@ -58,7 +58,7 @@
 
         <div class="items allItems hidden text-center">
             <% _.each(bluffs, function(bluffs) { %>
-                <img class="kim-item selectable" src="./assets/pics/KIM/<%=bluffs%>.png">
+                <img draggable="false" class="kim-item selectable" src="./assets/pics/KIM/<%=bluffs%>.png">
             <% }); %>
             <button class="btn bigger bottom-right finish btn-success">Valmis</button>
         </div>
@@ -93,19 +93,19 @@
 
                 <div class="firstRow">
                     <% _.each(firstRow, function(firstRow) { %>
-                    <img class="firstRow" src="./assets/pics/konstruktio/<%= firstRow %>.png">
+                    <img draggable="false" class="firstRow" src="./assets/pics/konstruktio/<%= firstRow %>.png">
                     <% }) %>
                 </div>
 
                 <div class="secondRow">
                     <% _.each(secondRow, function(secondRow) { %>
-                    <img class="secondRow" src="./assets/pics/konstruktio/<%= secondRow %>.png">
+                    <img draggable="false" class="secondRow" src="./assets/pics/konstruktio/<%= secondRow %>.png">
                     <% }) %>
                 </div>
 
                 <div class="thirdRow">
                     <% _.each(thirdRow, function(thirdRow) { %>
-                    <img class="thirdRow" src="./assets/pics/konstruktio/<%= thirdRow %>.png">
+                    <img draggable="false" class="thirdRow" src="./assets/pics/konstruktio/<%= thirdRow %>.png">
                 <% }) %>
                 </div>
 
@@ -115,17 +115,17 @@
             <div class="span6 construct-answer">
                 <div class="firstRow">
                     <% _.each(answerFirstRow, function(answerFirstRow) { %>
-                        <img class="firstRow answerBlock" src="./assets/pics/konstruktio/<%= answerFirstRow %>.png">
+                        <img draggable="false" class="firstRow answerBlock" src="./assets/pics/konstruktio/<%= answerFirstRow %>.png">
                     <% }) %>
                 </div>
                 <div class="secondRow">
                     <% _.each(answerSecondRow, function(answerSecondRow) { %>
-                        <img class="secondRow answerBlock" src="./assets/pics/konstruktio/<%= answerSecondRow %>.png">
+                        <img draggable="false" class="secondRow answerBlock" src="./assets/pics/konstruktio/<%= answerSecondRow %>.png">
                     <% }) %>
                 </div>
                 <div class="thirdRow">
                     <% _.each(answerThirdRow, function(answerThirdRow) { %>
-                        <img class="thirdRow answerBlock" src="./assets/pics/konstruktio/<%= answerThirdRow %>.png">
+                        <img draggable="false" class="thirdRow answerBlock" src="./assets/pics/konstruktio/<%= answerThirdRow %>.png">
                     <% }) %>
                 </div>
             </div>
@@ -136,7 +136,7 @@
 
         <div class="text-center answerblocks ">
             <% _.each(answerChoices, function(answerChoices) { %>
-            <img class="selectable" src="<%= answerChoices %>" />
+            <img draggable="false" class="selectable" src="<%= answerChoices %>" />
             <% }) %>
         </div>
 
@@ -233,7 +233,7 @@
 
     <div class="phone-container">
         <audio id="audio" autoplay="autoplay" src="assets/sounds/iphone-sms.mp3" type="audio/mpeg" ></audio>
-        <img class="phone center" src="assets/img/device-iphone5.png" />
+        <img draggable="false" class="phone center" src="assets/img/device-iphone5.png" />
         <div class="textmessage txt-left">
             <%= message %>
         </div>
@@ -246,13 +246,13 @@
 
         <div class="item-collection">
             <% _.each(myArr, function(myArr) { %>
-                <img class="selectable" src=" <%= myArr.itemPic %> " />
+                <img draggable="false" class="selectable" src=" <%= myArr.itemPic %> " />
             <% }); %>
         </div>
         <hr class="dark"/>
         <div class="text-center">
             <% _.each(targetPic, function(targetPic) { %>
-                <img class="target" src="<%= targetPic.targetPic %>" />
+                <img draggable="false" class="target" src="<%= targetPic.targetPic %>" />
             <% }); %>
             <button class="btn btn-large bottom-right bigger finish btn-success">Valmis</button>
             <button class="btn btn-large bottom-left bigger quit btn-danger">Keskeytä</button>
@@ -328,7 +328,7 @@
                                 <div class="sudoku-toolbar-cell-content"><%= symbol.number %></div>
                             <% } else if( symbols.type == "image" ) { %>
                                 <div class="sudoku-toolbar-cell-content">
-                                    <img src="./assets/pics/<%= symbols.imageCategory %>/<%= symbol.number %>.png" class="sudoku-toolbar-cell-image" alt="" />
+                                    <img draggable="false" src="./assets/pics/<%= symbols.imageCategory %>/<%= symbol.number %>.png" class="sudoku-toolbar-cell-image" alt="" />
                                 </div>
                             <% } %>
                         </div>
@@ -446,7 +446,7 @@
     <script id="gameTemplate" type="text/template">
 
         <div class="rounded img-helper">
-            <img width="400" height="400" src="<%= coverImage %>" />
+            <img draggable="false" width="400" height="400" src="<%= coverImage %>" />
         </div>
 
         <div class="wrap">
@@ -485,12 +485,12 @@
                             <% if(sudokuImg === "./assets/pics/numbers.png") { %>
                                 <div class="sudoku-img numbers">
                                     <div class="sudoku-title title-background">Numerot</div>
-                                    <img class="selectable" src="<%= sudokuImg %>" />
+                                    <img draggable="false" class="selectable" src="<%= sudokuImg %>" />
                                 </div>
                             <% }else{ %>
                                 <div class="sudoku-img fruits">
                                     <div class="sudoku-title title-background">Hedelmät</div>
-                                    <img class="selectable" src="<%= sudokuImg %>" />
+                                    <img draggable="false" class="selectable" src="<%= sudokuImg %>" />
                                 </div>
                             <% } %>
 
@@ -514,7 +514,7 @@
 
                             <div class="slide-borders text-center">
                                 <% _.each(slide1, function(slide1) { %>
-                                    <div class="clicker">&nbsp;</div> <img src="<%= slide1 %>" />
+                                    <div class="clicker">&nbsp;</div> <img draggable="false" src="<%= slide1 %>" />
                                 <% }); %>
 
                                 <div class="cat-titles">
@@ -531,7 +531,7 @@
 
                         <div class="slide-borders text-center">
                             <% _.each(slide2, function(slide2) { %>
-                            <div class="clicker">&nbsp;</div> <img src="<%= slide2 %>" />
+                            <div class="clicker">&nbsp;</div> <img draggable="false" src="<%= slide2 %>" />
                             <% }); %>
 
                             <div class="cat-titles">
@@ -548,7 +548,7 @@
 
                         <div class="slide-borders text-center">
                             <% _.each(slide3, function(slide3) { %>
-                            <div class="clicker">&nbsp;</div> <img src="<%= slide3 %>" />
+                            <div class="clicker">&nbsp;</div> <img draggable="false" src="<%= slide3 %>" />
                             <% }); %>
 
                             <div class="cat-titles">
@@ -564,7 +564,7 @@
                     <div class="item slide4">
                         <div class="slide-borders text-center">
                             <% _.each(slide4, function(slide4) { %>
-                            <div class="clicker">&nbsp;</div> <img src="<%= slide4 %>" />
+                            <div class="clicker">&nbsp;</div> <img  draggable="false"src="<%= slide4 %>" />
                             <% }); %>
 
                             <div class="cat-titles">
