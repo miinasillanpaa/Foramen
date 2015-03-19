@@ -264,12 +264,6 @@ var ResultsView = Backbone.View.extend({
         var template = _.template( $(this.template).html(), results );
         this.$el.html(template);
 
-		// if( Settings.get('showFeedbackModal') === true) {
-		// 	if ( !this.options.fromPlayedGameView ) {
-		// 		this.showModal();
-		// 	}
-		// }
-
 		$('.back-root').click( function() {
             myView.undelegateEvents();
         });
@@ -282,38 +276,9 @@ var ResultsView = Backbone.View.extend({
 
     events:{
         'click .screen' : 'viewSnapshot',
-        'click .new-game' : 'startNewGame',
-	//	'click .btn-feedback' : 'showModal',
+        'click .new-game' : 'startNewGameWithDifficulty',
         'click .more-challenging' : 'startChallengingGame'
     },
-
-    // displayRecord: function (results, newRecord) {
-    // 	var len;
-    // 	var obj;
-    //
-    // 	if(newRecord){
-    // 		$(".record-box").removeClass('alert-info').addClass('alert-success').text("Paransit omaa ennätystäsi!");
-    // 		obj = results.data;
-    // 		len = Object.keys(results.data).length;
-    //
-    // 		//save new record to backend
-    // 		//parameters gameId & difficultyLevel & scoreObj
-    // 		window.saveHighScore(this.model.get('gameId'), window.difficultyLevel, results.data);
-    //
-    // 	}else{
-    // 		obj = results;
-    // 		len = Object.keys(results).length;
-    // 	}
-    //
-	// 	var elem = $(".record-well");
-    //
-	// 	for(var i=0; i<len; i++) {
-	// 		if( obj[i].name !== "" ) {
-	// 			elem.find(".results.pull-left").append( '<p>'+ obj[i].name +'</p>' );
-	// 			elem.find(".results.align-right").append( '<p>'+ obj[i].value +'</p>' );
-	// 		}
-	// 	}
-    // },
 
     viewSnapshot: function () {
 
@@ -337,48 +302,13 @@ var ResultsView = Backbone.View.extend({
         }
     },
 
-    startNewGame: function () {
-
-		this.undelegateEvents();
-		App.currentGameView.undelegateEvents();
-        Settings.set({ results: [] });
-
-        var gameId = this.model.get('gameId');
-        router.navigate('game/' + gameId + '/play', {trigger: true});
-    },
-
-    startChallengingGame: function(){
-      this.undelegateEvents();
-      App.currentGameView.undelegateEvents();
-      Settings.set({results: []});
-      Settings.set({difficulty: 'medium'});
-      router.navigate('game/'+ this.model.get('gameId') +'/play', {trigger: true});
-
+    startNewGameWithDifficulty: function(event){
+        var difficulty = $(event.currentTarget).data('difficulty');
+        this.undelegateEvents();
+        App.currentGameView.undelegateEvents();
+        Settings.set({results: []});
+        Settings.set({difficulty: difficulty});
+        router.navigate('game/'+ this.model.get('gameId') +'/play', {trigger: true});
     }
-
-	// showModal: function () {
-    //
-	// 	var el = '<h2>Mikä on fiiliksesi?</h2>' +
-	// 			'<div class="mood-meter">' +
-	// 			'<button onclick="window.hideFeedbackModal(1);" class="btn btn-success btn-smiley"><img class="smiley" src="img/face_happy.png"/></button>' +
-	// 			'<button onclick="window.hideFeedbackModal(2);" class="btn btn-default btn-smiley"><img class="smiley" src="img/face_neutral.png"/></button>' +
-	// 			'<button onclick="window.hideFeedbackModal(3);" class="btn btn-danger btn-smiley"><img class="smiley" src="./img/face_sad.png"/></button>' +
-	// 			'</div>' +
-	// 			'<p class="checkbox checkbox-moodmeter pull-left"> <input id="checkboxFeedback" type="checkbox" onclick="window.toggleFeedbackCheckbox();"> &nbsp;&nbsp; Älä näytä tätä enää</p> ';
-    //
-	// 	$('.overlay').css('display','block');
-	// 	$('.back-root').attr('disabled','disabled');
-	// 	$('#content').find('button').attr('disabled','disabled');
-    //
-	// 	$('.modal')
-	// 		.html(el)
-	// 		.css('display','block');
-    //
-	// 	var checkboxNotChecked = Settings.get('showFeedbackModal');
-    //
-	// 	if(checkboxNotChecked === false) {
-	// 		$('#checkboxFeedback').attr('checked',true);
-	// 	}
-	// }
 
 });
