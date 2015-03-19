@@ -277,7 +277,6 @@ var ResultsView = Backbone.View.extend({
     events:{
         'click .screen' : 'viewSnapshot',
         'click .new-game' : 'startNewGameWithDifficulty',
-        'click .more-challenging' : 'startChallengingGame'
     },
 
     viewSnapshot: function () {
