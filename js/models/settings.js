@@ -99,7 +99,7 @@ var Settings = Backbone.Model.extend({
             "urheilu" :     [   "SQUASH","GOLF","VOIMISTELU","UINTI","KÄVELY","HÖLKKÄ","HIIHTO","LASKETTELU","AMMUNTA","RODEO",
                                 "NYRKKEILY","PAINI","TRIATHLON","DARTS","JUDO","TENNIS","PURJEHDUS","SUUNNISTUS","SOUTU","PYÖRÄILY"
             ],
-            "valtiot" :     [   "SUOMI","RUOTSI","VIETNAM","TANSKA","VIRO","LATVIA","SAKSA","ZAIRE","RANSKA","BELGIA",
+            "valtiot" :     [   "SUOMI","RUOTSI","VIETNAM","TANSKA","VIRO","LATVIA","SAKSA","RANSKA","BELGIA",
                                 "KOLUMBIA","EGYPTI","BOLIVIA","VENÄJÄ","SUDAN","LIBANON","INTIA","MEKSIKO","JAPANI","KROATIA"
             ]
         },
