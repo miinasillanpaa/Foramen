@@ -267,9 +267,8 @@ var ResultsView = Backbone.View.extend({
 		$('.back-root').click( function() {
             myView.undelegateEvents();
         });
-
-        $('#content').css('padding-bottom','50px');
-        $('#content').css('overflow-y','auto');
+        // $('#content').css('padding-bottom','50px');
+        // $('#content').css('overflow-y','auto');
 
         return this;
     },

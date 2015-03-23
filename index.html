@@ -374,58 +374,63 @@
 
 
         <h2 class="title">Tulokset</h2>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="well">
 
-        <div class="span5">
-            <div class="well">
+                    <div class="results align-left pull-left">
+                        <p>Vaikeustaso: </p>
 
-                <div class="results align-left pull-left">
-                    <p>Vaikeustaso: </p>
+                        <% _.each(data, function(data) { %>
+                            <p><%= data.name %></p>
+                        <% }); %>
 
-                    <% _.each(data, function(data) { %>
-                        <p><%= data.name %></p>
-                    <% }); %>
+                    </div>
 
-                </div>
+                    <div class="results align-right">
+                        <p> <%= difficulty %></p>
 
-                <div class="results align-right">
-                    <p> <%= difficulty %></p>
+                        <% _.each(data, function(data) { %>
 
-                    <% _.each(data, function(data) { %>
+                          <% if( data.name.length > 0){ %>
+                            <p><%= data.value %></p>
+                          <% }else{ %>
+                            <%= data.value %>
+                          <% } %>
 
-                      <% if( data.name.length > 0){ %>
-                        <p><%= data.value %></p>
-                      <% }else{ %>
-                        <%= data.value %>
-                      <% } %>
-
-                     <% }); %>
-
-
-                </div>
-            </div>
-        </div>
+                         <% }); %>
 
 
-
-        <div class="span6">
-
-            <button class="btn btn-success btn-block bigger new-game" data-difficulty="easy">Harjoittele uudestaan: Taso I</button>
-            <button class="btn btn-warning btn-block bigger new-game" data-difficulty="medium">Harjoittele uudestaan: Taso II</button>
-            <button class="btn btn-danger btn-block bigger new-game" data-difficulty="hard">Harjoittele uudestaan: Taso III</button>
-            <hr/>
-
-            <div class="credits">
-                <div class="row">
-                    <div class="span12 align-left">
-                        <p>KREDIITIT, toteutus, suunnittelu, muuta?</p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="span8"><img src="assets/img/mss_logo.png" alt="Miina Sillanpään Säätiö" /></div>
-                    <div class="span4"><img src="assets/img/ray_logo.png" alt="Ray" /></div>
-                </div>
             </div>
 
+
+
+            <div class="results span6">
+
+                <button class="btn btn-success btn-block bigger new-game" data-difficulty="easy">Harjoittele uudestaan: Taso I</button>
+                <button class="btn btn-warning btn-block bigger new-game" data-difficulty="medium">Harjoittele uudestaan: Taso II</button>
+                <button class="btn btn-danger btn-block bigger new-game" data-difficulty="hard">Harjoittele uudestaan: Taso III</button>
+                <% if(gameId === 8){ %>
+                    <button class="btn btn-info btn-block bigger new-game" data-difficulty="joker">Harjoittele uudestaan: Jokeri</button>
+                <% } %>
+
+                <hr/>
+
+                <div class="credits">
+                    <div class="row-fluid">
+                        <div class="span12 align-left">
+                            <p>KREDIITIT, toteutus, suunnittelu, muuta?</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="span8"><img src="assets/img/mss_logo.png" alt="Miina Sillanpään Säätiö" /></div>
+                        <div class="span4"><img src="assets/img/ray_logo.png" alt="Ray" /></div>
+                    </div>
+                </div>
+
+            </div>
         </div>
         <div class="clearfix"></div>
 
@@ -446,7 +451,7 @@
     <script id="gameTemplate" type="text/template">
 
         <div class="rounded img-helper">
-            <img draggable="false" width="400" height="400" src="<%= coverImage %>" />
+            <img draggable="false" src="<%= coverImage %>" />
         </div>
 
         <div class="wrap">
@@ -502,12 +507,12 @@
 
 
             <div id="categoryCarousel" class="carousel slide hidden">
-                <ol class="carousel-indicators">
+                <!-- <ol class="carousel-indicators">
                     <li data-target="#categoryCarousel" data-slide-to="0"></li>
                     <li data-target="#categoryCarousel" data-slide-to="1"></li>
                     <li data-target="#categoryCarousel" data-slide-to="2"></li>
                     <li data-target="#categoryCarousel" data-slide-to="3"></li>
-                </ol>
+                </ol> -->
 
                 <div class="carousel-inner">
                     <div class="item slide1">
@@ -585,14 +590,13 @@
 
             </div>
 
+            <div class="pregame-options">
+                <button class="span7 btn btn-danger btn-large bigger preview"> Katso esimerkkisuoritus</button>
+                <button class="span5 btn btn-success btn-large bigger" id="play-game">Aloita</button>
+            </div>
+        </div>
+        <!-- <div class="clearfix"></div> -->
 
-        </div>
-        <div class="clearfix"></div>
-        <div class="pregame-options">
-        <button class="btn btn-success btn-large pull-right bigger" id="play-game">Aloita</button>
-        <h4 class="pull-right spacer">Tai</h4>
-        <button class="btn btn-danger btn-large pull-right bigger preview"><i class="icon-bigger icon-play icon-white"></i> Katso esimerkkisuoritus</button>
-        </div>
 
     </script>
 

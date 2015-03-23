@@ -84,18 +84,21 @@ html, body{
     min-height: 100%;
     height: 100%;
     width: 100%;
+    overflow-y: scroll;
 }
 #content{
-    overflow-x: scroll;
     display: block;
-    height: 100%;
     width: 95%;
-    min-width: 1160px;
-    /*min-width: 700px;*/
+    /*height: 100%;*/
+    /*height: 90vh;
+    width: 160vh;
+    min-height: calc(650px *(90/160));*/
+
+    /*min-width: 1160px;*/
     margin: 0 auto;
 }
 .row-fluid{
-    overflow: hidden;
+    overflow: auto;
     height: 100%;
     min-height: 100%;
     width: 100%;
@@ -116,14 +119,24 @@ html, body{
 }
 
 #header h2{
+    display: inline-block;
     color: #5c5c5c;
     margin:0;
     padding: 10px 0 0 50px;
-    /*margin-left:100px;*/
     text-transform: uppercase;
     text-shadow: 1px 1px 1px black;
     font-size: 2.5em;
+    white-space: nowrap;
+    width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
+}
+
+#header button{
+    display: inline-block;
+    float:right;
+    margin: 8px 30px 0 0;
 }
 
 #header h1{
@@ -143,14 +156,17 @@ html, body{
 }
 
 .game-item{
-    width: 17%;
+    /*width: 17%;*/
+    width: 30vh;
+    height: 40vh;
     display: inline-block;
     cursor: pointer;
     background: rgb(238,238,238); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1))); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10+,Safari5.1+ */
-    margin: 20px 10px;
+    /*margin: 20px 10px;*/
+    margin: 10px 5px;
 
 }
 
@@ -172,7 +188,7 @@ html, body{
 }
 
 .wrap{
-    height:65px;
+    /*height:65px;*/
     display: table;
     padding:0px 0px 10px 0px;
     vertical-align: middle;
@@ -183,7 +199,8 @@ html, body{
     margin-top:0px;
     line-height: 1.2em;
     height: 2.9em;
-    font-size: 1.5em;
+    /*font-size: 1.5em;*/
+    font-size: 3vh;
     padding: 0 10px;
     display: table-cell;
     vertical-align: middle;
@@ -196,8 +213,6 @@ html, body{
 	-ms-transform: translateZ(0);
 	-o-transform: translateZ(0);
 	transform: translateZ(0);
-    overflow-y: scroll;
-    height: 624px;
     margin:0;
     padding:0;
     text-align:left;
@@ -294,8 +309,9 @@ html, body{
   word-wrap: break-word;
   white-space: nowrap;
 }
-.results button{
-  font-size: 1.9em;
+.results  button{
+    line-height: 1;
+    font-size: 1.7em;
 }
 
 .btn-feedback{
@@ -360,13 +376,15 @@ ul{
 }
 
 hr{
-    margin-top:5px;
+    margin-top: 0;
 }
 
 .backToService, .back-root, .back-history{
-    position: absolute;
-    top:.8%;
-    right:6%;
+    display: inline-block;
+    /*margin-left: 80%;
+    margin-right: 20%;
+    margin-top: -64px;*/
+
 }
 .top-bar-mid{
 	position: absolute;
@@ -385,10 +403,22 @@ hr{
     margin: 0 auto;
 }
 
-.pregame-options{
-    position: absolute;
-    right: 40px;
-    bottom: 20px;
+.pregame-options:before, .pregame-options:after{
+    content: " ";
+    display: table;
+}
+
+.pregame-options:after{
+    clear: both;
+}
+
+.pregame-options button{
+    line-height: 1em;
+    font-size: 170%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 15px;
+    margin-bottom: 10px;
 }
 
 .tight{
@@ -682,7 +712,7 @@ img.phone{
 /* KONSTRUOINTI */
 
 .construct-body{
-    margin-top:100px;
+    padding-top:100px;
 }
 
 .construct img{
@@ -1045,6 +1075,7 @@ span.bullet{
 }
 
 .sudoku-wrapper {
+
   margin: 0px auto;
   padding: 20px 150px;
   display: table;
@@ -1333,13 +1364,14 @@ span.bullet{
 /* styles for pregame selector of sudoku */
 
 #sudokuSelector{
-
+    margin-bottom: 30px;
 }
 .sudoku-images{
     display: inline-block;
 
 }
 .sudoku-img{
+    position: relative;
     z-index: 9999;
     padding:0 15px;
     height: 110px !important;
@@ -1349,13 +1381,13 @@ span.bullet{
 
 .sudoku-title{
     position: absolute;
-
+    top: 50px;
     width: 119px;
     background-color: #515151;
     color: #fff;
     opacity: 0.7;
     margin-left: 5px;
-    margin-top: 50px;
+
     font-size: 1.3em;
     text-transform: uppercase;
     padding: 5px 0;

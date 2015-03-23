@@ -132,6 +132,8 @@ var Sudoku = Backbone.View.extend({
 
   adjustUISizes: function() {
 
+    this.$el.css('height', '100%');
+
     var wrapperHorizontalPaddings = parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-left" ) ) + parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-right" ) );
     var wrapperVerticalPaddings = parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-top" ) ) + parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-bottom" ) );
 
@@ -291,6 +293,7 @@ var Sudoku = Backbone.View.extend({
   quitGame: function() {
         //var gameId = this.model.get('gameId');
         //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
+        this.$el.css('height','auto');
         this.undelegateEvents();
         router.navigate("/", true);
   },
@@ -327,7 +330,7 @@ var Sudoku = Backbone.View.extend({
   },
 
   showGameResults: function() {
-
+    this.$el.css('height','auto');
     this.undelegateEvents();
 
     var date = getDateTime();
