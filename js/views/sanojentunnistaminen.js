@@ -158,16 +158,9 @@ var SanojenTunnistaminen = Backbone.View.extend({
             textRightOut = 18;
         }else if(window.innerWidth <= 1300 && window.innerWidth > 1200){
             textRightOut = 17;
-        }else if(window.innerWidth <= 1200 && window.innerWidth > 1150){
+        }else if(window.innerWidth <= 1200 && window.innerWidth > 1100){
             textRightOut = 16;
-        }else if(window.innerWidth <= 1150 && window.innerWidth > 1100){
-            textRightOut = 16;
-        }else if(window.innerWidth <= 1100 && window.innerWidth > 1050){
-            textRightOut = 15;
-        }else if(window.innerWidth <= 1050 && window.innerWidth > 1000){
-            textRightOut = 15;
-
-        }else if(window.innerWidth <= 1000 && window.innerWidth > 950){
+        }else if(window.innerWidth <= 1100 && window.innerWidth > 950){
             textRightOut = 15;
         }else if(window.innerWidth <= 950 && window.innerWidth > 900){
             textRightOut = 14;
@@ -229,7 +222,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
         randomDistance = [];
 
         if( Settings.get('difficulty') === 'easy'){
-            amount = 10;
+            amount = 9;
             chars = 150;
             firstRandPos = Math.floor(Math.random()*(127-137+1)+127);
 
@@ -241,7 +234,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
             }
 
         }else if( Settings.get('difficulty') === 'medium' ){
-            amount = 14;
+            amount = 12;
             chars = 195;
             firstRandPos = Math.floor(Math.random()*(172-182+1)+172);
 
@@ -253,7 +246,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
             }
 
         }else{
-            amount = 20;
+            amount = 18;
             chars = 400;
             firstRandPos = Math.floor(Math.random()*(370-380+1)+370);
 
