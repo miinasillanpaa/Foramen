@@ -112,6 +112,7 @@ html, body{
     background: -o-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(140,140,140,1) 96%,rgba(51,56,58,1) 100%);
     background: -moz-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(140,140,140,1) 96%,rgba(51,56,58,1) 100%);
     background: linear-gradient(top, rgba(204,204,204,1) 0%,rgba(140,140,140,1) 96%,rgba(51,56,58,1) 100%);
+    background: -ms-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(140,140,140,1) 96%,rgba(51,56,58,1) 100%);
 }
 
 #header h2{
