@@ -1405,3 +1405,17 @@ span.bullet{
 .credits p{
     font-size: 120%;
 }
+
+.mss-logo-span{
+    margin: 0;
+    padding: 0;
+    width: 66.7% !important;
+    float: left;
+}
+
+.ray-logo-span{
+    margin: 0;
+    padding: 0;
+    width: 29.9% !important;
+    float: right !important;
+}
