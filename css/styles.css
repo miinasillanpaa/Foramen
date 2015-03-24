@@ -98,7 +98,7 @@ html, body{
     margin: 0 auto;
 }
 .row-fluid{
-    overflow: auto;
+    /*overflow: auto;*/
     height: 100%;
     min-height: 100%;
     width: 100%;
