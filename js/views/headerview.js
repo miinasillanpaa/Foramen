@@ -19,6 +19,11 @@ var HeaderView = Backbone.View.extend({
 			variables  = { title: this.model.attributes.title };
 			template = _.template( $(this.template2).html(), variables);
 			this.$el.html(template);
+        }else if(parseInt(this.id) === 4) {
+
+            variables = { title: 'Ohjeet ja toteutus'};
+            template = _.template( $(this.template2).html(), variables);
+			this.$el.html(template);
 
 		}else{
 
@@ -33,7 +38,8 @@ var HeaderView = Backbone.View.extend({
     events: {
         'click .back-root' : 'goRoot',
         'click .back-setup' : 'goToGameSetup',
-        'click .back-history' : 'historyBack'
+        'click .back-history' : 'historyBack',
+        'click .show-guide': 'showGuide'
     },
 
     goRoot: function() {
@@ -54,7 +60,10 @@ var HeaderView = Backbone.View.extend({
 
 	setId: function(id){
 		this.id = id;
-	}
+	},
 
+    showGuide: function(){
+        router.navigate('/guide', {trigger: true});
+    }
 
 });

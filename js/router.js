@@ -3,6 +3,7 @@ window.Settings = new Settings();
 window.Router = Backbone.Router.extend({
 	routes: {
 		"" : "gameIndex",
+		"guide": "guideView",
 		"game/:id": "getGame",
         "game/:id/video": "videoView",
         "game/:id/play": "play",
@@ -30,6 +31,20 @@ window.Router = Backbone.Router.extend({
 });
 
 var router = new Router();
+
+router.on('route:guideView', function(){
+
+	if( App.headerView === null){
+		App.headerView = new HeaderView({ id: 4 });
+	}else {
+		App.headerView.setId(4);
+	}
+
+	App.guideView = new GuideView();
+
+	App.guideView.render();
+	App.headerView.render();
+});
 
 router.on('route:getGame', function(id) {
 	var difficulty = Settings.get('difficulty');

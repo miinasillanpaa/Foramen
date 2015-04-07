@@ -1417,3 +1417,9 @@ span.bullet{
     width: 29.9% !important;
     float: right !important;
 }
+
+.guide-text-content{
+    padding: 25px;
+    text-align: left;
+    font-size: 120%;
+}
