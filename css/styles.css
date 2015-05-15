@@ -89,12 +89,6 @@ html, body{
 #content{
     display: block;
     width: 95%;
-    /*height: 100%;*/
-    /*height: 90vh;
-    width: 160vh;
-    min-height: calc(650px *(90/160));*/
-
-    /*min-width: 1160px;*/
     margin: 0 auto;
 }
 .row-fluid{
@@ -156,9 +150,7 @@ html, body{
 }
 
 .game-item{
-    /*width: 17%;*/
-    width: 30vh;
-    height: 40vh;
+    width: 20em;
     display: inline-block;
     cursor: pointer;
     background: rgb(238,238,238); /* Old browsers */
@@ -196,11 +188,10 @@ html, body{
 }
 
 .game-item h4{
-    margin-top:0px;
+    margin-top: 0px;
     line-height: 1.2em;
     height: 2.9em;
-    /*font-size: 1.5em;*/
-    font-size: 3vh;
+    font-size: 2em;
     padding: 0 10px;
     display: table-cell;
     vertical-align: middle;
@@ -1418,8 +1409,55 @@ span.bullet{
     float: right !important;
 }
 
-.guide-text-content{
+.guide-text-content, .guide-recipe-content, .guide-credits{
     padding: 25px;
     text-align: left;
     font-size: 120%;
+}
+
+.guide-text-content a:focus, .guide-recipe-content a:focus, .guide-credits a:focus{
+    color: #005580;
+}
+.guide-text-content a:active, .guide-recipe-content a:active, .guide-credits a:active{
+    color: #005580;
+}
+.guide-text-content h3, .guide-recipe-content h3{
+    text-transform: uppercase;
+}
+
+.guide-text-content img{
+    float: right;
+}
+
+.guide-recipe-content h3{
+    text-decoration: underline;
+}
+
+.guide-recipe-content{
+    border: 4px solid #002366;
+    color: #002366;
+    margin-bottom: 20px;
+}
+
+.guide-text-content p, .guide-recipe-content p{
+    margin: 20px 0;
+}
+
+.guide-text-content ul li{
+    margin-left: 20px;
+}
+
+.guide-credits ul li{
+    list-style-type: none;
+    margin-left: 40px;
+}
+
+.guide-credits ul{
+    margin-bottom: 20px;
+}
+
+.img-responsive{
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
