@@ -8,6 +8,7 @@ html, body{
     height: 100%;
     width:100%;
     display: block;
+    /*min-width: 935px;*/
 }
 
 .danger{
@@ -121,9 +122,10 @@ html, body{
     text-shadow: 1px 1px 1px black;
     font-size: 2.5em;
     white-space: nowrap;
-    width: 60%;
+    /*width: 60%;*/
     overflow: hidden;
     text-overflow: ellipsis;
+    z-index: 9999;
 
 }
 
@@ -1460,4 +1462,19 @@ span.bullet{
   display: block;
   max-width: 60%;
   height: auto;
+}
+
+.show-guide{
+    position: absolute;
+    margin: 0 !important;
+    top: 8px;
+    right: 30px;
+    z-index: 1;
+}
+
+/* hide recipe button before it overlaps with foramen title */
+@media screen and (max-width: 900px) {
+    .show-guide {
+        display: none !important;
+    }
 }
