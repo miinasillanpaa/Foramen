@@ -450,11 +450,11 @@
                 <hr/>
 
                 <div class="credits">
-                    <div class="row-fluid">
+                    <!-- <div class="row-fluid">
                         <div class="span12 align-left">
                             <p>KREDIITIT, toteutus, suunnittelu, muuta?</p>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row-fluid">
                         <div class="mss-logo-span">
                             <img src="assets/img/mss_logo.png" alt="Miina Sillanpään Säätiö" />
@@ -637,23 +637,74 @@
 
 	 <script id="mainHeaderTmpl" type="text/template">
 			<h2>FORAMEN-harjoitteet</h2>
-            <button class="btn btn-large show-guide">Ohjeet ja tausta</button>
+            <button class="btn btn-large show-guide">Taustaa ja resepti</button>
 	</script>
 
 	<script id="backHeaderTmpl" type="text/template">
 			<h2><%= title %></h2>
 			<button class="btn btn-warning btn-large back-root"> Tehtävävalikkoon</button>
+
 	</script>
 
 	<script id="historyBackTmpl" type="text/template">
 			<h2><%= title %></h2>
 			<button class="btn btn-large back-history"><i class="icon-chevron-left"></i> Takaisin</button>
+
+            <% if( showRecipe) { %>
+                <a href="./assets/taustaa_ja_resepti.pdf"><button class="btn btn-large recipe-link" >Tulostettava Taustaa ja resepti tästä</button></a>
+            <% } %>
 	</script>
 
     <script id="guideTemplate" type="text/template">
         <div class="guide-text-content">
-            <%= guide %>
+
+            <h3>Taustaa</h3>
+            <p><strong>Aivojen toiminta on keskeinen osa ihmisen hyvinvointia. Aivot tarvitsevat haasteita voidakseen hyvin ja säilyäkseen toimintakykyisinä arjen, työelämän ja ikääntymisen paineissa. Aivojen toimintaa voi myös harjoittaa.</strong></p>
+            <p>Harjoitukset pohjautuvat FORAMENRehab® kognitiiviset kuntoutusohjelmat -ohjelmistoon (<a href="http://www.intressi.com/foramen">http://www.intressi.com/foramen</a>), josta ne on muokattu asiantuntijoiden ja kohderyhmän yhteistyönä nykyiseen muotoonsa FORAMENCognitiveTablet -ohjelmistoksi Muistiluuri – hankkeessa. (<a href="http://www.miinasillanpaa.fi/hankkeet/kuntoutus/muistiluuri/">http://www.miinasillanpaa.fi/hankkeet/kuntoutus/muistiluuri/</a>).</p>
+            <p>Ohjelmisto pohjautuu malleihin ja teorioihin aivotoiminnoista ja oppimisesta. Harjoitusten sisältö pohjautuu neuropsykologiseen teoriaan ja ne ovat neuropsykologien kehittämiä. Ohjelmisto kehitettiin erityisesti henkilöille, joilla on varhainen tai lievä muistisairaus ja siihen liittyviä muutoksia tiedonkäsittelytoiminnoissaan. Ohjelmiston käyttö hyödyttää kuitenkin kaikkia, jotka ovat kiinnostuneita aivojensa toiminnan edistämisestä.
+            <img src="./assets/img/oivallus.png"/></p>
+
+            <ul>
+                <lh>FORAMENCognitiveTablet -ohjelmiston eri harjoituksilla voi edistää:</lh>
+                <li>muistia</li>
+                <li>tarkkaavuutta</li>
+                <li>toiminnanohjausta ja ongelmanratkaisukykyä</li>
+                <li>näönvaraista hahmottamista</li>
+            </ul>
+
+            <p>Harjoitusten omatoiminen käyttö onnistuu helposti selkeiden ohjeiden avulla. Harjoitukset edustavat monipuolisesti eri tiedonkäsittelytoimintojen osa-alueita. Vaikeusasteita lisäämällä harjoituksiin saa lisää haasteellisuutta. Palaute rohkaisee ja motivoi jatkamaan työskentelyä.</p>
+            <p>Harjoitukset toimivat parhaiten Googlen Chrome-selaimella. Lataa se osoitteesta: <a href="https://www.google.com/chrome/browser/">https://www.google.com/chrome/browser/</a></p>
+
         </div>
+
+        <div class="guide-recipe-content">
+            <h3>Harjoitteluresepti</h3>
+
+            <p><strong>Käyttötarkoitus:</strong> Tiedonkäsittelytoimintojen harjoittamiseen aivojensa toiminnan edistämisestä kiinnostuneille.</p>
+            <p><strong>Käyttö:</strong> Aloita tasolta I. Kun harjoittelu sujuu ja olet valmis ottamaan uusia haasteita vastaan, siirry seuraavalle tasolle. Joissakin harjoituksissa voit valita eri kuva- tai sana-aiheen. Niillä saat lisää monipuolisuutta harjoitteluusi. Tee harjoituksia virkeänä, eri harjoituksia vaihdellen.</p>
+            <p><strong>Annostus:</strong> Hyödynnä harjoituksia 2-5 kertaa viikossa. Sopiva annostus on 20- 45 minuuttia/päivä. Vähän on kuitenkin parempi kuin ei ollenkaan.</p>
+            <p><strong>Liika-annostus:</strong> Aivotyö on rankkaa puuhaa. Liika-annostelu voi ilmetä väsymisenä, ärtymyksenä ja suoritustason laskuna. Jokainen harjoittelija on yksilö, joten kuulostele itseäsi. Muista Arvo Ylpön viisaat sanat ”Liian paljon mitä tahansa on epäterveellistä”.</p>
+            <p><strong>Mahdolliset haittavaikutukset:</strong> Harjoittelu voi temmata mukaansa ja ”koukuttaa”, mutta se on vaaratonta.</p>
+            <p><strong>Mahdolliset hyödyt</strong> Aivot voivat hyvin, kun ne saavat sopivasti monipuolisia haasteita ja lepoa.</p>
+            <p><strong>Ennen kun aloitat:</strong> Perehdy harjoitusten ohjeisiin ja esimerkkivideoon.</p>
+
+            <p class="text-center"><strong>Sitten vaan tuumasta toimeen ja harjoittelemaan, sillä...<br/>...VIERIVÄ KIVI EI SAMMALOIDU!</strong></p>
+        </div>
+
+        <div class="guide-credits">
+            <ul>
+                <lh>Harjoitus-ohjelmiston ovat Muistiluuri-hankkeeseen ja kuntoutukseen osallistuneiden kanssa yhdessä tehneet:</lh>
+                <li>&nbsp;</li>
+                <li>Jaana Sarajuuri, neuropsykologian erikoispsykologi, PsL</li>
+                <li>Sanna Koskinen, psykologian tohtori, PsT</li>
+                <li>Ella Niini, projektityöntekijä, toimintaterapeutti (AMK)</li>
+                <li>Samppa Valkama, projekti-insinööri, insinööri (AMK)</li>
+                <li>Ulla Arifullen-Hämäläinen, projektikoordinaattori, muistikoordinaattori</li>
+            </ul>
+
+            <img class="center img-responsive" src="./assets/img/mss+ray.png" alt="MSS ja Ray"/>
+        </div>
+
     </script>
 
 </head>
