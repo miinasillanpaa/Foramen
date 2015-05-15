@@ -21,7 +21,7 @@ var HeaderView = Backbone.View.extend({
 			this.$el.html(template);
         }else if(parseInt(this.id) === 4) {
 
-            variables = { title: 'Ohjeet ja toteutus'};
+            variables = { title: 'Taustaa ja resepti', showRecipe: true};
             template = _.template( $(this.template2).html(), variables);
 			this.$el.html(template);
 

@@ -34,7 +34,7 @@ var GameListView = Backbone.View.extend({
         var gameView = new GameView({
             model: item
         });
-
+        
         this.$el.append( gameView.render().el );
     }
 
