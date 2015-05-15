@@ -1458,6 +1458,6 @@ span.bullet{
 
 .img-responsive{
   display: block;
-  max-width: 100%;
+  max-width: 60%;
   height: auto;
 }
