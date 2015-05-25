@@ -1415,6 +1415,8 @@ span.bullet{
     padding: 25px;
     text-align: left;
     font-size: 120%;
+    margin: 0 auto;
+    max-width: 900px;
 }
 
 .guide-text-content a:focus, .guide-recipe-content a:focus, .guide-credits a:focus{
