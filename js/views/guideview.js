@@ -4,9 +4,7 @@ var GuideView = Backbone.View.extend({
 
     render: function() {
 
-        var vars = {guide: "Here be dragons"};
-
-		var template = _.template( $(this.template).html(), vars);
+		var template = _.template( $(this.template).html());
 		this.$el.html(template);
 
         return this;

@@ -262,10 +262,15 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
 
     quitGame: function () {
         var gameId = this.model.get('gameId');
-        //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         Settings.set({corrects:0});
         this.undelegateEvents();
-        router.navigate('/', true);
+
+        if (Settings.get('isPotpuriGame')) {
+            router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
+        }else{
+            router.navigate('/', true);
+        }
+
     },
 
     playSounds: function () {

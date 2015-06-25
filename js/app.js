@@ -20,7 +20,8 @@ var games = [
                        '<p>Näet tuloksesi koskettamalla "Valmis".</p>' +
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"      : "//www.youtube.com/embed/TRuiErdTNbQ",
-        "coverImage" : "./assets/img/fish.png"
+        "coverImage" : "./assets/img/fish.png",
+		"exerciseTarget": "tarkkaavuuteen ja tarkkaavuuden ylläpitämiseen"
     },
 	{
 
@@ -36,7 +37,8 @@ var games = [
                        '<p>Kosketa "Tarkista", jolloin oikeat vastaukset näytetään vihreällä ja väärät punaisella.</p>'+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"      : "//www.youtube.com/embed/20-VnA0PFHU",
-        "coverImage" : "./assets/img/txt.png"
+        "coverImage" : "./assets/img/txt.png",
+		"exerciseTarget": "pitkäkestoiseen muistiin sekä havainnointiin ja mieleen palauttamiseen"
     },
 	{
         "gameId"     : 3,
@@ -50,7 +52,8 @@ var games = [
                        '<p>Tehtävänä on havaita perusmuodossa oleva sana. Valinta osoitetaan koskettamalla Löytyi  -painiketta. Sanan on oltava kokonaan punaisella alueella.</p>'+
                        '<p>Tehtävä kestää neljä minuuttia. Voit keskeyttää tehtävän koskettamalla "Lopeta".</p>',
         "video"      : "//www.youtube.com/embed/jsDOB5yc6CM",
-        'coverImage' : './assets/img/sanat.png'
+        'coverImage' : './assets/img/sanat.png',
+		"exerciseTarget": "tarkkaavuuteen ja tarkkaavuuden siirtämiseen"
     },
 	{
         "gameId"     : 4,
@@ -65,7 +68,8 @@ var games = [
                        '<p>Kosketa "Tarkista", jolloin näet oikeat vastaukset.</p>'+
                        '<p>Muistettavia numerosarjoja tulee viisi peräkkäin. Voit keskeyttää tehtävän koskettamalla "Lopeta".</p>',
         "video"      : "//www.youtube.com/embed/Xr3I0i6russ",
-        "coverImage" : "./assets/img/vis.png"
+        "coverImage" : "./assets/img/vis.png",
+		"exerciseTarget": "lyhytkestoiseen muistiin ja visuaaliseen sarjamuistiin"
     },
 	{
         "gameId"     : 5,
@@ -81,7 +85,8 @@ var games = [
                        '<p>Kun kaikki sanat on kirjoitettu, kosketa Valmis -painiketta. Näkyvin tulee oikeiden vastausten määrä.</p>'+
                        '<p>Voit keskeyttää tehtävän koskettamalla ”Lopeta”.</p>',
         "video"      : "//www.youtube.com/embed/Y7ZkFWRMefg",
-        'coverImage' : './assets/img/aud.png'
+        'coverImage' : './assets/img/aud.png',
+		"exerciseTarget": "lyhytkestoiseen muistiin (auditiivinen) ja häirinnän vaikutukseen mieleenpalauttamisessa"
     },
 	{
         "gameId"     : 6,
@@ -95,7 +100,8 @@ var games = [
                        "<p>Mieleenpainamisen jälkeen ruudulle ilmestyy aiemmin esitetyt kuvat ja lisäksi muita kuvia. Merkitse kuvia koskettamalla kaikki tehtävän alussa esitetyt esineet.</p>"+
                        '<p>Kun kosketat ”Valmis”, kone näyttää oikeat vastaukset vihreällä ja puuttuvat esineet oranssilla. Tehtävä jatkuu, kunnes muistat kaikki alussa näytetyt esineet.</p>',
         "video"      : "//www.youtube.com/embed/oOzdlDUtlAc",
-        "coverImage" : "./assets/img/kim.png"
+        "coverImage" : "./assets/img/kim.png",
+		"exerciseTarget": "pitkäkestoiseen muistiin (visuaalinen), yhdistettyyn oppimiseen ja tunnistamiseen"
     },
 	{
         "gameId"     : 7,
@@ -111,7 +117,8 @@ var games = [
                        "<p>Jatka salasanan päättelyä koneen antamien vihjeiden avulla. Salasana säilyy samana kunnes keksit sen.</p>"+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"      : "//www.youtube.com/embed/u7ohNLZntXI",
-        "coverImage" : "./assets/img/password.png"
+        "coverImage" : "./assets/img/password.png",
+		"exerciseTarget": "toiminnanohjaukseen ja ongelmanratkaisuun"
     },
 	{
         "gameId"     : 8,
@@ -131,7 +138,8 @@ var games = [
                        '<p>Ruudukon täyttäminen tapahtuu koskettamalla haluttua tyhjää ruutua, jolloin sen ympärille muodostuu sininen kehä. Sivulla olevasta valikosta valitaan koskettamalla haluttu numero/hedelmä.</p>' +
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
 		    "video"  : "//www.youtube.com/embed/5GhXxiKwLaA",
-        'coverImage' : "./assets/img/sudoku.png"
+        'coverImage' : "./assets/img/sudoku.png",
+		"exerciseTarget": "toiminnanohjaukseen ja ongelmanratkaisuun"
     },
 	{
         "gameId"     : 9,
@@ -147,7 +155,8 @@ var games = [
                        '<p>Kosketa “Valmis”. Mikäli kuviossa on virheellisiä tai puuttuvia osia, näkyvät ne punaisella X:lla merkittynä.</p>'+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
         "video"      : "//www.youtube.com/embed/L9k-qpp8SvE",
-        "coverImage" : "./assets/img/konstruointi.png"
+        "coverImage" : "./assets/img/konstruointi.png",
+		"exerciseTarget": "visuospatiaaliseen havaitsemiseen"
     },
 	{
         "gameId"     : 10,
@@ -162,8 +171,37 @@ var games = [
                        "<p>Valinta osoitetaan koskettamalla haluttua ruutua.</p>"+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta"</p>',
 		    "video"	 : "//www.youtube.com/embed/CqdGbzItMXs",
-        "coverImage" : "./assets/img/ristinolla.png"
+        "coverImage" : "./assets/img/ristinolla.png",
+		"exerciseTarget": "toiminnanohjaukseen ja ongelmanratkaisuun"
     }
+];
+
+var potpuris = [
+	{
+		"potpuriId": 1,
+		"title": "Potpuri Yy",
+		"icon": "assets/img/potpuri/1/cover.jpg",
+		"gamesArray": [1,4,10,6],
+		"progressPicArray": ['assets/img/potpuri/1/1.jpg','assets/img/potpuri/1/2.jpg','assets/img/potpuri/1/3.jpg','assets/img/potpuri/1/4.jpg'],
+		"lead": "Treenaa näönvaraista muistamista ja kykyä suunnata huomiota olennaiseen. Tämän potpurin avulla voit myös harjoittaa muistin ennakoivaa osa-aluetta. Virheet eivät ole vaarallisia – niistä on mahdollista oppia. Tärkeää on huomata, missä on hyvä ja mikä on haastavaa. Ja nyt treenaamaan niin, että tukka lähtee!"
+	},
+	{
+		"potpuriId": 2,
+		"title": "Potpuri Kaa",
+		"icon": "assets/img/potpuri/2/cover.jpg",
+		"gamesArray": [7,3,2],
+		"progressPicArray": ['assets/img/potpuri/2/1.jpg','assets/img/potpuri/2/2.jpg','assets/img/potpuri/2/3.jpg'],
+		"lead": "Haasta itsesi ratkomaan pulmia. Jo sinnikäs yritys hellii aivoja aktivoinnilla. Harjoita kykyäsi jättää huomiotta epäolennainen. Tällä potpurilla voit myös treenata muistiaineksen säilömistä ja keinojen keksimistä muistamisen tueksi. Olethan karsinut keskittymistä häiritsevät ärsykkeet ja luonut oppimiselle otolliset olot? Sitten toimeen!"
+	},
+	{
+		"potpuriId": 3,
+		"title": "Potpuri Koo",
+		"icon": "assets/img/potpuri/3/cover.jpg",
+		"gamesArray": [9,5,8],
+		"progressPicArray": ['assets/img/potpuri/3/1.jpg','assets/img/potpuri/3/2.jpg','assets/img/potpuri/3/3.jpg'],
+		"lead": "Oletko valmis? Nyt on aika alkaa nostella mentaalipuntteja! Elämän aikana aivoihin tallentuu tietoa monen sadantuhannen tietosanakirjan verran. Voit harjoittaa tallentuneen tiedon hakua säilömuistista. Tällä potpurilla treenaat myös kykyä etsiä näkemästäsi samankaltaisuuksia. Löydä lisäksi oma tapasi ratkoa numero- tai kuvaristikoita. Muistathan lempeyden itseäsi kohtaan."
+	}
+
 ];
 
 $.fn.preload = function() {
@@ -267,6 +305,12 @@ function toggleFeedbackCheckbox () {
 		Settings.set({'showFeedbackModal': false});
 	}
 }
+
+// function incrementPotpuriProgressIndex () {
+// 	var potpuriProgressIndex = Settings.get('potpuriProgressIndex');
+// 	potpuriProgressIndex++;
+// 	Settings.set({'potpuriProgressIndex': potpuriProgressIndex});
+// }
 
 // function getAndroidVersion (){
 //

@@ -70,7 +70,12 @@ var Sarjamuisti = Backbone.View.extend({
         Settings.set({ 'correctSeries'  : 0  });
         Settings.set({ 'wrongSeries'    : 0  });
         Settings.set({ 'results'        : [] });
-        router.navigate('/', true);
+
+        if (Settings.get('isPotpuriGame')) {
+            router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
+        }else{
+            router.navigate('/', true);
+        }
     },
 
     numberPicked: function (event) {

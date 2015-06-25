@@ -4,30 +4,39 @@ var HeaderView = Backbone.View.extend({
     template0: '#mainHeaderTmpl',
     template1: '#backHeaderTmpl',
     template2: '#historyBackTmpl',
+    template3: '#plainHeaderTmpl',
 
     render: function () {
 		var template;
 		var variables;
 		var self = this;
+
+        console.log('headerview id', this.id);
+
 		if (parseInt(this.id) === 0) {
 
-			template = _.template( $(self.template0).html(), variables);
+			template = _.template( $(self.template0).html(), {isPotpuriGame: Settings.get('isPotpuriGame')} );
 			this.$el.html(template);
 
 		}else if (parseInt(this.id) === 3) {
 
-			variables  = { title: this.model.attributes.title };
+			variables  = { title: this.model.attributes.title, showRecipe: false, isPotpuriGame: Settings.get('isPotpuriGame') };
 			template = _.template( $(this.template2).html(), variables);
 			this.$el.html(template);
+
         }else if(parseInt(this.id) === 4) {
 
-            variables = { title: 'Taustaa ja resepti', showRecipe: true};
+            variables = { title: 'Taustaa ja resepti', showRecipe: true, isPotpuriGame: Settings.get('isPotpuriGame') };
             template = _.template( $(this.template2).html(), variables);
 			this.$el.html(template);
 
-		}else{
+        }else if (parseInt(this.id) === 5) {
 
-			variables  = { title: this.model.attributes.title };
+            template = _.template( $(this.template3).html());
+            this.$el.html(template);
+
+		}else{
+			variables  = { title: this.model.attributes.title, isPotpuriGame: Settings.get('isPotpuriGame') };
 			template = _.template( $(this.template1).html(), variables);
 			this.$el.html(template);
 		}
@@ -39,7 +48,8 @@ var HeaderView = Backbone.View.extend({
         'click .back-root' : 'goRoot',
         'click .back-setup' : 'goToGameSetup',
         'click .back-history' : 'historyBack',
-        'click .show-guide': 'showGuide'
+        'click .show-guide': 'showGuide',
+        'click .startPotpuri': 'startPotpuri'
     },
 
     goRoot: function() {
@@ -64,6 +74,17 @@ var HeaderView = Backbone.View.extend({
 
     showGuide: function(){
         router.navigate('/guide', {trigger: true});
+    },
+
+    startPotpuri: function(ev){
+        var reset = $(ev.currentTarget).data('reset');
+
+        if (reset) {
+            Settings.set({'potpuriId': null});
+            Settings.set({'potpuriProgressIndex': 0});
+        }
+
+        router.navigate('/potpuri', true);
     }
 
 });

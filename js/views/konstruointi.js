@@ -92,11 +92,15 @@ var Konstruointi = Backbone.View.extend({
     },
 
     quitGame: function () {
-      //var gameId = this.model.get('gameId');
-      //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         this.undelegateEvents();
         Settings.set({ results: [] });
-        router.navigate('/', true);
+
+        if (Settings.get('isPotpuriGame')) {
+            router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
+        }else{
+            router.navigate('/', true);
+        }
+
     },
 
     renderAnswerChoices: function () {

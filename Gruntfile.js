@@ -59,6 +59,7 @@ module.exports = function(grunt) {
                     "css/styles.css",
                     "assets/img/*.png",
                     "assets/img/*.gif",
+                    "assets/img/potpuri/**/*.jpg",
                     "assets/pics/**/*.png",
                     "assets/pics/*.png",
                     "assets/sounds/audio/elaimet/*.mp3",

@@ -408,44 +408,52 @@
 
 
             <div class="results span6">
-                <% if(difficulty === 'Taso I'){ %>
 
-                    <button class="btn btn-success btn-block bigger new-game" data-difficulty="easy">Harjoittele uudestaan Tasolla I</button>
-                    <button class="btn btn-warning btn-block bigger new-game" data-difficulty="medium">Siirry haastavammalle Tasolle II</button>
-                    <button class="btn btn-danger btn-block bigger new-game" data-difficulty="hard">Siirry haastavammalle Tasolle III</button>
-                    <% if(gameId === 8){ %>
-                        <button class="btn btn-info btn-block bigger new-game" data-difficulty="joker">Siirry haastavammalle Jokeritasolle</button>
-                    <% } %>
+                <% if(isPotpuriGame) { %>
 
-                <% }else if(difficulty === 'Taso II'){ %>
+                    <button class="btn btn-success btn-block bigger continue-potpuri">Siirry potpurin seuraavan harjoitukseen</button>
 
-                    <button class="btn btn-success btn-block bigger new-game" data-difficulty="easy">Siirry helpommalle Tasolle I</button>
-                    <button class="btn btn-warning btn-block bigger new-game" data-difficulty="medium">Harjoittele uudestaan Tasolla II</button>
-                    <button class="btn btn-danger btn-block bigger new-game" data-difficulty="hard">Siirry haastavammalle Tasolle III</button>
-                    <% if(gameId === 8){ %>
-                        <button class="btn btn-info btn-block bigger new-game" data-difficulty="joker">Siirry haastavammalle Jokeritasolle</button>
-                    <% } %>
+                <% }else{ %>
 
-                <% }else if(difficulty === 'Taso III'){ %>
+                    <% if(difficulty === 'Taso I'){ %>
 
-                    <button class="btn btn-success btn-block bigger new-game" data-difficulty="easy">Siirry helpommalle Tasolle I</button>
-                    <button class="btn btn-warning btn-block bigger new-game" data-difficulty="medium">Siirry helpommalle Tasolle II</button>
-                    <button class="btn btn-danger btn-block bigger new-game" data-difficulty="hard">Harjoittele uudestaan Tasolla III</button>
-                    <% if(gameId === 8){ %>
-                        <button class="btn btn-info btn-block bigger new-game" data-difficulty="joker">Siirry haastavammalle Jokeritasolle</button>
-                    <% } %>
+                        <button class="btn btn-success btn-block bigger new-game" data-difficulty="easy">Harjoittele uudestaan Tasolla I</button>
+                        <button class="btn btn-warning btn-block bigger new-game" data-difficulty="medium">Siirry haastavammalle Tasolle II</button>
+                        <button class="btn btn-danger btn-block bigger new-game" data-difficulty="hard">Siirry haastavammalle Tasolle III</button>
+                        <% if(gameId === 8){ %>
+                            <button class="btn btn-info btn-block bigger new-game" data-difficulty="joker">Siirry haastavammalle Jokeritasolle</button>
+                        <% } %>
 
-                <% }else if(difficulty === 'Jokeri'){ %>
+                    <% }else if(difficulty === 'Taso II'){ %>
 
-                    <button class="btn btn-success btn-block bigger new-game" data-difficulty="easy">Siirry helpommalle Tasolle I</button>
-                    <button class="btn btn-warning btn-block bigger new-game" data-difficulty="medium">Siirry helpommalle Tasolle II</button>
-                    <button class="btn btn-danger btn-block bigger new-game" data-difficulty="hard">Siirry helpommalle Tasolle III</button>
-                    <% if(gameId === 8){ %>
-                        <button class="btn btn-info btn-block bigger new-game" data-difficulty="joker">Harjoittele uudestaan Jokeritasolla</button>
+                        <button class="btn btn-success btn-block bigger new-game" data-difficulty="easy">Siirry helpommalle Tasolle I</button>
+                        <button class="btn btn-warning btn-block bigger new-game" data-difficulty="medium">Harjoittele uudestaan Tasolla II</button>
+                        <button class="btn btn-danger btn-block bigger new-game" data-difficulty="hard">Siirry haastavammalle Tasolle III</button>
+                        <% if(gameId === 8){ %>
+                            <button class="btn btn-info btn-block bigger new-game" data-difficulty="joker">Siirry haastavammalle Jokeritasolle</button>
+                        <% } %>
+
+                    <% }else if(difficulty === 'Taso III'){ %>
+
+                        <button class="btn btn-success btn-block bigger new-game" data-difficulty="easy">Siirry helpommalle Tasolle I</button>
+                        <button class="btn btn-warning btn-block bigger new-game" data-difficulty="medium">Siirry helpommalle Tasolle II</button>
+                        <button class="btn btn-danger btn-block bigger new-game" data-difficulty="hard">Harjoittele uudestaan Tasolla III</button>
+                        <% if(gameId === 8){ %>
+                            <button class="btn btn-info btn-block bigger new-game" data-difficulty="joker">Siirry haastavammalle Jokeritasolle</button>
+                        <% } %>
+
+                    <% }else if(difficulty === 'Jokeri'){ %>
+
+                        <button class="btn btn-success btn-block bigger new-game" data-difficulty="easy">Siirry helpommalle Tasolle I</button>
+                        <button class="btn btn-warning btn-block bigger new-game" data-difficulty="medium">Siirry helpommalle Tasolle II</button>
+                        <button class="btn btn-danger btn-block bigger new-game" data-difficulty="hard">Siirry helpommalle Tasolle III</button>
+                        <% if(gameId === 8){ %>
+                            <button class="btn btn-info btn-block bigger new-game" data-difficulty="joker">Harjoittele uudestaan Jokeritasolla</button>
+                        <% } %>
+
                     <% } %>
 
                 <% } %>
-
 
                 <hr/>
 
@@ -468,6 +476,8 @@
             </div>
         </div>
         <div class="clearfix"></div>
+
+
 
     </script>
 
@@ -638,12 +648,26 @@
 	 <script id="mainHeaderTmpl" type="text/template">
 			<h2>FORAMEN-harjoitukset</h2>
             <button class="btn btn-success btn-large show-guide">Katso resepti harjoitteluun ja taustaa</button>
-	</script>
+
+            <% if(!isPotpuriGame) { %>
+                <button class="btn btn-large btn-default startPotpuri">Siirry Potpuri-valikkoon</button>
+            <% }else{ %>
+                <button class="btn btn-large btn-default back-root">Siirry FORAMEN-valikkoon</button>
+            <% } %>
+    </script>
+
+    <script id="plainHeaderTmpl" type="text/template">
+        <h2>FORAMEN-harjoitukset</h2>
+        <button class="btn btn-large startPotpuri" data-reset="true">Palaa Potpuri-valikkoon</button>
+    </script>
 
 	<script id="backHeaderTmpl" type="text/template">
 			<h2><%= title %></h2>
-			<button class="btn btn-warning btn-large back-root"> Tehtävävalikkoon</button>
-
+            <% if(!isPotpuriGame) { %>
+			    <button class="btn btn-warning btn-large back-root">Tehtävävalikkoon</button>
+            <% }else{ %>
+                <button class="btn btn-large startPotpuri" data-reset="true">Palaa Potpuri-valikkoon</button>
+            <% } %>
 	</script>
 
 	<script id="historyBackTmpl" type="text/template">
@@ -651,7 +675,7 @@
 			<button class="btn btn-large back-history"><i class="icon-chevron-left"></i> Takaisin</button>
 
             <% if( showRecipe) { %>
-                <a href="./assets/taustaa_ja_resepti.pdf"><button class="btn btn-large recipe-link" >Tulosta</button></a>
+                <a href="./assets/taustaa_ja_resepti.pdf"><button class="btn btn-large recipe-link">Tulosta</button></a>
             <% } %>
 	</script>
 
@@ -708,6 +732,43 @@
 
     </script>
 
+    <script id="potpuriTemplate" type="text/template">
+        <div class="rounded img-helper">
+            <img draggable="false" src="<%= icon %>" />
+        </div>
+        <div class="wrap">
+            <h4><%= title %></h4>
+
+        </div>
+        <div class="lead-wrap">
+            <%= lead %>
+        </div>
+    </script>
+
+    <script id="potpuriPreGameTemplate" type="text/template">
+        <h1>Potpuri: <%= progressIndex %> / <%= potpuriLength %></h1>
+        <h2><%= title %></h2>
+
+        <hr/>
+        <h3>Seuraava harjoitus vaikuttaa erityisesti:</h3>
+        <h4><%= exerciseTarget %></h4>
+
+        <img style="border: 1px solid black;" width="50%" src="./assets/img/potpuri/<%= potpuriId %>/<%= progressIndex %>.jpg" />
+        <br/><br/>
+        <!-- <button class="btn btn-large goBeginning">Palaa Potpuri-valikkoon</button> -->
+        <button class="btn btn-large btn-success goNext">Siirry valitsemaan vaikeustaso</button>
+
+    </script>
+
+    <script id="potpuriEndedTemplate" type="text/template">
+
+        <h1>Suoritit potpurin loppuun. Hyvää työtä!</h1><br/>
+        <button class="btn btn-large goBeginning">Palaa Potpuri-valikkoon</button>
+        <br/><br/>
+        <img width="40%" src="./assets/img/potpuri/thumb.jpg" />
+
+    </script>
+
 </head>
 
 <body>
@@ -741,6 +802,9 @@
     <script src="js/models/game.js"></script>
     <script src="js/collections/games.js"></script>
 
+    <script src="js/models/potpuri.js"></script>
+    <script src="js/collections/potpuris.js"></script>
+
     <script src="js/views/gameview.js"></script>
     <script src="js/views/gamelistview.js"></script>
     <script src="js/views/pregameview.js"></script>
@@ -749,6 +813,11 @@
     <script src="js/views/resultsview.js"></script>
     <script src="js/views/playedgameview.js"></script>
     <script src="js/views/guideview.js"></script>
+
+    <script src="js/views/startPotpuriView.js"></script>
+    <script src="js/views/potpuriView.js"></script>
+    <script src="js/views/potpuriPreGameView.js"></script>
+    <script src="js/views/potpuriEndedView.js"></script>
 
     <script src="js/views/kuvaetsinta.js"></script>
     <script src="js/views/tekstiviestigameview.js"></script>

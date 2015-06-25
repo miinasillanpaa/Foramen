@@ -8,24 +8,32 @@ window.Router = Backbone.Router.extend({
         "game/:id/video": "videoView",
         "game/:id/play": "play",
         "game/:id/results" : "resultsView",
-        "game/:id/results/screen" : "playedGameView"
+        "game/:id/results/screen" : "playedGameView",
+		"potpuri": "startPotpuriView",
+		"potpuri/:id": "handlePotpuri"
 	},
 
 	gameIndex: function() {
 
 		new GameListView(games);
 
+		if (Settings.get('isPotpuriGame')) {
+			Settings.set({'isPotpuriGame': false});
+		}
+
 		if (App.currentGameView !== null) {
 			App.currentGameView.undelegateEvents();
 			App.currentGameView.unbind();
 		}
-
+		console.log(App.headerView);
 		if(App.headerView === null) {
 			App.headerView = new HeaderView({ id:0 });
 		}else{
 			App.headerView.setId(0);
 		}
 		App.headerView.render();
+
+
 	}
 
 });
@@ -65,7 +73,6 @@ router.on('route:getGame', function(id) {
 	}else if( App.headerView.id !== 1 ) {
 		App.headerView.setId(1);
 		App.headerView.setModel(gameObj);
-
 	}
 	App.headerView.render();
 });
@@ -201,6 +208,69 @@ router.on('route:playedGameView', function(id) {
 		App.headerView.setModel(gameObj);
 	}
 	App.headerView.render();
+});
+
+router.on('route:startPotpuriView', function(){
+
+	Settings.set({'isPotpuriGame': true});
+
+	App.startPotpuriView = new StartPotpuriView(potpuris);
+
+	if (App.headerView === null) {
+		App.headerView = new HeaderView({ id:0 });
+	}else{
+		App.headerView.setId(0);
+	}
+	App.headerView.render();
+
+});
+
+router.on('route:handlePotpuri', function(id){
+
+	console.log('handlePotpuri', this, id);
+
+
+	if (!Settings.get('potpuriId')){
+		Settings.set({'potpuriId': id});
+	}
+
+	var potpuri = potpuris[id-1];
+
+	var potpuriProgressIndex = Settings.get('potpuriProgressIndex');
+
+	if (potpuriProgressIndex >= potpuri.gamesArray.length){
+
+		var potpuriEnded = new PotpuriEndedView({potpuri: potpuri});
+		potpuriEnded.render();
+
+		//reset
+		Settings.set({'potpuriId': null});
+		Settings.set({'potpuriProgressIndex': 0});
+
+	}else{
+
+		var selectedGameId = potpuri.gamesArray[potpuriProgressIndex];
+		var gameObj = new Game(games[selectedGameId-1]);
+
+		var potpuriPreGameView = new PotpuriPreGameView({model: gameObj});
+		potpuriPreGameView.render();
+
+
+		// TODO: could we increment this somewhere else or somehow figure if game was played or not ..
+		// now this increments if backed to the potpuripregameview
+		// -> just place incrementing function call to each game quit function and results view
+		potpuriProgressIndex++;
+		Settings.set({'potpuriProgressIndex': potpuriProgressIndex});
+
+	}
+
+	if (App.headerView === null) {
+		App.headerView = new HeaderView({ id:5 });
+	}else{
+		App.headerView.setId(5);
+	}
+	App.headerView.render();
+
 });
 
 Backbone.history.start();

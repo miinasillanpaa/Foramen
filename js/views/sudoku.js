@@ -295,7 +295,13 @@ var Sudoku = Backbone.View.extend({
         //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         this.$el.css('height','auto');
         this.undelegateEvents();
-        router.navigate("/", true);
+
+        if (Settings.get('isPotpuriGame')) {
+            router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
+        }else{
+            router.navigate('/', true);
+        }
+
   },
 
   resetGame: function() {

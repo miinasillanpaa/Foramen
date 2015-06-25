@@ -249,10 +249,14 @@ var KuvaEtsinta = Backbone.View.extend({
     },
 
     quitGame: function () {
-      var gameId = this.model.get('gameId');
-      //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
-		this.undelegateEvents();
-        router.navigate('/', true);
+        this.undelegateEvents();
+
+        if (Settings.get('isPotpuriGame')) {
+            router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
+        }else{
+            router.navigate('/', true);
+        }
+
     },
 
     gameFinish: function () {

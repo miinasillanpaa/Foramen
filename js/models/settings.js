@@ -15,6 +15,10 @@ var Settings = Backbone.Model.extend({
         // playedTimeMS: null, //previous session(s) time from backend
         // playedTime: null, //string e.g. "1h 33min"
 
+		isPotpuriGame: false,
+		potpuriId: null,
+		potpuriProgressIndex: 0,
+
         //Tekstiviesti exercise specific
         txtSenderDom: '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>',
         txtItemDom: '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>',

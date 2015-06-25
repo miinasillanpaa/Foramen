@@ -179,7 +179,12 @@ var TekstiviestiGameView = Backbone.View.extend({
         Settings.set({ 'playThruNum' : 0 });
         // var gameId = this.model.get('gameId');
         // window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
-        router.navigate('/', true);
+        if (Settings.get('isPotpuriGame')) {
+            router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
+        }else{
+            router.navigate('/', true);
+        }
+
     },
 
     message1: function () {

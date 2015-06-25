@@ -42,7 +42,13 @@ var Salasana = Backbone.View.extend({
         this.undelegateEvents();
         Settings.set({ 'checks' : 0 });
         Settings.set({ 'scrollerChecks': 0 });
-        router.navigate('/', true);
+
+        if (Settings.get('isPotpuriGame')) {
+            router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
+        }else{
+            router.navigate('/', true);
+        }
+
     },
 
     goToResults: function () {

@@ -137,7 +137,13 @@ var SanojenTunnistaminen = Backbone.View.extend({
       //$(window).off("resize",this.getWidth);
       this.undelegateEvents();
       this.unbind();
-      router.navigate('/', true);
+
+      if (Settings.get('isPotpuriGame')) {
+          router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
+      }else{
+          router.navigate('/', true);
+      }
+
     },
 
     getWidth: function(){

@@ -9,7 +9,7 @@ var GameView = Backbone.View.extend({
 
     render: function() {
 
-        $('#header').show();
+        // $('#header').show();
 
 		var variables = {
                         title: this.model.get('title'),

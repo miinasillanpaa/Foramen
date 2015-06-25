@@ -30,7 +30,8 @@ var ResultsView = Backbone.View.extend({
 	    	data : this.options.results.data,
 	    	hiddenData : this.options.results.hiddenData,
 	    	title : this.model.get('title'),
-	    	gameId : this.model.get('gameId')
+	    	gameId : this.model.get('gameId'),
+            isPotpuriGame : Settings.get('isPotpuriGame')
         };
 
 		var resultsToDB = [];
@@ -275,7 +276,8 @@ var ResultsView = Backbone.View.extend({
 
     events:{
         'click .screen' : 'viewSnapshot',
-        'click .new-game' : 'startNewGameWithDifficulty'
+        'click .new-game' : 'startNewGameWithDifficulty',
+        'click .continue-potpuri': 'continuePotpuri'
     },
 
     viewSnapshot: function () {
@@ -307,6 +309,14 @@ var ResultsView = Backbone.View.extend({
         Settings.set({results: []});
         Settings.set({difficulty: difficulty});
         router.navigate('game/'+ this.model.get('gameId') +'/play', {trigger: true});
+    },
+
+    continuePotpuri: function() {
+        this.undelegateEvents();
+        Settings.set({results: []});
+        App.currentGameView.undelegateEvents();
+        
+        router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
     }
 
 });

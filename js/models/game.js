@@ -3,6 +3,7 @@ var Game = Backbone.Model.extend({
         gameId: null,
         title: 'No title',
         coverImage: './assets/img/game_placeholder.jpg',
-        guide: 'Harjoituksen ohjeet puuttuvat'
+        guide: 'Harjoituksen ohjeet puuttuvat',
+        exerciseTarget: null //Mitä harjoitetaan: eg. Tarkkaavaisuus / Tarkkaavuuden ylläpitäminen
     }
 });
