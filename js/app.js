@@ -183,7 +183,7 @@ var potpuris = [
 		"icon": "assets/img/potpuri/1/cover.jpg",
 		"gamesArray": [1,4,10,6],
 		"progressPicArray": ['assets/img/potpuri/1/1.jpg','assets/img/potpuri/1/2.jpg','assets/img/potpuri/1/3.jpg','assets/img/potpuri/1/4.jpg'],
-		"lead": "Treenaa näönvaraista muistamista ja kykyä suunnata huomiota olennaiseen. Tämän potpurin avulla voit myös harjoittaa muistin ennakoivaa osa-aluetta. Virheet eivät ole vaarallisia – niistä on mahdollista oppia. Tärkeää on huomata, missä on hyvä ja mikä on haastavaa. Ja nyt treenaamaan niin, että tukka lähtee!"
+		"lead": "Oletko valmis? <br/> Treenaa näönvaraista muistamista ja kykyä suunnata huomiota olennaiseen. Tämän potpurin avulla voit myös harjoittaa muistin ennakoivaa osa-aluetta. Virheet eivät ole vaarallisia – niistä on mahdollista oppia. Tärkeää on huomata, missä on hyvä ja mikä on haastavaa. Ja nyt treenaamaan niin, että tukka lähtee!"
 	},
 	{
 		"potpuriId": 2,
@@ -199,7 +199,7 @@ var potpuris = [
 		"icon": "assets/img/potpuri/3/cover.jpg",
 		"gamesArray": [9,5,8],
 		"progressPicArray": ['assets/img/potpuri/3/1.jpg','assets/img/potpuri/3/2.jpg','assets/img/potpuri/3/3.jpg'],
-		"lead": "Oletko valmis? Nyt on aika alkaa nostella mentaalipuntteja! Elämän aikana aivoihin tallentuu tietoa monen sadantuhannen tietosanakirjan verran. Voit harjoittaa tallentuneen tiedon hakua säilömuistista. Tällä potpurilla treenaat myös kykyä etsiä näkemästäsi samankaltaisuuksia. Löydä lisäksi oma tapasi ratkoa numero- tai kuvaristikoita. Muistathan lempeyden itseäsi kohtaan."
+		"lead": "Nyt on aika alkaa nostella mentaalipuntteja! Elämän aikana aivoihin tallentuu tietoa monen sadantuhannen tietosanakirjan verran. Voit harjoittaa tallentuneen tiedon hakua säilömuistista. Tällä potpurilla treenaat myös kykyä etsiä näkemästäsi samankaltaisuuksia. Löydä lisäksi oma tapasi ratkoa numero- tai kuvaristikoita. Muistathan lempeyden itseäsi kohtaan."
 	}
 
 ];
