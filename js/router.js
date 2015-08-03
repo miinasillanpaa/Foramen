@@ -247,6 +247,12 @@ router.on('route:handlePotpuri', function(id){
 		Settings.set({'potpuriId': null});
 		Settings.set({'potpuriProgressIndex': 0});
 
+		if (App.headerView === null) {
+			App.headerView = new HeaderView({ id:6 });
+		}else{
+			App.headerView.setId(6);
+		}
+
 	}else{
 
 		var selectedGameId = potpuri.gamesArray[potpuriProgressIndex];
@@ -255,20 +261,19 @@ router.on('route:handlePotpuri', function(id){
 		var potpuriPreGameView = new PotpuriPreGameView({model: gameObj});
 		potpuriPreGameView.render();
 
-
 		// TODO: could we increment this somewhere else or somehow figure if game was played or not ..
 		// now this increments if backed to the potpuripregameview
 		// -> just place incrementing function call to each game quit function and results view
 		potpuriProgressIndex++;
 		Settings.set({'potpuriProgressIndex': potpuriProgressIndex});
 
+		if (App.headerView === null) {
+			App.headerView = new HeaderView({ id:5 });
+		}else{
+			App.headerView.setId(5);
+		}
 	}
 
-	if (App.headerView === null) {
-		App.headerView = new HeaderView({ id:5 });
-	}else{
-		App.headerView.setId(5);
-	}
 	App.headerView.render();
 
 });
