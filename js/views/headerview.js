@@ -5,6 +5,7 @@ var HeaderView = Backbone.View.extend({
     template1: '#backHeaderTmpl',
     template2: '#historyBackTmpl',
     template3: '#plainHeaderTmpl',
+    template4: '#titleHeaderTmpl',
 
     render: function () {
 		var template;
@@ -31,11 +32,14 @@ var HeaderView = Backbone.View.extend({
 			this.$el.html(template);
 
         }else if (parseInt(this.id) === 5) {
-
             template = _.template( $(this.template3).html());
             this.$el.html(template);
 
-		}else{
+        }else if (parseInt(this.id) === 6) {
+            template = _.template( $(this.template4).html());
+            this.$el.html(template);
+
+        }else{
 			variables  = { title: this.model.attributes.title, isPotpuriGame: Settings.get('isPotpuriGame') };
 			template = _.template( $(this.template1).html(), variables);
 			this.$el.html(template);
