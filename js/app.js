@@ -179,27 +179,27 @@ var games = [
 var potpuris = [
 	{
 		"potpuriId": 1,
-		"title": "Potpuri Yy",
+		"title": "Mikstuura Yy",
 		"icon": "assets/img/potpuri/1/cover.jpg",
 		"gamesArray": [1,4,10,6],
 		"progressPicArray": ['assets/img/potpuri/1/1.jpg','assets/img/potpuri/1/2.jpg','assets/img/potpuri/1/3.jpg','assets/img/potpuri/1/4.jpg'],
-		"lead": "Oletko valmis? <br/> Treenaa näönvaraista muistamista ja kykyä suunnata huomiota olennaiseen. Tämän potpurin avulla voit myös harjoittaa muistin ennakoivaa osa-aluetta. Virheet eivät ole vaarallisia – niistä on mahdollista oppia. Tärkeää on huomata, missä on hyvä ja mikä on haastavaa. Ja nyt treenaamaan niin, että tukka lähtee!"
+		"lead": "Oletko valmis? <br/> Treenaa näönvaraista muistamista ja kykyä suunnata huomiota olennaiseen. Tämän mikstuuran avulla voit myös harjoittaa muistin ennakoivaa osa-aluetta. Virheet eivät ole vaarallisia – niistä on mahdollista oppia. Tärkeää on huomata, missä on hyvä ja mikä on haastavaa. Ja nyt treenaamaan niin, että tukka lähtee!"
 	},
 	{
 		"potpuriId": 2,
-		"title": "Potpuri Kaa",
+		"title": "Mikstuura Kaa",
 		"icon": "assets/img/potpuri/2/cover.jpg",
 		"gamesArray": [7,3,2],
 		"progressPicArray": ['assets/img/potpuri/2/1.jpg','assets/img/potpuri/2/2.jpg','assets/img/potpuri/2/3.jpg'],
-		"lead": "Haasta itsesi ratkomaan pulmia. Jo sinnikäs yritys hellii aivoja aktivoinnilla. Harjoita kykyäsi jättää huomiotta epäolennainen. Tällä potpurilla voit myös treenata muistiaineksen säilömistä ja keinojen keksimistä muistamisen tueksi. Olethan karsinut keskittymistä häiritsevät ärsykkeet ja luonut oppimiselle otolliset olot? Sitten toimeen!"
+		"lead": "Haasta itsesi ratkomaan pulmia. Jo sinnikäs yritys hellii aivoja aktivoinnilla. Harjoita kykyäsi jättää huomiotta epäolennainen. Tällä mikstuuralla voit myös treenata muistiaineksen säilömistä ja keinojen keksimistä muistamisen tueksi. Olethan karsinut keskittymistä häiritsevät ärsykkeet ja luonut oppimiselle otolliset olot? Sitten toimeen!"
 	},
 	{
 		"potpuriId": 3,
-		"title": "Potpuri Koo",
+		"title": "Mikstuura Koo",
 		"icon": "assets/img/potpuri/3/cover.jpg",
 		"gamesArray": [9,5,8],
 		"progressPicArray": ['assets/img/potpuri/3/1.jpg','assets/img/potpuri/3/2.jpg','assets/img/potpuri/3/3.jpg'],
-		"lead": "Nyt on aika alkaa nostella mentaalipuntteja! Elämän aikana aivoihin tallentuu tietoa monen sadantuhannen tietosanakirjan verran. Voit harjoittaa tallentuneen tiedon hakua säilömuistista. Tällä potpurilla treenaat myös kykyä etsiä näkemästäsi samankaltaisuuksia. Löydä lisäksi oma tapasi ratkoa numero- tai kuvaristikoita. Muistathan lempeyden itseäsi kohtaan."
+		"lead": "Nyt on aika alkaa nostella mentaalipuntteja! Elämän aikana aivoihin tallentuu tietoa monen sadantuhannen tietosanakirjan verran. Voit harjoittaa tallentuneen tiedon hakua säilömuistista. Tällä mikstuuralla treenaat myös kykyä etsiä näkemästäsi samankaltaisuuksia. Löydä lisäksi oma tapasi ratkoa numero- tai kuvaristikoita. Muistathan lempeyden itseäsi kohtaan."
 	}
 
 ];
