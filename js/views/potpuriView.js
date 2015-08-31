@@ -20,7 +20,6 @@ var PotpuriView = Backbone.View.extend({
     },
 
     selectPotpuri: function(){
-        console.log('selecting potprui', this.model.get('potpuriId'));
         router.navigate('potpuri/' +this.model.get('potpuriId'), true);
     }
 

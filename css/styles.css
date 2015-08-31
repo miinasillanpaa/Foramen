@@ -1482,10 +1482,23 @@ span.bullet{
     z-index: 1;
 }
 
+.mikstuura-lead{
+    width: 40em;
+    padding: 15px 0;
+    margin: 0 auto;
+    text-align: left;
+}
+
 @media screen and (max-width: 1250px) {
 
     #header{
         margin-bottom: 50px;
     }
 
+}
+
+@media screen and (max-width: 840px) {
+    .mikstuura-lead{
+        width: 90%;
+    }
 }

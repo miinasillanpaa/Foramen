@@ -101,7 +101,7 @@ var games = [
                        '<p>Kun kosketat ”Valmis”, kone näyttää oikeat vastaukset vihreällä ja puuttuvat esineet oranssilla. Tehtävä jatkuu, kunnes muistat kaikki alussa näytetyt esineet.</p>',
         "video"      : "//www.youtube.com/embed/oOzdlDUtlAc",
         "coverImage" : "./assets/img/kim.png",
-		"exerciseTarget": "pitkäkestoiseen muistiin (visuaalinen), yhdistettyyn oppimiseen ja tunnistamiseen"
+		"exerciseTarget": "pitkäkestoiseen näönvaraiseen muistamiseen, oppimiseen ja tunnistamiseen."
     },
 	{
         "gameId"     : 7,
@@ -183,7 +183,7 @@ var potpuris = [
 		"icon": "assets/img/potpuri/1/cover.jpg",
 		"gamesArray": [1,4,10,6],
 		"progressPicArray": ['assets/img/potpuri/1/1.jpg','assets/img/potpuri/1/2.jpg','assets/img/potpuri/1/3.jpg','assets/img/potpuri/1/4.jpg'],
-		"lead": "Oletko valmis? <br/> Treenaa näönvaraista muistamista ja kykyä suunnata huomiota olennaiseen. Tämän mikstuuran avulla voit myös harjoittaa muistin ennakoivaa osa-aluetta. Virheet eivät ole vaarallisia – niistä on mahdollista oppia. Tärkeää on huomata, missä on hyvä ja mikä on haastavaa. Ja nyt treenaamaan niin, että tukka lähtee!"
+		"lead": "Oletko valmis? <br/> Treenaa näönvaraista muistamista ja kykyä suunnata huomiota olennaiseen. Tämän mikstuuran avulla voit myös harjoittaa muistin ennakoivaa osa-aluetta ja ongelmanratkaisua. Virheet eivät ole vaarallisia – niistä on mahdollista oppia. Tärkeää on huomata, mikä sujuu hyvin ja mikä on haastavaa. Ja nyt treenaamaan niin, että tukka pöllähtää!"
 	},
 	{
 		"potpuriId": 2,
@@ -199,7 +199,7 @@ var potpuris = [
 		"icon": "assets/img/potpuri/3/cover.jpg",
 		"gamesArray": [9,5,8],
 		"progressPicArray": ['assets/img/potpuri/3/1.jpg','assets/img/potpuri/3/2.jpg','assets/img/potpuri/3/3.jpg'],
-		"lead": "Nyt on aika alkaa nostella mentaalipuntteja! Elämän aikana aivoihin tallentuu tietoa monen sadantuhannen tietosanakirjan verran. Voit harjoittaa tallentuneen tiedon hakua säilömuistista. Tällä mikstuuralla treenaat myös kykyä etsiä näkemästäsi samankaltaisuuksia. Löydä lisäksi oma tapasi ratkoa numero- tai kuvaristikoita. Muistathan lempeyden itseäsi kohtaan."
+		"lead": "Nyt on aika alkaa nostella mentaalipuntteja! Elämän aikana aivoihin tallentuu tietoa monen sadantuhannen tietosanakirjan verran. Voit harjoittaa tallentuneen tiedon hakua säilömuistista. Tällä mikstuuralla treenaat myös kykyä hahmottaa näönvaraisesti kokonaisuuksia. Löydä lisäksi oma tapasi ratkoa numero- tai kuvaristikoita. Muistathan lempeyden itseäsi kohtaan."
 	}
 
 ];
