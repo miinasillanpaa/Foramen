@@ -1,6 +1,11 @@
 window.Settings = new Settings();
 
 window.Router = Backbone.Router.extend({
+
+	initialize: function(){
+		this.bind('route', this._pageView);
+	},
+
 	routes: {
 		"" : "gameIndex",
 		"guide": "guideView",
@@ -11,6 +16,11 @@ window.Router = Backbone.Router.extend({
         "game/:id/results/screen" : "playedGameView",
 		"potpuri": "startPotpuriView",
 		"potpuri/:id": "handlePotpuri"
+	},
+
+	_pageView: function() {
+		var path = Backbone.history.getFragment();
+		ga('send', 'pageview', {page: "/" + path});
 	},
 
 	gameIndex: function() {
