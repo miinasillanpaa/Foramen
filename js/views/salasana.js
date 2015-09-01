@@ -20,7 +20,7 @@ var Salasana = Backbone.View.extend({
             }else{
                 textnum = 'viiden';
             }
-        var variables = {hint: 'Kirjoita päättelemäsi '+textnum+' kirjaimen pituinen salasana'}
+        var variables = {hint: 'Kirjoita päättelemäsi '+textnum+' kirjaimen pituinen salasana'};
         var template = _.template( $(this.template).html(), variables ) ;
         this.$el.html(template);
 

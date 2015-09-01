@@ -35,15 +35,13 @@ window.Router = Backbone.Router.extend({
 			App.currentGameView.undelegateEvents();
 			App.currentGameView.unbind();
 		}
-		console.log(App.headerView);
+
 		if(App.headerView === null) {
 			App.headerView = new HeaderView({ id:0 });
 		}else{
 			App.headerView.setId(0);
 		}
 		App.headerView.render();
-
-
 	}
 
 });
@@ -131,7 +129,7 @@ router.on('route:play', function(id) {
 
 	if( parseInt(id) === 1 ){
 
-		gameData['category'] = Settings.get('category');
+		gameData.category = Settings.get('category');
 
         var view1 = new KuvaEtsinta({ model:gameObj });
 		App.currentGameView = view1;
@@ -144,7 +142,7 @@ router.on('route:play', function(id) {
 
     }else if( parseInt(id) === 3){
 
-		gameData['category'] = Settings.get('textCategory');
+		gameData.category = Settings.get('textCategory');
         var view3 = new SanojenTunnistaminen({ model: gameObj });
         App.currentGameView = view3;
         view3.render();
@@ -171,7 +169,7 @@ router.on('route:play', function(id) {
 
     }else if( parseInt(id) === 8){
 
-		gameData['category'] = Settings.get('sudokuCategory');
+		gameData.category = Settings.get('sudokuCategory');
 
         var view8 = new Sudoku({ model:gameObj });
         App.currentGameView = view8;
@@ -197,7 +195,6 @@ router.on('route:resultsView', function(id) {
     var selectedGameIndex = parseInt(id-1);
     var selectedGame = games[selectedGameIndex];
     var gameObj = new Game(selectedGame);
-
 
 	if(App.headerView === null ) {
 		App.headerView = new HeaderView({ id:2, model:gameObj});
@@ -236,9 +233,6 @@ router.on('route:startPotpuriView', function(){
 });
 
 router.on('route:handlePotpuri', function(id){
-
-	console.log('handlePotpuri', this, id);
-
 
 	if (!Settings.get('potpuriId')){
 		Settings.set({'potpuriId': id});

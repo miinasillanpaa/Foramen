@@ -12,8 +12,6 @@ var HeaderView = Backbone.View.extend({
 		var variables;
 		var self = this;
 
-        console.log('headerview id', this.id);
-
 		if (parseInt(this.id) === 0) {
 
 			template = _.template( $(self.template0).html(), {isPotpuriGame: Settings.get('isPotpuriGame')} );

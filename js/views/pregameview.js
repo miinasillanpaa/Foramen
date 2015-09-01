@@ -16,7 +16,6 @@ var PreGameView = Backbone.View.extend({
         var txtSplit = [];
         var showJoker = false;
 
-        var gameId = this.model.get('gameId');
         if( gameId === 1 ){
             this.preload('kalat');
             var categoryImg = Settings.get('categoryImg');
@@ -58,7 +57,7 @@ var PreGameView = Backbone.View.extend({
 		this.$el.html(template);
 
 
-
+		var textCat = null;
         if( gameId === 1 ){
             $('.clicker').hide();
             $('.categoryTitle').removeClass('hidden');
@@ -117,7 +116,7 @@ var PreGameView = Backbone.View.extend({
 
         }else if ( gameId === 3 ){
 
-            var textCat = Settings.get('textCategory');
+            textCat = Settings.get('textCategory');
             $("#categoryCarousel").removeClass('hidden');
             $('.wordsTitle').removeClass('hidden');
             $('.item img').addClass('text-category');
@@ -170,7 +169,7 @@ var PreGameView = Backbone.View.extend({
 
         }else if ( gameId === 8 ){
             $('.sudokuCategoryTitle').removeClass('hidden');
-            var textCat = Settings.get('sudokuCategory');
+            textCat = Settings.get('sudokuCategory');
             $("#sudokuSelector").removeClass('hidden');
             if(textCat === 'numerot'){
                 $('#sudokuSelector img:nth(0)').addClass('selected');
@@ -185,15 +184,14 @@ var PreGameView = Backbone.View.extend({
 
         $("#categoryCarousel").swipe({
             swipeLeft:function(){
-                $("#categoryCarousel").carousel('next')
+                $("#categoryCarousel").carousel('next');
             },
             swipeRight:function(){
-                $("#categoryCarousel").carousel('prev')
+                $("#categoryCarousel").carousel('prev');
             }
         });
 
         $("#content").imagesLoaded( function (){
-			console.log('images loaded');
 			$('.overlay').css('display', 'none');
 			$('.modal').css('display', 'none');
         });
@@ -253,7 +251,7 @@ var PreGameView = Backbone.View.extend({
 			$('.sudoku-img img').removeClass('selected');
 
 			var catClass = par.attr('class');
-			var cat = par.text().toLowerCase().trim();
+			cat = par.text().toLowerCase().trim();
 			par.find('img').addClass('selected');
 			Settings.set({ sudokuCategory: cat });
 
@@ -320,12 +318,10 @@ var PreGameView = Backbone.View.extend({
     },
 
     preload: function(category) {
-
-        var category = category;
         var preload = [];
         var img;
         if(category === 'konstruktio'){
-            for(var j=0;j<12;j++){
+            for(var j=0; j<12; j++){
                 img = './assets/pics/' + category + '/' + j + '.png';
                 preload.push(img);
             }

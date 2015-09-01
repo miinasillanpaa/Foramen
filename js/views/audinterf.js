@@ -32,13 +32,13 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
             $('.quit').click( function () {
                 window.clearInterval(interval);
             });
-        }
+        };
         var i;
         var timer;
         var soundElem;
         var soundElems = [];
         var inputElem;
-        for(var i=0; i<sounds.length; i++){
+        for(i=0; i<sounds.length; i++){
            if( i=== 0){
                 soundElem = '<audio id="audio_'+i+'" autoplay="autoplay" src='+sounds[i]+' type="audio/mpeg"></audio>';
                 inputElem = '<input class="input input_'+i+'" type="text" placeholder="Kosketa tähän" />';
@@ -139,7 +139,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         Settings.set({corrects:0});
         Settings.set({stringCorrects:0});
 
-		router.navigate('game/' +this.model.get('gameId') + '/results', true)
+		router.navigate('game/' +this.model.get('gameId') + '/results', true);
         var view = new ResultsView({ model:this.model, results:results });
         view.render();
 
@@ -158,9 +158,10 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         }
 
         var correct = 0;
+        var j;
         if( diff === 'easy'){
 
-            for(var j=0; j<strings.length; j++){
+            for(j=0; j<strings.length; j++){
                 if( inputs[0] === strings[j] ){
                     $('.input_0').addClass('input-success');
                     correct++;
@@ -177,7 +178,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         }else if( diff === 'medium'){
 
 
-            for(var j=0; j<strings.length; j++){
+            for(j=0; j<strings.length; j++){
                 if( inputs[0] === strings[j] ){
                     $('.input_0').addClass('input-success');
                     correct++;
@@ -199,7 +200,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
 
         }else{
 
-            for(var j=0; j<strings.length; j++){
+            for(j=0; j<strings.length; j++){
                 if( inputs[0] === strings[j] ){
                     $('.input_0').addClass('input-success');
                     correct++;
@@ -246,7 +247,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         for(var i=0; i<correctsArr.length; i++){
             if(img === correctsArr[i]){
                 correct = true;
-                delete correctsArr[i]
+                delete correctsArr[i];
             }
         }
 
@@ -317,7 +318,8 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         var distractionArr = [];
         var correctsArr = [];
         var correctCat = ["elaimet","kalat","linnut"];
-        for ( var i=0; i<5; i++ ){
+        var i;
+        for ( i=0; i<5; i++ ){
             var corrRandCat = correctCat[Math.floor(Math.random() * correctCat.length)];
             var unique = true;
             var randCorrect = Math.floor((Math.random() * 20) +1);
@@ -339,7 +341,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         Settings.set({correctsArr:correctsArr});
 
         var categories = ["hedelmat","kansallispuvut","kasvit","liput","soittimet","tyokalut","urheiluvalineet"];
-        for ( var i=0; i<12; i++){
+        for ( i=0; i<12; i++){
             var randCat = categories[Math.floor(Math.random() * categories.length)];
             var randIndex = Math.floor((Math.random()*20)+1);
             var randImg = "./assets/pics/"+randCat+"/"+randIndex+".png";

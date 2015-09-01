@@ -91,7 +91,7 @@ var TekstiviestiGameView = Backbone.View.extend({
                                 var view = new TekstiviestiAnswerView({ model: myModel, variables: variables });
                                 view.render();
                             }, txtVisibleTime
-                        )
+                        );
 
                     });
                 },4000); //time to wait before zoom in
@@ -117,6 +117,10 @@ var TekstiviestiGameView = Backbone.View.extend({
         'click .toGame' : 'toGame'
     },
 
+    pad2: function(number){
+        return (number < 10 ? '0' : '') + number;
+    },
+
     knobify: function () {
         $('.timer').removeClass('hidden');
         $('.timer').show();
@@ -128,18 +132,14 @@ var TekstiviestiGameView = Backbone.View.extend({
         else{ timeLeft = 29; }
 
         function countdown() {
-            if (timeLeft == 0){
+            if (timeLeft === 0){
                 $(".timer").hide();
                 window.clearInterval(knobTimer);
             }else{
                 totMin = Math.floor(timeLeft/60);
                 totSec = Math.floor(timeLeft-(totMin*60));
 
-                function pad2(number){
-                    return (number < 10 ? '0' : '') + number
-                }
-
-                totSec = pad2(totSec);
+                totSec = this.pad2(totSec);
                 $('.knob').val(timeLeft).trigger("change");
                 $('.knob').val(totMin+":"+totSec);
                 timeLeft--;
@@ -148,7 +148,7 @@ var TekstiviestiGameView = Backbone.View.extend({
 
         $('.quit').click( function () {
             window.clearInterval(knobTimer);
-        })
+        });
 
     },
 
@@ -231,7 +231,7 @@ var TekstiviestiGameView = Backbone.View.extend({
 
         var corrects = { 'receiver' : randR, 'sender' : randS, 'item' : randI,'place' : randP, 'time' : randT };
 
-        var correctStrings = { 'receiver':randReceiver, 'sender':randSender, 'item':randItem, 'place':randPlace, 'time':randTime }
+        var correctStrings = { 'receiver':randReceiver, 'sender':randSender, 'item':randItem, 'place':randPlace, 'time':randTime };
 
        var message = "Hei " + randReceiver + "! Tavataan "+randTime+" "+randPlace+". Muista ottaa mukaan "+randItem+", jonka lainasin veljellesi! "+randSender;
 
@@ -243,7 +243,7 @@ var TekstiviestiGameView = Backbone.View.extend({
                  items          : items,
                  places         : places,
                  corrects       : corrects,
-                 correctStrings : correctStrings }
+                 correctStrings : correctStrings };
     },
 
     message2: function () {
@@ -287,7 +287,7 @@ var TekstiviestiGameView = Backbone.View.extend({
 
         var corrects = { 'receiver' : randR, 'sender' : randS, 'item' : randI,'place' : randP, 'time' : randT };
 
-        var correctStrings = { 'receiver':randReceiver, 'sender':randSender, 'item':randItem, 'place':randPlace, 'time':randTime }
+        var correctStrings = { 'receiver':randReceiver, 'sender':randSender, 'item':randItem, 'place':randPlace, 'time':randTime };
 
         var message = "Moro " + randReceiver + "! Nähdään "+randPlace+" "+randTime+". Älä unohda ottaa mukaan minulta lainaamaasi "+randItem+". "+randSender;
 
@@ -299,7 +299,7 @@ var TekstiviestiGameView = Backbone.View.extend({
                     items           : items,
                     places          : places,
                     corrects        : corrects,
-                    correctStrings  : correctStrings }
+                    correctStrings  : correctStrings };
     },
 
     message3: function () {
@@ -343,7 +343,7 @@ var TekstiviestiGameView = Backbone.View.extend({
 
         var corrects = { 'receiver' : randR, 'sender' : randS, 'item' : randI,'place' : randP, 'time' : randT };
 
-        var correctStrings = { 'receiver':randReceiver, 'sender':randSender, 'item':randItem, 'place':randPlace, 'time':randTime }
+        var correctStrings = { 'receiver':randReceiver, 'sender':randSender, 'item':randItem, 'place':randPlace, 'time':randTime };
 
         var message = "Tervehdys " + randReceiver + "! Olemme junassa tulossa mökillesi. Juna on myöhässä 15 minuuttia. Tavataan "+randPlace+" asemalla noin "+randTime+". Otimme mukaan "+randItem+". "+randSender;
 
@@ -356,7 +356,7 @@ var TekstiviestiGameView = Backbone.View.extend({
                     places          : places,
                     corrects        : corrects,
                     correctStrings  : correctStrings
-        }
+        };
     },
 
     message4: function () {
@@ -401,7 +401,7 @@ var TekstiviestiGameView = Backbone.View.extend({
 
         var corrects = { 'receiver' : randR, 'sender' : randS, 'item' : randI,'place' : randP, 'time' : randT };
 
-        var correctStrings = { 'receiver':randReceiver, 'sender':randSender, 'item':randItem, 'place':randPlace, 'time':randTime }
+        var correctStrings = { 'receiver':randReceiver, 'sender':randSender, 'item':randItem, 'place':randPlace, 'time':randTime };
 
         var message = randReceiver + "-kulta! Kiva kun tulet mummolaan lomalle! Haemme ukin kanssa sinut "+randPlace+" "+randTime+". Muista "+randItem+". "+randSender+ "-mummi";
 
@@ -413,7 +413,7 @@ var TekstiviestiGameView = Backbone.View.extend({
                     items           : items,
                     places          : places,
                     corrects        : corrects,
-                    correctStrings  : correctStrings }
+                    correctStrings  : correctStrings };
     },
 
     message5: function () {
@@ -454,7 +454,7 @@ var TekstiviestiGameView = Backbone.View.extend({
 
         var corrects = { 'receiver' : randR, 'sender' : randS, 'item' : randI,'place' : randP, 'time' : randT };
 
-        var correctStrings = { 'receiver':randReceiver, 'sender':randSender, 'item':randItem, 'place':randPlace, 'time':randTime }
+        var correctStrings = { 'receiver':randReceiver, 'sender':randSender, 'item':randItem, 'place':randPlace, 'time':randTime };
 
         var message = randReceiver + "! Joudumme sopimaan uuden kokousajan. Uusi aika on "+randTime+". Paikka on entinen "+randPlace+". Ota mukaan "+randItem+". "+randSender;
 
@@ -466,6 +466,6 @@ var TekstiviestiGameView = Backbone.View.extend({
                     items           : items,
                     places          : places,
                     corrects        : corrects,
-                    correctStrings  : correctStrings }
+                    correctStrings  : correctStrings };
     }
 });

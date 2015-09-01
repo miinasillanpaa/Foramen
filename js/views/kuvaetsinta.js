@@ -9,18 +9,18 @@ var KuvaEtsinta = Backbone.View.extend({
 
     render: function () {
         $('#header').hide();
-
+        var variables = {};
         if(Settings.get('difficulty') == 'easy'){
             var easyGame = this.renderEasyGame();
-            var variables = { targetPic: easyGame.targetPic, myArr: easyGame.myArr, randomSpots: easyGame.randomSpots };
+            variables = { targetPic: easyGame.targetPic, myArr: easyGame.myArr, randomSpots: easyGame.randomSpots };
 
         }else if(Settings.get('difficulty') == 'medium'){
             var mediumGame = this.renderMediumGame();
-            var variables = { targetPic: mediumGame.targetPic, myArr: mediumGame.myArr, randomSpots: mediumGame.randomSpots }
+            variables = { targetPic: mediumGame.targetPic, myArr: mediumGame.myArr, randomSpots: mediumGame.randomSpots };
 
         }else{
             var hardGame = this.renderHardGame();
-            var variables = { targetPic: hardGame.targetPic, myArr: hardGame.myArr, randomSpots: hardGame.randomSpots }
+            variables = { targetPic: hardGame.targetPic, myArr: hardGame.myArr, randomSpots: hardGame.randomSpots };
         }
 
         var template = _.template($(this.template).html(), variables);
@@ -52,7 +52,8 @@ var KuvaEtsinta = Backbone.View.extend({
 
         //creating random items
         var arr = [];
-        for (var i = 0; i < 32; i++) {
+        var i;
+        for (i = 0; i < 32; i++) {
             var random = Math.floor((Math.random() * 20) + 1);
 
             while (random === targetRandom) {
@@ -68,7 +69,7 @@ var KuvaEtsinta = Backbone.View.extend({
         //overriding some random items with target items
         var randomSpots = [];
 
-        for (var i = 0; i < 10; i++) {
+        for (i = 0; i < 10; i++) {
             var unique = true;
             var randomSpot = Math.floor((Math.random() * 31) + 1);
 
@@ -86,7 +87,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
         }
 
-        return {myArr: arr, targetPic: [{'targetPic':targetPic}], randomSpots: randomSpots}
+        return {myArr: arr, targetPic: [{'targetPic':targetPic}], randomSpots: randomSpots};
     },
 
     renderMediumGame: function () {
@@ -95,12 +96,12 @@ var KuvaEtsinta = Backbone.View.extend({
 
         //creating target pictures
         var targets = [];
-
-        for(var i=0; i < 2; i++) {
-            var unique = true;
+        var i, j, unique;
+        for(i=0; i < 2; i++) {
+            unique = true;
             var target = Math.floor((Math.random() * 20) + 1);
 
-            for(var j=0; j<2; j++){
+            for(j=0; j<2; j++){
                 if(targets[j] === target){
                     unique = false;
                 }
@@ -117,7 +118,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
         //creating random items
         var arr = [];
-        for (var i = 0; i < 32; i++) {
+        for (i = 0; i < 32; i++) {
             var random = Math.floor((Math.random() * 20) + 1);
 
             while (random === targets[0] || random === targets[1] ) {
@@ -133,11 +134,11 @@ var KuvaEtsinta = Backbone.View.extend({
         //overriding some random items with target items
         var randomSpots = [];
         var uniqueNum = 0;
-        for (var i = 0; i < 10; i++) {
-            var unique = true;
+        for (i = 0; i < 10; i++) {
+            unique = true;
             var randomSpot = Math.floor((Math.random() * 31) + 1);
 
-            for (var j=0; j<10; j++){
+            for (j=0; j<10; j++){
                 if(randomSpots[j] === randomSpot){
                     unique = false;
                 }
@@ -159,7 +160,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
         }
 
-        return {myArr: arr, targetPic: [{ 'targetPic':targetPicOne}, {'targetPic':targetPicTwo }], randomSpots: randomSpots}
+        return {myArr: arr, targetPic: [{ 'targetPic':targetPicOne}, {'targetPic':targetPicTwo }], randomSpots: randomSpots};
     },
 
     renderHardGame: function () {
@@ -168,12 +169,13 @@ var KuvaEtsinta = Backbone.View.extend({
 
         //creating target pictures
         var targets = [];
+        var i, j, unique;
 
-        for(var i=0; i < 3; i++) {
-            var unique = true;
+        for(i=0; i < 3; i++) {
+            unique = true;
             var target = Math.floor((Math.random() * 20) + 1);
 
-            for(var j=0; j<3; j++){
+            for(j=0; j<3; j++){
                 if(targets[j] === target){
                     unique = false;
                 }
@@ -192,7 +194,7 @@ var KuvaEtsinta = Backbone.View.extend({
 
         //creating random items
         var arr = [];
-        for (var i = 0; i < 32; i++) {
+        for (i = 0; i < 32; i++) {
             var random = Math.floor((Math.random() * 20) + 1);
 
             while (random === targets[0] || random === targets[1] || random == targets[2] ) {
@@ -208,11 +210,11 @@ var KuvaEtsinta = Backbone.View.extend({
         //overriding some random items with target items
         var randomSpots = [];
         var uniqueNum = 0;
-        for (var i = 0; i < 10; i++) {
-            var unique = true;
+        for (i = 0; i < 10; i++) {
+            unique = true;
             var randomSpot = Math.floor((Math.random() * 31) + 1);
 
-            for (var j=0; j<10; j++){
+            for (j=0; j<10; j++){
                 if(randomSpots[j] === randomSpot){
                     unique = false;
                 }
@@ -234,7 +236,7 @@ var KuvaEtsinta = Backbone.View.extend({
                 i--;
             }
         }
-        return {myArr: arr, targetPic: [{ 'targetPic':targetPicOne }, { 'targetPic':targetPicTwo }, { 'targetPic':targetPicThree }], randomSpots: randomSpots}
+        return {myArr: arr, targetPic: [{ 'targetPic':targetPicOne }, { 'targetPic':targetPicTwo }, { 'targetPic':targetPicThree }], randomSpots: randomSpots};
     },
 
     events: {

@@ -137,7 +137,7 @@ var Konstruointi = Backbone.View.extend({
         var secondRow = construct[rand][rand][1];
 
         Settings.set({construct: { firstRow:firstRow, secondRow:secondRow, thirdRow:thirdRow } });
-        return { firstRow:firstRow, secondRow:secondRow, thirdRow:thirdRow }
+        return { firstRow:firstRow, secondRow:secondRow, thirdRow:thirdRow };
 
     },
 
