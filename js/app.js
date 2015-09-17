@@ -183,13 +183,13 @@ var potpuris = [
 		"icon": "assets/img/potpuri/1/cover.jpg",
 		"gamesArray": [1,4,10,6],
 		"progressPicArray": ['assets/img/potpuri/1/1.jpg','assets/img/potpuri/1/2.jpg','assets/img/potpuri/1/3.jpg','assets/img/potpuri/1/4.jpg'],
-		"lead": "Oletko valmis? <br/> Treenaa näönvaraista muistamista ja kykyä suunnata huomiota olennaiseen. Tämän mikstuuran avulla voit myös harjoittaa muistin ennakoivaa osa-aluetta ja ongelmanratkaisua. Virheet eivät ole vaarallisia – niistä on mahdollista oppia. Tärkeää on huomata, mikä sujuu hyvin ja mikä on haastavaa. Ja nyt treenaamaan niin, että tukka pöllähtää!"
+		"lead": "Oletko valmis? <br/> Treenaa kykyä suunnata huomio olennaiseen ja ratkaista ongelmia. Tämän mikstuuran avulla voi treenata myös näönvaraista muistamista, oppimista ja tunnistamista. Virheet ovat tärkeitä, koska niistä voi oppia. Tärkeää on huomata, mikä sujuu ja mikä on haastavaa. Ja nyt treenaamaan niin, että tukka pölähtää!"
 	},
 	{
 		"potpuriId": 2,
 		"title": "Mikstuura Kaa",
 		"icon": "assets/img/potpuri/2/cover.jpg",
-		"gamesArray": [7,3,2],
+		"gamesArray": [3,2,7],
 		"progressPicArray": ['assets/img/potpuri/2/1.jpg','assets/img/potpuri/2/2.jpg','assets/img/potpuri/2/3.jpg'],
 		"lead": "Haasta itsesi ratkomaan pulmia. Jo sinnikäs yritys hellii aivoja aktivoinnilla. Harjoita kykyäsi jättää huomiotta epäolennainen. Tällä mikstuuralla voit myös treenata muistiaineksen säilömistä ja keinojen keksimistä muistamisen tueksi. Olethan karsinut keskittymistä häiritsevät ärsykkeet ja luonut oppimiselle otolliset olot? Sitten toimeen!"
 	},

@@ -19,7 +19,7 @@ var StartPotpuriView = Backbone.View.extend({
             self.renderPotpuri(potpuri);
         });
 
-        var introEl = '<div class="lead mikstuura-lead">Tiedonkäsittelytoimintojen harjoittelussa - kuten kaikessa muussakin treenaamisessa - on monipuolisuus valttia! FORAMENCognitiveTablet –ohjelmistosta on sekoiteltu kolme mikstuuraa, joihin on koottu monipuolinen seos harjoitteita edistämään ja ylläpitämään tarkkaavuutta, muistitoimintoja, toiminnanohjausta ja ongelmanratkaisukykyä sekä näönvaraista hahmottamista. Nauti mikstuuroja 2-5 kertaa viikossa.</div>'
+        var introEl = '<div class="lead mikstuura-lead">Aivotreenissä monipuolisuus on valttia! FORAMENCognitiveTablet -ohjelmistosta on sekoiteltu kolme mikstuuraa, joihin on koottu harkittu seos harjoitteita. Nauti nyt!</div>';
 
         this.$el.prepend( introEl );
 
