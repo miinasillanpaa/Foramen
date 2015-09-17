@@ -183,7 +183,7 @@ var potpuris = [
 		"icon": "assets/img/potpuri/1/cover.jpg",
 		"gamesArray": [1,4,10,6],
 		"progressPicArray": ['assets/img/potpuri/1/1.jpg','assets/img/potpuri/1/2.jpg','assets/img/potpuri/1/3.jpg','assets/img/potpuri/1/4.jpg'],
-		"lead": "Oletko valmis? <br/> Treenaa kykyä suunnata huomio olennaiseen ja ratkaista ongelmia. Tämän mikstuuran avulla voi treenata myös näönvaraista muistamista, oppimista ja tunnistamista. Virheet ovat tärkeitä, koska niistä voi oppia. Tärkeää on huomata, mikä sujuu ja mikä on haastavaa. Ja nyt treenaamaan niin, että tukka pölähtää!"
+		"lead": "Oletko valmis? <br/> Treenaa kykyä suunnata huomio olennaiseen ja ratkaista ongelmia. Tämän Mikstuuran avulla voi treenata myös näönvaraista muistamista, oppimista ja tunnistamista. Virheet ovat tärkeitä, koska niistä voi oppia. Tärkeää on huomata, mikä sujuu ja mikä on haastavaa. Ja nyt treenaamaan niin, että tukka pölähtää!"
 	},
 	{
 		"potpuriId": 2,
@@ -191,7 +191,7 @@ var potpuris = [
 		"icon": "assets/img/potpuri/2/cover.jpg",
 		"gamesArray": [3,2,7],
 		"progressPicArray": ['assets/img/potpuri/2/1.jpg','assets/img/potpuri/2/2.jpg','assets/img/potpuri/2/3.jpg'],
-		"lead": "Haasta itsesi ratkomaan pulmia. Jo sinnikäs yritys hellii aivoja aktivoinnilla. Harjoita kykyäsi jättää huomiotta epäolennainen. Tällä mikstuuralla voit myös treenata muistiaineksen säilömistä ja keinojen keksimistä muistamisen tueksi. Olethan karsinut keskittymistä häiritsevät ärsykkeet ja luonut oppimiselle otolliset olot? Sitten toimeen!"
+		"lead": "Haasta itsesi ratkomaan pulmia. Jo sinnikäs yritys hellii aivoja aktivoinnilla. Harjoita kykyäsi jättää huomiotta epäolennainen. Tällä Mikstuuralla voit myös treenata muistiaineksen säilömistä ja keinojen keksimistä muistamisen tueksi. Olethan karsinut keskittymistä häiritsevät ärsykkeet ja luonut oppimiselle otolliset olot? Sitten toimeen!"
 	},
 	{
 		"potpuriId": 3,
@@ -199,7 +199,7 @@ var potpuris = [
 		"icon": "assets/img/potpuri/3/cover.jpg",
 		"gamesArray": [9,5,8],
 		"progressPicArray": ['assets/img/potpuri/3/1.jpg','assets/img/potpuri/3/2.jpg','assets/img/potpuri/3/3.jpg'],
-		"lead": "Nyt on aika alkaa nostella mentaalipuntteja! Elämän aikana aivoihin tallentuu tietoa monen sadantuhannen tietosanakirjan verran. Voit harjoittaa tallentuneen tiedon hakua säilömuistista. Tällä mikstuuralla treenaat myös kykyä hahmottaa näönvaraisesti kokonaisuuksia. Löydä lisäksi oma tapasi ratkoa numero- tai kuvaristikoita. Muistathan lempeyden itseäsi kohtaan."
+		"lead": "Nyt on aika alkaa nostella mentaalipuntteja! Elämän aikana aivoihin tallentuu tietoa monen sadantuhannen tietosanakirjan verran. Voit harjoittaa tallentuneen tiedon hakua säilömuistista. Tällä Mikstuuralla treenaat myös kykyä hahmottaa näönvaraisesti kokonaisuuksia. Löydä lisäksi oma tapasi ratkoa numero- tai kuvaristikoita. Muistathan lempeyden itseäsi kohtaan."
 	}
 
 ];

@@ -19,7 +19,7 @@ var StartPotpuriView = Backbone.View.extend({
             self.renderPotpuri(potpuri);
         });
 
-        var introEl = '<div class="lead mikstuura-lead">Aivotreenissä monipuolisuus on valttia! FORAMENCognitiveTablet -ohjelmistosta on sekoiteltu kolme mikstuuraa, joihin on koottu harkittu seos harjoitteita. Nauti nyt!</div>';
+        var introEl = '<div class="lead mikstuura-lead">Aivotreenissä monipuolisuus on valttia! FORAMENCognitiveTablet -harjoituksista on sekoiteltu kolme harkittua FORAMEN Mikstuuraa. Nauti nyt!</div>';
 
         this.$el.prepend( introEl );
 
