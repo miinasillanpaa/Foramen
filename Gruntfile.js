@@ -63,7 +63,8 @@ module.exports = function(grunt) {
                     "assets/pics/**/*.png",
                     "assets/pics/*.png",
                     "assets/sounds/audio/elaimet/*.mp3",
-                    "assets/sounds/*.mp3"
+                    "assets/sounds/*.mp3",
+                    "assets/*.pdf"
                 ],
                 dest: "<%= distDir %>/manifest.appcache"
             }
