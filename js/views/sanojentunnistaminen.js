@@ -151,33 +151,33 @@ var SanojenTunnistaminen = Backbone.View.extend({
 
         var textRightOut;
         if(window.innerWidth >= 1800){
-            textRightOut = 23;
+            textRightOut = 24;
         }else if(window.innerWidth <= 1800 && window.innerWidth > 1700){
-            textRightOut = 22;
+            textRightOut = 23;
         }else if(window.innerWidth <= 1700 && window.innerWidth > 1600){
-            textRightOut = 21;
+            textRightOut = 22;
         }else if(window.innerWidth <= 1600 && window.innerWidth > 1500){
-            textRightOut = 20;
+            textRightOut = 21;
         }else if(window.innerWidth <= 1500 && window.innerWidth > 1400){
-            textRightOut = 19;
+            textRightOut = 20;
         }else if(window.innerWidth <= 1400 && window.innerWidth > 1300){
-            textRightOut = 18;
+            textRightOut = 19;
         }else if(window.innerWidth <= 1300 && window.innerWidth > 1200){
-            textRightOut = 17;
+            textRightOut = 18;
         }else if(window.innerWidth <= 1200 && window.innerWidth > 1100){
-            textRightOut = 16;
+            textRightOut = 17;
         }else if(window.innerWidth <= 1100 && window.innerWidth > 950){
-            textRightOut = 15;
+            textRightOut = 16;
         }else if(window.innerWidth <= 950 && window.innerWidth > 900){
-            textRightOut = 14;
+            textRightOut = 15;
         }else if(window.innerWidth <= 900 && window.innerWidth > 800){
-            textRightOut = 13;
+            textRightOut = 14;
         }else if(window.innerWidth <= 800 && window.innerWidth > 700){
-            textRightOut = 12;
+            textRightOut = 13;
         }else if(window.innerWidth <=700 && window.innerWidth > 600){
-            textRightOut = 11;
+            textRightOut = 12;
         }else{
-            textRightOut = 10;
+            textRightOut = 11;
         }
 
         return textRightOut;
@@ -213,11 +213,13 @@ var SanojenTunnistaminen = Backbone.View.extend({
         pos = Settings.get('startPos') - 1;
 
         Settings.set({ startPos : pos });
-        console.log(Settings.get('startPos'));
         $('.scroller').transition({ x: '+=50' });
-        selector = text.substr(pos,10);
-        console.log(selector);
+        selector = text.substr(pos,11);
         Settings.set({ selector: selector });
+
+        //debug
+        //console.log('selector', selector);
+        //$('.hint').html(selector);
     },
 
     stringMaker: function () {
