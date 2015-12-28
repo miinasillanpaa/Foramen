@@ -71,11 +71,14 @@ var KIM = Backbone.View.extend({
     },
 
     quitGame: function () {
-      var gameId = this.model.get('gameId');
-      window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         this.undelegateEvents();
         Settings.set({'playThruNum' : 0});
-        router.navigate('/', true);
+
+        if (Settings.get('isPotpuriGame')) {
+            router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
+        }else{
+            router.navigate('/', true);
+        }
     },
 
     knobify: function () {
@@ -110,7 +113,7 @@ var KIM = Backbone.View.extend({
         }
     },
 
-    selectItem: function () {
+    selectItem: function (event) {
         var target = $(event.target);
         if (target.hasClass('selected')) {
             target.toggleClass('selected');
@@ -231,7 +234,7 @@ var KIM = Backbone.View.extend({
 
         var targetImg = [];
         for( var i=0; i<targets.length; i++ ) {
-            var img = './pics/KIM/'+targets[i]+'.png';
+            var img = './assets/pics/KIM/'+targets[i]+'.png';
             targetImg.push(img);
         }
 
@@ -389,7 +392,7 @@ var KIM = Backbone.View.extend({
             var timer = setTimeout(function() {
                     var bluffs = that.addBluffs(targets);
                     for(var i=0; i < $('.allItems img').length; i++){
-                        var img = '<img class="kim-item selectable" src="./pics/KIM/'+bluffs[i]+'.png"/>';
+                        var img = '<img class="kim-item selectable" src="./assets/pics/KIM/'+bluffs[i]+'.png"/>';
                         $('.allItems img:nth('+i+')').replaceWith(img);
                     }
                     $('.kim-color-hint').addClass('hidden');

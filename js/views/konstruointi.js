@@ -92,21 +92,25 @@ var Konstruointi = Backbone.View.extend({
     },
 
     quitGame: function () {
-      var gameId = this.model.get('gameId');
-      window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         this.undelegateEvents();
         Settings.set({ results: [] });
-        router.navigate('/', true);
+
+        if (Settings.get('isPotpuriGame')) {
+            router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
+        }else{
+            router.navigate('/', true);
+        }
+
     },
 
     renderAnswerChoices: function () {
       var blocks = [];
       for(var i=1; i<10; i++){
-          var block = './pics/konstruktio/'+i+'.png';
+          var block = './assets/pics/konstruktio/'+i+'.png';
           blocks.push(block);
       }
      //to make this last in row
-     var last = "./pics/konstruktio/0.png";
+     var last = "./assets/pics/konstruktio/0.png";
      blocks.push(last);
      return blocks;
     },
@@ -133,7 +137,7 @@ var Konstruointi = Backbone.View.extend({
         var secondRow = construct[rand][rand][1];
 
         Settings.set({construct: { firstRow:firstRow, secondRow:secondRow, thirdRow:thirdRow } });
-        return { firstRow:firstRow, secondRow:secondRow, thirdRow:thirdRow }
+        return { firstRow:firstRow, secondRow:secondRow, thirdRow:thirdRow };
 
     },
 
@@ -154,13 +158,13 @@ var Konstruointi = Backbone.View.extend({
         return { answerFirstRow: construct[0], answerSecondRow: construct[1], answerThirdRow: answerThirdRow };
     },
 
-    selectBlock: function () {
+    selectBlock: function (event) {
         $('.answerblocks img').removeClass('selected');
         var target = $(event.target);
         target.addClass('selected');
     },
 
-    placeBlock: function () {
+    placeBlock: function (event) {
         var target = $(event.target);
         var selected =  $('img.selected').attr('src');
         target.attr('src',selected);
@@ -175,7 +179,7 @@ var Konstruointi = Backbone.View.extend({
         return true;
     },
 
-    getResults: function () {
+    getResults: function (event) {
 
         var difficulty = Settings.get('difficulty');
         var firstRow = [];
@@ -223,7 +227,7 @@ var Konstruointi = Backbone.View.extend({
         var timeSpent = msToStr(time);
 
 
-        var wrong = './pics/konstruktio/11.png';
+        var wrong = './assets/pics/konstruktio/11.png';
 
         for( var j = 0; j < firstRow.length+1; j++ ){
             if( correctConstruct.firstRow[j] !== firstRow[j] ){

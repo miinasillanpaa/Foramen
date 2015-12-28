@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta lang="fi">
 
     <!-- TODO: remove cache invalidation before going live
     <meta http-equiv="cache-control" content="max-age=0" />
@@ -10,25 +11,21 @@
     <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
     <meta http-equiv="pragma" content="no-cache" /> -->
 
-    <meta http-equiv="content-type" content="text/html; charset=">
-    <meta name="viewport" id="screenViewport" content="width=1280, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>Pieni piiri - FORAMEN-harjoitteet</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport" id="screenViewport" content="width=1280, initial-scale=1, maximum-scale=1" />
+    <title>FORAMEN-harjoitukset - Miina Sillanpään Säätiö</title>
 
-    <!-- styles -->
+    <!-- build:css css/styles.css -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-
-    <!-- templates start -->
+    <!-- endbuild -->
 
     <script id="audInterTemplate" type="text/template">
 
         <div class="distractions">
             <div class="text-center horizontal-center image hidden">
                 <h3>Paina Löytyi! kun näet minkä tahansa eläimen.</h3>
-                <img src="" />
+                <img draggable="false" src="" />
                 <button class="btn btn-primary bigger check">Löytyi!</button>
             </div>
         </div>
@@ -50,7 +47,7 @@
 
         <div class="items targets text-center">
             <% _.each(targets, function(targets) { %>
-                <img class="item" src="./pics/KIM/<%=targets%>.png">
+                <img draggable="false" class="item" src="./assets/pics/KIM/<%=targets%>.png">
             <% }); %>
         </div>
 
@@ -61,7 +58,7 @@
 
         <div class="items allItems hidden text-center">
             <% _.each(bluffs, function(bluffs) { %>
-                <img class="kim-item selectable" src="./pics/KIM/<%=bluffs%>.png">
+                <img draggable="false" class="kim-item selectable" src="./assets/pics/KIM/<%=bluffs%>.png">
             <% }); %>
             <button class="btn bigger bottom-right finish btn-success">Valmis</button>
         </div>
@@ -96,19 +93,19 @@
 
                 <div class="firstRow">
                     <% _.each(firstRow, function(firstRow) { %>
-                    <img class="firstRow" src="./pics/konstruktio/<%= firstRow %>.png">
+                    <img draggable="false" class="firstRow" src="./assets/pics/konstruktio/<%= firstRow %>.png">
                     <% }) %>
                 </div>
 
                 <div class="secondRow">
                     <% _.each(secondRow, function(secondRow) { %>
-                    <img class="secondRow" src="./pics/konstruktio/<%= secondRow %>.png">
+                    <img draggable="false" class="secondRow" src="./assets/pics/konstruktio/<%= secondRow %>.png">
                     <% }) %>
                 </div>
 
                 <div class="thirdRow">
                     <% _.each(thirdRow, function(thirdRow) { %>
-                    <img class="thirdRow" src="./pics/konstruktio/<%= thirdRow %>.png">
+                    <img draggable="false" class="thirdRow" src="./assets/pics/konstruktio/<%= thirdRow %>.png">
                 <% }) %>
                 </div>
 
@@ -118,17 +115,17 @@
             <div class="span6 construct-answer">
                 <div class="firstRow">
                     <% _.each(answerFirstRow, function(answerFirstRow) { %>
-                        <img class="firstRow answerBlock" src="./pics/konstruktio/<%= answerFirstRow %>.png">
+                        <img draggable="false" class="firstRow answerBlock" src="./assets/pics/konstruktio/<%= answerFirstRow %>.png">
                     <% }) %>
                 </div>
                 <div class="secondRow">
                     <% _.each(answerSecondRow, function(answerSecondRow) { %>
-                        <img class="secondRow answerBlock" src="./pics/konstruktio/<%= answerSecondRow %>.png">
+                        <img draggable="false" class="secondRow answerBlock" src="./assets/pics/konstruktio/<%= answerSecondRow %>.png">
                     <% }) %>
                 </div>
                 <div class="thirdRow">
                     <% _.each(answerThirdRow, function(answerThirdRow) { %>
-                        <img class="thirdRow answerBlock" src="./pics/konstruktio/<%= answerThirdRow %>.png">
+                        <img draggable="false" class="thirdRow answerBlock" src="./assets/pics/konstruktio/<%= answerThirdRow %>.png">
                     <% }) %>
                 </div>
             </div>
@@ -139,7 +136,7 @@
 
         <div class="text-center answerblocks ">
             <% _.each(answerChoices, function(answerChoices) { %>
-            <img class="selectable" src="<%= answerChoices %>" />
+            <img draggable="false" class="selectable" src="<%= answerChoices %>" />
             <% }) %>
         </div>
 
@@ -235,8 +232,8 @@
     </div>
 
     <div class="phone-container">
-        <audio id="audio" autoplay="autoplay" src="sounds/iphone-sms.mp3" type="audio/mpeg" ></audio>
-        <img class="phone center" src="img/device-iphone5.png" />
+        <audio id="audio" autoplay="autoplay" src="assets/sounds/iphone-sms.mp3" type="audio/mpeg" ></audio>
+        <img draggable="false" class="phone center" src="assets/img/device-iphone5.png" />
         <div class="textmessage txt-left">
             <%= message %>
         </div>
@@ -249,13 +246,13 @@
 
         <div class="item-collection">
             <% _.each(myArr, function(myArr) { %>
-                <img class="selectable" src=" <%= myArr.itemPic %> " />
+                <img draggable="false" class="selectable" src=" <%= myArr.itemPic %> " />
             <% }); %>
         </div>
         <hr class="dark"/>
         <div class="text-center">
             <% _.each(targetPic, function(targetPic) { %>
-                <img class="target" src="<%= targetPic.targetPic %>" />
+                <img draggable="false" class="target" src="<%= targetPic.targetPic %>" />
             <% }); %>
             <button class="btn btn-large bottom-right bigger finish btn-success">Valmis</button>
             <button class="btn btn-large bottom-left bigger quit btn-danger">Keskeytä</button>
@@ -266,7 +263,7 @@
 
     <script id="sudokuTemplate" type="text/template">
 
-        <audio id="sudokuInvalidMoveSoundFX" src="sounds/block.mp3" type="audio/mpeg"></audio>
+        <audio id="sudokuInvalidMoveSoundFX" src="assets/sounds/block.mp3" type="audio/mpeg"></audio>
 
         <div class="sudoku-wrapper sudoku-wrapper-symbol-type-<%= symbols.type %>">
             <div class="sudoku-grid">
@@ -331,7 +328,7 @@
                                 <div class="sudoku-toolbar-cell-content"><%= symbol.number %></div>
                             <% } else if( symbols.type == "image" ) { %>
                                 <div class="sudoku-toolbar-cell-content">
-                                    <img src="./pics/<%= symbols.imageCategory %>/<%= symbol.number %>.png" class="sudoku-toolbar-cell-image" alt="" />
+                                    <img draggable="false" src="./assets/pics/<%= symbols.imageCategory %>/<%= symbol.number %>.png" class="sudoku-toolbar-cell-image" alt="" />
                                 </div>
                             <% } %>
                         </div>
@@ -375,63 +372,112 @@
 
     <script id="resultsViewTemplate" type="text/template">
 
-		<button class="btn btn-info btn-feedback">Anna palautetta</button>
+
         <h2 class="title">Tulokset</h2>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="well">
 
-        <div class="span5">
-            <div class="well">
+                    <div class="results align-left pull-left">
+                        <p>Vaikeustaso: </p>
 
-                <div class="results pull-left">
-                    <p>Vaikeustaso: </p>
+                        <% _.each(data, function(data) { %>
+                            <p><%= data.name %></p>
+                        <% }); %>
 
-                    <% _.each(data, function(data) { %>
-                        <p><%= data.name %></p>
-                    <% }); %>
+                    </div>
 
-                </div>
+                    <div class="results align-right">
+                        <p> <%= difficulty %></p>
 
-                <div class="results align-right">
-                    <p> <%= difficulty %></p>
+                        <% _.each(data, function(data) { %>
 
-                    <% _.each(data, function(data) { %>
+                          <% if( data.name.length > 0){ %>
+                            <p><%= data.value %></p>
+                          <% }else{ %>
+                            <%= data.value %>
+                          <% } %>
 
-                      <% if( data.name.length > 0){ %>
-                        <p><%= data.value %></p>
-                      <% }else{ %>
-                        <%= data.value %>
-                      <% } %>
-
-                     <% }); %>
-
-
-                </div>
-            </div>
-            <button class="btn btn-success btn-block bigger new-game">Harjoittele uudestaan</button>
-            <% if(difficulty === "Taso I") { %>
-              <button class="btn btn-warning btn-block bigger more-challenging">Kokeile haastavampaa tasoa</button>
-            <% } %>
-        </div>
+                         <% }); %>
 
 
-
-        <div class="span6">
-
-            <div class="alert alert-bigger record-box">
-                Ennätystä ladataan...
-            </div>
-
-            <div class="well record-well">
-                <h3>Henkilökohtainen ennätyksesi:</h3>
-
-				<div class="results pull-left">
-				</div>
-
-                <div class="results align-right">
+                    </div>
                 </div>
             </div>
 
+
+
+            <div class="results span6">
+
+                <% if(isPotpuriGame) { %>
+
+                    <button class="btn btn-success btn-block bigger continue-potpuri">Siirry mikstuuran seuraavan harjoitukseen</button>
+
+                <% }else{ %>
+
+                    <% if(difficulty === 'Taso I'){ %>
+
+                        <button class="btn btn-success btn-block bigger new-game" data-difficulty="easy">Harjoittele uudestaan Tasolla I</button>
+                        <button class="btn btn-warning btn-block bigger new-game" data-difficulty="medium">Siirry haastavammalle Tasolle II</button>
+                        <button class="btn btn-danger btn-block bigger new-game" data-difficulty="hard">Siirry haastavammalle Tasolle III</button>
+                        <% if(gameId === 8){ %>
+                            <button class="btn btn-info btn-block bigger new-game" data-difficulty="joker">Siirry haastavammalle Jokeritasolle</button>
+                        <% } %>
+
+                    <% }else if(difficulty === 'Taso II'){ %>
+
+                        <button class="btn btn-success btn-block bigger new-game" data-difficulty="easy">Siirry helpommalle Tasolle I</button>
+                        <button class="btn btn-warning btn-block bigger new-game" data-difficulty="medium">Harjoittele uudestaan Tasolla II</button>
+                        <button class="btn btn-danger btn-block bigger new-game" data-difficulty="hard">Siirry haastavammalle Tasolle III</button>
+                        <% if(gameId === 8){ %>
+                            <button class="btn btn-info btn-block bigger new-game" data-difficulty="joker">Siirry haastavammalle Jokeritasolle</button>
+                        <% } %>
+
+                    <% }else if(difficulty === 'Taso III'){ %>
+
+                        <button class="btn btn-success btn-block bigger new-game" data-difficulty="easy">Siirry helpommalle Tasolle I</button>
+                        <button class="btn btn-warning btn-block bigger new-game" data-difficulty="medium">Siirry helpommalle Tasolle II</button>
+                        <button class="btn btn-danger btn-block bigger new-game" data-difficulty="hard">Harjoittele uudestaan Tasolla III</button>
+                        <% if(gameId === 8){ %>
+                            <button class="btn btn-info btn-block bigger new-game" data-difficulty="joker">Siirry haastavammalle Jokeritasolle</button>
+                        <% } %>
+
+                    <% }else if(difficulty === 'Jokeri'){ %>
+
+                        <button class="btn btn-success btn-block bigger new-game" data-difficulty="easy">Siirry helpommalle Tasolle I</button>
+                        <button class="btn btn-warning btn-block bigger new-game" data-difficulty="medium">Siirry helpommalle Tasolle II</button>
+                        <button class="btn btn-danger btn-block bigger new-game" data-difficulty="hard">Siirry helpommalle Tasolle III</button>
+                        <% if(gameId === 8){ %>
+                            <button class="btn btn-info btn-block bigger new-game" data-difficulty="joker">Harjoittele uudestaan Jokeritasolla</button>
+                        <% } %>
+
+                    <% } %>
+
+                <% } %>
+
+                <hr/>
+
+                <div class="credits">
+                    <!-- <div class="row-fluid">
+                        <div class="span12 align-left">
+                            <p>KREDIITIT, toteutus, suunnittelu, muuta?</p>
+                        </div>
+                    </div> -->
+                    <div class="row-fluid">
+                        <div class="mss-logo-span">
+                            <img src="assets/img/mss_logo.png" alt="Miina Sillanpään Säätiö" />
+                        </div>
+                        <div class="ray-logo-span">
+                            <img src="assets/img/ray_logo.png" alt="Ray" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
         <div class="clearfix"></div>
+
+
 
     </script>
 
@@ -450,7 +496,7 @@
     <script id="gameTemplate" type="text/template">
 
         <div class="rounded img-helper">
-            <img src="<%= coverImage %>" />
+            <img draggable="false" src="<%= coverImage %>" />
         </div>
 
         <div class="wrap">
@@ -484,32 +530,41 @@
             <div id="sudokuSelector" class="text-center hidden">
 
                 <% _.each(sudokuImg, function(sudokuImg) { %>
-                        <div class="sudoku-clicker">&nbsp;</div>  <div class="sudoku-img"><img class="selectable" src="<%= sudokuImg%>" /></div>
+                        <div class="sudoku-images">
+
+                            <% if(sudokuImg === "./assets/pics/numbers.png") { %>
+                                <div class="sudoku-img numbers">
+                                    <div class="sudoku-title title-background">Numerot</div>
+                                    <img draggable="false" class="selectable" src="<%= sudokuImg %>" />
+                                </div>
+                            <% }else{ %>
+                                <div class="sudoku-img fruits">
+                                    <div class="sudoku-title title-background">Hedelmät</div>
+                                    <img draggable="false" class="selectable" src="<%= sudokuImg %>" />
+                                </div>
+                            <% } %>
+
+                        </div>
+
                 <% }); %>
-
-                <% _.each(sudokuCat, function(sudokuCat) { %>
-                    <div class="sudoku-title title-background"><h4><%= sudokuCat %></h4></div>
-                <% }); %>
-
-
 
             </div>
 
 
             <div id="categoryCarousel" class="carousel slide hidden">
-                <ol class="carousel-indicators">
+                <!-- <ol class="carousel-indicators">
                     <li data-target="#categoryCarousel" data-slide-to="0"></li>
                     <li data-target="#categoryCarousel" data-slide-to="1"></li>
                     <li data-target="#categoryCarousel" data-slide-to="2"></li>
                     <li data-target="#categoryCarousel" data-slide-to="3"></li>
-                </ol>
+                </ol> -->
 
                 <div class="carousel-inner">
                     <div class="item slide1">
 
                             <div class="slide-borders text-center">
                                 <% _.each(slide1, function(slide1) { %>
-                                    <div class="clicker">&nbsp;</div> <img src="<%= slide1 %>" />
+                                    <div class="clicker">&nbsp;</div> <img draggable="false" src="<%= slide1 %>" />
                                 <% }); %>
 
                                 <div class="cat-titles">
@@ -526,7 +581,7 @@
 
                         <div class="slide-borders text-center">
                             <% _.each(slide2, function(slide2) { %>
-                            <div class="clicker">&nbsp;</div> <img src="<%= slide2 %>" />
+                            <div class="clicker">&nbsp;</div> <img draggable="false" src="<%= slide2 %>" />
                             <% }); %>
 
                             <div class="cat-titles">
@@ -543,7 +598,7 @@
 
                         <div class="slide-borders text-center">
                             <% _.each(slide3, function(slide3) { %>
-                            <div class="clicker">&nbsp;</div> <img src="<%= slide3 %>" />
+                            <div class="clicker">&nbsp;</div> <img draggable="false" src="<%= slide3 %>" />
                             <% }); %>
 
                             <div class="cat-titles">
@@ -559,7 +614,7 @@
                     <div class="item slide4">
                         <div class="slide-borders text-center">
                             <% _.each(slide4, function(slide4) { %>
-                            <div class="clicker">&nbsp;</div> <img src="<%= slide4 %>" />
+                            <div class="clicker">&nbsp;</div> <img  draggable="false"src="<%= slide4 %>" />
                             <% }); %>
 
                             <div class="cat-titles">
@@ -580,48 +635,142 @@
 
             </div>
 
+            <div class="pregame-options">
+                <button class="span7 btn btn-danger btn-large bigger preview"> Katso esimerkkisuoritus</button>
+                <button class="span5 btn btn-success btn-large bigger" id="play-game">Aloita</button>
+            </div>
+        </div>
+        <!-- <div class="clearfix"></div> -->
 
-        </div>
-        <div class="clearfix"></div>
-        <div class="pregame-options">
-        <button class="btn btn-success btn-large pull-right bigger" id="play-game">Aloita</button>
-        <h4 class="pull-right spacer">Tai</h4>
-        <button class="btn btn-danger btn-large pull-right bigger preview"><i class="icon-bigger icon-play icon-white"></i> Katso esimerkkisuoritus</button>
-        </div>
 
     </script>
 
+    <script id="titleHeaderTmpl" type="text/template">
+        <h2>FORAMEN-harjoitukset</h2>
+    </script>
+
 	 <script id="mainHeaderTmpl" type="text/template">
-			<h2>FORAMEN-harjoitteet</h2>
+			<h2>FORAMEN-harjoitukset</h2>
+            <button class="btn btn-success btn-large show-guide">Katso resepti harjoitteluun ja taustaa</button>
 
-            <h3 class="game-time"></h3>
+            <% if(!isPotpuriGame) { %>
+                <button class="btn btn-large btn-default startPotpuri">Siirry Mikstuura-valikkoon</button>
+            <% }else{ %>
+                <button class="btn btn-large btn-default back-root">Siirry FORAMEN-valikkoon</button>
+            <% } %>
+    </script>
 
-      <% if(android && android < 4.2){ %>
-			     <button class="btn btn-large backToService" id="back-button">Alkuun</button>
-      <% } %>
-	</script>
+    <script id="plainHeaderTmpl" type="text/template">
+        <h2>FORAMEN-harjoitukset</h2>
+        <button class="btn btn-large startPotpuri" data-reset="true">Palaa Mikstuura-valikkoon</button>
+    </script>
 
 	<script id="backHeaderTmpl" type="text/template">
 			<h2><%= title %></h2>
-			<button class="btn btn-warning btn-large back-root"> Tehtävävalikkoon</button>
+            <% if(!isPotpuriGame) { %>
+			    <button class="btn btn-warning btn-large back-root">Tehtävävalikkoon</button>
+            <% }else{ %>
+                <button class="btn btn-large startPotpuri" data-reset="true">Palaa Mikstuura-valikkoon</button>
+            <% } %>
 	</script>
 
 	<script id="historyBackTmpl" type="text/template">
 			<h2><%= title %></h2>
 			<button class="btn btn-large back-history"><i class="icon-chevron-left"></i> Takaisin</button>
+
+            <% if( showRecipe) { %>
+                <a href="./assets/taustaa_ja_resepti.pdf"><button class="btn btn-large recipe-link">Tulosta</button></a>
+            <% } %>
 	</script>
 
-   	<!-- templates end -->
+    <script id="guideTemplate" type="text/template">
+        <div class="guide-text-content">
 
-    <!-- Google Analytics -->
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+            <h3>Taustaa</h3>
+            <p><strong>Aivojen toiminta on keskeinen osa ihmisen hyvinvointia. Aivot tarvitsevat haasteita voidakseen hyvin ja säilyäkseen toimintakykyisinä arjen, työelämän ja ikääntymisen paineissa. Aivojen toimintaa voi myös harjoittaa.</strong></p>
+            <p>Harjoitukset pohjautuvat FORAMENRehab® kognitiiviset kuntoutusohjelmat -ohjelmistoon (<a href="http://www.intressi.com/foramen">http://www.intressi.com/foramen</a>), josta ne on muokattu asiantuntijoiden ja kohderyhmän yhteistyönä nykyiseen muotoonsa FORAMENCognitiveTablet -ohjelmistoksi Muistiluuri-hankkeessa (<a href="http://www.miinasillanpaa.fi/hankkeet/kuntoutus/muistiluuri/">http://www.miinasillanpaa.fi/hankkeet/kuntoutus/muistiluuri/</a>).</p>
+            <p>Ohjelmisto pohjautuu malleihin ja teorioihin aivotoiminnoista ja oppimisesta. Harjoitusten sisällöt pohjautuvat neuropsykologiseen teoriaan ja
+                ne ovat neuropsykologien kehittämiä. Ohjelmisto kehitettiin erityisesti henkilöille, joilla on varhainen tai lievä muistisairaus ja siihen liittyviä muutoksia tiedonkäsittelytoiminnoissaan. Ohjelmiston käyttö hyödyttää kuitenkin kaikkia, jotka ovat kiinnostuneita aivojensa toiminnan edistämisestä.
+            <img src="./assets/img/oivallus.png"/></p>
 
-        ga('create', 'UA-36097348-8', 'pienipiiri.fi');
-        ga('send', 'pageview');
+            <ul>
+                <lh>FORAMENCognitiveTablet -ohjelmiston eri harjoituksilla voi edistää:</lh>
+                <li>muistia</li>
+                <li>tarkkaavuutta</li>
+                <li>toiminnanohjausta ja ongelmanratkaisukykyä</li>
+                <li>näönvaraista hahmottamista</li>
+            </ul>
+
+            <p>Harjoitusten omatoiminen käyttö onnistuu helposti selkeiden ohjeiden avulla. Harjoitukset edustavat monipuolisesti eri tiedonkäsittelytoimintojen osa-alueita. Vaikeusasteita lisäämällä harjoituksiin saa lisää haasteellisuutta. Palaute rohkaisee ja motivoi jatkamaan työskentelyä.</p>
+            <p>Harjoitukset toimivat parhaiten Googlen Chrome-selaimella. Lataa se osoitteesta: <a href="https://www.google.com/chrome/browser/">https://www.google.com/chrome/browser/</a></p>
+
+        </div>
+
+        <div class="guide-recipe-content">
+            <h3>Harjoitteluresepti</h3>
+
+            <p><strong>Käyttötarkoitus:</strong> Tiedonkäsittelytoimintojen harjoittamiseen, aivojensa toiminnan edistämisestä kiinnostuneille.</p>
+            <p><strong>Käyttö:</strong> Aloita tasolta I. Kun harjaannut, ota uusia haasteita seuraavilta tasoilta. Tee harjoituksia virkeänä, rauhallisessa ympäristössä.</p>
+	    <p><strong>Käyttövinkit:</strong> Monipuolisuutta harjoitteluun saat vaihtelemalla eri kuva- tai sana-aiheita sekä hyödyntämällä <strong>FORAMEN Mikstuurojen</strong> monipuolisia harjoitusseoksia. </p>
+            <p><strong>Annostus:</strong> Hyödynnä harjoituksia 2–5 kertaa viikossa. Sopiva annostus on 20–60 minuuttia/päivä. Tunnin istumisen jälkeen on syytä lähteä liikkeelle.</p>
+            <p><strong>Liika-annostus:</strong> Aivotyö on rankkaa puuhaa. Liika-annostelu voi ilmetä väsymisenä, ärtymyksenä ja suoritustason laskuna. Jokainen harjoittelija on yksilö, joten kuulostele itseäsi. Muista Arvo Ylpön viisaat sanat ”Liian paljon mitä tahansa on epäterveellistä”.</p>
+            <p><strong>Mahdolliset haittavaikutukset:</strong> Harjoittelu voi temmata mukaansa ja ”koukuttaa”, mutta se on vaaratonta.</p>
+            <p><strong>Mahdolliset hyödyt:</strong> Aivot voivat hyvin, kun ne saavat sopivasti monipuolisia haasteita ja lepoa.</p>
+            <p><strong>Ennen kuin aloitat:</strong> Perehdy harjoitusten ohjeisiin ja esimerkkivideoon.</p>
+
+            <p class="text-center"><strong>Sitten vaan tuumasta toimeen ja harjoittelemaan, sillä...<br/>...VIERIVÄ KIVI EI SAMMALOIDU!</strong></p>
+        </div>
+
+        <div class="guide-credits">
+            <ul>
+                <lh>Harjoitusohjelmiston ovat Muistiluuri-hankkeeseen ja kuntoutukseen osallistuneiden kanssa yhdessä tehneet:</lh>
+                <li>&nbsp;</li>
+                <li>Jaana Sarajuuri, neuropsykologian erikoispsykologi, PsL</li>
+                <li>Sanna Koskinen, neuropsykologian erikoispsykologi, PsT</li>
+                <li>Ella Niini, projektityöntekijä, toimintaterapeutti (AMK)</li>
+                <li>Samppa Valkama, projekti-insinööri, insinööri (AMK)</li>
+                <li>Ulla Arifullen-Hämäläinen, projektikoordinaattori, muistikoordinaattori</li>
+            </ul>
+
+            <img class="center img-responsive" src="./assets/img/mss+ray.png" alt="MSS ja Ray"/>
+        </div>
+
+    </script>
+
+    <script id="potpuriTemplate" type="text/template">
+        <div class="rounded img-helper">
+            <img draggable="false" src="<%= icon %>" />
+        </div>
+        <div class="wrap">
+            <h4><%= title %></h4>
+
+        </div>
+        <div class="lead-wrap">
+            <%= lead %>
+        </div>
+    </script>
+
+    <script id="potpuriPreGameTemplate" type="text/template">
+        <h1>Mikstuura: <%= progressIndex %> / <%= potpuriLength %></h1>
+        <h2><%= title %></h2>
+
+        <hr/>
+        <h3>Seuraava harjoitus vaikuttaa erityisesti:</h3>
+        <h4><%= exerciseTarget %>.</h4>
+
+        <img style="border: 1px solid black;" width="50%" src="./assets/img/potpuri/<%= potpuriId %>/<%= progressIndex %>.jpg" />
+        <br/><br/>
+        <!-- <button class="btn btn-large goBeginning">Palaa Potpuri-valikkoon</button> -->
+        <button class="btn btn-large btn-success goNext">Siirry valitsemaan vaikeustaso</button>
+
+    </script>
+
+    <script id="potpuriEndedTemplate" type="text/template">
+
+        <h1>Suoritit mikstuuran loppuun. Hyvää työtä!</h1><br/>
+        <button class="btn btn-large goBeginning">Palaa Mikstuura-valikkoon</button>
+        <br/><br/>
+        <img width="40%" src="./assets/img/potpuri/thumb.jpg" />
 
     </script>
 
@@ -637,17 +786,23 @@
         <div class="row-fluid">
             <div id="header"></div>
 
-            <div id="content"></div>
+            <div id="content" class="text-center"></div>
         </div>
         <div class="clearfix"></div>
 
-        <footer>
-         <!--   <p class="navbar-fixed-bottom muted">&copy Pieni piiri 2013</p> -->
-        </footer>
-
     </div>
 
-    <!-- javascript -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-67003634-1', 'auto');
+      ga('send', 'pageview');
+  </script>
+
+    <!-- build:js js/app.js -->
     <script src="js/lib/jquery-1.9.1.min.js"></script>
     <script src="js/lib/underscore-min.js"></script>
     <script src="js/lib/backbone.min.js"></script>
@@ -658,11 +813,12 @@
     <script src="js/lib/jquery.touchSwipe.min.js"></script>
     <script src="js/lib/jquery.knob.js"></script>
 
-    <script src="js/helpers/helpers.js"></script>
     <script src="js/models/settings.js"></script>
     <script src="js/models/game.js"></script>
-    <script src="js/models/session.js"></script>
     <script src="js/collections/games.js"></script>
+
+    <script src="js/models/potpuri.js"></script>
+    <script src="js/collections/potpuris.js"></script>
 
     <script src="js/views/gameview.js"></script>
     <script src="js/views/gamelistview.js"></script>
@@ -671,6 +827,12 @@
     <script src="js/views/videoview.js"></script>
     <script src="js/views/resultsview.js"></script>
     <script src="js/views/playedgameview.js"></script>
+    <script src="js/views/guideview.js"></script>
+
+    <script src="js/views/startPotpuriView.js"></script>
+    <script src="js/views/potpuriView.js"></script>
+    <script src="js/views/potpuriPreGameView.js"></script>
+    <script src="js/views/potpuriEndedView.js"></script>
 
     <script src="js/views/kuvaetsinta.js"></script>
     <script src="js/views/tekstiviestigameview.js"></script>
@@ -686,6 +848,8 @@
 
     <script src="js/app.js"></script>
     <script src="js/router.js"></script>
+    <!-- endbuild -->
+
 
     <!-- fastclick -->
     <script type="text/javascript">

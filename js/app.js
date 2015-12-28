@@ -19,8 +19,9 @@ var games = [
                        "<p>Väärän valinnan voit poistaa koskettamalla kuvaa uudestaan.</p>" +
                        '<p>Näet tuloksesi koskettamalla "Valmis".</p>' +
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
-        "video"      : "//www.youtube.com/embed/Vxcs2E_B4fc",
-        "coverImage" : "./img/fish.png"
+        "video"      : "//www.youtube.com/embed/TRuiErdTNbQ",
+        "coverImage" : "./assets/img/fish.png",
+		"exerciseTarget": "tarkkaavuuteen ja tarkkaavuuden ylläpitämiseen"
     },
 	{
 
@@ -35,8 +36,9 @@ var games = [
                        "<p>Mieleenpainamisen jälkeen näytetään joukko kysymyksiä ja niiden vastausvaihtoehtoja. Vastaa kysymykseen koskettamalla mielestäsi oikeaa vastausta.</p>" +
                        '<p>Kosketa "Tarkista", jolloin oikeat vastaukset näytetään vihreällä ja väärät punaisella.</p>'+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
-        "video"      : "//www.youtube.com/embed/Tb58VLIdkPQ",
-        "coverImage" : "./img/txt.png"
+        "video"      : "//www.youtube.com/embed/20-VnA0PFHU",
+        "coverImage" : "./assets/img/txt.png",
+		"exerciseTarget": "pitkäkestoiseen muistiin sekä havainnointiin ja mieleen palauttamiseen"
     },
 	{
         "gameId"     : 3,
@@ -49,8 +51,9 @@ var games = [
                        "<p>Ruudulla näkyy liikkuva kirjainrivi. Keskellä on punaisella merkitty alue.</p>" +
                        '<p>Tehtävänä on havaita perusmuodossa oleva sana. Valinta osoitetaan koskettamalla Löytyi  -painiketta. Sanan on oltava kokonaan punaisella alueella.</p>'+
                        '<p>Tehtävä kestää neljä minuuttia. Voit keskeyttää tehtävän koskettamalla "Lopeta".</p>',
-        "video"      : "//www.youtube.com/embed/oqHWiE8KCEE",
-        'coverImage' : './img/sanat.png'
+        "video"      : "//www.youtube.com/embed/jsDOB5yc6CM",
+        'coverImage' : './assets/img/sanat.png',
+		"exerciseTarget": "tarkkaavuuteen ja tarkkaavuuden siirtämiseen"
     },
 	{
         "gameId"     : 4,
@@ -64,8 +67,9 @@ var games = [
                        "<p>Kun sarja on esitetty, numerot peitetään. Kone kysyy numeroita. Kulloinkin kysytyn numeron paikka on merkitty punaisella kehyksellä. Valitse oikea numero koskettamalla sitä alarivistä.</p>"+
                        '<p>Kosketa "Tarkista", jolloin näet oikeat vastaukset.</p>'+
                        '<p>Muistettavia numerosarjoja tulee viisi peräkkäin. Voit keskeyttää tehtävän koskettamalla "Lopeta".</p>',
-        "video"      : "//www.youtube.com/embed/XQd-neae2Io",
-        "coverImage" : "./img/vis.png"
+        "video"      : "//www.youtube.com/embed/Xr3I0i6russ",
+        "coverImage" : "./assets/img/vis.png",
+		"exerciseTarget": "lyhytkestoiseen muistiin ja visuaaliseen sarjamuistiin"
     },
 	{
         "gameId"     : 5,
@@ -80,8 +84,9 @@ var games = [
                        "<p>Häirintätehtävän jälkeen kirjoita alussa kuulemasi sanat tekstikenttään vapaassa järjestyksessä.</p>"+
                        '<p>Kun kaikki sanat on kirjoitettu, kosketa Valmis -painiketta. Näkyvin tulee oikeiden vastausten määrä.</p>'+
                        '<p>Voit keskeyttää tehtävän koskettamalla ”Lopeta”.</p>',
-        "video"      : "//www.youtube.com/embed/RvY3qzzyHp0",
-        'coverImage' : './img/aud.png'
+        "video"      : "//www.youtube.com/embed/Y7ZkFWRMefg",
+        'coverImage' : './assets/img/aud.png',
+		"exerciseTarget": "lyhytkestoiseen muistiin (auditiivinen) ja häirinnän vaikutukseen mieleenpalauttamisessa"
     },
 	{
         "gameId"     : 6,
@@ -94,8 +99,9 @@ var games = [
                        "<p>Ruudulla näkyy esineiden kuvia. Paina esineet mieleesi. Tehtävänä on oppia tunnistamaan nämä muiden joukosta.</p>"+
                        "<p>Mieleenpainamisen jälkeen ruudulle ilmestyy aiemmin esitetyt kuvat ja lisäksi muita kuvia. Merkitse kuvia koskettamalla kaikki tehtävän alussa esitetyt esineet.</p>"+
                        '<p>Kun kosketat ”Valmis”, kone näyttää oikeat vastaukset vihreällä ja puuttuvat esineet oranssilla. Tehtävä jatkuu, kunnes muistat kaikki alussa näytetyt esineet.</p>',
-        "video"      : "//www.youtube.com/embed/1iJVzK4PA74",
-        "coverImage" : "./img/kim.png"
+        "video"      : "//www.youtube.com/embed/oOzdlDUtlAc",
+        "coverImage" : "./assets/img/kim.png",
+		"exerciseTarget": "pitkäkestoiseen näönvaraiseen muistamiseen, oppimiseen ja tunnistamiseen."
     },
 	{
         "gameId"     : 7,
@@ -110,8 +116,9 @@ var games = [
                        '<p>Kone ilmoittaa, kuinka monta kirjoittamasi sanan kirjaimista on oikeita ja oikealla paikalla (musta ympyrä) ja kuinka monta on oikeita, mutta väärällä paikalla (valkoinen ympyrä).</p>'+
                        "<p>Jatka salasanan päättelyä koneen antamien vihjeiden avulla. Salasana säilyy samana kunnes keksit sen.</p>"+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
-        "video"      : "//www.youtube.com/embed/CaLt6nolbZc",
-        "coverImage" : "./img/password.png"
+        "video"      : "//www.youtube.com/embed/u7ohNLZntXI",
+        "coverImage" : "./assets/img/password.png",
+		"exerciseTarget": "toiminnanohjaukseen ja ongelmanratkaisuun"
     },
 	{
         "gameId"     : 8,
@@ -130,8 +137,9 @@ var games = [
                        '<p>Tehtävänä on täyttää ruudukon vapaat paikat hedelmillä tai numeroilla 1-6 siten, että kukin hedelmä tai numero voi esiintyä vain kerran jokaisen pääruudukon pysty- tai vaakarivissä sekä jokaisessa pienruudukossa. Osa ruuduista on valmiiksi täytetty, ne on merkitty harmaalla pohjavärillä.</p>' +
                        '<p>Ruudukon täyttäminen tapahtuu koskettamalla haluttua tyhjää ruutua, jolloin sen ympärille muodostuu sininen kehä. Sivulla olevasta valikosta valitaan koskettamalla haluttu numero/hedelmä.</p>' +
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
-		    "video"		   : "//www.youtube.com/embed/pAEv88Pkzqw",
-        'coverImage' : "./img/sudoku.png"
+		    "video"  : "//www.youtube.com/embed/5GhXxiKwLaA",
+        'coverImage' : "./assets/img/sudoku.png",
+		"exerciseTarget": "toiminnanohjaukseen ja ongelmanratkaisuun"
     },
 	{
         "gameId"     : 9,
@@ -146,8 +154,9 @@ var games = [
                        "<p>Kokoaminen tapahtuu koskettamalla ensin ruudun alareunassa näkyvää pientä neliötä ja sen jälkeen vastaavaa kohtaa koottavassa ruudukossa.</p>"+
                        '<p>Kosketa “Valmis”. Mikäli kuviossa on virheellisiä tai puuttuvia osia, näkyvät ne punaisella X:lla merkittynä.</p>'+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta".</p>',
-        "video"      : "//www.youtube.com/embed/KhAety3hbk4",
-        "coverImage" : "./img/konstruointi.png"
+        "video"      : "//www.youtube.com/embed/L9k-qpp8SvE",
+        "coverImage" : "./assets/img/konstruointi.png",
+		"exerciseTarget": "visuospatiaaliseen havaitsemiseen"
     },
 	{
         "gameId"     : 10,
@@ -161,9 +170,38 @@ var games = [
                        '<p>Ruudukkoon asetetaan vuorotellen "risti" ja "nolla" (kone asettaa nollan, ihminen ristin). Tavoitteena on saada viisi peräkkäistä ristiä tai nollaa pysty-, vaaka- tai vinoruudukkoon.</p>'+
                        "<p>Valinta osoitetaan koskettamalla haluttua ruutua.</p>"+
                        '<p>Tehtävä voidaan keskeyttää koskettamalla "Lopeta"</p>',
-		    "video"		   : "//www.youtube.com/embed/zuK3eFV0rbA",
-        "coverImage" : "./img/ristinolla.png"
+		    "video"	 : "//www.youtube.com/embed/CqdGbzItMXs",
+        "coverImage" : "./assets/img/ristinolla.png",
+		"exerciseTarget": "toiminnanohjaukseen ja ongelmanratkaisuun"
     }
+];
+
+var potpuris = [
+	{
+		"potpuriId": 1,
+		"title": "Mikstuura Yy",
+		"icon": "assets/img/potpuri/1/cover.jpg",
+		"gamesArray": [1,4,10,6],
+		"progressPicArray": ['assets/img/potpuri/1/1.jpg','assets/img/potpuri/1/2.jpg','assets/img/potpuri/1/3.jpg','assets/img/potpuri/1/4.jpg'],
+		"lead": "Oletko valmis? <br/> Treenaa kykyä suunnata huomio olennaiseen ja ratkaista ongelmia. Tämän Mikstuuran avulla voi treenata myös näönvaraista muistamista, oppimista ja tunnistamista. Virheet ovat tärkeitä, koska niistä voi oppia. Tärkeää on huomata, mikä sujuu ja mikä on haastavaa. Ja nyt treenaamaan niin, että tukka pölähtää!"
+	},
+	{
+		"potpuriId": 2,
+		"title": "Mikstuura Kaa",
+		"icon": "assets/img/potpuri/2/cover.jpg",
+		"gamesArray": [3,2,7],
+		"progressPicArray": ['assets/img/potpuri/2/1.jpg','assets/img/potpuri/2/2.jpg','assets/img/potpuri/2/3.jpg'],
+		"lead": "Haasta itsesi ratkomaan pulmia. Jo sinnikäs yritys hellii aivoja aktivoinnilla. Harjoita kykyäsi jättää huomiotta epäolennainen. Tällä Mikstuuralla voit myös treenata muistiaineksen säilömistä ja keinojen keksimistä muistamisen tueksi. Olethan karsinut keskittymistä häiritsevät ärsykkeet ja luonut oppimiselle otolliset olot? Sitten toimeen!"
+	},
+	{
+		"potpuriId": 3,
+		"title": "Mikstuura Koo",
+		"icon": "assets/img/potpuri/3/cover.jpg",
+		"gamesArray": [9,5,8],
+		"progressPicArray": ['assets/img/potpuri/3/1.jpg','assets/img/potpuri/3/2.jpg','assets/img/potpuri/3/3.jpg'],
+		"lead": "Nyt on aika alkaa nostella mentaalipuntteja! Elämän aikana aivoihin tallentuu tietoa monen sadantuhannen tietosanakirjan verran. Voit harjoittaa tallentuneen tiedon hakua säilömuistista. Tällä Mikstuuralla treenaat myös kykyä hahmottaa näönvaraisesti kokonaisuuksia. Löydä lisäksi oma tapasi ratkoa numero- tai kuvaristikoita. Muistathan lempeyden itseäsi kohtaan."
+	}
+
 ];
 
 $.fn.preload = function() {
@@ -194,8 +232,8 @@ function getDateTime() {
     var dd = today.getDate();
     var mm = today.getMonth()+1;
     var yyyy = today.getFullYear();
-    if(dd<10){dd='0'+dd}
-    if(mm<10){mm='0'+mm}
+    if(dd<10){dd='0'+dd;}
+    if(mm<10){mm='0'+mm;}
     var hours = today.getHours();
     var minutes = today.getMinutes();
 
@@ -235,9 +273,9 @@ function hideTogglePlayerModal (player) {
 	$('.overlay').css('display','none');
 	$('#content').find('button').removeAttr('disabled');
 	$('#header').find('button').removeAttr('disabled');
-	$('.modal')
-		.html("<p class='text-center bigger'>Sisältöä ladataan...</p>")
-		.css('display','none');
+	$('.modal').css('display','none');
+	//.html("<p class='text-center bigger'>Sisältöä ladataan...</p>")
+
 }
 
 function hideFeedbackModal(status) {
@@ -268,175 +306,26 @@ function toggleFeedbackCheckbox () {
 	}
 }
 
+// function incrementPotpuriProgressIndex () {
+// 	var potpuriProgressIndex = Settings.get('potpuriProgressIndex');
+// 	potpuriProgressIndex++;
+// 	Settings.set({'potpuriProgressIndex': potpuriProgressIndex});
+// }
 
-
-function saveGame(gameData){
-	var backend = Settings.get('backendUrl');
-	//console.log('gamedata', gameData);
-	var userId = Settings.get('currentUserId');
-
-	if(!gameData.hasOwnProperty("_id")){
-		$.ajax({
-			url: backend+'/foramen/game/save/'+userId,
-			type: 'POST',
-			dataType: 'json',
-			data: gameData,
-			success: function(res){
-				//console.log('saveGAem without id res', res);
-				Settings.set({'gameInstanceId': res._id});
-			}
-		});
-
-	}else{
-
-		$.ajax({
-			url: backend+'/foramen/game/save/'+userId,
-			type: 'POST',
-			dataType: 'json',
-			data: gameData,
-			success: function(res){
-				//console.log('saveGame with id res', res);
-			}
-		});
-	}
-}
-
-function saveGameEnd (gameId) {
-	var gameInstanceId = Settings.get('gameInstanceId');
-	var scoreObj = JSON.stringify(Settings.get('score'));
-	var gameData = {
-		'_id': gameInstanceId,
-		'gameId': gameId,
-		'score': scoreObj
-	};
-	saveGame(gameData);
-}
-
-function saveHighScore (gameId, difficulty, scoreObj) {
-	var backend = Settings.get('backendUrl');
-	var userId = Settings.get('currentUserId');
-  var data = {
-    'gameId': gameId,
-    'userId': userId,
-    'difficultyLevel': difficulty,
-    'score': JSON.stringify(scoreObj)
-  };
-  //console.log(data);
-  $.ajax({
-		url: backend+'/foramen/highscore/'+gameId+'/'+userId,
-    type: 'POST',
-    dataType: 'json',
-    data: data,
-    success: function(res) {
-      //console.log('saved highscore', res);
-    }
-  });
-}
-
-function saveGameFeedback (mood) {
-	var backend = Settings.get('backendUrl');
-	var gameInstanceId = Settings.get('gameInstanceId');
-	var userId = Settings.get('currentUserId');
-	var data = { 'id': gameInstanceId, 'feedback': mood };
-	$.ajax({
-		url: backend+'/foramen/feedback/'+userId,
-		type: 'POST',
-		dataType: 'json',
-		data: data,
-		success: function(res) {
-			//console.log(res);
-		}
-	});
-}
-
-function preloadMoodmeter () {
-	var moods = ["./img/face_happy.png","./img/face_neutral.png","./img/face_sad.png"];
-	$(moods).preload();
-}
-
-function saveInterruptedGame (gameId, gameInstanceId) {
-	var userId = Settings.get('currentUserId');
-  var data = {'gameInstanceId': gameInstanceId };
-	var backend = Settings.get('backendUrl');
-  $.ajax({
-		url: backend+'/foramen/game/saveInterrupted/'+userId+'/'+gameId,
-    type: 'POST',
-    dataType: 'json',
-    data: data,
-    success: function(res){
-      //console.log('save interrupted game', res);
-    }
-  });
-}
-
-function savePlayedTime (){
-	var backend = Settings.get('backendUrl');
-	var userId = Settings.get('currentUserId');
-  var started = Settings.get('startedPlaying');
-  var now = new Date();
-  var sessionTime = ( now.getTime() - started.getTime() )/1000;
-	Settings.set({'sessionTime': sessionTime});
-	Settings.set({'startedPlaying': now});
-
-	if(sessionTime > 1){
-	var data = {userId: userId, duration: sessionTime};
-		//console.log('save session time to db', sessionTime);
-		$.ajax({
-			url: backend+'/foramen/playtime/'+userId,
-			type: 'POST',
-			dataType: 'json',
-			data: data,
-			success: function(res){
-				//console.log('saved playtime', res);
-			}
-		});
-	}
-
-}
-
-function getPlayedTime (){
-	var backend = Settings.get('backendUrl');
-		var userId = Settings.get('currentUserId');
-    $.ajax({
-			url: backend+'/foramen/playtime/'+userId,
-      type: 'GET'
-    }).done(function(data){
-			var obj = data;
-			var totalTime;
-
-			if(!obj.hasOwnProperty("duration")){
-				obj.duration = 0;
-			}
-
-      Settings.set({ 'playedTimeMS': obj.duration });
-
-			if(Settings.get('sessionTime') && Settings.get('sessionTime') > 1){
-				var sessionTime = Settings.get('sessionTime');
-				totalTime = obj.duration + sessionTime;
-			}else{
-				totalTime = obj.duration;
-			}
-    	var hours = Math.floor(totalTime / 3600) % 24;
-      var minutes = Math.floor(totalTime / 60) % 60;
-
-      $('#header h3').text('Olet tänään harjoitellut: '+ hours + "h " + minutes +"min");
-  });
-}
-
-function getAndroidVersion (){
-
-		var ua = navigator.userAgent;
-
-		if (ua.indexOf('Android') > -1){
-			var match = ua.match(/Android\s([0-9\.]*)/);
-			if( match[1] ){
-				return parseFloat(match[1]);
-			}else{
-				return parseFloat(match);
-			}
-
-		}else{
-			return false;
-		}
-
-}
+// function getAndroidVersion (){
+//
+// 		var ua = navigator.userAgent;
+//
+// 		if (ua.indexOf('Android') > -1){
+// 			var match = ua.match(/Android\s([0-9\.]*)/);
+// 			if( match[1] ){
+// 				return parseFloat(match[1]);
+// 			}else{
+// 				return parseFloat(match);
+// 			}
+//
+// 		}else{
+// 			return false;
+// 		}
+//
+// }

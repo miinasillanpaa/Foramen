@@ -1,0 +1,25 @@
+{
+  "name": "piiri-foramen",
+  "version": "1.0.0",
+  "description": "piiri-foramen =============",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pienipiiri/piiri-foramen.git"
+  },
+  "author": "Samppa Valkama",
+  "homepage": "https://github.com/pienipiiri/piiri-foramen",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-cssmin": "^0.12.2",
+    "grunt-contrib-htmlmin": "^0.4.0",
+    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-manifest": "^0.4.0",
+    "grunt-string-replace": "^1.0.0",
+    "grunt-usemin": "^3.0.0",
+    "load-grunt-tasks": "^3.1.0"
+  }
+}

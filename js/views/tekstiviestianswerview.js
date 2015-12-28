@@ -56,11 +56,16 @@ var TekstiviestiAnswerView = Backbone.View.extend({
     },
 
     quitGame: function () {
-        this.undelegateEvents();
+        this.undelegates();
         Settings.set({ 'playThruNum' : 0 });
-        var gameId = this.model.get('gameId');
-        window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
-        router.navigate('/', true);
+        // var gameId = this.model.get('gameId');
+        // window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
+        if (Settings.get('isPotpuriGame')) {
+            router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
+        }else{
+            router.navigate('/', true);
+        }
+
     },
 
     activateSender : function () {
@@ -102,7 +107,7 @@ var TekstiviestiAnswerView = Backbone.View.extend({
 
 
 
-    toReceiver : function () {
+    toReceiver : function (event) {
         $('.options-senders .a-button').removeClass('btn-primary');
         var $answer = $(event.target);
         $answer.addClass('btn-primary');
@@ -112,7 +117,7 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         this.activateReceiver();
     },
 
-    toPlace : function () {
+    toPlace : function (event) {
         $('.options-receivers .a-button').removeClass('btn-primary');
         var $answer = $(event.target);
         $answer.addClass('btn-primary');
@@ -122,7 +127,7 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         this.activatePlace();
     },
 
-    toTime : function () {
+    toTime : function (event) {
         $('.options-places .a-button').removeClass('btn-primary');
         var $answer = $(event.target);
         $answer.addClass('btn-primary');
@@ -132,7 +137,7 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         this.activateTime();
     },
 
-    toItem : function () {
+    toItem : function (event) {
         $('.options-times .a-button').removeClass('btn-primary');
         var $answer = $(event.target);
         $answer.addClass('btn-primary');
@@ -142,7 +147,7 @@ var TekstiviestiAnswerView = Backbone.View.extend({
         this.activateItem();
     },
 
-    inItem : function () {
+    inItem : function (event) {
         $('.options-items .a-button').removeClass('btn-primary');
         var $answer = $(event.target);
         $answer.addClass('btn-primary');

@@ -13,10 +13,14 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         var changes = 0;
         var self = this;
 
-        function startInterval () {
+        var startInterval = function() {
 			$('.sounds-tip').hide();
 			var interval = window.setInterval(
                 function () {
+                    if( $('.image').hasClass('hidden') ) {
+                        $('.image').removeClass('hidden');
+                    }
+
                     self.changeDistract(distractions,changes);
                     changes++;
                     if(changes === 18){
@@ -28,13 +32,13 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
             $('.quit').click( function () {
                 window.clearInterval(interval);
             });
-        }
+        };
         var i;
         var timer;
         var soundElem;
         var soundElems = [];
         var inputElem;
-        for(var i=0; i<sounds.length; i++){
+        for(i=0; i<sounds.length; i++){
            if( i=== 0){
                 soundElem = '<audio id="audio_'+i+'" autoplay="autoplay" src='+sounds[i]+' type="audio/mpeg"></audio>';
                 inputElem = '<input class="input input_'+i+'" type="text" placeholder="Kosketa tähän" />';
@@ -47,11 +51,6 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
 
         }
 
-        var startImages = function(){
-          $('.image').removeClass('hidden');
-          startInterval();
-        };
-
         var appendSound = function(item){
           $('.sounds').append(soundElems[item]);
         };
@@ -60,148 +59,21 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         if(sounds.length === 2){
           appendSound(0);
           timeouts.push( setTimeout( function(){ appendSound(1); }, 3500) );
-          timeouts.push( setTimeout(startImages, 7000) );
+          timeouts.push( setTimeout(startInterval, 7000) );
 
         }else if(sounds.length === 3){
           appendSound(0);
           timeouts.push( setTimeout( function(){ appendSound(1); }, 3500) );
           timeouts.push( setTimeout( function(){ appendSound(2); }, 7000) );
-          timeouts.push( setTimeout(startImages, 10500) );
+          timeouts.push( setTimeout(startInterval, 10500) );
 
         }else{
           appendSound(0);
           timeouts.push( setTimeout( function(){ appendSound(1); }, 3500) );
           timeouts.push( setTimeout( function(){ appendSound(2); }, 7000) );
           timeouts.push( setTimeout( function(){ appendSound(3); }, 10500) );
-          timeouts.push( setTimeout(startImages, 14000) );
+          timeouts.push( setTimeout(startInterval, 14000) );
         }
-
-
-
-
-        // if( sounds.length === 2 ){
-        //
-        //   $('.sounds').append(soundElems[0]);
-        //   document.getElementById('audio_0').addEventListener('ended', function(){
-        //       this.pause();
-        //       timer = window.setTimeout( function(){
-        //         //document.getElementsByTagName('audio')[1].play();
-        //         //document.getElementById("audio_1").play();
-        //           $('.sounds').append(soundElems[1]);
-        //
-        //           document.getElementById('audio_1').addEventListener('ended', function () {
-        //             this.pause();
-        //             timer = window.setTimeout( function() {
-        //               timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
-        //               startInterval();
-        //             },1000);
-        //           }, false);
-        //
-        //
-        //         }, 750 );
-        //
-        //   }, false);
-        //
-        //
-        //
-        // }else if( sounds.length === 3 ){
-        //
-        //   $('.sounds').append(soundElems[0]);
-        //
-        //   document.getElementById('audio_0').addEventListener('ended', function(){
-        //     this.pause();
-        //     timer = window.setTimeout( function(){
-        //       $('.sounds').append(soundElems[1]);
-        //
-        //       document.getElementById('audio_1').addEventListener('ended', function(){
-        //         this.pause();
-        //         timer = window.setTimeout( function(){
-        //           $('.sounds').append(soundElems[2]);
-        //
-        //           document.getElementById('audio_2').addEventListener('ended', function(){
-        //             this.pause();
-        //             timer = window.setTimeout( function() {
-        //               timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
-        //               startInterval();
-        //             },1000);
-        //           });
-        //           }, 750 );
-        //       }, false);
-        //     }, 750 );
-        // }, false);
-        //
-        //
-        //
-        //   // document.getElementById("audio_1").addEventListener('ended', function(){
-        //   //     this.pause();
-        //   //     timer = window.setTimeout( function(){ document.getElementById("audio_2").play() }, 750 );
-        //   // }, false);
-        //   // document.getElementById("audio_2").addEventListener('ended', function () {
-        //   //     this.pause();
-        //   //     timer = window.setTimeout( function() {
-        //   //         timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
-        //   //         startInterval();
-        //   //     },1000);
-        //   // }, false);
-        //
-        // }else if( sounds.length === 4 ){
-        //
-        //   $('.sounds').append(soundElems[0]);
-        //
-        //   document.getElementById('audio_0').addEventListener('ended', function(){
-        //     this.pause();
-        //     timer = window.setTimeout( function(){
-        //       $('.sounds').append(soundElems[1]);
-        //
-        //       document.getElementById('audio_1').addEventListener('ended', function(){
-        //         this.pause();
-        //         timer = window.setTimeout( function(){
-        //           $('.sounds').append(soundElems[2]);
-        //
-        //           document.getElementById('audio_2').addEventListener('ended', function(){
-        //             this.pause();
-        //
-        //             timer = window.setTimeout( function(){
-        //               $('.sounds').append(soundElems[3]);
-        //
-        //               document.getElementById('audio_3').addEventListener('ended', function(){
-        //                 this.pause();
-        //
-        //                 timer = window.setTimeout( function() {
-        //                   timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
-        //                   startInterval();
-        //                 },1000);
-        //               });
-        //
-        //             }, 750 );
-        //           }, false);
-        //         }, 750 );
-        //       }, false);
-        //     }, 750 );
-        //   }, false);
-        //
-        //     // document.getElementById("audio_0").addEventListener('ended', function(){
-        //     //     this.pause();
-        //     //     timer = window.setTimeout( function(){ document.getElementById("audio_1").play() }, 750 );
-        //     // }, false);
-        //     // document.getElementById("audio_1").addEventListener('ended', function(){
-        //     //     this.pause();
-        //     //     timer = window.setTimeout( function(){ document.getElementById("audio_2").play() }, 750 );
-        //     // }, false);
-        //     // document.getElementById("audio_2").addEventListener('ended', function(){
-        //     //     this.pause();
-        //     //     timer = window.setTimeout( function(){ document.getElementById("audio_3").play() }, 750 );
-        //     // }, false);
-        //     // document.getElementById("audio_3").addEventListener('ended', function () {
-        //     //     this.pause();
-        //     //     timer = window.setTimeout( function() {
-        //     //         timer = window.setTimeout( function() { $('.image').removeClass('hidden'); },3500 );
-        //     //         startInterval();
-        //     //     },1000);
-        //     // }, false);
-
-        //}
-
 
         $('.quit').click( function () {
           for(i = 0; i < timeouts.length; i++){
@@ -267,7 +139,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         Settings.set({corrects:0});
         Settings.set({stringCorrects:0});
 
-		router.navigate('game/' +this.model.get('gameId') + '/results', true)
+		router.navigate('game/' +this.model.get('gameId') + '/results', true);
         var view = new ResultsView({ model:this.model, results:results });
         view.render();
 
@@ -286,9 +158,10 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         }
 
         var correct = 0;
+        var j;
         if( diff === 'easy'){
 
-            for(var j=0; j<strings.length; j++){
+            for(j=0; j<strings.length; j++){
                 if( inputs[0] === strings[j] ){
                     $('.input_0').addClass('input-success');
                     correct++;
@@ -305,7 +178,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         }else if( diff === 'medium'){
 
 
-            for(var j=0; j<strings.length; j++){
+            for(j=0; j<strings.length; j++){
                 if( inputs[0] === strings[j] ){
                     $('.input_0').addClass('input-success');
                     correct++;
@@ -327,7 +200,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
 
         }else{
 
-            for(var j=0; j<strings.length; j++){
+            for(j=0; j<strings.length; j++){
                 if( inputs[0] === strings[j] ){
                     $('.input_0').addClass('input-success');
                     correct++;
@@ -374,7 +247,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         for(var i=0; i<correctsArr.length; i++){
             if(img === correctsArr[i]){
                 correct = true;
-                delete correctsArr[i]
+                delete correctsArr[i];
             }
         }
 
@@ -390,10 +263,15 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
 
     quitGame: function () {
         var gameId = this.model.get('gameId');
-        window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         Settings.set({corrects:0});
         this.undelegateEvents();
-        router.navigate('/', true);
+
+        if (Settings.get('isPotpuriGame')) {
+            router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
+        }else{
+            router.navigate('/', true);
+        }
+
     },
 
     playSounds: function () {
@@ -417,7 +295,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
             var random = Math.floor(Math.random() * animals.length);
             var str = animals[random].toLowerCase();
             var randomItem = str.replace(/ä/g,'a').replace(/ö/g,'o');
-            var randomSound = "./sounds/audio/"+category+"/"+randomItem+".mp3";
+            var randomSound = "./assets/sounds/audio/"+category+"/"+randomItem+".mp3";
 
             for( var j=0; j<amount; j++ ){
                 if(randomSounds[j] === randomSound){
@@ -440,11 +318,12 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         var distractionArr = [];
         var correctsArr = [];
         var correctCat = ["elaimet","kalat","linnut"];
-        for ( var i=0; i<5; i++ ){
+        var i;
+        for ( i=0; i<5; i++ ){
             var corrRandCat = correctCat[Math.floor(Math.random() * correctCat.length)];
             var unique = true;
             var randCorrect = Math.floor((Math.random() * 20) +1);
-            var img = "./pics/"+corrRandCat+"/"+randCorrect+".png";
+            var img = "./assets/pics/"+corrRandCat+"/"+randCorrect+".png";
 
             for( var j=0; j<5; j++){
                 if(distractionArr[j] === img){
@@ -462,10 +341,10 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         Settings.set({correctsArr:correctsArr});
 
         var categories = ["hedelmat","kansallispuvut","kasvit","liput","soittimet","tyokalut","urheiluvalineet"];
-        for ( var i=0; i<12; i++){
+        for ( i=0; i<12; i++){
             var randCat = categories[Math.floor(Math.random() * categories.length)];
             var randIndex = Math.floor((Math.random()*20)+1);
-            var randImg = "./pics/"+randCat+"/"+randIndex+".png";
+            var randImg = "./assets/pics/"+randCat+"/"+randIndex+".png";
             distractionArr.push(randImg);
         }
 

@@ -1,6 +1,6 @@
 var Sudoku = Backbone.View.extend({
 
-  CONST_SYMBOL_IMAGE_URL_PROTOTYPE: "./pics/${imageCategory}/${imageName}.png",
+  CONST_SYMBOL_IMAGE_URL_PROTOTYPE: "./assets/pics/${imageCategory}/${imageName}.png",
 
   CONST_FILLING_METHOD_GUIDED: 0,
   CONST_FILLING_METHOD_RESTRICTED: 1,
@@ -131,6 +131,8 @@ var Sudoku = Backbone.View.extend({
   },
 
   adjustUISizes: function() {
+
+    this.$el.css('height', '100%');
 
     var wrapperHorizontalPaddings = parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-left" ) ) + parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-right" ) );
     var wrapperVerticalPaddings = parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-top" ) ) + parseInt( this.$el.find( ".sudoku-wrapper" ).css( "padding-bottom" ) );
@@ -289,10 +291,17 @@ var Sudoku = Backbone.View.extend({
   },
 
   quitGame: function() {
-    var gameId = this.model.get('gameId');
-    window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
-    this.undelegateEvents();
-    router.navigate("/", true);
+        //var gameId = this.model.get('gameId');
+        //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
+        this.$el.css('height','auto');
+        this.undelegateEvents();
+
+        if (Settings.get('isPotpuriGame')) {
+            router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
+        }else{
+            router.navigate('/', true);
+        }
+
   },
 
   resetGame: function() {
@@ -327,7 +336,7 @@ var Sudoku = Backbone.View.extend({
   },
 
   showGameResults: function() {
-
+    this.$el.css('height','auto');
     this.undelegateEvents();
 
     var date = getDateTime();

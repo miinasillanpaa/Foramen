@@ -27,7 +27,10 @@ var SanojenTunnistaminen = Backbone.View.extend({
         text = this.stringMaker();
         textString = Settings.get('textString');
 
-        startPos = textString.length - 17;
+
+        //if user rezises window during the game -> doom
+        var textRightOut = this.getWidth();
+        startPos = textString.length - textRightOut;
         Settings.set({ startPos : startPos });
 
         window.timer = setTimeout(
@@ -129,11 +132,55 @@ var SanojenTunnistaminen = Backbone.View.extend({
     },
 
     quitGame: function () {
-      var gameId = this.model.get('gameId');
-      window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
-        this.undelegateEvents();
-        this.unbind();
-        router.navigate('/', true);
+      //var gameId = this.model.get('gameId');
+      //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
+      //$(window).off("resize",this.getWidth);
+      this.undelegateEvents();
+      this.unbind();
+
+      if (Settings.get('isPotpuriGame')) {
+          router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
+      }else{
+          router.navigate('/', true);
+      }
+
+    },
+
+    getWidth: function(){
+        'use strict';
+
+        var textRightOut;
+        if(window.innerWidth >= 1800){
+            textRightOut = 24;
+        }else if(window.innerWidth <= 1800 && window.innerWidth > 1700){
+            textRightOut = 23;
+        }else if(window.innerWidth <= 1700 && window.innerWidth > 1600){
+            textRightOut = 22;
+        }else if(window.innerWidth <= 1600 && window.innerWidth > 1500){
+            textRightOut = 21;
+        }else if(window.innerWidth <= 1500 && window.innerWidth > 1400){
+            textRightOut = 20;
+        }else if(window.innerWidth <= 1400 && window.innerWidth > 1300){
+            textRightOut = 19;
+        }else if(window.innerWidth <= 1300 && window.innerWidth > 1200){
+            textRightOut = 18;
+        }else if(window.innerWidth <= 1200 && window.innerWidth > 1100){
+            textRightOut = 17;
+        }else if(window.innerWidth <= 1100 && window.innerWidth > 950){
+            textRightOut = 16;
+        }else if(window.innerWidth <= 950 && window.innerWidth > 900){
+            textRightOut = 15;
+        }else if(window.innerWidth <= 900 && window.innerWidth > 800){
+            textRightOut = 14;
+        }else if(window.innerWidth <= 800 && window.innerWidth > 700){
+            textRightOut = 13;
+        }else if(window.innerWidth <=700 && window.innerWidth > 600){
+            textRightOut = 12;
+        }else{
+            textRightOut = 11;
+        }
+
+        return textRightOut;
     },
 
     knobify: function () {
@@ -166,10 +213,13 @@ var SanojenTunnistaminen = Backbone.View.extend({
         pos = Settings.get('startPos') - 1;
 
         Settings.set({ startPos : pos });
-
         $('.scroller').transition({ x: '+=50' });
-        selector = text.substr(pos,10);
+        selector = text.substr(pos,11);
         Settings.set({ selector: selector });
+
+        //debug
+        //console.log('selector', selector);
+        //$('.hint').html(selector);
     },
 
     stringMaker: function () {
@@ -180,7 +230,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
         randomDistance = [];
 
         if( Settings.get('difficulty') === 'easy'){
-            amount = 10;
+            amount = 9;
             chars = 150;
             firstRandPos = Math.floor(Math.random()*(127-137+1)+127);
 
@@ -192,7 +242,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
             }
 
         }else if( Settings.get('difficulty') === 'medium' ){
-            amount = 14;
+            amount = 12;
             chars = 195;
             firstRandPos = Math.floor(Math.random()*(172-182+1)+172);
 
@@ -204,7 +254,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
             }
 
         }else{
-            amount = 20;
+            amount = 18;
             chars = 400;
             firstRandPos = Math.floor(Math.random()*(370-380+1)+370);
 

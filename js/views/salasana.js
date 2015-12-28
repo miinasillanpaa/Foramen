@@ -20,7 +20,7 @@ var Salasana = Backbone.View.extend({
             }else{
                 textnum = 'viiden';
             }
-        var variables = {hint: 'Kirjoita päättelemäsi '+textnum+' kirjaimen pituinen salasana'}
+        var variables = {hint: 'Kirjoita päättelemäsi '+textnum+' kirjaimen pituinen salasana'};
         var template = _.template( $(this.template).html(), variables ) ;
         this.$el.html(template);
 
@@ -37,12 +37,18 @@ var Salasana = Backbone.View.extend({
     },
 
     quitGame : function () {
-      var gameId = this.model.get('gameId');
-      window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
+        //var gameId = this.model.get('gameId');
+        //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         this.undelegateEvents();
         Settings.set({ 'checks' : 0 });
         Settings.set({ 'scrollerChecks': 0 });
-        router.navigate('/', true);
+
+        if (Settings.get('isPotpuriGame')) {
+            router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
+        }else{
+            router.navigate('/', true);
+        }
+
     },
 
     goToResults: function () {

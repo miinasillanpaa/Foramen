@@ -39,7 +39,7 @@ var Sarjamuisti = Backbone.View.extend({
                         $('.box:eq(' + rand + ')').addClass('actived').removeClass('available');
                         $('.next').removeAttr("disabled");
                         $('.ser-check').removeAttr("disabled");
-                }, 1600)
+                }, 1600);
             },time);
 
         var variables = { numArray : numArray, choices : choices };
@@ -63,17 +63,22 @@ var Sarjamuisti = Backbone.View.extend({
     },
 
     quitGame: function () {
-      var gameId = this.model.get('gameId');
-      window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
+        //var gameId = this.model.get('gameId');
+        //window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
         this.undelegateEvents();
         Settings.set({ 'playThruNum'    : 0  });
         Settings.set({ 'correctSeries'  : 0  });
         Settings.set({ 'wrongSeries'    : 0  });
         Settings.set({ 'results'        : [] });
-        router.navigate('/', true);
+
+        if (Settings.get('isPotpuriGame')) {
+            router.navigate('/potpuri/'+Settings.get('potpuriId'), true);
+        }else{
+            router.navigate('/', true);
+        }
     },
 
-    numberPicked: function () {
+    numberPicked: function (event) {
         var target = event.target.innerHTML;
         $('.actived').html('<p>'+target+'</p>');
         $('.actived').addClass('answered');
@@ -137,6 +142,10 @@ var Sarjamuisti = Backbone.View.extend({
         $('.numOptions').hide();
     },
 
+    pad2: function(number) {
+        return (number < 10 ? '0' : '') + number;
+    },
+
     finish: function () {
 
         this.undelegateEvents();
@@ -168,17 +177,13 @@ var Sarjamuisti = Backbone.View.extend({
             var dd = today.getDate();
             var mm = today.getMonth()+1;
             var yyyy = today.getFullYear();
-            if(dd<10){dd='0'+dd}
-            if(mm<10){mm='0'+mm}
+            if(dd<10){dd='0'+dd;}
+            if(mm<10){mm='0'+mm;}
             var hours = today.getHours();
             var minutes = today.getMinutes();
 
-            function pad2(number){
-                return (number < 10 ? '0' : '') + number
-            }
-
-            var h = pad2(hours);
-            var m = pad2(minutes);
+            var h = this.pad2(hours);
+            var m = this.pad2(minutes);
 
             var results = {
                 'pvm' : dd+'/'+mm+'/'+yyyy,

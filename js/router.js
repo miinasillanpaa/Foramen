@@ -1,32 +1,35 @@
 window.Settings = new Settings();
 
 window.Router = Backbone.Router.extend({
+
+	initialize: function(){
+		this.bind('route', this._pageView);
+	},
+
 	routes: {
 		"" : "gameIndex",
+		"guide": "guideView",
 		"game/:id": "getGame",
         "game/:id/video": "videoView",
         "game/:id/play": "play",
         "game/:id/results" : "resultsView",
-        "game/:id/results/screen" : "playedGameView"
+        "game/:id/results/screen" : "playedGameView",
+		"potpuri": "startPotpuriView",
+		"potpuri/:id": "handlePotpuri"
+	},
+
+	_pageView: function() {
+		var path = Backbone.history.getFragment();
+		ga('send', 'pageview', {page: "/" + path});
 	},
 
 	gameIndex: function() {
-		var currentUserId = getURLParameter('userId');
-		if (currentUserId && currentUserId !== 'null' && !isNaN(parseInt(currentUserId))) {
-			Settings.set({currentUserId: currentUserId});
-		}
-
-		var returnUrl = getURLParameter('returnUrl');
-		if (returnUrl && returnUrl !== 'null' && returnUrl.length > 0) {
-			Settings.set({returnUrl: returnUrl});
-		}
-
-		var authToken = getURLParameter('token');
-		if (authToken && authToken !== 'null' && authToken.length > 0) {
-			Settings.set({authToken: authToken});
-		}
 
 		new GameListView(games);
+
+		if (Settings.get('isPotpuriGame')) {
+			Settings.set({'isPotpuriGame': false});
+		}
 
 		if (App.currentGameView !== null) {
 			App.currentGameView.undelegateEvents();
@@ -44,6 +47,20 @@ window.Router = Backbone.Router.extend({
 });
 
 var router = new Router();
+
+router.on('route:guideView', function(){
+
+	if( App.headerView === null){
+		App.headerView = new HeaderView({ id: 4 });
+	}else {
+		App.headerView.setId(4);
+	}
+
+	App.guideView = new GuideView();
+
+	App.guideView.render();
+	App.headerView.render();
+});
 
 router.on('route:getGame', function(id) {
 	var difficulty = Settings.get('difficulty');
@@ -64,7 +81,6 @@ router.on('route:getGame', function(id) {
 	}else if( App.headerView.id !== 1 ) {
 		App.headerView.setId(1);
 		App.headerView.setModel(gameObj);
-
 	}
 	App.headerView.render();
 });
@@ -88,7 +104,7 @@ router.on('route:play', function(id) {
 	var selectedGameIndex = parseInt(id-1);
     var selectedGame = games[selectedGameIndex];
     var gameObj = new Game(selectedGame);
-	preloadMoodmeter();
+	//preloadMoodmeter();
 
 	var difficulty = Settings.get('difficulty');
 	var difficultyLevel;
@@ -113,7 +129,7 @@ router.on('route:play', function(id) {
 
 	if( parseInt(id) === 1 ){
 
-		gameData['category'] = Settings.get('category');
+		gameData.category = Settings.get('category');
 
         var view1 = new KuvaEtsinta({ model:gameObj });
 		App.currentGameView = view1;
@@ -126,7 +142,7 @@ router.on('route:play', function(id) {
 
     }else if( parseInt(id) === 3){
 
-		gameData['category'] = Settings.get('textCategory');
+		gameData.category = Settings.get('textCategory');
         var view3 = new SanojenTunnistaminen({ model: gameObj });
         App.currentGameView = view3;
         view3.render();
@@ -153,7 +169,7 @@ router.on('route:play', function(id) {
 
     }else if( parseInt(id) === 8){
 
-		gameData['category'] = Settings.get('sudokuCategory');
+		gameData.category = Settings.get('sudokuCategory');
 
         var view8 = new Sudoku({ model:gameObj });
         App.currentGameView = view8;
@@ -173,13 +189,12 @@ router.on('route:play', function(id) {
         $('#content').html('Nothing here yet!');
     }
 
-	window.saveGame(gameData);
+	//window.saveGame(gameData);
 });
 router.on('route:resultsView', function(id) {
     var selectedGameIndex = parseInt(id-1);
     var selectedGame = games[selectedGameIndex];
     var gameObj = new Game(selectedGame);
-
 
 	if(App.headerView === null ) {
 		App.headerView = new HeaderView({ id:2, model:gameObj});
@@ -200,6 +215,71 @@ router.on('route:playedGameView', function(id) {
 		App.headerView.setModel(gameObj);
 	}
 	App.headerView.render();
+});
+
+router.on('route:startPotpuriView', function(){
+
+	Settings.set({'isPotpuriGame': true});
+
+	App.startPotpuriView = new StartPotpuriView(potpuris);
+
+	if (App.headerView === null) {
+		App.headerView = new HeaderView({ id:0 });
+	}else{
+		App.headerView.setId(0);
+	}
+	App.headerView.render();
+
+});
+
+router.on('route:handlePotpuri', function(id){
+
+	if (!Settings.get('potpuriId')){
+		Settings.set({'potpuriId': id});
+	}
+
+	var potpuri = potpuris[id-1];
+
+	var potpuriProgressIndex = Settings.get('potpuriProgressIndex');
+
+	if (potpuriProgressIndex >= potpuri.gamesArray.length){
+
+		var potpuriEnded = new PotpuriEndedView({potpuri: potpuri});
+		potpuriEnded.render();
+
+		//reset
+		Settings.set({'potpuriId': null});
+		Settings.set({'potpuriProgressIndex': 0});
+
+		if (App.headerView === null) {
+			App.headerView = new HeaderView({ id:6 });
+		}else{
+			App.headerView.setId(6);
+		}
+
+	}else{
+
+		var selectedGameId = potpuri.gamesArray[potpuriProgressIndex];
+		var gameObj = new Game(games[selectedGameId-1]);
+
+		var potpuriPreGameView = new PotpuriPreGameView({model: gameObj});
+		potpuriPreGameView.render();
+
+		// TODO: could we increment this somewhere else or somehow figure if game was played or not ..
+		// now this increments if backed to the potpuripregameview
+		// -> just place incrementing function call to each game quit function and results view
+		potpuriProgressIndex++;
+		Settings.set({'potpuriProgressIndex': potpuriProgressIndex});
+
+		if (App.headerView === null) {
+			App.headerView = new HeaderView({ id:5 });
+		}else{
+			App.headerView.setId(5);
+		}
+	}
+
+	App.headerView.render();
+
 });
 
 Backbone.history.start();

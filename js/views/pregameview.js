@@ -16,7 +16,6 @@ var PreGameView = Backbone.View.extend({
         var txtSplit = [];
         var showJoker = false;
 
-        var gameId = this.model.get('gameId');
         if( gameId === 1 ){
             this.preload('kalat');
             var categoryImg = Settings.get('categoryImg');
@@ -58,7 +57,7 @@ var PreGameView = Backbone.View.extend({
 		this.$el.html(template);
 
 
-
+		var textCat = null;
         if( gameId === 1 ){
             $('.clicker').hide();
             $('.categoryTitle').removeClass('hidden');
@@ -117,7 +116,7 @@ var PreGameView = Backbone.View.extend({
 
         }else if ( gameId === 3 ){
 
-            var textCat = Settings.get('textCategory');
+            textCat = Settings.get('textCategory');
             $("#categoryCarousel").removeClass('hidden');
             $('.wordsTitle').removeClass('hidden');
             $('.item img').addClass('text-category');
@@ -170,7 +169,7 @@ var PreGameView = Backbone.View.extend({
 
         }else if ( gameId === 8 ){
             $('.sudokuCategoryTitle').removeClass('hidden');
-            var textCat = Settings.get('sudokuCategory');
+            textCat = Settings.get('sudokuCategory');
             $("#sudokuSelector").removeClass('hidden');
             if(textCat === 'numerot'){
                 $('#sudokuSelector img:nth(0)').addClass('selected');
@@ -185,16 +184,16 @@ var PreGameView = Backbone.View.extend({
 
         $("#categoryCarousel").swipe({
             swipeLeft:function(){
-                $("#categoryCarousel").carousel('next')
+                $("#categoryCarousel").carousel('next');
             },
             swipeRight:function(){
-                $("#categoryCarousel").carousel('prev')
+                $("#categoryCarousel").carousel('prev');
             }
         });
 
-		var self = this;
         $("#content").imagesLoaded( function (){
-			self.showTogglePlayerModal();
+			$('.overlay').css('display', 'none');
+			$('.modal').css('display', 'none');
         });
 
 
@@ -220,7 +219,7 @@ var PreGameView = Backbone.View.extend({
         'click #play-game' : 'play',
         'click .category' : 'selectCategory',
         'click .clicker' : 'selectTextCategory',
-        'click .sudoku-clicker' : 'selectTextCategory'
+        'click .sudoku-img' : 'selectTextCategory'
     },
 
     selectCategory: function( event ) {
@@ -228,7 +227,7 @@ var PreGameView = Backbone.View.extend({
         var target = $(event.target);
         target.toggleClass('selected');
         var src = target.attr('src');
-        var c = src.substring(7,src.length-6);
+        var c = src.substring(14,src.length-6);
         Settings.set({category:c});
     },
 
@@ -236,6 +235,9 @@ var PreGameView = Backbone.View.extend({
     selectTextCategory: function( event ) {
 
         var index = $(event.target).index();
+
+
+
         if(index > 0){
             index = index/2;
         }
@@ -245,10 +247,13 @@ var PreGameView = Backbone.View.extend({
 
         if( gameId === 8 ) {
 
-          $('.sudoku-img img').removeClass('selected');
-          $('.sudoku-img img:nth('+index+')').addClass('selected');
-          cat = $('#sudokuSelector h4:nth('+index+')').text().toLowerCase();
-          Settings.set({sudokuCategory:cat});
+			var par = $(event.target).parent();
+			$('.sudoku-img img').removeClass('selected');
+
+			var catClass = par.attr('class');
+			cat = par.text().toLowerCase().trim();
+			par.find('img').addClass('selected');
+			Settings.set({ sudokuCategory: cat });
 
         } else {
 
@@ -290,7 +295,7 @@ var PreGameView = Backbone.View.extend({
         $('.joker').removeClass('btn-info');
         Settings.set({difficulty: 'hard'});
     },
-    
+
     jokerSelected: function() {
         $('.lvl-box').addClass('hidden');
         $('.lvl-joker').removeClass('hidden');
@@ -313,23 +318,21 @@ var PreGameView = Backbone.View.extend({
     },
 
     preload: function(category) {
-
-        var category = category;
         var preload = [];
         var img;
         if(category === 'konstruktio'){
-            for(var j=0;j<12;j++){
-                img = './pics/' + category + '/' + j + '.png';
+            for(var j=0; j<12; j++){
+                img = './assets/pics/' + category + '/' + j + '.png';
                 preload.push(img);
             }
         }else if(category === 'KIM'){
             for(var k=0;k<68;k++){
-                img = './pics/' + category + '/' + k + '.png';
+                img = './assets/pics/' + category + '/' + k + '.png';
                 preload.push(img);
             }
         }else{
             for(var i=1;i<21;i++){
-                img = './pics/' + category + '/' + i + '.png';
+                img = './assets/pics/' + category + '/' + i + '.png';
                 preload.push(img);
             }
         }
@@ -337,20 +340,18 @@ var PreGameView = Backbone.View.extend({
     },
 
     preloadAud: function (category) {
-        var category = category;
-        var audio;
         var elaimet = ['ahma','ahven','hevonen','hilleri','ilves','kaarme','karhu','kirva','kissa','korppi','kyy',
                        'lammas','lehma','mato','mayra','rotta','sammakko','sarki','susi','tiikeri'];
 
         for (var i=0; i<elaimet.length; i++){
-            audio = './sounds/audio/' + category + '/' + elaimet[i] + '.mp3';
-            this.loadAudio(audio)
+            var audio = './assets/sounds/audio/' + category + '/' + elaimet[i] + '.mp3';
+            this.loadAudio(audio);
         }
     },
 
     loadAudio: function (uri) {
         var audio = new Audio();
-        audio.addEventListener('canplaythrough', false);
+		audio.preload = "auto";
         audio.src = uri;
         return audio;
     },
@@ -359,21 +360,21 @@ var PreGameView = Backbone.View.extend({
 		this.model = model;
 	},
 
-	showTogglePlayerModal: function () {
-
-		var el = '<h2>Valitse harjoittelija:</h2>' +
-			'<div class="text-center">' +
-			'<button onclick="window.hideTogglePlayerModal(1);" class="btn btn-info btn-playerToggle">Kuntoutuja</button>' +
-			'<button onclick="window.hideTogglePlayerModal(2);" class="btn btn-info btn-playerToggle">Läheinen</button></div>';
-
-		if( $('.overlay').css('display') == 'none' ){
-			$('.overlay').css('display','block');
-		}
-
-		$('#content').find('button').attr('disabled','disabled');
-		$('#header').find('button').attr('disabled','disabled');
-		$('.modal')
-			.html(el)
-			.css('display','block');
-	}
+	// showTogglePlayerModal: function () {
+	//
+	// 	var el = '<h2>Valitse harjoittelija:</h2>' +
+	// 		'<div class="text-center">' +
+	// 		'<button onclick="window.hideTogglePlayerModal(1);" class="btn btn-info btn-playerToggle">Kuntoutuja</button>' +
+	// 		'<button onclick="window.hideTogglePlayerModal(2);" class="btn btn-info btn-playerToggle">Läheinen</button></div>';
+	//
+	// 	if( $('.overlay').css('display') == 'none' ){
+	// 		$('.overlay').css('display','block');
+	// 	}
+	//
+	// 	$('#content').find('button').attr('disabled','disabled');
+	// 	$('#header').find('button').attr('disabled','disabled');
+	// 	$('.modal')
+	// 		.html(el)
+	// 		.css('display','block');
+	// }
  });

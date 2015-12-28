@@ -2,18 +2,22 @@ var Settings = Backbone.Model.extend({
 	defaults: {
 		currentUserId: null,
 		authToken: null,
-		returnUrl: 'https://pienipiiri.fi/mobile/?userId=',
+		//returnUrl: 'https://pienipiiri.fi/mobile/?userId=',
 		difficulty: 'easy',
-		playerRole: 'Kuntoutuja',
+		//playerRole: 'Kuntoutuja',
         category: 'kalat',
         textCategory: 'eläimet',
-		backendUrl: 'https://api.pienipiiri.fi',
+		//backendUrl: 'https://api.pienipiiri.fi',
 		score: {},
 		gameInstanceId: null,
 		showFeedbackModal: false,
-        startedPlaying: null, //on going session started time (date obj)
-        playedTimeMS: null, //previous session(s) time from backend
-        playedTime: null, //string e.g. "1h 33min"
+        // startedPlaying: null, //on going session started time (date obj)
+        // playedTimeMS: null, //previous session(s) time from backend
+        // playedTime: null, //string e.g. "1h 33min"
+
+		isPotpuriGame: false,
+		potpuriId: null,
+		potpuriProgressIndex: 0,
 
         //Tekstiviesti exercise specific
         txtSenderDom: '<button class="btn btn-block a-button btn-danger">Et vastannut tähän</button>',
@@ -46,26 +50,26 @@ var Settings = Backbone.Model.extend({
         stringCorrects:0,
 
         categoryImg: [
-                './pics/dinosaurukset/1.png',
-                './pics/elaimet/1.png',
-                './pics/hedelmat/1.png' ,
-                './pics/kalat/1.png',
-                './pics/kansallispuvut/1.png',
-                './pics/kasvit/1.png' ,
-                './pics/linnut/1.png',
-                './pics/liput/1.png',
-                './pics/soittimet/1.png' ,
-                './pics/tyokalut/1.png',
-                './pics/urheiluvalineet/1.png'
+                './assets/pics/dinosaurukset/1.png',
+                './assets/pics/elaimet/1.png',
+                './assets/pics/hedelmat/1.png' ,
+                './assets/pics/kalat/1.png',
+                './assets/pics/kansallispuvut/1.png',
+                './assets/pics/kasvit/1.png' ,
+                './assets/pics/linnut/1.png',
+                './assets/pics/liput/1.png',
+                './assets/pics/soittimet/1.png' ,
+                './assets/pics/tyokalut/1.png',
+                './assets/pics/urheiluvalineet/1.png'
             ],
 
         categories: {
             'titles' :      [   "ELÄIMET","AMMATIT","KASVIT","KAUPUNGIT","MIESTEN NIMET","NAISTEN NIMET",
                                 "SISUSTUS","SOITTIMET","TYÖKALUT","URHEILU","VALTIOT"
             ],
-            'titleImg' :    [   "./pics/elaimet/1.png","./pics/KIM/22.png","./pics/kasvit/1.png","./pics/KIM/16.png",
-                                "./pics/kansallispuvut/1.png","./pics/kansallispuvut/16.png","./pics/KIM/28.png",
-                                "./pics/soittimet/5.png","./pics/tyokalut/2.png","./pics/urheiluvalineet/6.png","./pics/liput/1.png"
+            'titleImg' :    [   "./assets/pics/elaimet/1.png","./assets/pics/KIM/22.png","./assets/pics/kasvit/1.png","./assets/pics/KIM/16.png",
+                                "./assets/pics/kansallispuvut/1.png","./assets/pics/kansallispuvut/16.png","./assets/pics/KIM/28.png",
+                                "./assets/pics/soittimet/5.png","./assets/pics/tyokalut/2.png","./assets/pics/urheiluvalineet/6.png","./assets/pics/liput/1.png"
             ],
 
             'eläimet' :     [   "KISSA","HILLERI","HEVONEN","LEHMÄ","LAMMAS","SÄRKI","MATO","AHVEN","TIIKERI","KÄÄRME",
@@ -287,7 +291,7 @@ var Settings = Backbone.Model.extend({
 
     sudokuCategories: {
       "titles": [ "NUMEROT", "HEDELMÄT" ],
-      "titleImg": [ "./pics/numbers.png", "./pics/hedelmat/1.png" ]
+      "titleImg": [ "./assets/pics/numbers.png", "./assets/pics/hedelmat/1.png" ]
     },
 
 

@@ -8,6 +8,7 @@ html, body{
     height: 100%;
     width:100%;
     display: block;
+    /*min-width: 935px;*/
 }
 
 .danger{
@@ -26,9 +27,9 @@ html, body{
 	width: 800px;
 	left: 42%;
     background: rgba( 255, 255, 255, .9 )
-    url(../img/ajax-loader.gif)
-    50% 60%
-    no-repeat;
+        url(../assets/img/ajax-loader.gif)
+        50% 60%
+        no-repeat;
 }
 
 .icon-bigger{
@@ -48,7 +49,7 @@ html, body{
 	z-index: 1000;
     display: none;
     position: fixed;
-    height: 200px;
+    height: 210px;
     width: 350px;
     background: rgba( 255, 255, 255, 1);
     top: 30%;
@@ -84,16 +85,15 @@ html, body{
     min-height: 100%;
     height: 100%;
     width: 100%;
+    overflow-y: scroll;
 }
 #content{
-    /*overflow: hidden;*/
-    height: 100%;
-    width: 90%;
-    padding:0 50px 0 50px;
+    display: block;
+    width: 95%;
     margin: 0 auto;
 }
 .row-fluid{
-    overflow: hidden;
+    /*overflow: auto;*/
     height: 100%;
     min-height: 100%;
     width: 100%;
@@ -107,17 +107,32 @@ html, body{
     padding:0;
     z-index: 10;
     background: -webkit-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(140,140,140,1) 96%,rgba(51,56,58,1) 100%);
+    background: -o-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(140,140,140,1) 96%,rgba(51,56,58,1) 100%);
+    background: -moz-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(140,140,140,1) 96%,rgba(51,56,58,1) 100%);
+    background: linear-gradient(top, rgba(204,204,204,1) 0%,rgba(140,140,140,1) 96%,rgba(51,56,58,1) 100%);
+    background: -ms-linear-gradient(top, rgba(204,204,204,1) 0%,rgba(140,140,140,1) 96%,rgba(51,56,58,1) 100%);
 }
 
 #header h2{
+    display: inline-block;
     color: #5c5c5c;
     margin:0;
-    padding:0.9% 0 0 6%;
-    margin-left:100px;
+    padding: 10px 0 0 50px;
     text-transform: uppercase;
     text-shadow: 1px 1px 1px black;
     font-size: 2.5em;
+    white-space: nowrap;
+    /*width: 60%;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    z-index: 9999;
 
+}
+
+#header button{
+    display: inline-block;
+    float:right;
+    margin: 8px 30px 0 0;
 }
 
 #header h1{
@@ -137,14 +152,15 @@ html, body{
 }
 
 .game-item{
-    width: 18.25%;
+    width: 20em;
     display: inline-block;
     cursor: pointer;
     background: rgb(238,238,238); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1))); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10+,Safari5.1+ */
-    margin: 20px 10px;
+    /*margin: 20px 10px;*/
+    margin: 10px 5px;
 
 }
 
@@ -166,19 +182,28 @@ html, body{
 }
 
 .wrap{
-    height:65px;
+    /*height:65px;*/
     display: table;
     padding:0px 0px 10px 0px;
     vertical-align: middle;
     margin:0 auto;
 }
 
+.lead-wrap{
+    height: 280px;
+    display: table;
+    padding: 0 10px 10px 10px;
+    vertical-align: middle;
+    margin:0 auto;
+    font-size: 16px;
+}
+
 .game-item h4{
-    margin-top:0px;
+    margin-top: 0px;
     line-height: 1.2em;
     height: 2.9em;
-    font-size: 1.7em;
-    padding:0px;
+    font-size: 2em;
+    padding: 0 10px;
     display: table-cell;
     vertical-align: middle;
     text-align: center;
@@ -190,10 +215,9 @@ html, body{
 	-ms-transform: translateZ(0);
 	-o-transform: translateZ(0);
 	transform: translateZ(0);
-    overflow-y: scroll;
-    height: 624px;
     margin:0;
     padding:0;
+    text-align:left;
 }
 
 .guide p {
@@ -234,7 +258,8 @@ html, body{
     width: 100px;
     height: 150px;
     background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
-
+    background: -moz-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0)));
+    background: gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0)));
 }
 .fade-right{
     position: fixed;
@@ -243,6 +268,8 @@ html, body{
     width: 100px;
     height: 150px;
     background: -webkit-gradient(linear, right top, left top, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+    background: -moz-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0)));
+    background: gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,0)));
 }
 
 
@@ -258,9 +285,11 @@ html, body{
     padding:0;
 }
 
-.align-right{
-    text-align: right;
+.item-collection{
+    max-width: 1200px;
+    margin: 0 auto;
 }
+
 .mood-meter{
 	text-align: center;
 }
@@ -282,8 +311,9 @@ html, body{
   word-wrap: break-word;
   white-space: nowrap;
 }
-.results button{
-  font-size: 1.9em;
+.results  button{
+    line-height: 1;
+    font-size: 1.7em;
 }
 
 .btn-feedback{
@@ -315,6 +345,14 @@ html, body{
     bottom:20px;
 }
 
+.align-left{
+    text-align: left;
+}
+
+.align-right{
+    text-align: right;
+}
+
 .tiny{
     font-size: 12px;
 }
@@ -336,16 +374,19 @@ ul{
 .title{
     margin-left:35px;
 	padding: 5px 0;
+    text-align: left;
 }
 
 hr{
-    margin-top:5px;
+    margin-top: 0;
 }
 
 .backToService, .back-root, .back-history{
-    position: absolute;
-    top:1.2%;
-    right:6%;
+    display: inline-block;
+    /*margin-left: 80%;
+    margin-right: 20%;
+    margin-top: -64px;*/
+
 }
 .top-bar-mid{
 	position: absolute;
@@ -364,10 +405,22 @@ hr{
     margin: 0 auto;
 }
 
-.pregame-options{
-    position: absolute;
-    right: 40px;
-    bottom: 20px;
+.pregame-options:before, .pregame-options:after{
+    content: " ";
+    display: table;
+}
+
+.pregame-options:after{
+    clear: both;
+}
+
+.pregame-options button{
+    line-height: 1em;
+    font-size: 170%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 15px;
+    margin-bottom: 10px;
 }
 
 .tight{
@@ -431,7 +484,7 @@ input[type=checkbox]
 img.phone{
     z-index: -1;
     margin-top: 0px;
-    width:350px;
+    width:25%;
     -webkit-backface-visibility: hidden;
 
 }
@@ -442,8 +495,11 @@ img.phone{
     text-align: left;
     position: absolute;
     top: 40px;
-    left: 10.9375%; /* 140 / 1280 */
-    width: 74.21875%; /* 950 / 1280 */
+    width: 60%;
+    min-width: 750px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
     font-size:5em;
     line-height: 1;
     background-color: #e8e8e8;
@@ -575,11 +631,11 @@ img.phone{
 
 @font-face{
     font-family: 'courier-new';
-    src: url('../fonts/WebFont.eot');
-    src: url('../fonts/WebFont.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/WebFont.woff') format('woff'),
-    url('../fonts/WebFont.ttf') format('truetype'),
-    url('../fonts/WebFont.svg#webfont') format('svg');
+    src: url('../assets/fonts/WebFont.eot');
+    src: url('../assets/fonts/WebFont.eot?#iefix') format('embedded-opentype'),
+    url('../assets/fonts/WebFont.woff') format('woff'),
+    url('../assets/fonts/WebFont.ttf') format('truetype'),
+    url('../assets/fonts/WebFont.svg#webfont') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -606,7 +662,7 @@ img.phone{
 }
 
 .scroller span{
-    float: left;
+    display: inline-block;
     padding-top:60px;
     width: 50px;
     height:100px;
@@ -614,18 +670,23 @@ img.phone{
 
 .selector{
     position: absolute;
+    left: 50%;
+    margin-left: -250px;
     background-color: #ff0000;
     opacity: 0.5;
     width: 500px;
     height: 80px;
     top: 220px;
-    left: 420px;
 }
 
 .onTarget-pressed-info{
+
     position: absolute;
-    top: 325px;
-    left: 570px;
+    left: 50%;
+    margin-left: -250px;
+    top: 335px;
+    width: 500px;
+    text-align: center;
     font-size: 2.2em;
 }
 
@@ -633,21 +694,27 @@ img.phone{
 
 .onTarget{
     position: absolute;
-    bottom: 200px;
-    left: 420px;
+    left: 50%;
+    margin-left: -250px;
+    top: 400px;
+    display: block;
     width: 500px;
     height: 150px;
 }
 
 .hint{
-    margin-left:31%;
-    margin-top:100px;
+    position: absolute;
+    text-align: center;
+    width: 500px;
+    left: 50%;
+    margin-left: -250px;
+    top: 100px;
 }
 
 /* KONSTRUOINTI */
 
 .construct-body{
-    margin-top:100px;
+    padding-top:100px;
 }
 
 .construct img{
@@ -920,14 +987,16 @@ span.bullet{
     background-color: #aeaeae;
 }
 
-a:hover{
+#categoryCarousel a:hover, a:active, a:focus{
     text-decoration:none;
     color: #fff;
 }
 
+
 .right{
     position: absolute;
-    left:91.80035650623886%; /* 515 / 561 */
+    left: 100%;
+    margin-left: -44px;
     border-bottom-right-radius: 30px;
     border-top-right-radius: 30px;
 
@@ -1008,6 +1077,7 @@ a:hover{
 }
 
 .sudoku-wrapper {
+
   margin: 0px auto;
   padding: 20px 150px;
   display: table;
@@ -1296,48 +1366,139 @@ a:hover{
 /* styles for pregame selector of sudoku */
 
 #sudokuSelector{
+    margin-bottom: 30px;
+}
+.sudoku-images{
+    display: inline-block;
 
 }
 .sudoku-img{
-    display: inline-block;
+    position: relative;
+    z-index: 9999;
     padding:0 15px;
     height: 110px !important;
     width: 110px !important;
-
+    cursor: pointer;
 }
 
 .sudoku-title{
     position: absolute;
+    top: 50px;
+    width: 119px;
     background-color: #515151;
-    opacity: 0.7;
-    height: auto;
-    padding: 0 10px;
-    margin: 0 5px;
-    width: 90px;
     color: #fff;
-    margin-left: 164px;
-    margin-top: -50px;
-}
-.sudoku-title:last-child{
-    margin-left: 307px;
+    opacity: 0.7;
+    margin-left: 5px;
+
+    font-size: 1.3em;
+    text-transform: uppercase;
+    padding: 5px 0;
 
 }
 
-.sudoku-clicker{
-    display: inline-block;
-    position: absolute;
-    z-index:999;
-    width: 120px;
-    height: 120px;
-    cursor: pointer;
-    opacity: 0;
-    margin-top:5px;
-    margin-left:20px;
-}
-
-.sudoku-clicker:first-child{ /*stupid tablet hack */
-    margin-left: 160px;
-}
 .sudokuCategoryTitle{
     margin-bottom: 5px;
+}
+
+
+
+.credits p{
+    font-size: 120%;
+}
+
+.mss-logo-span{
+    margin: 0;
+    padding: 0;
+    width: 66.7% !important;
+    float: left;
+}
+
+.ray-logo-span{
+    margin: 0;
+    padding: 0;
+    width: 29.9% !important;
+    float: right !important;
+}
+
+.guide-text-content, .guide-recipe-content, .guide-credits{
+    padding: 25px;
+    text-align: left;
+    font-size: 120%;
+    margin: 0 auto;
+    max-width: 900px;
+}
+
+.guide-text-content a:focus, .guide-recipe-content a:focus, .guide-credits a:focus{
+    color: #005580;
+}
+.guide-text-content a:active, .guide-recipe-content a:active, .guide-credits a:active{
+    color: #005580;
+}
+.guide-text-content h3, .guide-recipe-content h3{
+    text-transform: uppercase;
+}
+
+.guide-text-content img{
+    float: right;
+}
+
+.guide-recipe-content h3{
+    text-decoration: underline;
+}
+
+.guide-recipe-content{
+    border: 4px solid #002366;
+    color: #002366;
+    margin-bottom: 20px;
+}
+
+.guide-text-content p, .guide-recipe-content p{
+    margin: 20px 0;
+}
+
+.guide-text-content ul li{
+    margin-left: 20px;
+}
+
+.guide-credits ul li{
+    list-style-type: none;
+    margin-left: 40px;
+}
+
+.guide-credits ul{
+    margin-bottom: 20px;
+}
+
+.img-responsive{
+  display: block;
+  max-width: 60%;
+  height: auto;
+}
+
+.show-guide{
+    position: relative;
+    margin-top: 8px;
+    margin-right: 30px;
+    z-index: 1;
+}
+
+.mikstuura-lead{
+    width: 40em;
+    padding: 15px 0;
+    margin: 0 auto;
+    text-align: left;
+}
+
+@media screen and (max-width: 1250px) {
+
+    #header{
+        margin-bottom: 50px;
+    }
+
+}
+
+@media screen and (max-width: 840px) {
+    .mikstuura-lead{
+        width: 90%;
+    }
 }
