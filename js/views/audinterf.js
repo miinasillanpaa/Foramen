@@ -228,7 +228,6 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
 
         }
 
-
         Settings.set({ stringCorrects:correct });
         $('.finish').addClass('end').removeClass('finish');
         $('.end').text('Tuloksiin');
@@ -241,6 +240,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         var corrects = Settings.get('corrects');
         var wrongs = Settings.get('wrongs');
         var correctsArr = Settings.get('correctsArr');
+        var imgEl = $('img');
         var img = $('.image img').attr('src');
 
         var correct = false;
@@ -254,10 +254,13 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         if(correct){
             corrects++;
             Settings.set({ corrects:corrects });
+            imgEl.css("border","1px solid green");
         }else{
             wrongs++;
             Settings.set({ wrongs:wrongs });
+            imgEl.css("border","1px solid orange");
         }
+        $('.check').prop('disabled', true);
 
     },
 
@@ -365,5 +368,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
 
     changeDistract: function (arr,i) {
         $('.image img').attr('src',arr[i]);
+        $('img').css('border','none');
+        $('.check').prop('disabled', false);
     }
 });
