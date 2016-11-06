@@ -254,11 +254,11 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         if(correct){
             corrects++;
             Settings.set({ corrects:corrects });
-            imgEl.css("border","1px solid green");
+            //imgEl.css("border","1px solid green");
         }else{
             wrongs++;
             Settings.set({ wrongs:wrongs });
-            imgEl.css("border","1px solid orange");
+            //imgEl.css("border","1px solid orange");
         }
         $('.check').prop('disabled', true);
 
@@ -368,7 +368,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
 
     changeDistract: function (arr,i) {
         $('.image img').attr('src',arr[i]);
-        $('img').css('border','none');
+        //$('img').css('border','none');
         $('.check').prop('disabled', false);
     }
 });
