@@ -152,8 +152,8 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
         var diff = Settings.get('difficulty');
 
         var inputs = [];
-        for(var i=0; i<strings.length; i++){
-            input = $('.input_'+i).val();
+        for(var i=0; i<strings.length; i++) {
+            input = $('.input_'+i).val().toLowerCase();
             inputs.push(input);
         }
 
@@ -250,6 +250,7 @@ var AudatiivinenInterferenssi = Backbone.View.extend({
                 delete correctsArr[i];
             }
         }
+        console.log('clicked', correct);
 
         if(correct){
             corrects++;
