@@ -195,7 +195,7 @@ var TekstiviestiGameView = Backbone.View.extend({
         var places       = ["asemalla kioskin edessä","elokuvateatterin edessä","meillä","Mäkelänrinteen uimahallissa","ostarilla McDonald'sin edessä",
                             "Puijon tornin kahvilassa","Särkänniemessä vuoristoradan luona","teillä kotona"];
         var times = [];
-        for(i = 10; i < 18; i++){
+        for(var i = 10; i < 18; i++){
            string = "kello "+i;
            times.push(string);
         }
@@ -252,7 +252,7 @@ var TekstiviestiGameView = Backbone.View.extend({
         var items        = ["Afrikan tähti -peliä","Gameboy-peliä","kannettavaa tietokonetta","matikan kirjaa","melaa","pesäpalloräpylää","Pokémon korttikansiota"];
         var places       = ["bänditreeneissä","kirjastossa","koripallotreeneissä","kuntosalilla","kuoroharjoituksissa","lukusalissa","mikroautoradalla","palloiluhallilla"];
         var times = [];
-        for(i = 13; i < 21; i++){
+        for(var i = 13; i < 21; i++){
             string = "kello "+i;
             times.push(string);
         }
@@ -308,7 +308,7 @@ var TekstiviestiGameView = Backbone.View.extend({
         var items        = ["ensiapulaukun","eväskorin","hapanleipäjuuren","kahvinkeittimen","kannettavan tietokoneen","matka-TV:n","neulepuikot","taskulampun"];
         var places       = ["Karjaan","Kouvolan","Lahden","Lappeenrannan","Oulun","Rovaniemen","Seinäjoen","Suonenjoen"];
         var times = [];
-        for(i = 12; i < 20; i++){
+        for(var i = 12; i < 20; i++){
             string = "kello "+i;
             times.push(string);
         }
@@ -366,7 +366,7 @@ var TekstiviestiGameView = Backbone.View.extend({
         var places       = ["Tampereen lentokentältä","Joensuun lentokeltältä","Jyväskylän lentokentältä","Mäntyharjun lentokentältä","Mäntyharjun asemalta",
                             "Lohjan linja-autoasemalta","Salon linja-autoasemalta","Korppoon lautaulta","Emsälön sillalta"];
         var times = [];
-        for(i = 11; i < 19; i++){
+        for(var i = 11; i < 19; i++){
             string = "kello "+i;
             times.push(string);
         }

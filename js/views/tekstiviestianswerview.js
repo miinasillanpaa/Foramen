@@ -56,7 +56,7 @@ var TekstiviestiAnswerView = Backbone.View.extend({
     },
 
     quitGame: function () {
-        this.undelegates();
+        this.undelegateEvents();
         Settings.set({ 'playThruNum' : 0 });
         // var gameId = this.model.get('gameId');
         // window.saveInterruptedGame(gameId, Settings.get('gameInstanceId'));
