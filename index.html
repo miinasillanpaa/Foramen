@@ -160,19 +160,19 @@
 
     <script id="sarjamuistiTemplate" type="text/template">
 
-            <div class="text-center ansArray">
+            <div class="text-center ansArray row">
                 <% _.each(numArray, function(numArray) { %>
-                <div class="answers hidden"><%= numArray %></div>
+                <div class="answers hidden col"><%= numArray %></div>
                 <% }) %>
             </div>
-            <div class="text-center numArray">
+            <div class="text-center numArray row">
                 <% _.each(numArray, function(numArray) { %>
-                  <div class="box available"><p><%= numArray %></p></div>
+                  <div class="box available col"><p><%= numArray %></p></div>
                 <% }) %>
             </div>
-            <div class="text-center numOptions hidden">
+            <div class="text-center numOptions hidden row">
                 <% _.each(choices, function(choices) { %>
-                    <div class="choices"><%= choices %></div>
+                    <div class="choices col"><%= choices %></div>
                 <% }) %>
             </div>
         <button class="btn btn-large bottom-right bigger next btn-success" disabled="disabled" >Valmis</button>
