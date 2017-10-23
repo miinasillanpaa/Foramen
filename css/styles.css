@@ -1521,3 +1521,46 @@ span.bullet{
         width: 90%;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .container, #header {
+        min-width: auto !important;
+        width: calc(100% - 5px)
+    }
+
+    #header button {
+        width: 100%;
+        margin: 0;
+    }
+
+    #header h2 {
+        padding: 10px;
+        font-size: 4vh;
+    }
+
+    #content {
+        width: 100%;
+    }
+
+    #content .game-item {
+        width: 100%;
+        height: 50px;
+        margin: 5px 0;
+    }
+    #content .game-item.rounded {
+        border-radius: 0;
+    }
+    #content .game-item .rounded {
+        display: none;
+    }
+    #content .game-item .wrap {
+        display: block;
+        margin: 0;
+    }
+
+    #content .game-item .wrap h4 {
+        display: block;
+        font-size: 2.5vh;
+        line-height: 5vh;
+    }
+}
