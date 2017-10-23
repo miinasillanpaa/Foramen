@@ -287,8 +287,13 @@ html, body{
 }
 
 .item-collection{
-    max-width: 1200px;
+    width: 100%;
+    /* max-width: 1200px; */
     margin: 0 auto;
+}
+.item-collection img {
+    width: 10%;
+    max-width: 120px;
 }
 
 .mood-meter{
