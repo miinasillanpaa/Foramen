@@ -692,7 +692,7 @@ img.phone{
     margin-left: -250px;
     background-color: #ff0000;
     opacity: 0.5;
-    width: 500px;
+    width: 500px; /* one letter is 50px and there are 11 in the selector */
     height: 80px;
     top: 220px;
 }
@@ -1509,28 +1509,57 @@ span.bullet{
 }
 
 @media screen and (max-width: 1250px) {
-
     #header{
-        margin-bottom: 50px;
+        padding: 10px 0 50px 30px;
+        width: calc(100% - 30px);
+        min-width: calc(100% - 30px);
     }
-
+    #header h2 {
+        padding: 0;
+        display: block;
+    }
+    #header button {
+        float: left;
+    }
 }
 
-@media screen and (max-width: 840px) {
-    .mikstuura-lead{
-        width: 90%;
+@media screen and (max-height: 700px) {
+    /* muista kuulemasi sanat  */
+    .timer {
+        display: none;
+    }
+    .hint {
+        top: 20px;
+    }
+    .scroller {
+        top: 90px;
+    }
+    .selector {
+        top: 120px;
+    }
+    .onTarget-pressed-info {
+        top: 220px;
+    }
+    .onTarget {
+        top: 300px;
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 800px) {
     .container, #header {
         min-width: auto !important;
         width: calc(100% - 5px)
     }
 
+    #header {
+        padding: 10px 0;
+    }
+
     #header button {
         width: 100%;
-        margin: 0;
+        margin: 5px 0;
+        height: 5vh;
+        font-size: 2vh;
     }
 
     #header h2 {
@@ -1544,8 +1573,8 @@ span.bullet{
 
     #content .game-item {
         width: 100%;
-        height: 50px;
-        margin: 5px 0;
+        height: 100px;
+        margin: 10px 0;
     }
     #content .game-item.rounded {
         border-radius: 0;
