@@ -363,7 +363,7 @@ var TekstiviestiGameView = Backbone.View.extend({
         var receivers    = ["Aku","Ilkka","Joel","Jukka","Kai","Mia","Miikka","Mikael"];
         var senders      = ["Aino","Aulikki","Helga","Heta","Kaarina","Kirsti","Kyllikki","Sylvi"];
         var items        = ["uimapuku","rantapallo","uimapatja","uimakellukkeet","Aku Ankat","pelikortit","hammasharja","piirustusvälineet"];
-        var places       = ["Tampereen lentokentältä","Joensuun lentokeltältä","Jyväskylän lentokentältä","Mäntyharjun lentokentältä","Mäntyharjun asemalta",
+        var places       = ["Tampereen lentokentältä","Joensuun lentokentältä","Jyväskylän lentokentältä","Mäntyharjun lentokentältä","Mäntyharjun asemalta",
                             "Lohjan linja-autoasemalta","Salon linja-autoasemalta","Korppoon lautaulta","Emsälön sillalta"];
         var times = [];
         for(var i = 11; i < 19; i++){
