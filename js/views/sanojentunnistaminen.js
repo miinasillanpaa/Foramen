@@ -3,9 +3,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
     template: '#sanojenTunnistaminenTemplate',
 
     render: function () {
-
         $('#header').empty().hide();
-
         var myView, gameId, exerciseTime, moveTime, diff, text, textString, startPos, variables, template;
 
         Settings.set({itemsArray: []});
@@ -26,7 +24,6 @@ var SanojenTunnistaminen = Backbone.View.extend({
         this.knobify();
         text = this.stringMaker();
         textString = Settings.get('textString');
-
 
         //if user rezises window during the game -> doom
         var textRightOut = this.getWidth();
@@ -147,7 +144,10 @@ var SanojenTunnistaminen = Backbone.View.extend({
     },
 
     getWidth: function(){
-        'use strict';
+        var innerWidth = window.innerWidth
+        console.log(' getWidth', innerWidth)
+        
+
 
         var textRightOut;
         if(window.innerWidth >= 1800){
@@ -166,21 +166,24 @@ var SanojenTunnistaminen = Backbone.View.extend({
             textRightOut = 18;
         }else if(window.innerWidth <= 1200 && window.innerWidth > 1100){
             textRightOut = 17;
-        }else if(window.innerWidth <= 1100 && window.innerWidth > 950){
+        }else if(window.innerWidth <= 1100 && window.innerWidth > 1050){
             textRightOut = 16;
+        }else if(window.innerWidth <= 1050 && window.innerWidth > 950){
+            textRightOut = 15;
         }else if(window.innerWidth <= 950 && window.innerWidth > 900){
             textRightOut = 15;
         }else if(window.innerWidth <= 900 && window.innerWidth > 800){
             textRightOut = 14;
         }else if(window.innerWidth <= 800 && window.innerWidth > 700){
             textRightOut = 13;
-        }else if(window.innerWidth <=700 && window.innerWidth > 600){
+        }else if(window.innerWidth <= 700 && window.innerWidth > 650){
             textRightOut = 12;
+        }else if(window.innerWidth <= 650 && window.innerWidth > 550){
+            textRightOut = 11
         }else{
-            textRightOut = 11;
+            textRightOut = 10;
         }
-
-        return textRightOut;
+        return textRightOut
     },
 
     knobify: function () {
@@ -218,7 +221,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
         Settings.set({ selector: selector });
 
         //debug
-        //console.log('selector', selector);
+        //console.log('selector', selector, selector.length);
         //$('.hint').html(selector);
     },
 
@@ -347,7 +350,7 @@ var SanojenTunnistaminen = Backbone.View.extend({
 			category = 'miesten';
 		}else if(category === 'naisten nimet') {
 			category = 'naisten';
-		}
+        }
 
         if (Settings.get('itemsArray').length > 0) {
             console.log('itemsArray not empty');
